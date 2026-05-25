@@ -21,9 +21,17 @@
     "end_date": "2026-06-08",
     "status": "active",
     "lead_owner": "Maya Reyes (Open World)",
+    "manager_owner": "Alex Akiyama",
     "summary": "Lead creator agency: Open World. Shroud co-op stream May 28, Summit + LIRIK May 30. Lurkit performance quest live. Paid social + pre-roll layer.",
     "budget_usd": 320000,
-    "vendor_ids": ["open_world", "lurkit", "gamesight"]
+    "vendor_ids": ["open_world", "lurkit", "gamesight"],
+    "collaborators": [
+      { "name": "Brand Creative", "type": "internal", "role": "Hero cut + paid social masters", "responsible_for": ["Test of Time hero cut (60s + 30s + 15s)", "Paid social adapt set", "Shroud stream pre-roll cut"], "depends_on": [], "delivers_to": ["Open World", "Performance Marketing"] },
+      { "name": "Open World", "type": "external", "role": "Lead creator agency (Maya Reyes, Account Director)", "responsible_for": ["Shroud co-op stream production (May 28)", "Summit + LIRIK splits (May 30)", "Earned-seeding creator wave (68 seeds)"], "depends_on": ["Brand Creative hero cut for pre-roll"], "delivers_to": ["Gamesight (attribution)", "Marcus Lee (sentiment monitoring)"] },
+      { "name": "Lurkit", "type": "external", "role": "Performance quest platform", "responsible_for": ["Test of Time quest hours-watched", "Quest creator payout reconciliation"], "depends_on": ["Open World creator list lock"], "delivers_to": ["Performance Marketing"] },
+      { "name": "Performance Marketing", "type": "internal", "role": "Paid social + pre-roll buy", "responsible_for": ["Paid social flight (May 26 launch)", "Pre-roll buy ahead of Shroud stream"], "depends_on": ["Brand Creative paid social adapt set"], "delivers_to": ["Gamesight (attribution)"] },
+      { "name": "Gamesight", "type": "external", "role": "Attribution + UTM hygiene", "responsible_for": ["UTM audit on all creator codes", "Daily attribution report"], "depends_on": ["Open World code distribution"], "delivers_to": ["Alex Akiyama (Davide pre-read)"] }
+    ]
   },
   {
     "beat_id": "civ7_qa_test_of_time_sustain",
@@ -60,9 +68,17 @@
     "end_date": "2026-08-31",
     "status": "at_risk",
     "lead_owner": "Heaven Media",
-    "summary": "Sustain window held — Phase 2 $180K paid surge flagged for Davide call pending Patch 1.2 + D30 re-measure. CPMStar in-game placements running.",
+    "manager_owner": "Alex Akiyama",
+    "summary": "Sustain window held. Phase 2 $180K paid surge flagged for Davide call pending Patch 1.2 + D30 re-measure. CPMStar in-game placements running.",
     "budget_usd": 480000,
-    "vendor_ids": ["heaven_media", "cpmstar", "xsolla_rainmaker", "gamesight"]
+    "vendor_ids": ["heaven_media", "cpmstar", "xsolla_rainmaker", "gamesight"],
+    "collaborators": [
+      { "name": "Product / Live Service", "type": "internal", "role": "Patch 1.2 ship + D30 re-measure", "responsible_for": ["Patch 1.2 ship date confirmation", "D30 cohort re-measure (target Jun 12)"], "depends_on": [], "delivers_to": ["Alex Akiyama (Davide pre-read)"] },
+      { "name": "Heaven Media", "type": "external", "role": "Paid surge agency", "responsible_for": ["Phase 2 paid brief (currently paused)", "Refresh concepts on standby"], "depends_on": ["Davide GO/NO-GO Jun 5", "Patch 1.2 D30 readout"], "delivers_to": ["CPMStar", "Gamesight"] },
+      { "name": "CPMStar", "type": "external", "role": "In-game placement network", "responsible_for": ["In-game awareness layer (running)", "Phase 2 placement schedule"], "depends_on": ["Heaven Media brief"], "delivers_to": ["Gamesight"] },
+      { "name": "Performance Marketing", "type": "internal", "role": "Phase 2 paid buy oversight", "responsible_for": ["Spend pacing", "ROAS/CPI monitoring"], "depends_on": ["Heaven brief unlock"], "delivers_to": ["Alex Akiyama"] },
+      { "name": "Gamesight", "type": "external", "role": "Attribution", "responsible_for": ["Cohort attribution for D30 re-measure"], "depends_on": ["Product cohort export"], "delivers_to": ["Alex Akiyama (Davide pre-read)"] }
+    ]
   },
   {
     "beat_id": "bl4_mad_ellie_seo_hub_remediation",
@@ -99,9 +115,16 @@
     "end_date": "2026-06-30",
     "status": "at_risk",
     "lead_owner": "Heaven Media",
+    "manager_owner": "Marketing Mgr II",
     "summary": "Q2 paid sustain push. Creative fatigue: ROAS down 22% WoW. 3 refresh concepts in QA. Davide GO/NO-GO June 1 on next $120K tranche.",
     "budget_usd": 420000,
-    "vendor_ids": ["heaven_media", "gamesight", "xsolla_rainmaker"]
+    "vendor_ids": ["heaven_media", "gamesight", "xsolla_rainmaker"],
+    "collaborators": [
+      { "name": "Heaven Media", "type": "external", "role": "Lead paid agency", "responsible_for": ["3 refresh creative concepts (in Brand QA)", "Cohort fatigue post-mortem", "$120K tranche kickoff plan"], "depends_on": ["Brand Creative QA pass (Thu)", "Davide GO/NO-GO Jun 1"], "delivers_to": ["Performance Marketing", "Gamesight"] },
+      { "name": "Brand Creative", "type": "internal", "role": "Creative QA gatekeeper", "responsible_for": ["Refresh concept QA review (Thursday)", "Brand voice sign-off"], "depends_on": ["Heaven concept delivery"], "delivers_to": ["Heaven Media", "Marketing Mgr II"] },
+      { "name": "Performance Marketing", "type": "internal", "role": "Paid spend oversight", "responsible_for": ["ROAS/CPI tracking", "Spend pacing report for Davide pre-read"], "depends_on": ["Heaven flight launch"], "delivers_to": ["Marketing Mgr II (Davide pre-read)"] },
+      { "name": "Gamesight", "type": "external", "role": "Attribution", "responsible_for": ["Daily ROAS readout", "Cohort vs Mafia 2 baseline comparison"], "depends_on": ["Heaven UTM tagging"], "delivers_to": ["Marketing Mgr II"] }
+    ]
   },
   {
     "beat_id": "mafia_toc_q3_evergreen",
@@ -177,9 +200,17 @@
     "end_date": "2026-07-31",
     "status": "delayed",
     "lead_owner": "Engineering (blocker)",
-    "summary": "DLC delayed June 5 → July 10 (engineering stability blocker). 65K wishlisters notified. Comms re-announce in Davide sign-off Friday.",
+    "manager_owner": "Alex Akiyama",
+    "summary": "DLC delayed June 5 to July 10 (engineering stability blocker). 65K wishlisters notified. Comms re-announce in Davide sign-off Friday.",
     "budget_usd": 280000,
-    "vendor_ids": ["heaven_media"]
+    "vendor_ids": ["heaven_media"],
+    "collaborators": [
+      { "name": "Engineering", "type": "internal", "role": "Stability gate (blocker source)", "responsible_for": ["Patch certification for July 10 re-date", "Eng Producer sign-off"], "depends_on": [], "delivers_to": ["Product", "Alex Akiyama"] },
+      { "name": "Product", "type": "internal", "role": "Re-date confirmation", "responsible_for": ["Steam page date update", "Wishlister notification fire trigger"], "depends_on": ["Engineering sign-off"], "delivers_to": ["Community Lead", "Heaven Media"] },
+      { "name": "Community Lead (Marcus Lee)", "type": "internal", "role": "Re-announce comms drafter", "responsible_for": ["Quality-led re-announce post draft", "1hr sentiment ack window monitoring"], "depends_on": ["Legal redline", "Davide sign-off"], "delivers_to": ["Wishlister cohort (65K)"] },
+      { "name": "Legal", "type": "internal", "role": "Comms redline", "responsible_for": ["Re-announce language review"], "depends_on": ["Community Lead draft"], "delivers_to": ["Alex Akiyama (for Davide routing)"] },
+      { "name": "Heaven Media", "type": "external", "role": "Paid re-timing", "responsible_for": ["Paid surge re-timed to July 10 window", "Brief held pending Davide sign-off"], "depends_on": ["Davide sign-off", "Date public"], "delivers_to": ["Performance Marketing"] }
+    ]
   },
   {
     "beat_id": "wonderlands_evergreen_sustain",
@@ -229,9 +260,17 @@
     "end_date": "2026-08-15",
     "status": "active",
     "lead_owner": "Marcus Lee",
-    "summary": "Steam Free Weekend Aug 8–11. Pre-Free-Weekend awareness layer (CPMStar), creator quest (Lurkit), micro/nano shortlist (CreatorIQ).",
+    "manager_owner": "Marketing Mgr II",
+    "summary": "Steam Free Weekend Aug 8 to 11. Pre-Free-Weekend awareness layer (CPMStar), creator quest (Lurkit), micro/nano shortlist (CreatorIQ).",
     "budget_usd": 140000,
-    "vendor_ids": ["cpmstar", "lurkit", "creatoriq"]
+    "vendor_ids": ["cpmstar", "lurkit", "creatoriq"],
+    "collaborators": [
+      { "name": "CreatorIQ", "type": "external", "role": "Creator shortlist platform", "responsible_for": ["40 micro/nano FPS-adjacent creator shortlist (due Fri)", "Creator vetting + reach forecast"], "depends_on": [], "delivers_to": ["Community Lead (Marcus Lee)", "Lurkit"] },
+      { "name": "Community Lead (Marcus Lee)", "type": "internal", "role": "Creator briefing + sentiment", "responsible_for": ["Creator brief packets", "Discord build-up + ack window monitoring"], "depends_on": ["CreatorIQ shortlist"], "delivers_to": ["Lurkit"] },
+      { "name": "Lurkit", "type": "external", "role": "Performance quest platform", "responsible_for": ["Hours-watched quest setup (brief due Wed)", "Creator payout reconciliation"], "depends_on": ["Marcus brief", "Creator list lock"], "delivers_to": ["Performance Marketing"] },
+      { "name": "CPMStar", "type": "external", "role": "Awareness layer", "responsible_for": ["Pre-Free-Weekend awareness flight (quote pending)", "$4.20 CPI estimate validation"], "depends_on": ["Tomás quote approval"], "delivers_to": ["Performance Marketing"] },
+      { "name": "Performance Marketing (Tomás Vega)", "type": "internal", "role": "Quote approval + attribution", "responsible_for": ["CPMStar quote sign-off", "Conversion measurement plan"], "depends_on": [], "delivers_to": ["Marketing Mgr II"] }
+    ]
   },
   {
     "beat_id": "ror2_post_free_weekend_conversion",

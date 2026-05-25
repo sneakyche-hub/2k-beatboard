@@ -20,6 +20,7 @@ import Badge from "./Badge";
 import GanttBar from "./GanttBar";
 import Sparkline from "./Sparkline";
 import EscalationModal from "./EscalationModal";
+import CollaboratorChain from "./CollaboratorChain";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -142,7 +143,7 @@ export default function TitleWorkspace({ title }) {
           {standupEntry && (
             <div className="panel p-5">
               <div className="text-[11px] uppercase tracking-wider text-ink-500 font-semibold mb-2">
-                Today's read — Claude
+                Today's read · Claude
               </div>
               <p className="text-[14px] leading-relaxed">
                 {standupEntry.claude_blurb}
@@ -208,7 +209,7 @@ export default function TitleWorkspace({ title }) {
                     {k.replace(/_/g, " ")}
                   </div>
                   <div className="display text-[20px] font-bold mt-1">
-                    {v == null ? "—" : v.toLocaleString()}
+                    {v == null ? "n/a" : v.toLocaleString()}
                   </div>
                   {target != null && (
                     <div className="text-[11px] text-ink-500 mt-0.5">
@@ -257,6 +258,9 @@ export default function TitleWorkspace({ title }) {
       {/* PRODUCTION CALENDAR */}
       {tab === "calendar" && (
         <div className="space-y-5">
+          {beats.filter((b) => b.collaborators && b.collaborators.length > 0).map((b) => (
+            <CollaboratorChain key={`chain-${b.beat_id}`} beat={b} />
+          ))}
           <div className="panel p-3 overflow-hidden">
             <div className="text-[11px] text-ink-500 px-2 pt-1 pb-2 uppercase tracking-wider font-semibold">
               Beats · {fmtDate(ganttStart)} → {fmtDate(ganttEnd)}
@@ -436,7 +440,7 @@ export default function TitleWorkspace({ title }) {
               <span className="font-semibold">Manager track:</span> I track
               spend + invoice flow against committed plan, flag overruns or
               gating decisions up to Davide. I do not authorize spend tranches
-              — those are Davide GO/NO-GOs.
+              . Those are Davide GO/NO-GOs.
             </div>
           </div>
 
@@ -495,12 +499,12 @@ export default function TitleWorkspace({ title }) {
                         {k.replace(/_/g, " ")}
                       </div>
                       <div className="text-[10.5px] text-ink-500 mono">
-                        target {target?.toLocaleString() ?? "—"}
+                        target {target?.toLocaleString() ?? "n/a"}
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="mono font-semibold text-[15px]">
-                        {v == null ? "—" : v.toLocaleString()}
+                        {v == null ? "n/a" : v.toLocaleString()}
                       </div>
                       {meets === true && (
                         <CheckCircle2 className="h-4 w-4 text-accent-success" />

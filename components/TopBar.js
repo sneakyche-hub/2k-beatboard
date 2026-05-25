@@ -3,7 +3,7 @@
 import { Search, Bell } from "lucide-react";
 
 export default function TopBar() {
-  const today = new Date("2026-05-24T12:00:00Z").toLocaleDateString("en-US", {
+  const today = new Date("2026-05-26T12:00:00Z").toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",

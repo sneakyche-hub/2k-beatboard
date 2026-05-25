@@ -13,7 +13,18 @@ import Badge from "./Badge";
 
 const VIEW_START = new Date("2026-05-15T00:00:00Z").getTime();
 const VIEW_END = new Date("2026-09-30T00:00:00Z").getTime();
-const TODAY = new Date("2026-05-24T00:00:00Z").getTime();
+const TODAY = new Date("2026-05-26T00:00:00Z").getTime();
+
+const STATUS_COLOR = {
+  active: "#1F4FDB",
+  on_track: "#16A34A",
+  completed: "#16A34A",
+  at_risk: "#D97706",
+  blocked: "#DC2626",
+  delayed: "#DC2626",
+  planning: "#94A3B8",
+  scheduled: "#94A3B8",
+};
 
 function monthMarkers() {
   const markers = [];
@@ -98,7 +109,7 @@ export default function GlobalCalendar() {
           One view of the portfolio.
         </h1>
         <p className="text-[13px] text-ink-500 mt-1">
-          {fmtDate(VIEW_START, { year: true })} —{" "}
+          {fmtDate(VIEW_START, { year: true })} to{" "}
           {fmtDate(VIEW_END, { year: true })} · 8 titles · 26 beats · 50+ tasks
         </p>
       </div>
@@ -188,56 +199,141 @@ export default function GlobalCalendar() {
             </div>
           </div>
         </div>
-        <div className="relative">
-          {/* Today vertical line through body */}
-          <div
-            className="absolute top-0 bottom-0 w-px bg-accent-red/40 pointer-events-none z-10"
-            style={{ left: `${todayPct}%` }}
-          />
-          {(tab === "beats" ? filteredBeats : filteredTasks).map((item) => {
-            const t = titles.find((x) => x.title_id === item.title_id);
-            const label =
-              tab === "beats" ? item.beat_name : item.task_name;
-            const sub =
-              tab === "beats"
-                ? `${fmtDate(item.start_date)} → ${fmtDate(item.end_date)}`
-                : TASK_TYPE_LABEL[item.task_type] || item.task_type;
-            return (
-              <div
-                key={tab === "beats" ? item.beat_id : item.task_id}
-                className="grid grid-cols-[200px_1fr] md:grid-cols-[260px_1fr] border-b border-line last:border-b-0 hover:bg-base/40"
-              >
-                <div className="px-3 py-2.5 border-r border-line min-w-0">
-                  <div className="flex items-center gap-1.5">
-                    <span
-                      className="h-2 w-2 rounded-full shrink-0"
-                      style={{
-                        backgroundColor: t?.brand_color || "#94A3B8",
-                      }}
+
+        {/* All-titles + beats: title swimlanes. Otherwise per-row item list. */}
+        {tab === "beats" && filterTitle === "all" ? (
+          <div className="relative">
+            {/* Today vertical line through body */}
+            <div
+              className="absolute top-0 bottom-0 w-px bg-accent-red/40 pointer-events-none z-10"
+              style={{ left: `${todayPct}%` }}
+            />
+            {titles.map((t) => {
+              const titleBeats = filteredBeats.filter(
+                (b) => b.title_id === t.title_id
+              );
+              return (
+                <div
+                  key={t.title_id}
+                  className="grid grid-cols-[200px_1fr] md:grid-cols-[220px_1fr] border-b border-line last:border-b-0 hover:bg-base/40"
+                >
+                  <Link
+                    href={`/titles/${t.franchise_slug}`}
+                    className="px-3 py-3 border-r border-line min-w-0 hover:bg-ink-300/10 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="h-2.5 w-2.5 rounded-full shrink-0"
+                        style={{ backgroundColor: t.brand_color }}
+                      />
+                      <span className="text-[12.5px] font-semibold truncate">
+                        {t.title_name}
+                      </span>
+                    </div>
+                    <div className="text-[10.5px] text-ink-500 mt-0.5">
+                      {titleBeats.length} beat
+                      {titleBeats.length === 1 ? "" : "s"} in view
+                    </div>
+                  </Link>
+                  <div className="relative h-12">
+                    {titleBeats.map((b) => {
+                      const s = new Date(b.start_date).getTime();
+                      const e = new Date(b.end_date).getTime();
+                      const clampedS = Math.max(s, VIEW_START);
+                      const clampedE = Math.min(e, VIEW_END);
+                      const leftPct =
+                        ((clampedS - VIEW_START) / (VIEW_END - VIEW_START)) *
+                        100;
+                      const widthPct =
+                        ((clampedE - clampedS) / (VIEW_END - VIEW_START)) * 100;
+                      const statusColor =
+                        STATUS_COLOR[b.status] || t.brand_color;
+                      return (
+                        <Link
+                          key={b.beat_id}
+                          href={`/titles/${t.franchise_slug}`}
+                          className="absolute top-1/2 -translate-y-1/2 h-6 rounded-md border border-white/40 shadow-sm hover:shadow-md hover:ring-2 hover:ring-ink-900/10 transition-all overflow-hidden"
+                          style={{
+                            left: `${leftPct}%`,
+                            width: `max(${widthPct}%, 4px)`,
+                            backgroundColor: t.brand_color,
+                          }}
+                          title={`${b.beat_name} · ${b.status} · ${fmtDate(
+                            b.start_date
+                          )} → ${fmtDate(b.end_date)}`}
+                        >
+                          <span
+                            className="absolute inset-y-0 left-0 w-1"
+                            style={{ backgroundColor: statusColor }}
+                          />
+                          <span className="block pl-2 pr-1.5 text-[10.5px] font-semibold text-white truncate leading-6">
+                            {b.beat_name}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                    {titleBeats.length === 0 && (
+                      <div className="absolute inset-0 flex items-center pl-2 text-[10.5px] text-ink-400">
+                        No beats in this window
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="relative">
+            {/* Today vertical line through body */}
+            <div
+              className="absolute top-0 bottom-0 w-px bg-accent-red/40 pointer-events-none z-10"
+              style={{ left: `${todayPct}%` }}
+            />
+            {(tab === "beats" ? filteredBeats : filteredTasks).map((item) => {
+              const t = titles.find((x) => x.title_id === item.title_id);
+              const label =
+                tab === "beats" ? item.beat_name : item.task_name;
+              const sub =
+                tab === "beats"
+                  ? `${fmtDate(item.start_date)} → ${fmtDate(item.end_date)}`
+                  : TASK_TYPE_LABEL[item.task_type] || item.task_type;
+              return (
+                <div
+                  key={tab === "beats" ? item.beat_id : item.task_id}
+                  className="grid grid-cols-[200px_1fr] md:grid-cols-[260px_1fr] border-b border-line last:border-b-0 hover:bg-base/40"
+                >
+                  <div className="px-3 py-2.5 border-r border-line min-w-0">
+                    <div className="flex items-center gap-1.5">
+                      <span
+                        className="h-2 w-2 rounded-full shrink-0"
+                        style={{
+                          backgroundColor: t?.brand_color || "#94A3B8",
+                        }}
+                      />
+                      <span className="text-[12.5px] font-medium truncate">
+                        {label}
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-ink-500 mt-0.5 truncate">
+                      {sub}
+                    </div>
+                  </div>
+                  <div className="relative px-2">
+                    <GanttBar
+                      label={tab === "beats" ? item.lead_owner || "n/a" : item.owner}
+                      startDate={item.start_date}
+                      endDate={item.end_date}
+                      status={item.status}
+                      rangeStart={VIEW_START}
+                      rangeEnd={VIEW_END}
+                      brandColor={t?.brand_color}
                     />
-                    <span className="text-[12.5px] font-medium truncate">
-                      {label}
-                    </span>
-                  </div>
-                  <div className="text-[11px] text-ink-500 mt-0.5 truncate">
-                    {sub}
                   </div>
                 </div>
-                <div className="relative px-2">
-                  <GanttBar
-                    label={tab === "beats" ? item.lead_owner || "—" : item.owner}
-                    startDate={item.start_date}
-                    endDate={item.end_date}
-                    status={item.status}
-                    rangeStart={VIEW_START}
-                    rangeEnd={VIEW_END}
-                    brandColor={t?.brand_color}
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </section>
 
       {/* Legend */}

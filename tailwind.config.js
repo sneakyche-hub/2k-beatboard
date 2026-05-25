@@ -29,6 +29,11 @@ module.exports = {
           red: "#DC2626",
           violet: "#7C3AED",
         },
+        twok: {
+          black: "#0A0A0A",
+          gold: "#FFC72C",
+          "gold-soft": "#FFE48A",
+        },
         brand: {
           borderlands: "#FF8400",
           civilization: "#C9A227",

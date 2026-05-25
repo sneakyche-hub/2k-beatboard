@@ -52,7 +52,7 @@ export default function Connections() {
           <Plug className="h-3 w-3" /> Connections
         </div>
         <h1 className="display text-[26px] md:text-[32px] font-bold tracking-tight mt-1">
-          What Claude is allowed to see — and what it does with it.
+          What Claude is allowed to see, and what it does with it.
         </h1>
         <p className="text-[13px] text-ink-500 mt-1">
           Every signal in BeatBoard comes from one of these{" "}
@@ -72,7 +72,7 @@ export default function Connections() {
           BeatBoard never invents data. Every KPI, transcript snippet, draft,
           and ticket on this dashboard is rooted in a real connector listed
           below. If a source goes dark, the cards that depend on it surface
-          the staleness in line — no silent fallback. This page is the
+          the staleness in line. No silent fallback. This page is the
           single source of truth for{" "}
           <span className="font-semibold">what Claude can read</span> and{" "}
           <span className="font-semibold">what it can write back</span> on
@@ -141,7 +141,7 @@ export default function Connections() {
       ))}
 
       <div className="panel p-4 text-[12px] text-ink-700 leading-relaxed">
-        <span className="font-semibold">Scope guardrails — </span>
+        <span className="font-semibold">Scope guardrails. </span>
         Claude operates at this Manager's level of authority only. It drafts,
         flags, and coordinates. It does <span className="italic">not</span>{" "}
         unilaterally authorize spend tranches, sign-off comms to external

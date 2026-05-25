@@ -60,7 +60,7 @@ export default function EscalationModal({ draft, onClose }) {
         </div>
         <div className="border-t border-line px-5 py-3 flex items-center justify-between bg-base/60">
           <div className="text-[11px] text-ink-500">
-            Demo — drafts are not sent.
+            Demo · drafts are not sent.
           </div>
           <div className="flex gap-2">
             <button

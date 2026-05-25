@@ -22,19 +22,25 @@ const NAV = [
 export default function Sidebar() {
   const pathname = usePathname();
   return (
-    <aside className="hidden md:flex md:w-60 lg:w-64 shrink-0 flex-col border-r border-line bg-white">
+    <aside className="hidden md:flex md:w-60 lg:w-64 shrink-0 flex-col border-r border-line bg-white relative">
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-twok-gold" />
       <div className="px-5 pt-6 pb-5 border-b border-line">
         <Link href="/" className="flex items-baseline gap-2">
-          <span className="display text-[22px] font-bold tracking-tight">
+          <span className="display text-[22px] font-bold tracking-tight bg-twok-black text-twok-gold px-1.5 rounded-sm">
             2K
           </span>
-          <span className="display text-[22px] font-bold tracking-tight text-accent-primary">
+          <span className="display text-[22px] font-bold tracking-tight text-ink-900">
             BeatBoard
           </span>
         </Link>
-        <p className="text-[11px] text-ink-500 mt-1 leading-tight">
-          Integrated Marketing Ops · NA
-        </p>
+        <div className="flex items-center gap-1.5 mt-2">
+          <span className="inline-flex items-center text-[9.5px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-twok-gold/30 text-twok-black border border-twok-gold/60">
+            Custom build
+          </span>
+          <p className="text-[11px] text-ink-500 leading-tight">
+            Integrated Mktg Ops · NA
+          </p>
+        </div>
       </div>
       <nav className="flex-1 px-3 py-4 space-y-1">
         {NAV.map((item) => {
@@ -68,7 +74,7 @@ export default function Sidebar() {
           <div className="min-w-0">
             <div className="text-sm font-semibold truncate">Alex Akiyama</div>
             <div className="text-[11px] text-ink-500 truncate">
-              Manager, Integrated Marketing — NA
+              Manager, Integrated Marketing · NA
             </div>
           </div>
         </div>
