@@ -1,0 +1,47 @@
+[
+  {
+    "draft_id": "draft_mad_ellie_surge_hold",
+    "channel": "slack",
+    "recipient": "#borderlands-mad-ellie",
+    "related_risk_id": "risk_mad_ellie_leaky_bucket",
+    "related_ticket_id": "BL-2418",
+    "subject": null,
+    "body": "Pre-warning the team — I'm flagging this up to Davide for the call on the Mad Ellie SP1 Phase 2 paid surge. D30 came in at 9.8% on the launch cohort, under our 14% gate. Top of funnel looks healthy (1,840/day wishlist velocity, 82% reviews) so the read is leaky bucket not awareness — pushing more paid into a cohort that isn't sticking burns budget without compounding.\n\nWhat I'm recommending in the brief to Davide:\n1) Hold the $180K Phase 2 tranche until Patch 1.2 ships\n2) Engineering + Game Team flagged the retention work (loot tuning, mission flow) — confirming with their producer\n3) Re-measure D30 on the next cohort post-patch (target June 12)\n4) Heaven Media briefed and ready to resume planning once we clear the gate\n\nSharing here so we're aligned before the decision lands. Will update once Davide confirms direction. Flag anything urgent."
+  },
+  {
+    "draft_id": "draft_wonderlands_dlc_delay_comms",
+    "channel": "slack",
+    "recipient": "#wonderlands-live",
+    "related_risk_id": "risk_wonderlands_dlc_delay",
+    "related_ticket_id": "WND-1782",
+    "subject": null,
+    "body": "Pulling together the comms ask for Davide on 'Glutton's Gamble Encore' so we're aligned before Steam pushes the date-shift notification. Sarah confirms the stability blocker — realistic re-date July 10 (was June 5). ~65K standalone-page wishlisters will get the Steam notification the moment we update.\n\nDraft plan I'm sending up for Davide sign-off, per Sentiment Defense playbook:\n1) Marcus drafts the 'what's happening / what's next / why' post for the 1hr ack window once Davide confirms new date publicly\n2) Comms frames around quality, not delay — lead with stability work and the player experience win\n3) Hold the planned paid surge — Heaven re-times to the July 10 window so we don't burn awareness early (paused pending Davide call)\n4) Re-cut creator briefs with Open World for new dates\n\nDraft post in this channel EOD Friday for review before it goes to Davide. Flag concerns now and I'll roll them in."
+  },
+  {
+    "draft_id": "draft_test_of_time_asset_escalation",
+    "channel": "email",
+    "recipient": "Sr Manager, Global GTM, Core",
+    "related_risk_id": "risk_test_of_time_creator_brief_slip",
+    "related_ticket_id": "CIV-1934",
+    "subject": "Test of Time NA creator hero cut — 48h slip, decision ask if it slips again",
+    "body": "Hi Davide —\n\nFlagging a 48h slip on the Test of Time NA creator hero cut. Open World is blocked on final hero asset for paid social and the Shroud co-op stream pre-roll (May 28). Brand Creative committed EOD today; I'm chasing and have not yet seen the cut.\n\nTwo paths if it doesn't land:\n1) Asset lands EOD today as planned — no impact, we proceed\n2) Asset slips again — recommend we ship Open World's v2 cut from Tuesday as backup (good enough, not great) and use the Brand final cut in the second wave next week\n\nFlagging now so you can make the call by tomorrow morning if (1) doesn't land. Happy to loop in Brand Creative lead directly if you'd prefer that route.\n\nThanks,\nAlex"
+  },
+  {
+    "draft_id": "draft_mafia_creative_refresh_hold",
+    "channel": "slack",
+    "recipient": "#mafia-old-country",
+    "related_risk_id": "risk_mafia_creative_fatigue",
+    "related_ticket_id": "MAF-987",
+    "subject": null,
+    "body": "Heads up — packaging the Mafia: TOC creative refresh ask for Davide's June 1 GO/NO-GO on the next $120K tranche. ROAS down 22% WoW (1.87 vs 2.4 target), CPI drifted from $9.50 to $10.80 — classic top-of-funnel fatigue. D30 still 14.1% so the funnel works, this is purely a creative problem.\n\nHeaven has 3 new concepts in QA. Brand reviews Thursday. I'll roll Brand's notes into the recommendation deck for Davide by Friday so we have a clean call on June 1.\n\nNot a fire — just want everyone aligned on cadence so the refresh doesn't slip the GO date. Spending more on stale creative would be the failure mode here."
+  },
+  {
+    "draft_id": "draft_bl4_seo_residue_brief",
+    "channel": "slack",
+    "recipient": "#2k-na-integrated",
+    "related_risk_id": "risk_bl4_narrative_drift",
+    "related_ticket_id": "BL-2451",
+    "subject": null,
+    "body": "Low-priority but accumulating — flagging for awareness, no decision needed. BL3 'best endgame guides' content is still outranking the BL4 Mad Ellie strategy hub on long-tail queries. Old SEO residue from the BL3 endgame era — internal link decoupling never fully happened.\n\nProposing we scope a 4-week content seeding push to the Mad Ellie strategy hub paired with an internal SEO sweep to break the BL3 link signal. Owner should be Comms — looping in Marcus on the brief. No urgency, but if we don't address it the Mad Ellie hub won't earn its slot in search by the time we hit the Story Pack 2 reveal window."
+  }
+]

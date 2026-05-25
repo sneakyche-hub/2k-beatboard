@@ -1,0 +1,199 @@
+{
+  "standup_date": "2026-05-22",
+  "portfolio_health_summary": "Status update for Sr Manager, Global GTM, Core — 22 May. Portfolio health: 5 on track, 2 at risk (Borderlands Mad Ellie SP1, Mafia: TOC sustain), 1 blocked (Wonderlands DLC). This week I'm coordinating: (1) Mad Ellie SP1 Phase 2 paid surge — flagging for your call, D30 9.8% vs 14% gate, recommending hold pending Patch 1.2; (2) Wonderlands 'Glutton's Gamble Encore' delay — Eng confirms July 10 re-date, drafting community re-announce with Marcus for your sign-off EOD Friday; (3) Test of Time NA creator follow-up — Brand creative hero cut 48h late to Open World, escalation drafted if it slips again; (4) Mafia: TOC creative refresh — Heaven concepts in QA, Brand reviews Thursday, on track for your June 1 GO/NO-GO. Civ VII Test of Time landed strong — 87% reviews trending up, peak CCU 102K, Open World confirmed Shroud reschedule to May 28.",
+  "kpi_top_strip": {
+    "tickets_due_today": 14,
+    "tickets_at_risk_this_week": 9,
+    "avg_d30_retention_pct": 13.4,
+    "avg_d30_retention_trend": "down",
+    "avg_d30_retention_delta_pp": -1.2,
+    "portfolio_wishlist_velocity_weekly": 22680,
+    "portfolio_wishlist_velocity_trend": "up",
+    "portfolio_wishlist_velocity_delta_pct": 9,
+    "avg_review_score_pct": 85,
+    "avg_review_score_trend": "up",
+    "avg_review_score_delta_pp": 1,
+    "budget_pacing_spent_pct": 51,
+    "budget_pacing_quarter_through_pct": 56
+  },
+  "by_title": [
+    {
+      "title_id": "borderlands",
+      "claude_blurb": "**Next:** June 5 — Davide GO/NO-GO on Mad Ellie SP1 Phase 2 paid surge. ⚠ D30 retention 9.8% vs 14% gate is the blocker. Top-line still strong (82% reviews, 1840/day wishlist velocity on standalone page). Flagging for Davide: recommend Phase 2 surge hold until Patch 1.2 ships + we re-measure D30 cohort June 12. Heaven Media pre-warned, brief is paused. Open World creator activation closed clean — Shroud + Summit1G + LIRIK + 68 earned seeds, no breakage on codes.",
+      "phase_gate_check": {
+        "kpi_label": "D30 retention",
+        "threshold": "≥ 14%",
+        "actual": "9.8%",
+        "status": "at_risk"
+      },
+      "sparkline_metric_label": "D7 retention (last 14 days)",
+      "sparkline_values": [25.1, 25.8, 26.2, 26.9, 27.1, 26.8, 26.5, 26.7, 26.3, 26.1, 26.4, 26.4, 26.2, 26.4]
+    },
+    {
+      "title_id": "civilization",
+      "claude_blurb": "**Next:** May 28 — Shroud co-op stream live (Open World production). Test of Time three days in: 87% reviews trending up, peak CCU 102K (above 95K target), D7 retention 33.6%. ⚠ One coordination drag — Brand creative hero cut for paid social and Shroud pre-roll is 48h late to Open World. Chasing Brand for EOD handoff today; backup is Open World's v2 cut from Tuesday. Escalation draft to Davide queued if it slips again.",
+      "phase_gate_check": {
+        "kpi_label": "Review score (rolling 7d)",
+        "threshold": "≥ 85%",
+        "actual": "87%",
+        "status": "on_track"
+      },
+      "sparkline_metric_label": "Review score % (since launch)",
+      "sparkline_values": [83, 84, 84, 85, 86, 86, 87, 87, 87, 87]
+    },
+    {
+      "title_id": "mafia",
+      "claude_blurb": "**Next:** June 1 — Davide GO/NO-GO on next $120K creative tranche. Classic top-of-funnel fatigue: ROAS 1.87 vs 2.4 target (-22% WoW), CPI drifted $9.50→$10.80. D30 holding at 14.1% so funnel itself is fine. Heaven has 3 refresh concepts in QA, Brand reviews Thursday. Tracking for your call June 1. No action needed from you today.",
+      "phase_gate_check": {
+        "kpi_label": "ROAS (rolling 7d)",
+        "threshold": "≥ 2.4",
+        "actual": "1.87",
+        "status": "at_risk"
+      },
+      "sparkline_metric_label": "ROAS (last 14 days)",
+      "sparkline_values": [2.42, 2.38, 2.31, 2.28, 2.22, 2.15, 2.09, 2.04, 2.01, 1.96, 1.92, 1.89, 1.88, 1.87]
+    },
+    {
+      "title_id": "xcom",
+      "claude_blurb": "**Next:** Sept 8 — 30th Anniversary Bundle Steam page refresh. Catalog behaving — revenue +11% YoY, wishlist velocity 318/day vs 240 target. Nothing to escalate.",
+      "phase_gate_check": {
+        "kpi_label": "Catalog revenue YoY",
+        "threshold": "≥ +8%",
+        "actual": "+11%",
+        "status": "on_track"
+      },
+      "sparkline_metric_label": "Catalog revenue YoY % (rolling 28d)",
+      "sparkline_values": [7, 8, 8, 9, 9, 10, 10, 11, 11, 11]
+    },
+    {
+      "title_id": "bioshock",
+      "claude_blurb": "**Next:** July 15 — narrative control SEO sweep complete (pre-launch hygiene gate). SEO share 52% against 60% target — tracking. Capsule CTR 5.8%, store→wishlist CVR 11.4% both clearing. Wishlist bank 187K vs 250K target, trajectory comfortable. Reveal window gating starts late August. No asks this week.",
+      "phase_gate_check": {
+        "kpi_label": "Narrative SEO share",
+        "threshold": "≥ 60%",
+        "actual": "52%",
+        "status": "on_track"
+      },
+      "sparkline_metric_label": "Wishlist total (last 12 weeks, K)",
+      "sparkline_values": [142, 148, 153, 158, 163, 168, 172, 176, 180, 183, 185, 187]
+    },
+    {
+      "title_id": "wonderlands",
+      "claude_blurb": "**Next:** May 29 — community comms re-announce (Davide sign-off owed). ⚠ Engineering stability blocker — Eng Producer confirms realistic re-date July 10 (was June 5). 65K standalone-page wishlisters get a Steam notification the moment we update the page. Coordinating draft with Marcus (Community Lead) per Sentiment Defense playbook — lead with quality, not delay. Draft in your inbox EOD Friday. Paid surge re-timing to July window queued for Heaven once you sign.",
+      "phase_gate_check": {
+        "kpi_label": "DLC drop readiness",
+        "threshold": "Eng sign-off",
+        "actual": "Blocked",
+        "status": "blocked"
+      },
+      "sparkline_metric_label": "D7 retention % (last 14 days)",
+      "sparkline_values": [27.4, 27.2, 26.8, 26.5, 26.1, 25.8, 25.5, 25.1, 24.9, 24.6, 24.4, 24.2, 24.1, 24.1]
+    },
+    {
+      "title_id": "homeworld",
+      "claude_blurb": "**Next:** June 28 — Anniversary content update launch. All dependency chains green. D30 19.4% over 18% gate, reviews 86%. Trailer drop early June is the only beat this week.",
+      "phase_gate_check": {
+        "kpi_label": "D30 retention",
+        "threshold": "≥ 18%",
+        "actual": "19.4%",
+        "status": "on_track"
+      },
+      "sparkline_metric_label": "D30 retention % (last 12 weeks)",
+      "sparkline_values": [18.1, 18.4, 18.6, 18.8, 19.0, 19.1, 19.2, 19.3, 19.3, 19.4, 19.4, 19.4]
+    },
+    {
+      "title_id": "risk-of-rain",
+      "claude_blurb": "**Next:** Aug 8 — Seekers of the Storm Free Weekend kickoff (Steam Aug 8–11). Wishlist velocity +12% WoW heading in. This week: Lurkit quest setup brief out Wednesday, CreatorIQ shortlist of 40 micro/nano FPS-adjacent creators landing Friday. CPMStar quote on the awareness layer $4.20 CPI estimated.",
+      "phase_gate_check": {
+        "kpi_label": "Wishlist velocity (daily)",
+        "threshold": "≥ 280",
+        "actual": "312",
+        "status": "on_track"
+      },
+      "sparkline_metric_label": "Wishlist velocity / day (last 14 days)",
+      "sparkline_values": [268, 274, 281, 285, 288, 292, 295, 298, 301, 305, 308, 310, 311, 312]
+    }
+  ],
+  "top_risks": [
+    {
+      "risk_id": "risk_mad_ellie_leaky_bucket",
+      "title_id": "borderlands",
+      "severity": "high",
+      "risk_type": "leaky_bucket",
+      "headline": "Mad Ellie SP1 leaky bucket: D30 9.8% under 14% gate",
+      "detail": "Top of funnel fine (1,840/day wishlist, 82% reviews) — this is a retention problem, not awareness. Pushing more paid into a cohort that isn't sticking burns budget.",
+      "recommended_action": "Flagging for Davide — recommend Phase 2 $180K surge hold. Hand-off plan to Heaven: pause brief, re-measure D30 on Patch 1.2 cohort (target June 12), unlock spend if gate clears. Drafted Slack pre-warning to #borderlands-mad-ellie.",
+      "escalation_draft_id": "draft_mad_ellie_surge_hold"
+    },
+    {
+      "risk_id": "risk_test_of_time_creator_brief_slip",
+      "title_id": "civilization",
+      "severity": "medium",
+      "risk_type": "vendor_dependency_slip",
+      "headline": "Test of Time NA creator follow-up at risk — Brand creative slipped 48h",
+      "detail": "Open World blocked on final hero cut for paid social and Shroud co-op stream pre-roll (May 28). Asset owner: Brand Creative. Committed EOD today; not yet in hand.",
+      "recommended_action": "Chasing Brand for EOD handoff. If it slips again: escalation drafted to Davide with two paths — (1) wait for final Brand cut, (2) ship Open World v2 from Tuesday as backup. Asking for the call by tomorrow AM if needed.",
+      "escalation_draft_id": "draft_test_of_time_asset_escalation"
+    },
+    {
+      "risk_id": "risk_wonderlands_dlc_delay",
+      "title_id": "wonderlands",
+      "severity": "high",
+      "risk_type": "expectations_management",
+      "headline": "Wonderlands DLC delayed 5 weeks — 65K wishlisters on standalone page",
+      "detail": "Engineering stability blocker. Steam date-shift notification fires when we update the page. Per Sentiment Defense playbook — framing must lead with quality, not delay.",
+      "recommended_action": "Coordinating draft re-announce post with Marcus (Community Lead) for Davide sign-off EOD Friday. 1hr ack window once new date confirmed publicly. Heaven re-timing paid surge to July window — held until Davide signs.",
+      "escalation_draft_id": "draft_wonderlands_dlc_delay_comms"
+    },
+    {
+      "risk_id": "risk_mafia_creative_fatigue",
+      "title_id": "mafia",
+      "severity": "medium",
+      "risk_type": "creative_fatigue",
+      "headline": "Mafia: TOC Q2 sustain — paid creative fatigue, ROAS down 22% WoW",
+      "detail": "CPI drifted $9.50→$10.80. D30 funnel fine — top of funnel is the issue. Heaven has 3 new creative concepts in QA.",
+      "recommended_action": "Tracking for Davide GO/NO-GO June 1 on next $120K tranche. Brand reviews refresh concepts Thursday; will package recommendation for your call by Friday. No action needed this week.",
+      "escalation_draft_id": "draft_mafia_creative_refresh_hold"
+    },
+    {
+      "risk_id": "risk_bl4_narrative_drift",
+      "title_id": "borderlands",
+      "severity": "low",
+      "risk_type": "narrative_drift",
+      "headline": "Narrative drift: BL3 endgame coverage still ranking ahead of BL4 Mad Ellie pages",
+      "detail": "SEO residue from old BL3 'best endgame guides' content outranking the BL4 Mad Ellie strategy hub on long-tail queries. Not urgent but accumulating.",
+      "recommended_action": "Drafted brief for #2k-na-integrated proposing 4-week content seeding push + internal SEO link decoupling. Looping Comms in for ownership. Flagging for your awareness — no decision needed.",
+      "escalation_draft_id": "draft_bl4_seo_residue_brief"
+    }
+  ],
+  "kpi_movements": [
+    { "kpi_label": "Civ VII Test of Time review score (D3)", "value": "87%", "delta": "+2pp WoW", "direction": "up" },
+    { "kpi_label": "BL4 Mad Ellie wishlist velocity", "value": "1,840/day", "delta": "+12% WoW", "direction": "up" },
+    { "kpi_label": "BL4 Mad Ellie D30 retention", "value": "9.8%", "delta": "-1.4pp WoW", "direction": "down" },
+    { "kpi_label": "Wonderlands D7 retention", "value": "24.1%", "delta": "-3pp WoW (under watch)", "direction": "down" },
+    { "kpi_label": "Mafia: TOC ROAS (rolling 7d)", "value": "1.87", "delta": "-22% WoW", "direction": "down" },
+    { "kpi_label": "Civ VII Test of Time peak CCU", "value": "102,400", "delta": "+8% vs target", "direction": "up" },
+    { "kpi_label": "Homeworld 3 D30 retention", "value": "19.4%", "delta": "+0.3pp WoW", "direction": "up" },
+    { "kpi_label": "BioShock wishlist bank", "value": "187,400", "delta": "+1.2% WoW", "direction": "up" }
+  ],
+  "suggested_escalations": [
+    {
+      "escalation_draft_id": "draft_mad_ellie_surge_hold",
+      "channel": "slack",
+      "recipient": "#borderlands-mad-ellie",
+      "summary": "Pre-warn team: Phase 2 surge hold recommended pending Davide call"
+    },
+    {
+      "escalation_draft_id": "draft_wonderlands_dlc_delay_comms",
+      "channel": "slack",
+      "recipient": "#wonderlands-live",
+      "summary": "Glutton's Gamble Encore delay — draft comms framing for Davide sign-off"
+    },
+    {
+      "escalation_draft_id": "draft_test_of_time_asset_escalation",
+      "channel": "email",
+      "recipient": "Sr Manager, Global GTM, Core",
+      "summary": "Test of Time NA creator hero cut — 48h slip, decision ask if asset slips again"
+    }
+  ]
+}

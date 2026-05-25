@@ -1,0 +1,167 @@
+[
+  {
+    "thread_id": "thread_jordan_weekly_sync",
+    "subject": "Weekly Davide 1:1 — agenda for Tuesday",
+    "from": "Davide Detta <davide.detta@2k.com>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>"],
+    "timestamp": "2026-05-22T08:15:00Z",
+    "title_id": null,
+    "flagged_for_action": true,
+    "thread_summary": "Davide wants the standard rollup format Tuesday: portfolio health, top 3 risks, decisions pending. Asked specifically for the Mad Ellie D30 read and the Wonderlands comms framing draft.",
+    "claude_recommended_reply": "Confirmed for Tuesday. Will package: (1) portfolio health one-pager, (2) top 3 risks with recommended actions, (3) decision asks — Mad Ellie Phase 2 hold, Wonderlands comms sign-off, Mafia: TOC June 1 GO/NO-GO setup. Wonderlands draft will land in your inbox Friday EOD per separate thread."
+  },
+  {
+    "thread_id": "thread_brand_creative_chase",
+    "subject": "RE: Test of Time NA hero cut — EOD ask",
+    "from": "Alex Akiyama <alex.akiyama@2k.com>",
+    "to": ["Brand Creative <brand.creative@2k.com>"],
+    "timestamp": "2026-05-22T11:30:00Z",
+    "title_id": "civilization",
+    "flagged_for_action": true,
+    "thread_summary": "Chasing Brand Creative on the 48h-late hero cut for Open World. Need it tonight or escalation goes to Davide tomorrow AM.",
+    "claude_recommended_reply": "Following up — confirming we'll have the final hero cut by EOD today. If timing's slipping, please flag now so we can run the Open World v2 backup decision through Davide by AM. Cheers."
+  },
+  {
+    "thread_id": "thread_open_world_shroud_lock",
+    "subject": "RE: Shroud co-op stream — May 28 lock",
+    "from": "Maya Reyes <maya.reyes@openworld.gg>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>"],
+    "timestamp": "2026-05-21T17:00:00Z",
+    "title_id": "civilization",
+    "flagged_for_action": false,
+    "thread_summary": "Open World confirming Shroud locked for May 28, Summit + LIRIK splitting to May 30. Contracts squared, build delivery on schedule.",
+    "claude_recommended_reply": null
+  },
+  {
+    "thread_id": "thread_heaven_mad_ellie_phase2",
+    "subject": "RE: Mad Ellie Phase 2 — pause acknowledged",
+    "from": "Daniel Okafor <daniel.okafor@heavenmedia.com>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>", "Tomás Vega <tomas.vega@2k.com>"],
+    "timestamp": "2026-05-22T09:48:00Z",
+    "title_id": "borderlands",
+    "flagged_for_action": false,
+    "thread_summary": "Heaven Media acknowledges Phase 2 pause pending Davide call. Brief paused, no spend authorized. Standing by for re-measure.",
+    "claude_recommended_reply": null
+  },
+  {
+    "thread_id": "thread_gwm_civ_coverage",
+    "subject": "RE: Test of Time week — Jake Lucky + Deadlock Intel slots",
+    "from": "Priya Chen <priya.chen@gwm.gg>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>", "Marcus Lee <marcus.lee@2k.com>"],
+    "timestamp": "2026-05-14T11:00:00Z",
+    "title_id": "civilization",
+    "flagged_for_action": false,
+    "thread_summary": "Gaming World Media confirmed Jake Lucky + Deadlock Intel coverage for Test of Time launch week. Newsletter slot locked Wednesday, Discord drop Friday.",
+    "claude_recommended_reply": null
+  },
+  {
+    "thread_id": "thread_harbor_contracting",
+    "subject": "RE: Harbor MSA — final redline",
+    "from": "James Whitford <james@harbor.gg>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>", "Legal <legal@2k.com>"],
+    "timestamp": "2026-05-13T16:45:00Z",
+    "title_id": "bioshock",
+    "flagged_for_action": true,
+    "thread_summary": "Harbor MSA in final Legal redline for BioShock pre-reveal wishlist quest config. Estimated turnaround 5–7 business days.",
+    "claude_recommended_reply": "Tracking with Legal — will flag if redline turnaround slips past June 1. Once signed, configuring the quest immediately for the reveal window prep timeline."
+  },
+  {
+    "thread_id": "thread_creatoriq_ror_shortlist",
+    "subject": "RE: RoR Free Weekend — micro/nano shortlist",
+    "from": "Aisha Brown <aisha.brown@creatoriq.com>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>", "Marcus Lee <marcus.lee@2k.com>"],
+    "timestamp": "2026-05-12T10:08:00Z",
+    "title_id": "risk-of-rain",
+    "flagged_for_action": false,
+    "thread_summary": "CreatorIQ delivering 40-creator shortlist Friday for Free Weekend (Aug 8). Filter: FPS-co-op adjacency, 10K–250K avg viewership, brand-safe vetting complete.",
+    "claude_recommended_reply": null
+  },
+  {
+    "thread_id": "thread_cpmstar_quote_ror",
+    "subject": "RE: RoR Free Weekend awareness — CPMStar quote",
+    "from": "Marcus Lin <marcus.lin@cpmstar.com>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>", "Tomás Vega <tomas.vega@2k.com>"],
+    "timestamp": "2026-05-11T14:20:00Z",
+    "title_id": "risk-of-rain",
+    "flagged_for_action": false,
+    "thread_summary": "CPMStar quote: $4.20 estimated CPI on browser FPS/co-op adjacency for RoR Free Weekend awareness layer. 12M impression cap, 14-day flight pre-Free Weekend.",
+    "claude_recommended_reply": null
+  },
+  {
+    "thread_id": "thread_legal_wonderlands_comms",
+    "subject": "Wonderlands DLC delay — comms language review",
+    "from": "Alex Akiyama <alex.akiyama@2k.com>",
+    "to": ["Legal <legal@2k.com>"],
+    "timestamp": "2026-05-22T13:00:00Z",
+    "title_id": "wonderlands",
+    "flagged_for_action": true,
+    "thread_summary": "Sending Marcus's draft re-announce copy to Legal for quick review. Need turnaround by Thursday so we can land Davide sign-off Friday.",
+    "claude_recommended_reply": null
+  },
+  {
+    "thread_id": "thread_lurkit_extension_civ",
+    "subject": "RE: Test of Time quest — weekend extension",
+    "from": "Elin Bergström <elin.bergstrom@lurkit.com>",
+    "to": ["Marcus Lee <marcus.lee@2k.com>", "Alex Akiyama <alex.akiyama@2k.com>"],
+    "timestamp": "2026-05-22T12:15:00Z",
+    "title_id": "civilization",
+    "flagged_for_action": false,
+    "thread_summary": "Lurkit confirms Test of Time quest extension through the weekend at same payout rate. CPHW tracking $0.18 vs $0.25 ceiling — ample headroom.",
+    "claude_recommended_reply": null
+  },
+  {
+    "thread_id": "thread_xsolla_rainmaker_bl_storefronts",
+    "subject": "RE: Mad Ellie cosmetic storefronts — affiliate creator pool",
+    "from": "Sofia Ramos <sofia.ramos@xsolla.com>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>"],
+    "timestamp": "2026-05-20T11:30:00Z",
+    "title_id": "borderlands",
+    "flagged_for_action": false,
+    "thread_summary": "Xsolla x Rainmaker: 220 affiliate creators activated for Mad Ellie cosmetic + season pass storefronts. Rev-share live, no upfront. First-week GMV tracking $48K.",
+    "claude_recommended_reply": null
+  },
+  {
+    "thread_id": "thread_gamesight_utm_clean",
+    "subject": "Mad Ellie creator UTM audit — clean read",
+    "from": "Hideki Tanaka <hideki.tanaka@gamesight.io>",
+    "to": ["Tomás Vega <tomas.vega@2k.com>", "Alex Akiyama <alex.akiyama@2k.com>"],
+    "timestamp": "2026-05-19T15:00:00Z",
+    "title_id": "borderlands",
+    "flagged_for_action": false,
+    "thread_summary": "Gamesight: 67 of 71 Mad Ellie creator codes resolving cleanly. 4 outliers in remediation — issue isolated to two YouTube redirect chains. Fix shipping Wednesday.",
+    "claude_recommended_reply": null
+  },
+  {
+    "thread_id": "thread_jordan_mafia_pre_brief",
+    "subject": "Mafia: TOC June 1 GO/NO-GO — pre-brief?",
+    "from": "Davide Detta <davide.detta@2k.com>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>"],
+    "timestamp": "2026-05-22T07:45:00Z",
+    "title_id": "mafia",
+    "flagged_for_action": true,
+    "thread_summary": "Davide asking for a pre-brief Friday morning ahead of the June 1 GO/NO-GO so he can see the refresh concepts before formal call.",
+    "claude_recommended_reply": "Booking 30 min Friday AM. Will package: 3 refresh concepts from Heaven + Brand QA notes from Thursday + ROAS/CPI trend chart + recommended GO/NO-GO posture. Pre-read in your inbox Thursday EOD."
+  },
+  {
+    "thread_id": "thread_open_world_fanfest_sync",
+    "subject": "Borderlands FanFest Q3 — planning sync slots",
+    "from": "Maya Reyes <maya.reyes@openworld.gg>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>"],
+    "timestamp": "2026-05-19T10:00:00Z",
+    "title_id": "borderlands",
+    "flagged_for_action": false,
+    "thread_summary": "Open World FanFest team requesting recurring planning sync slots starting June. Novato + Sydney capture event and LA fan event scoping.",
+    "claude_recommended_reply": null
+  },
+  {
+    "thread_id": "thread_civ_audit_creative_ops",
+    "subject": "Creative Ops audit — hero cut slip one-pager",
+    "from": "Creative Ops <creative.ops@2k.com>",
+    "to": ["Alex Akiyama <alex.akiyama@2k.com>", "Davide Detta <davide.detta@2k.com>"],
+    "timestamp": "2026-05-22T10:00:00Z",
+    "title_id": "civilization",
+    "flagged_for_action": false,
+    "thread_summary": "Creative Ops kicking off audit per Davide ask. Draft one-pager on Brand→vendor asset handoff failure mode by next Friday.",
+    "claude_recommended_reply": null
+  }
+]

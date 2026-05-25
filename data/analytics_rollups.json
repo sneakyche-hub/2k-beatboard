@@ -1,0 +1,48 @@
+{
+  "as_of_date": "2026-05-22",
+  "portfolio_totals": {
+    "total_budget_committed_usd": 5840000,
+    "total_budget_spent_usd": 2942000,
+    "total_budget_remaining_usd": 2898000,
+    "spend_rate_pct": 50.4,
+    "quarter_progress_pct": 56,
+    "active_titles": 8,
+    "active_beats": 28,
+    "active_tickets": 38,
+    "active_vendors": 9
+  },
+  "by_phase": [
+    { "phase": "pre_launch", "title_count": 1, "budget_committed_usd": 410000, "budget_spent_usd": 88000 },
+    { "phase": "launch_push", "title_count": 1, "budget_committed_usd": 1850000, "budget_spent_usd": 1120000 },
+    { "phase": "sustain_scale", "title_count": 2, "budget_committed_usd": 1100000, "budget_spent_usd": 652000 },
+    { "phase": "live_service", "title_count": 4, "budget_committed_usd": 2480000, "budget_spent_usd": 1082000 }
+  ],
+  "by_status": [
+    { "status": "on_track", "title_count": 5 },
+    { "status": "at_risk", "title_count": 2 },
+    { "status": "delayed", "title_count": 1 }
+  ],
+  "vendor_spend_pacing": [
+    { "vendor_id": "open_world", "committed_usd": 1240000, "spent_usd": 712000, "pct_spent": 57 },
+    { "vendor_id": "heaven_media", "committed_usd": 1480000, "spent_usd": 894000, "pct_spent": 60 },
+    { "vendor_id": "cpmstar", "committed_usd": 640000, "spent_usd": 318000, "pct_spent": 50 },
+    { "vendor_id": "lurkit", "committed_usd": 215000, "spent_usd": 88000, "pct_spent": 41 },
+    { "vendor_id": "gaming_world_media", "committed_usd": 380000, "spent_usd": 192000, "pct_spent": 51 },
+    { "vendor_id": "gamesight", "committed_usd": 165000, "spent_usd": 86000, "pct_spent": 52 },
+    { "vendor_id": "creatoriq", "committed_usd": 95000, "spent_usd": 38000, "pct_spent": 40 },
+    { "vendor_id": "xsolla_rainmaker", "committed_usd": 0, "spent_usd": 0, "pct_spent": 0, "note": "Rev-share model — zero upfront" },
+    { "vendor_id": "harbor", "committed_usd": 65000, "spent_usd": 0, "pct_spent": 0, "note": "Contracting" }
+  ],
+  "kpi_portfolio_trends": {
+    "avg_review_score_pct": { "current": 85, "trend_4wk": [83, 84, 84, 85] },
+    "avg_d30_retention_pct": { "current": 13.4, "trend_4wk": [14.6, 14.2, 13.8, 13.4] },
+    "portfolio_wishlist_velocity_daily": { "current": 3240, "trend_4wk": [2810, 2920, 3080, 3240] },
+    "tickets_completed_this_week": { "current": 22, "trend_4wk": [18, 21, 19, 22] }
+  },
+  "decisions_pending_director": [
+    { "decision_id": "dec_mad_ellie_surge", "title_id": "borderlands", "summary": "Phase 2 paid surge $180K hold vs go", "due_date": "2026-06-05" },
+    { "decision_id": "dec_wonderlands_comms", "title_id": "wonderlands", "summary": "DLC delay comms re-announce sign-off", "due_date": "2026-05-29" },
+    { "decision_id": "dec_mafia_refresh", "title_id": "mafia", "summary": "$120K creative refresh tranche GO/NO-GO", "due_date": "2026-06-01" },
+    { "decision_id": "dec_civ_asset_backup", "title_id": "civilization", "summary": "Test of Time hero cut — Brand final vs Open World v2 backup", "due_date": "2026-05-25" }
+  ]
+}

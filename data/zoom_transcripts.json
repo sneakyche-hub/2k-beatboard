@@ -1,0 +1,323 @@
+[
+  {
+    "transcript_id": "civ7_test_of_time_launch_retro",
+    "title_id": "civilization",
+    "meeting_title": "Civ VII Test of Time — Launch Retro",
+    "meeting_date": "2026-05-21",
+    "duration_minutes": 47,
+    "featured": true,
+    "attendees": [
+      { "name": "Davide Detta", "role": "Sr Manager, Global GTM, Core" },
+      { "name": "Alex Akiyama", "role": "Manager, NA Integrated Marketing" },
+      { "name": "Priya Iyer", "role": "Brand Manager, Civilization" },
+      { "name": "Marcus Lee", "role": "Community Lead, Civilization" },
+      { "name": "Maya Reyes", "role": "Open World — Account Director" }
+    ],
+    "exchanges": [
+      { "speaker": "Davide Detta", "text": "Quick retro on Test of Time D1–D3. Top-line first — Priya, where are we?" },
+      { "speaker": "Priya Iyer", "text": "Strong. Review score is at 87% over the rolling 7-day window, trending up. Peak CCU hit 102,400 yesterday, which is above our 95K target. D7 cohort projection is tracking 33%+. Sentiment is the headline though — the top thread on r/civ right now is 'finally the Civ VII I wanted at launch,' and Discord engagement on the Time-Tested Civs mechanic is huge." },
+      { "speaker": "Davide Detta", "text": "That's the line we want in the exec roll-up. Marcus, what's the volume look like in the community channels?" },
+      { "speaker": "Marcus Lee", "text": "Reddit threads up 3x over a normal week, Discord daily active up about 40%. The Triumphs system and the new Victories conditions are doing most of the conversation lift — way more than the new civilizations themselves, interestingly. I'm pulling a sentiment slice for the 72h window and we'll have a sentiment report by Tuesday." },
+      { "speaker": "Alex Akiyama", "text": "On the NA creator follow-up — Maya, where are we with assets?" },
+      { "speaker": "Maya Reyes", "text": "We're stuck on the final hero cut for paid social. Brand committed EOD Tuesday, we still don't have it. The Shroud co-op stream is May 28, so I need either the final cut by EOD tomorrow or I'm shipping our v2 cut as the pre-roll. V2 is good — not great. The Brand cut has the Time-Tested Civs reveal moment built in, which is what we want." },
+      { "speaker": "Alex Akiyama", "text": "I'll chase Brand Creative tonight and escalate to Davide if we don't have movement by morning. If we slip again we ship v2 and use the Brand cut for the second wave next week." },
+      { "speaker": "Davide Detta", "text": "Agreed. And on the Shroud schedule — I saw the note he shifted to May 28. Are we moving the rest of the lineup with him or splitting into two days?" },
+      { "speaker": "Maya Reyes", "text": "Splitting. Shroud goes May 28, Summit and LIRIK do the original May 30. Cleaner ops, two beats instead of one." },
+      { "speaker": "Priya Iyer", "text": "One thing for the playbook — we should write up how we handled the launch comms here. Lead with the Time-Tested Civs explainer, Discord AMA in the first 24h, the FAQ post that landed before the bad-faith threads could form. It worked. Worth a case study." },
+      { "speaker": "Davide Detta", "text": "Yes. Global GTM team should own that — 2 week deliverable, public-facing on the internal wiki. Use Test of Time as the model for the next live-service drop." },
+      { "speaker": "Alex Akiyama", "text": "Last thing — the asset handoff slip is the second time in a quarter we've had Brand Creative miss a vendor deadline. We should look at workflow. Not blaming anyone, but the dependency chain is brittle." },
+      { "speaker": "Davide Detta", "text": "Agree. Creative Ops should audit — I want a one-pager on where the handoff broke and what changes. One week." },
+      { "speaker": "Marcus Lee", "text": "Last note from me — Lurkit performance quest is exceeding expectations. 8K hours watched in D1–D3, payout efficient. We should consider extending the quest window through the weekend." }
+    ],
+    "claude_extracted_kpi_signals": [
+      { "kpi": "review_score_d3", "value": "87%", "source_speaker": "Priya Iyer" },
+      { "kpi": "peak_ccu", "value": "102,400", "source_speaker": "Priya Iyer" },
+      { "kpi": "d7_retention_projection", "value": "33%+", "source_speaker": "Priya Iyer" },
+      { "kpi": "lurkit_hours_watched_d1_d3", "value": "8,000", "source_speaker": "Marcus Lee" }
+    ],
+    "extracted_tickets": [
+      {
+        "proposed_ticket_id": "CIV-PROP-001",
+        "title": "Compile r/civ + Discord sentiment report — Test of Time first 72h",
+        "owner": "Community Lead, Civilization",
+        "due_in_days": 3,
+        "priority": "P1",
+        "vendor_owner": null,
+        "linked_kpi": "civ_test_of_time_sentiment_positive_share",
+        "rationale": "Davide asked for the 'finally the Civ VII I wanted at launch' framing in the exec roll-up. A formal sentiment slice (volume, share, top threads) makes the case stick beyond one quote.",
+        "source_quote": "I'm pulling a sentiment slice for the 72h window and we'll have a sentiment report by Tuesday."
+      },
+      {
+        "proposed_ticket_id": "CIV-PROP-002",
+        "title": "Draft live-service launch comms playbook — Test of Time case study",
+        "owner": "Sr Manager, Global GTM, Core",
+        "due_in_days": 14,
+        "priority": "P2",
+        "vendor_owner": null,
+        "linked_kpi": null,
+        "rationale": "Test of Time launch comms worked end-to-end (Time-Tested Civs explainer, Discord AMA in 24h, pre-emptive FAQ). Codifying it gives the next live-service drop a model to follow.",
+        "source_quote": "Lead with the Time-Tested Civs explainer, Discord AMA in the first 24h, the FAQ post that landed before the bad-faith threads could form. It worked. Worth a case study."
+      },
+      {
+        "proposed_ticket_id": "CIV-PROP-003",
+        "title": "Reschedule Open World Shroud co-op stream to May 28; split Summit + LIRIK to May 30",
+        "owner": "Manager, NA Integrated Marketing",
+        "due_in_days": 1,
+        "priority": "P0",
+        "vendor_owner": "Open World",
+        "linked_kpi": "civ_test_of_time_creator_campaign_reach",
+        "rationale": "Schedule shift from Open World confirmed in-call. Two beats instead of one cleaner for ops and gives us a second visibility spike. Need confirmation routed back to Open World today.",
+        "source_quote": "Splitting. Shroud goes May 28, Summit and LIRIK do the original May 30. Cleaner ops, two beats instead of one."
+      },
+      {
+        "proposed_ticket_id": "CIV-PROP-004",
+        "title": "Audit Brand Creative → vendor asset handoff workflow — why Test of Time creator brief slipped 48h",
+        "owner": "Creative Ops",
+        "due_in_days": 7,
+        "priority": "P2",
+        "vendor_owner": null,
+        "linked_kpi": null,
+        "rationale": "Second Brand Creative slip this quarter. Davide asked for a one-pager on where the dependency chain broke and what changes. Process risk, not a person risk.",
+        "source_quote": "Creative Ops should audit — I want a one-pager on where the handoff broke and what changes. One week."
+      },
+      {
+        "proposed_ticket_id": "CIV-PROP-005",
+        "title": "Lock final hero cut of Test of Time post-launch trailer for paid social + Shroud pre-roll",
+        "owner": "Open World (vendor)",
+        "due_in_days": 4,
+        "priority": "P1",
+        "vendor_owner": "Open World",
+        "linked_kpi": "civ_test_of_time_paid_social_ctr",
+        "rationale": "Open World blocked on final hero cut. If Brand Creative misses the EOD ask, ship v2 as pre-roll and use Brand cut for second wave next week. Either path needs a ticket so we don't lose the asset.",
+        "source_quote": "If we slip again we ship v2 and use the Brand cut for the second wave next week."
+      }
+    ]
+  },
+  {
+    "transcript_id": "bl4_mad_ellie_sp1_launch_readiness",
+    "title_id": "borderlands",
+    "meeting_title": "Borderlands 4 Mad Ellie SP1 — Launch Readiness Check",
+    "meeting_date": "2026-03-24",
+    "duration_minutes": 52,
+    "featured": true,
+    "attendees": [
+      { "name": "Davide Detta", "role": "Sr Manager, Global GTM, Core" },
+      { "name": "Alex Akiyama", "role": "Manager, NA Integrated Marketing" },
+      { "name": "Daniel Okafor", "role": "Heaven Media — Account Lead" },
+      { "name": "Maya Reyes", "role": "Open World — Account Director" },
+      { "name": "Tomás Vega", "role": "Performance Marketing Lead" },
+      { "name": "Marcus Lee", "role": "Community Lead" }
+    ],
+    "exchanges": [
+      { "speaker": "Davide Detta", "text": "Two days out from Mad Ellie SP1. Tomás, start with the funnel — where's the base BL4 cohort coming in?" },
+      { "speaker": "Tomás Vega", "text": "Base BL4 D30 retention right now is 13.8%, slightly under our 14% gate but trending in the right direction WoW. Mad Ellie standalone page wishlist velocity is 1,650/day, up 18% over the last 7 days. Capsule CTR on the SP1 page is 5.4%, above our 5% benchmark. We're a green light on top-of-funnel." },
+      { "speaker": "Alex Akiyama", "text": "Maya, creator activation — final state?" },
+      { "speaker": "Maya Reyes", "text": "Locked. Top tier: Shroud, Summit1G, LIRIK, TheBurntPeanut — they get the early-access build Thursday for the launch-day co-op stream Friday. Earned tier: 67 additional creators across YouTube, VoD, and social, each with bespoke briefs and code drops. Same playbook structure as the BL4 main launch — that worked, no reason to reinvent it." },
+      { "speaker": "Davide Detta", "text": "Daniel — paid plan?" },
+      { "speaker": "Daniel Okafor", "text": "Launch week we're at $185K across TikTok, YouTube, and CPMStar in-game placements. CTA is 'Play Now' for the base cohort + 'Wishlist + Play' for first-time-to-Borderlands traffic. Spark Ads boost on the top 5 creator hooks goes live Sunday based on D1 performance signals." },
+      { "speaker": "Tomás Vega", "text": "One thing I want to flag — UTM taxonomy on the creator codes. We rebuilt the schema after Q1 and I want to be sure Gamesight is reading every creator-attributed click cleanly. Last cycle we had three broken codes that under-attributed by about 8% of the creator pool. Doing one more audit pass tomorrow." },
+      { "speaker": "Alex Akiyama", "text": "Add a ticket for that — Gamesight UTM audit, you own, by EOD Thursday so we're clean before launch." },
+      { "speaker": "Marcus Lee", "text": "On the community side — sentiment monitoring is set up. 1-hour acknowledgement SLA per the playbook. Top 5 expected complaint clusters are pre-bucketed based on the launch survey (loot drop rates, mission length, the new traversal mechanic, the boss pacing, and the SP1-specific cosmetics monetization). We have draft responses for each ready to go." },
+      { "speaker": "Davide Detta", "text": "Good. And on the SP1 cosmetics — is the messaging clean? I don't want to relive Borderlands 3 launch week." },
+      { "speaker": "Marcus Lee", "text": "Cosmetics are framed as the optional cosmetic track, not the gameplay track. Gameplay-affecting items are all in the SP1 base content. We tested the messaging on the BL4 Discord council and it landed clean." },
+      { "speaker": "Alex Akiyama", "text": "CPMStar — Daniel, are they briefed on the in-game placement schedule? I want the placement schedule for the sustain window locked too, not just launch." },
+      { "speaker": "Daniel Okafor", "text": "Launch week placements are locked. Sustain window — June through August — schedule is in draft, I'll have it to CPMStar by EOD Monday." },
+      { "speaker": "Davide Detta", "text": "Last thing — Phase 2 paid surge is gated on D30 retention hitting 14%. If we come in under, we hold. No exceptions, no 'just push 10% more,' no 'one more weekend.' Discipline." },
+      { "speaker": "Tomás Vega", "text": "Understood. We'll have the D30 read for the launch cohort by June 25-ish. Plan a review the week of June 22." }
+    ],
+    "claude_extracted_kpi_signals": [
+      { "kpi": "base_bl4_d30_retention_pre_dlc", "value": "13.8%", "source_speaker": "Tomás Vega" },
+      { "kpi": "mad_ellie_standalone_wishlist_velocity", "value": "1,650/day", "source_speaker": "Tomás Vega" },
+      { "kpi": "mad_ellie_capsule_ctr", "value": "5.4%", "source_speaker": "Tomás Vega" },
+      { "kpi": "mad_ellie_launch_week_paid_spend", "value": "$185,000", "source_speaker": "Daniel Okafor" }
+    ],
+    "extracted_tickets": [
+      {
+        "proposed_ticket_id": "BL-PROP-001",
+        "title": "Confirm Open World Mad Ellie creator activation list final-locked + briefs out",
+        "owner": "Manager, NA Integrated Marketing",
+        "due_in_days": 2,
+        "priority": "P0",
+        "vendor_owner": "Open World",
+        "linked_kpi": "mad_ellie_creator_reach",
+        "rationale": "Top tier (Shroud, Summit, LIRIK, TheBurntPeanut) get early-access build Thursday for Friday co-op stream. 67 earned-tier creators need bespoke briefs + code drops same window. Final lock confirmation has to be routed before EOD Wednesday or the build delivery slips.",
+        "source_quote": "Top tier: Shroud, Summit1G, LIRIK, TheBurntPeanut — they get the early-access build Thursday for the launch-day co-op stream Friday."
+      },
+      {
+        "proposed_ticket_id": "BL-PROP-002",
+        "title": "Validate Mad Ellie Steam capsule hits ≥5% CTR benchmark on launch day",
+        "owner": "Brand Marketing",
+        "due_in_days": 3,
+        "priority": "P1",
+        "vendor_owner": null,
+        "linked_kpi": "mad_ellie_capsule_ctr",
+        "rationale": "Capsule sitting at 5.4% in pre-launch traffic. Launch day will be a different traffic mix — high-intent BL4 base + cold BL-curious. Need a post-launch read by EOD launch day to confirm we're holding the benchmark and to authorize the planned A/B on capsule v2 if not.",
+        "source_quote": "Capsule CTR on the SP1 page is 5.4%, above our 5% benchmark."
+      },
+      {
+        "proposed_ticket_id": "BL-PROP-003",
+        "title": "Gamesight UTM audit on all Mad Ellie creator codes — pre-launch",
+        "owner": "Performance Marketing",
+        "due_in_days": 4,
+        "priority": "P1",
+        "vendor_owner": "Gamesight",
+        "linked_kpi": "mad_ellie_creator_attribution_completeness",
+        "rationale": "Tomás flagged last cycle had 3 broken creator codes that under-attributed 8% of the pool. UTM schema was rebuilt in Q1 — one more audit pass before launch traffic hits is cheap insurance vs. losing creator-level ROI data we can't recover after the fact.",
+        "source_quote": "Last cycle we had three broken codes that under-attributed by about 8% of the creator pool. Doing one more audit pass tomorrow."
+      },
+      {
+        "proposed_ticket_id": "BL-PROP-004",
+        "title": "Sentiment monitoring plan — Mad Ellie launch first 72h, 1hr ack SLA, top-5 complaint clusters pre-bucketed",
+        "owner": "Community Lead",
+        "due_in_days": 7,
+        "priority": "P1",
+        "vendor_owner": null,
+        "linked_kpi": "mad_ellie_review_score_d3",
+        "rationale": "Sentiment Defense playbook calls for sub-1-hour ack on anything material. Top 5 expected complaint clusters (loot drop rates, mission length, new traversal, boss pacing, SP1 cosmetics) already pre-bucketed with draft responses. Ticket formalizes the SLA and owners.",
+        "source_quote": "Sentiment monitoring is set up. 1-hour acknowledgement SLA per the playbook. Top 5 expected complaint clusters are pre-bucketed based on the launch survey."
+      },
+      {
+        "proposed_ticket_id": "BL-PROP-005",
+        "title": "Brief CPMStar on Mad Ellie in-game placement schedule for sustain window (June–Aug)",
+        "owner": "External Agency (CPMStar)",
+        "due_in_days": 5,
+        "priority": "P2",
+        "vendor_owner": "CPMStar",
+        "linked_kpi": "mad_ellie_sustain_window_impressions",
+        "rationale": "Launch week placements are locked. Sustain window June–August schedule is in draft, Daniel committed to deliver to CPMStar by EOD Monday. Ticket to track the handoff so we don't lose the window.",
+        "source_quote": "Sustain window — June through August — schedule is in draft, I'll have it to CPMStar by EOD Monday."
+      }
+    ]
+  },
+  {
+    "transcript_id": "mafia_toc_na_sustain_strategy",
+    "title_id": "mafia",
+    "meeting_title": "Mafia: The Old Country — NA Sustain Strategy",
+    "meeting_date": "2026-05-15",
+    "duration_minutes": 32,
+    "featured": false,
+    "attendees": [
+      { "name": "Davide Detta", "role": "Sr Manager, Global GTM, Core" },
+      { "name": "Alex Akiyama", "role": "Manager, NA Integrated Marketing" },
+      { "name": "Daniel Okafor", "role": "Heaven Media — Account Lead" },
+      { "name": "Tomás Vega", "role": "Performance Marketing Lead" }
+    ],
+    "exchanges": [
+      { "speaker": "Tomás Vega", "text": "ROAS is down 22% WoW on the Q2 sustain push. 1.87 against a 2.4 target. CPI drifted from $9.50 to $10.80. Funnel below the click is fine — D30 holds at 14.1%. This is creative fatigue, top of funnel." },
+      { "speaker": "Daniel Okafor", "text": "Heaven has three new creative concepts in QA. We were planning a refresh next quarter, but we should accelerate. Three days to QA-clear, two days to traffic split test, GO/NO-GO June 1." },
+      { "speaker": "Alex Akiyama", "text": "Recommend we hold the next $120K tranche until then — flagging for your call. No more spend against current creatives if you agree." },
+      { "speaker": "Davide Detta", "text": "Agreed. Hold the tranche, GO/NO-GO June 1 on the refresh. And let's do a post-mortem on the original launch creatives — what made them tire faster than the Mafia 2 era launch creatives? May tell us something about the messaging." },
+      { "speaker": "Daniel Okafor", "text": "I can pull the cohort fatigue curves on both. Worth comparing." }
+    ],
+    "claude_extracted_kpi_signals": [
+      { "kpi": "mafia_roas_rolling_7d", "value": "1.87", "source_speaker": "Tomás Vega" },
+      { "kpi": "mafia_cpi", "value": "$10.80", "source_speaker": "Tomás Vega" },
+      { "kpi": "mafia_d30_retention", "value": "14.1%", "source_speaker": "Tomás Vega" }
+    ],
+    "extracted_tickets": [
+      {
+        "proposed_ticket_id": "MAF-PROP-001",
+        "title": "Coordinate Mafia: TOC $120K paid tranche hold pending Davide GO/NO-GO June 1",
+        "owner": "Manager, NA Integrated Marketing",
+        "due_in_days": 0,
+        "priority": "P0",
+        "vendor_owner": null,
+        "linked_kpi": "mafia_roas",
+        "rationale": "ROAS down 22% WoW with funnel fine — pure creative fatigue. Davide approved the recommendation to hold. Coordinate Heaven pause + package refresh review for June 1 call.",
+        "source_quote": "Recommend we hold the next $120K tranche until then — flagging for your call."
+      },
+      {
+        "proposed_ticket_id": "MAF-PROP-002",
+        "title": "Compare cohort fatigue curves — Mafia: TOC launch creatives vs Mafia 2 launch creatives",
+        "owner": "Heaven Media (vendor)",
+        "due_in_days": 10,
+        "priority": "P2",
+        "vendor_owner": "Heaven Media",
+        "linked_kpi": null,
+        "rationale": "Davide asked for post-mortem on why TOC creatives tired faster than Mafia 2 era. Cohort fatigue curve comparison would tell us if it's messaging, format, or audience.",
+        "source_quote": "Let's do a post-mortem on the original launch creatives — what made them tire faster than the Mafia 2 era launch creatives?"
+      }
+    ]
+  },
+  {
+    "transcript_id": "wonderlands_dlc_slip_mitigation",
+    "title_id": "wonderlands",
+    "meeting_title": "Wonderlands DLC Slip — Mitigation Plan",
+    "meeting_date": "2026-05-18",
+    "duration_minutes": 28,
+    "featured": false,
+    "attendees": [
+      { "name": "Alex Akiyama", "role": "Manager, NA Integrated Marketing" },
+      { "name": "Marcus Lee", "role": "Community Lead" },
+      { "name": "Sarah Wu", "role": "Engineering Producer, Wonderlands" }
+    ],
+    "exchanges": [
+      { "speaker": "Sarah Wu", "text": "We hit a stability blocker on Glutton's Gamble Encore — crash repro on the encounter transition into the second arena. We can't ship June 5. Realistic new date is July 10." },
+      { "speaker": "Alex Akiyama", "text": "Five weeks. That's significant. 65K standalone-page wishlisters will get a Steam notification the moment we update the page." },
+      { "speaker": "Marcus Lee", "text": "Sentiment Defense playbook: pre-empt the bad-faith framing. We post a 'why we're delaying, what we're shipping instead' note that leads with the stability work — not the slip. Move the planned paid surge to align with July." },
+      { "speaker": "Alex Akiyama", "text": "Open World creator briefs need to re-cut for the new date. Let me own that. Comms post drafted EOD Friday." }
+    ],
+    "claude_extracted_kpi_signals": [
+      { "kpi": "wonderlands_dlc_standalone_wishlists", "value": "65,000", "source_speaker": "Alex Akiyama" }
+    ],
+    "extracted_tickets": [
+      {
+        "proposed_ticket_id": "WND-PROP-001",
+        "title": "Draft Wonderlands DLC delay community comms post — quality-led framing per Sentiment Defense",
+        "owner": "Community Lead",
+        "due_in_days": 4,
+        "priority": "P0",
+        "vendor_owner": null,
+        "linked_kpi": "wonderlands_dlc_re_announce_sentiment",
+        "rationale": "65K standalone-page wishlisters will be notified by Steam on date update. Lead with the stability work and player experience win, not the slip. Drafts go to the channel Friday EOD.",
+        "source_quote": "We post a 'why we're delaying, what we're shipping instead' note that leads with the stability work — not the slip."
+      },
+      {
+        "proposed_ticket_id": "WND-PROP-002",
+        "title": "Re-cut Open World creator briefs for Glutton's Gamble Encore — July 10 date",
+        "owner": "Manager, NA Integrated Marketing",
+        "due_in_days": 7,
+        "priority": "P1",
+        "vendor_owner": "Open World",
+        "linked_kpi": null,
+        "rationale": "Existing creator briefs reference June 5 drop. Need re-cuts pushed before the new date hits Steam so creators have time to re-plan content schedules.",
+        "source_quote": "Open World creator briefs need to re-cut for the new date. Let me own that."
+      }
+    ]
+  },
+  {
+    "transcript_id": "weekly_na_integrated_standup",
+    "title_id": null,
+    "meeting_title": "Weekly 2K NA Integrated Marketing Standup",
+    "meeting_date": "2026-05-20",
+    "duration_minutes": 24,
+    "featured": false,
+    "attendees": [
+      { "name": "Alex Akiyama", "role": "Manager, NA Integrated Marketing" },
+      { "name": "Priya Iyer", "role": "Brand Manager, Civilization" },
+      { "name": "Tomás Vega", "role": "Performance Marketing Lead" },
+      { "name": "Marcus Lee", "role": "Community Lead" }
+    ],
+    "exchanges": [
+      { "speaker": "Alex Akiyama", "text": "Quick lap. Civ Test of Time launched yesterday — Priya, anything we need to escalate this week?" },
+      { "speaker": "Priya Iyer", "text": "Just the Brand Creative asset slip on the NA creator hero cut. Otherwise everything is well above gates." },
+      { "speaker": "Tomás Vega", "text": "Mad Ellie D30 read for the launch cohort: 9.8%. Under the 14% gate. Holding Phase 2." },
+      { "speaker": "Marcus Lee", "text": "Wonderlands DLC slips to July 10. Comms plan drafted, going through review this week." },
+      { "speaker": "Alex Akiyama", "text": "Risk of Rain Free Weekend kickoff prep — Lurkit brief out by Wednesday, CreatorIQ shortlist Friday." }
+    ],
+    "claude_extracted_kpi_signals": [],
+    "extracted_tickets": [
+      {
+        "proposed_ticket_id": "ROR-PROP-001",
+        "title": "Brief Lurkit on Risk of Rain Free Weekend hours-watched quest",
+        "owner": "Community Lead",
+        "due_in_days": 3,
+        "priority": "P2",
+        "vendor_owner": "Lurkit",
+        "linked_kpi": "ror2_free_weekend_creator_hours_watched",
+        "rationale": "Lurkit performance quest is the primary creator CCU lever for the Free Weekend (Aug 8–11). Brief out by Wednesday so they have runway to seed creators.",
+        "source_quote": "Lurkit brief out by Wednesday, CreatorIQ shortlist Friday."
+      }
+    ]
+  }
+]

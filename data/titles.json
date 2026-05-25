@@ -1,0 +1,226 @@
+[
+  {
+    "title_id": "borderlands",
+    "title_name": "Borderlands",
+    "franchise_slug": "borderlands",
+    "brand_color": "#FF8400",
+    "portfolio_type": "hybrid",
+    "current_phase": "launch_push",
+    "campaign_status": "at_risk",
+    "current_beat_id": "bl4_mad_ellie_sp1_sustain_window",
+    "next_milestone_name": "Mad Ellie SP1 Phase 2 Paid Surge — GO/NO-GO (Davide)",
+    "next_milestone_date": "2026-06-05",
+    "budget_committed_usd": 1850000,
+    "budget_spent_usd": 1120000,
+    "budget_remaining_usd": 730000,
+    "current_phase_kpis": {
+      "d7_retention_target_pct": 28,
+      "d30_retention_target_pct": 14,
+      "review_score_target_pct": 80,
+      "wishlist_velocity_target_daily": 1500
+    },
+    "current_phase_actuals": {
+      "d7_retention_pct": 26.4,
+      "d30_retention_pct": 9.8,
+      "review_score_pct": 82,
+      "wishlist_velocity_daily": 1840
+    },
+    "phase_gate_status": "at_risk",
+    "phase_gate_blocker": "D30 retention 9.8% vs 14% gate. Flagged for Davide — recommending Phase 2 surge hold pending Patch 1.2 + D30 re-measure. Heaven Media pre-warned."
+  },
+  {
+    "title_id": "civilization",
+    "title_name": "Sid Meier's Civilization",
+    "franchise_slug": "civilization",
+    "brand_color": "#C9A227",
+    "portfolio_type": "live_service",
+    "current_phase": "live_service",
+    "campaign_status": "on_track",
+    "current_beat_id": "civ7_test_of_time_creator_campaign_na",
+    "next_milestone_name": "Test of Time NA Creator Push — Shroud co-op stream live",
+    "next_milestone_date": "2026-05-28",
+    "budget_committed_usd": 1240000,
+    "budget_spent_usd": 685000,
+    "budget_remaining_usd": 555000,
+    "current_phase_kpis": {
+      "review_score_target_pct": 85,
+      "ccu_peak_target": 95000,
+      "d7_retention_target_pct": 32,
+      "sentiment_positive_share_target_pct": 70
+    },
+    "current_phase_actuals": {
+      "review_score_pct": 87,
+      "ccu_peak": 102400,
+      "d7_retention_pct": 33.6,
+      "sentiment_positive_share_pct": 74
+    },
+    "phase_gate_status": "on_track",
+    "phase_gate_blocker": null
+  },
+  {
+    "title_id": "mafia",
+    "title_name": "Mafia: The Old Country",
+    "franchise_slug": "mafia",
+    "brand_color": "#7C1D1D",
+    "portfolio_type": "full_launch",
+    "current_phase": "sustain_scale",
+    "campaign_status": "at_risk",
+    "current_beat_id": "mafia_toc_q2_sustain_push",
+    "next_milestone_name": "Q2 Creative Refresh — GO/NO-GO (Davide)",
+    "next_milestone_date": "2026-06-01",
+    "budget_committed_usd": 720000,
+    "budget_spent_usd": 510000,
+    "budget_remaining_usd": 210000,
+    "current_phase_kpis": {
+      "d30_retention_target_pct": 15,
+      "roas_target": 2.4,
+      "review_score_target_pct": 82,
+      "cpi_ceiling_usd": 9.5
+    },
+    "current_phase_actuals": {
+      "d30_retention_pct": 14.1,
+      "roas": 1.87,
+      "review_score_pct": 84,
+      "cpi_usd": 10.8
+    },
+    "phase_gate_status": "at_risk",
+    "phase_gate_blocker": "Creative fatigue: ROAS 1.87 vs 2.4 target (-22% WoW). Heaven refresh in Brand QA Thursday. Tracking for Davide GO/NO-GO June 1 on next $120K tranche."
+  },
+  {
+    "title_id": "xcom",
+    "title_name": "XCOM",
+    "franchise_slug": "xcom",
+    "brand_color": "#6B46C1",
+    "portfolio_type": "live_service",
+    "current_phase": "live_service",
+    "campaign_status": "on_track",
+    "current_beat_id": "xcom_30th_anniversary_bundle_prep",
+    "next_milestone_name": "30th Anniversary Bundle — Steam page refresh live",
+    "next_milestone_date": "2026-09-08",
+    "budget_committed_usd": 280000,
+    "budget_spent_usd": 64000,
+    "budget_remaining_usd": 216000,
+    "current_phase_kpis": {
+      "catalog_revenue_yoy_pct": 8,
+      "wishlist_velocity_target_daily": 240,
+      "review_score_target_pct": 88
+    },
+    "current_phase_actuals": {
+      "catalog_revenue_yoy_pct": 11,
+      "wishlist_velocity_daily": 318,
+      "review_score_pct": 91
+    },
+    "phase_gate_status": "on_track",
+    "phase_gate_blocker": null
+  },
+  {
+    "title_id": "bioshock",
+    "title_name": "BioShock",
+    "franchise_slug": "bioshock",
+    "brand_color": "#0EA5A4",
+    "portfolio_type": "full_launch",
+    "current_phase": "pre_launch",
+    "campaign_status": "on_track",
+    "current_beat_id": "bioshock_next_reveal_window_prep",
+    "next_milestone_name": "Reveal window prep — narrative control SEO sweep complete",
+    "next_milestone_date": "2026-07-15",
+    "budget_committed_usd": 410000,
+    "budget_spent_usd": 88000,
+    "budget_remaining_usd": 322000,
+    "current_phase_kpis": {
+      "capsule_ctr_target_pct": 5.0,
+      "store_to_wishlist_cvr_target_pct": 10,
+      "wishlist_total_target": 250000,
+      "narrative_seo_share_target_pct": 60
+    },
+    "current_phase_actuals": {
+      "capsule_ctr_pct": 5.8,
+      "store_to_wishlist_cvr_pct": 11.4,
+      "wishlist_total": 187400,
+      "narrative_seo_share_pct": 52
+    },
+    "phase_gate_status": "on_track",
+    "phase_gate_blocker": null
+  },
+  {
+    "title_id": "wonderlands",
+    "title_name": "Tiny Tina's Wonderlands",
+    "franchise_slug": "wonderlands",
+    "brand_color": "#EC4899",
+    "portfolio_type": "live_service",
+    "current_phase": "live_service",
+    "campaign_status": "delayed",
+    "current_beat_id": "wonderlands_gluttons_gamble_encore_drop",
+    "next_milestone_name": "Glutton's Gamble Encore — community comms re-announce (Davide sign-off)",
+    "next_milestone_date": "2026-05-29",
+    "budget_committed_usd": 540000,
+    "budget_spent_usd": 295000,
+    "budget_remaining_usd": 245000,
+    "current_phase_kpis": {
+      "d7_retention_target_pct": 27,
+      "wishlist_velocity_target_daily": 420,
+      "review_score_target_pct": 80
+    },
+    "current_phase_actuals": {
+      "d7_retention_pct": 24.1,
+      "wishlist_velocity_daily": 388,
+      "review_score_pct": 81
+    },
+    "phase_gate_status": "blocked",
+    "phase_gate_blocker": "Engineering stability blocker — Eng Producer realistic re-date July 10. 65K standalone wishlisters get Steam notification on date shift. Coordinating draft comms re-announce with Community Lead for Davide sign-off EOD May 29."
+  },
+  {
+    "title_id": "homeworld",
+    "title_name": "Homeworld",
+    "franchise_slug": "homeworld",
+    "brand_color": "#3B82F6",
+    "portfolio_type": "live_service",
+    "current_phase": "sustain_scale",
+    "campaign_status": "on_track",
+    "current_beat_id": "hw3_anniversary_content_update",
+    "next_milestone_name": "Anniversary Content Update — launch",
+    "next_milestone_date": "2026-06-28",
+    "budget_committed_usd": 380000,
+    "budget_spent_usd": 142000,
+    "budget_remaining_usd": 238000,
+    "current_phase_kpis": {
+      "d30_retention_target_pct": 18,
+      "review_score_target_pct": 84,
+      "wishlist_velocity_target_daily": 180
+    },
+    "current_phase_actuals": {
+      "d30_retention_pct": 19.4,
+      "review_score_pct": 86,
+      "wishlist_velocity_daily": 224
+    },
+    "phase_gate_status": "on_track",
+    "phase_gate_blocker": null
+  },
+  {
+    "title_id": "risk-of-rain",
+    "title_name": "Risk of Rain",
+    "franchise_slug": "risk-of-rain",
+    "brand_color": "#84CC16",
+    "portfolio_type": "live_service",
+    "current_phase": "live_service",
+    "campaign_status": "on_track",
+    "current_beat_id": "ror2_seekers_storm_free_weekend",
+    "next_milestone_name": "Seekers of the Storm Free Weekend — kickoff",
+    "next_milestone_date": "2026-08-08",
+    "budget_committed_usd": 220000,
+    "budget_spent_usd": 38000,
+    "budget_remaining_usd": 182000,
+    "current_phase_kpis": {
+      "free_weekend_concurrent_target": 38000,
+      "wishlist_velocity_target_daily": 280,
+      "conversion_to_paid_target_pct": 18
+    },
+    "current_phase_actuals": {
+      "free_weekend_concurrent": null,
+      "wishlist_velocity_daily": 312,
+      "conversion_to_paid_pct": null
+    },
+    "phase_gate_status": "on_track",
+    "phase_gate_blocker": null
+  }
+]

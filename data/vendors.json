@@ -1,0 +1,146 @@
+[
+  {
+    "vendor_id": "open_world",
+    "name": "Open World",
+    "parent_company": "Loaded Holdings",
+    "url": "https://openworld.gg",
+    "services": ["Creator activation", "Capture event production", "FanFest support", "Earned creator seeding"],
+    "assigned_titles": ["borderlands", "civilization"],
+    "current_engagements": [
+      { "beat_id": "civ7_test_of_time_creator_campaign_na", "role": "Lead creator agency — NA Test of Time creator campaign + Shroud co-op stream production" },
+      { "beat_id": "bl4_mad_ellie_sp1_launch", "role": "Creator activation lead — 71 creators (Shroud, Summit1G, LIRIK, TheBurntPeanut + 67 earned seeds)" },
+      { "beat_id": "bl4_fanfest_q3_2026_planning", "role": "FanFest event production — Novato + Sydney capture, LA fan event (planning)" }
+    ],
+    "active_tickets_count": 12,
+    "point_of_contact_name": "Maya Reyes",
+    "point_of_contact_email": "maya.reyes@openworld.gg",
+    "status": "active",
+    "real_world_credential": "Ran the Borderlands 4 launch creator campaign (71 creators, Twitch category dominance) and the Borderlands 4 FanFest (103 creators, capture events in Novato and Sydney, LA fan event)."
+  },
+  {
+    "vendor_id": "heaven_media",
+    "name": "Heaven Media",
+    "url": "https://heavenmedia.com",
+    "services": ["Lead UA agency", "Creator management", "Paid media planning + execution", "Creative + data + strategy"],
+    "assigned_titles": ["borderlands", "mafia", "wonderlands"],
+    "current_engagements": [
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "Lead UA for the Mad Ellie sustain window (Phase 2 paid surge held pending D30)" },
+      { "beat_id": "mafia_toc_q2_sustain_push", "role": "Paid creative refresh — 3 concepts in QA, GO/NO-GO June 1" },
+      { "beat_id": "wonderlands_gluttons_gamble_encore_drop", "role": "Paid plan to align with new July 10 drop window" }
+    ],
+    "active_tickets_count": 9,
+    "point_of_contact_name": "Daniel Okafor",
+    "point_of_contact_email": "daniel.okafor@heavenmedia.com",
+    "status": "active",
+    "real_world_credential": "Lead UA agency for CoD Black Ops 6, Cyberpunk, Starfield, Marvel Rivals, PUBG: New State."
+  },
+  {
+    "vendor_id": "gaming_world_media",
+    "name": "Gaming World Media",
+    "url": "https://gamingworldmedia.com",
+    "services": ["Owned media network (16 brands / 60 channels)", "Newsletter + Discord community distribution", "Social content amplification"],
+    "assigned_titles": ["borderlands", "civilization", "homeworld"],
+    "current_engagements": [
+      { "beat_id": "civ7_test_of_time_update_launch", "role": "Owned-media amplification — Jake Lucky / Deadlock Intel coverage in Test of Time launch week" },
+      { "beat_id": "hw3_anniversary_content_update", "role": "Newsletter + Discord drop for Anniversary content trailer (planned)" }
+    ],
+    "active_tickets_count": 4,
+    "point_of_contact_name": "Priya Chen",
+    "point_of_contact_email": "priya.chen@gwm.gg",
+    "status": "active",
+    "real_world_credential": "250M+ organic monthly impressions. Network includes Jake Lucky, Deadlock Intel, Rivals Esports, CS News, Shooter Intel, Hun2r."
+  },
+  {
+    "vendor_id": "cpmstar",
+    "name": "CPMStar",
+    "url": "https://www.cpmstar.com",
+    "services": ["Gaming-native ad network", "In-game video placements", "Geo + behavioral targeting at scale"],
+    "assigned_titles": ["borderlands", "risk-of-rain"],
+    "current_engagements": [
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "In-game placement schedule for Mad Ellie sustain window (Jun–Aug)" },
+      { "beat_id": "ror2_seekers_storm_free_weekend", "role": "Pre-Free-Weekend awareness push across browser FPS/co-op adjacency (planned)" }
+    ],
+    "active_tickets_count": 3,
+    "point_of_contact_name": "Marcus Lin",
+    "point_of_contact_email": "marcus.lin@cpmstar.com",
+    "status": "active",
+    "real_world_credential": "24B+ annual impressions, 600M+ MAU, 700+ partners. Gaming-focused in-game placements."
+  },
+  {
+    "vendor_id": "lurkit",
+    "name": "Lurkit",
+    "url": "https://lurkit.com",
+    "services": ["Performance-based creator quests", "Streamlabs integration (3M+ streamers)", "Hours-watched + CCV payout models"],
+    "assigned_titles": ["civilization", "risk-of-rain"],
+    "current_engagements": [
+      { "beat_id": "civ7_test_of_time_creator_campaign_na", "role": "Performance quest live — hours-watched payout, 8K hours D1–D3" },
+      { "beat_id": "ror2_seekers_storm_free_weekend", "role": "Free Weekend hours-watched quest setup (briefing this week)" }
+    ],
+    "active_tickets_count": 2,
+    "point_of_contact_name": "Elin Bergström",
+    "point_of_contact_email": "elin.bergstrom@lurkit.com",
+    "status": "active",
+    "real_world_credential": "Deployed by Dune: Awakening (125K+ paid hours), Once Human, Dead Island 2 for launch spikes."
+  },
+  {
+    "vendor_id": "xsolla_rainmaker",
+    "name": "Xsolla x Rainmaker",
+    "url": "https://xsolla.com",
+    "services": ["Revenue-share affiliate platform (5–30% commission)", "Nano-influencer creator storefronts", "Global payouts (100K+ creators, 50+ countries)"],
+    "assigned_titles": ["borderlands", "mafia"],
+    "current_engagements": [
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "Affiliate storefronts for Mad Ellie cosmetic + season pass post-launch monetization" }
+    ],
+    "active_tickets_count": 2,
+    "point_of_contact_name": "Sofia Ramos",
+    "point_of_contact_email": "sofia.ramos@xsolla.com",
+    "status": "active",
+    "real_world_credential": "Revenue-share affiliate platform optimized for cosmetic + battle pass monetization. Zero upfront cost."
+  },
+  {
+    "vendor_id": "gamesight",
+    "name": "Gamesight",
+    "url": "https://gamesight.io",
+    "services": ["Multi-touch attribution (80+ ad networks)", "Steamworks UTM integration", "Creator-level ROI + cohort retention", "Fraud detection"],
+    "assigned_titles": ["borderlands", "civilization", "mafia", "homeworld"],
+    "current_engagements": [
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "UTM taxonomy + attribution for all Mad Ellie paid + creator codes" },
+      { "beat_id": "civ7_test_of_time_creator_campaign_na", "role": "Creator-level ROI tracking for Test of Time NA campaign" }
+    ],
+    "active_tickets_count": 5,
+    "point_of_contact_name": "Hideki Tanaka",
+    "point_of_contact_email": "hideki.tanaka@gamesight.io",
+    "status": "active",
+    "real_world_credential": "80+ ad networks, Steamworks integration, multi-touch attribution + cohort LTV forecasting."
+  },
+  {
+    "vendor_id": "creatoriq",
+    "name": "CreatorIQ",
+    "url": "https://creatoriq.com",
+    "services": ["Creator discovery + vetting", "Audience demographics + engagement scoring", "Brand safety review"],
+    "assigned_titles": ["risk-of-rain", "civilization", "wonderlands"],
+    "current_engagements": [
+      { "beat_id": "ror2_seekers_storm_free_weekend", "role": "Shortlist 40 micro/nano FPS-adjacent creators for Free Weekend (delivery Friday)" }
+    ],
+    "active_tickets_count": 1,
+    "point_of_contact_name": "Aisha Brown",
+    "point_of_contact_email": "aisha.brown@creatoriq.com",
+    "status": "active",
+    "real_world_credential": "Industry-standard creator discovery + vetting platform. Demographics, engagement, brand safety."
+  },
+  {
+    "vendor_id": "harbor",
+    "name": "Harbor",
+    "url": "https://harbor.gg",
+    "services": ["Community questing platform", "Wishlist + social action rewards", "Referral programs"],
+    "assigned_titles": ["bioshock", "risk-of-rain"],
+    "current_engagements": [
+      { "beat_id": "bioshock_next_reveal_window_prep", "role": "Wishlist quest platform for pre-reveal community engagement (configuring)" }
+    ],
+    "active_tickets_count": 1,
+    "point_of_contact_name": "James Whitford",
+    "point_of_contact_email": "james@harbor.gg",
+    "status": "contracting",
+    "real_world_credential": "Community questing — wishlists, social actions, referral. Used in pre-launch wishlist drives."
+  }
+]

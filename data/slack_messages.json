@@ -1,0 +1,122 @@
+[
+  {
+    "message_id": "slack_001",
+    "channel": "#civ-vii-launch",
+    "author": "Priya Iyer",
+    "author_role": "Brand Manager, Civilization",
+    "timestamp": "2026-05-21T09:14:00Z",
+    "text": "Test of Time D2 sentiment looking strong on r/civ — top thread says 'finally the Civ VII I wanted at launch'. Steam reviews trending 87% over last 48h. @comms can we pull a sentiment slide for tomorrow's exec roll-up?",
+    "thread_replies": 4,
+    "flagged_for_action": true,
+    "linked_ticket_id": "CIV-1928",
+    "linked_title_id": "civilization"
+  },
+  {
+    "message_id": "slack_002",
+    "channel": "#vendor-open-world",
+    "author": "Maya Reyes",
+    "author_role": "Open World — Account Director",
+    "timestamp": "2026-05-21T15:42:00Z",
+    "text": "Heads up team, Shroud's schedule shifted — we can lock him for May 28 instead of May 30 for the Test of Time follow-up co-op stream. Need confirmation on whether we move the rest of the lineup with him or split into two days. @alex",
+    "thread_replies": 6,
+    "flagged_for_action": true,
+    "linked_ticket_id": "CIV-1934",
+    "linked_title_id": "civilization"
+  },
+  {
+    "message_id": "slack_003",
+    "channel": "#borderlands-mad-ellie",
+    "author": "Tomás Vega",
+    "author_role": "Performance Marketing Lead",
+    "timestamp": "2026-05-22T08:03:00Z",
+    "text": "Mad Ellie SP1 D30 cohort coming in at 9.8% — under our 14% gate. Recommend we hold the Phase 2 paid surge until we see the next patch land and re-measure. Drafting brief for Davide.",
+    "thread_replies": 11,
+    "flagged_for_action": true,
+    "linked_ticket_id": "BL-2418",
+    "linked_title_id": "borderlands"
+  },
+  {
+    "message_id": "slack_004",
+    "channel": "#wonderlands-live",
+    "author": "Sarah Wu",
+    "author_role": "Engineering Producer, Wonderlands",
+    "timestamp": "2026-05-18T11:22:00Z",
+    "text": "Crash repro on the encounter transition into the second arena. Reliable, can't ship June 5. Realistic new date is July 10. Looping in @marcus and @alex on comms framing.",
+    "thread_replies": 8,
+    "flagged_for_action": true,
+    "linked_ticket_id": "WND-1782",
+    "linked_title_id": "wonderlands"
+  },
+  {
+    "message_id": "slack_005",
+    "channel": "#mafia-old-country",
+    "author": "Daniel Okafor",
+    "author_role": "Heaven Media — Account Lead",
+    "timestamp": "2026-05-19T14:00:00Z",
+    "text": "Three refresh creative concepts in QA. Brand review Thursday. Realistically GO/NO-GO June 1 — three days QA, two days traffic split. Sharing the concept boards in this thread shortly.",
+    "thread_replies": 5,
+    "flagged_for_action": true,
+    "linked_ticket_id": "MAF-PROP-001",
+    "linked_title_id": "mafia"
+  },
+  {
+    "message_id": "slack_006",
+    "channel": "#2k-na-integrated",
+    "author": "Alex Akiyama",
+    "author_role": "Manager, NA Integrated Marketing",
+    "timestamp": "2026-05-22T07:30:00Z",
+    "text": "Daily standup landed. Two things flagged up to Davide this week: (1) Mad Ellie Phase 2 surge — recommending hold pending Patch 1.2, Heaven pre-warned, awaiting Davide call; (2) Wonderlands DLC re-announce — Marcus drafting for Davide sign-off EOD Friday. Everything else operational.",
+    "thread_replies": 2,
+    "flagged_for_action": false,
+    "linked_ticket_id": null,
+    "linked_title_id": null
+  },
+  {
+    "message_id": "slack_007",
+    "channel": "#vendor-heaven-media",
+    "author": "Daniel Okafor",
+    "author_role": "Heaven Media — Account Lead",
+    "timestamp": "2026-05-20T16:11:00Z",
+    "text": "Heaven Mad Ellie weekly: Phase 1 paid landed clean on TikTok, Spark Ads boost on top 5 hooks at 22% above benchmark CTR. CPMStar in-game pacing fine. Phase 2 we are paused on per Tomás's note re D30. Will refresh the brief once the gate clears.",
+    "thread_replies": 3,
+    "flagged_for_action": false,
+    "linked_ticket_id": "BL-2418",
+    "linked_title_id": "borderlands"
+  },
+  {
+    "message_id": "slack_008",
+    "channel": "#civ-vii-launch",
+    "author": "Marcus Lee",
+    "author_role": "Community Lead, Civilization",
+    "timestamp": "2026-05-22T10:48:00Z",
+    "text": "Lurkit Test of Time quest update: 8,200 hours watched D1–D3, 142 streamers participated. Cost-per-hour-watched landing at $0.18, well under our $0.25 ceiling. Extending the quest through the weekend to ride the Shroud co-op stream halo.",
+    "thread_replies": 4,
+    "flagged_for_action": true,
+    "linked_ticket_id": "CIV-1941",
+    "linked_title_id": "civilization"
+  },
+  {
+    "message_id": "slack_009",
+    "channel": "#ror2-content",
+    "author": "Marcus Lee",
+    "author_role": "Community Lead",
+    "timestamp": "2026-05-22T13:15:00Z",
+    "text": "Free Weekend prep: CreatorIQ shortlist of 40 micro/nano FPS-co-op-adjacent creators landing Friday. Lurkit brief drafted, sending Wednesday. Looking at CPI on the awareness layer — CPMStar quote came back at $4.20 estimated.",
+    "thread_replies": 2,
+    "flagged_for_action": false,
+    "linked_ticket_id": "ROR-PROP-001",
+    "linked_title_id": "risk-of-rain"
+  },
+  {
+    "message_id": "slack_010",
+    "channel": "#2k-na-integrated",
+    "author": "Priya Iyer",
+    "author_role": "Brand Manager, Civilization",
+    "timestamp": "2026-05-22T11:02:00Z",
+    "text": "Brand creative final hero cut for Test of Time NA paid social is in QA now — I have it. Tracking to land in Open World's hands by 4pm today. Sorry for the slip. Audit on the workflow is owed.",
+    "thread_replies": 1,
+    "flagged_for_action": true,
+    "linked_ticket_id": "CIV-1934",
+    "linked_title_id": "civilization"
+  }
+]

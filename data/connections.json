@@ -1,0 +1,62 @@
+[
+  {
+    "connection_id": "conn_slack",
+    "name": "Slack",
+    "category": "comms",
+    "status": "connected",
+    "connected_workspace": "2K Marketing Workspace",
+    "last_synced": "2026-05-22T14:31:00Z",
+    "scope_summary": "Reading 14 channels (#civ-vii-launch, #vendor-open-world, #borderlands-mad-ellie, #wonderlands-live, #mafia-old-country, #2k-na-integrated, #vendor-heaven-media, #ror2-content, #xcom-anniversary, #bioshock-reveal-prep, #hw3-content, #global-gtm, #davide-comms, #vendor-cpmstar). Surfacing risks + extracting tickets from threads flagged for action.",
+    "icon_emoji": "💬"
+  },
+  {
+    "connection_id": "conn_gmail",
+    "name": "Gmail",
+    "category": "comms",
+    "status": "connected",
+    "connected_workspace": "alex.akiyama@2k.com",
+    "last_synced": "2026-05-22T14:28:00Z",
+    "scope_summary": "Reading inbox + sent for vendor + Davide threads. Drafting escalation emails on demand. 15 active threads tracked across Open World, Heaven Media, Gaming World Media, Lurkit, CreatorIQ.",
+    "icon_emoji": "📧"
+  },
+  {
+    "connection_id": "conn_zoom",
+    "name": "Zoom",
+    "category": "comms",
+    "status": "connected",
+    "connected_workspace": "2K Marketing — alex.akiyama@2k.com",
+    "last_synced": "2026-05-22T14:25:00Z",
+    "scope_summary": "Auto-transcribing standups, vendor weeklies, retro sessions. Extracting KPI signals + proposed tickets from each transcript. 5 transcripts processed this fortnight.",
+    "icon_emoji": "🎥"
+  },
+  {
+    "connection_id": "conn_steam",
+    "name": "Steam Partner",
+    "category": "platform",
+    "status": "connected",
+    "connected_workspace": "2K — Publisher account",
+    "last_synced": "2026-05-22T13:00:00Z",
+    "scope_summary": "Pulling capsule CTR, wishlist totals + velocity, review score, CCU, sentiment share across 12 store pages (8 titles + DLC standalone pages). Refreshes hourly.",
+    "icon_emoji": "🎮"
+  },
+  {
+    "connection_id": "conn_gamesight",
+    "name": "Gamesight",
+    "category": "analytics",
+    "status": "connected",
+    "connected_workspace": "2K — multi-title attribution",
+    "last_synced": "2026-05-22T14:10:00Z",
+    "scope_summary": "Multi-touch attribution across 80+ ad networks. UTM taxonomy + creator code tracking. D1/D7/D30 cohort retention. ROAS/CPI by paid channel. Currently tracking 4 active paid campaigns.",
+    "icon_emoji": "📊"
+  },
+  {
+    "connection_id": "conn_jira",
+    "name": "Jira",
+    "category": "ticketing",
+    "status": "connected",
+    "connected_workspace": "2K Integrated Marketing project",
+    "last_synced": "2026-05-22T14:30:00Z",
+    "scope_summary": "Reading + writing tickets across 8 title boards. 38 active tickets tracked across the portfolio. Auto-creating tickets from extracted Zoom/Slack proposals on Manager approval.",
+    "icon_emoji": "🎫"
+  }
+]
