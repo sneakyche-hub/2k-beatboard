@@ -2,6 +2,8 @@
 
 **Integrated marketing operations cockpit — 2K Manager, Integrated Marketing — North America (interview demo)**
 
+**🔗 Live:** [2k-beatboard.vercel.app](https://2k-beatboard.vercel.app)
+
 A static, AI-pre-computed dashboard that gives a Marketing Manager a single operating picture across eight 2K franchises in live-service mode. Surfaces what's on fire today, what needs escalation up to Davide Detta (Sr Manager, Global GTM, Core), and what's queued for sign-off this week.
 
 ## Strategic brief
