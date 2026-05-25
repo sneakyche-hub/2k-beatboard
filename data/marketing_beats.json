@@ -31,7 +31,27 @@
       { "name": "Lurkit", "type": "external", "role": "Performance quest platform", "responsible_for": ["Test of Time quest hours-watched", "Quest creator payout reconciliation"], "depends_on": ["Open World creator list lock"], "delivers_to": ["Performance Marketing"] },
       { "name": "Performance Marketing", "type": "internal", "role": "Paid social + pre-roll buy", "responsible_for": ["Paid social flight (May 26 launch)", "Pre-roll buy ahead of Shroud stream"], "depends_on": ["Brand Creative paid social adapt set"], "delivers_to": ["Gamesight (attribution)"] },
       { "name": "Gamesight", "type": "external", "role": "Attribution + UTM hygiene", "responsible_for": ["UTM audit on all creator codes", "Daily attribution report"], "depends_on": ["Open World code distribution"], "delivers_to": ["Alex Akiyama (Davide pre-read)"] }
-    ]
+    ],
+    "lifecycle": {
+      "planning_start": "2026-05-15",
+      "execution_start": "2026-05-22",
+      "wrap_start": "2026-06-04",
+      "wrap_end": "2026-06-08"
+    },
+    "go_no_go": {
+      "decision_owner": "Alex Akiyama",
+      "decision_date": "2026-05-21",
+      "status": "cleared",
+      "cleared_date": "2026-05-21",
+      "summary": "Cleared May 21. Campaign in execution. One residual asset risk (hero cut handoff) tracking via CIV-1934.",
+      "inputs": [
+        { "input": "Brand Creative hero cut master (60s + 30s + 15s)", "owner": "Brand Creative", "status": "outstanding", "due": "2026-05-26", "note": "48h late; backup is Open World v2 from Tuesday" },
+        { "input": "Open World creator list lock + code distribution", "owner": "Open World", "status": "delivered", "due": "2026-05-20" },
+        { "input": "Lurkit quest config", "owner": "Lurkit", "status": "delivered", "due": "2026-05-21" },
+        { "input": "Gamesight UTM audit", "owner": "Gamesight", "status": "delivered", "due": "2026-05-21" },
+        { "input": "Performance paid flight ready", "owner": "Performance Marketing", "status": "delivered", "due": "2026-05-22" }
+      ]
+    }
   },
   {
     "beat_id": "civ7_qa_test_of_time_sustain",
@@ -78,7 +98,26 @@
       { "name": "CPMStar", "type": "external", "role": "In-game placement network", "responsible_for": ["In-game awareness layer (running)", "Phase 2 placement schedule"], "depends_on": ["Heaven Media brief"], "delivers_to": ["Gamesight"] },
       { "name": "Performance Marketing", "type": "internal", "role": "Phase 2 paid buy oversight", "responsible_for": ["Spend pacing", "ROAS/CPI monitoring"], "depends_on": ["Heaven brief unlock"], "delivers_to": ["Alex Akiyama"] },
       { "name": "Gamesight", "type": "external", "role": "Attribution", "responsible_for": ["Cohort attribution for D30 re-measure"], "depends_on": ["Product cohort export"], "delivers_to": ["Alex Akiyama (Davide pre-read)"] }
-    ]
+    ],
+    "lifecycle": {
+      "planning_start": "2026-05-15",
+      "execution_start": "2026-06-05",
+      "wrap_start": "2026-08-20",
+      "wrap_end": "2026-08-31"
+    },
+    "go_no_go": {
+      "decision_owner": "Davide Detta",
+      "decision_date": "2026-06-05",
+      "status": "held",
+      "summary": "Phase 2 surge ($180K) on hold. D30 retention 9.8% vs 14% gate is the blocker. Re-measure on Patch 1.2 cohort target Jun 12.",
+      "inputs": [
+        { "input": "Patch 1.2 ship confirmation", "owner": "Product / Live Service", "status": "outstanding", "due": "2026-06-03" },
+        { "input": "D30 retention re-measure (Patch 1.2 cohort)", "owner": "Product / Live Service", "status": "outstanding", "due": "2026-06-12" },
+        { "input": "Heaven Phase 2 pause-brief confirmation", "owner": "Marketing Mgr II", "status": "outstanding", "due": "2026-05-26" },
+        { "input": "Heaven refresh concepts on standby", "owner": "Heaven Media", "status": "delivered", "due": "2026-05-22" },
+        { "input": "Performance paid pacing report", "owner": "Performance Marketing", "status": "delivered", "due": "2026-05-25" }
+      ]
+    }
   },
   {
     "beat_id": "bl4_mad_ellie_seo_hub_remediation",
@@ -124,7 +163,26 @@
       { "name": "Brand Creative", "type": "internal", "role": "Creative QA gatekeeper", "responsible_for": ["Refresh concept QA review (Thursday)", "Brand voice sign-off"], "depends_on": ["Heaven concept delivery"], "delivers_to": ["Heaven Media", "Marketing Mgr II"] },
       { "name": "Performance Marketing", "type": "internal", "role": "Paid spend oversight", "responsible_for": ["ROAS/CPI tracking", "Spend pacing report for Davide pre-read"], "depends_on": ["Heaven flight launch"], "delivers_to": ["Marketing Mgr II (Davide pre-read)"] },
       { "name": "Gamesight", "type": "external", "role": "Attribution", "responsible_for": ["Daily ROAS readout", "Cohort vs Mafia 2 baseline comparison"], "depends_on": ["Heaven UTM tagging"], "delivers_to": ["Marketing Mgr II"] }
-    ]
+    ],
+    "lifecycle": {
+      "planning_start": "2026-03-25",
+      "execution_start": "2026-04-01",
+      "wrap_start": "2026-06-20",
+      "wrap_end": "2026-06-30"
+    },
+    "go_no_go": {
+      "decision_owner": "Davide Detta",
+      "decision_date": "2026-06-01",
+      "status": "awaiting_decision",
+      "summary": "Next $120K creative tranche pending. ROAS 1.87 vs 2.4 target. 3 refresh concepts in Brand QA Thursday.",
+      "inputs": [
+        { "input": "Heaven 3 refresh concepts (Brand QA Thu May 28)", "owner": "Heaven Media", "status": "outstanding", "due": "2026-05-28" },
+        { "input": "Brand Creative QA pass on refresh concepts", "owner": "Brand Creative", "status": "outstanding", "due": "2026-05-28" },
+        { "input": "ROAS readout packet (MAF-1010)", "owner": "Alex Akiyama", "status": "delivered", "due": "2026-05-26" },
+        { "input": "Cohort fatigue post-mortem (Mafia 2 baseline)", "owner": "Gamesight", "status": "delivered", "due": "2026-05-25" },
+        { "input": "Spend pacing report", "owner": "Performance Marketing", "status": "delivered", "due": "2026-05-25" }
+      ]
+    }
   },
   {
     "beat_id": "mafia_toc_q3_evergreen",
@@ -210,7 +268,26 @@
       { "name": "Community Lead (Marcus Lee)", "type": "internal", "role": "Re-announce comms drafter", "responsible_for": ["Quality-led re-announce post draft", "1hr sentiment ack window monitoring"], "depends_on": ["Legal redline", "Davide sign-off"], "delivers_to": ["Wishlister cohort (65K)"] },
       { "name": "Legal", "type": "internal", "role": "Comms redline", "responsible_for": ["Re-announce language review"], "depends_on": ["Community Lead draft"], "delivers_to": ["Alex Akiyama (for Davide routing)"] },
       { "name": "Heaven Media", "type": "external", "role": "Paid re-timing", "responsible_for": ["Paid surge re-timed to July 10 window", "Brief held pending Davide sign-off"], "depends_on": ["Davide sign-off", "Date public"], "delivers_to": ["Performance Marketing"] }
-    ]
+    ],
+    "lifecycle": {
+      "planning_start": "2026-05-01",
+      "execution_start": "2026-07-10",
+      "wrap_start": "2026-07-25",
+      "wrap_end": "2026-07-31"
+    },
+    "go_no_go": {
+      "decision_owner": "Davide Detta",
+      "decision_date": "2026-05-29",
+      "status": "awaiting_decision",
+      "summary": "Re-announce sign-off owed Friday. Drop itself blocked on Engineering stability gate. 65K wishlisters get a Steam notification the moment the page updates.",
+      "inputs": [
+        { "input": "Eng Producer sign-off on July 10 re-date", "owner": "Engineering", "status": "delivered", "due": "2026-05-25" },
+        { "input": "Re-announce draft v2 (Marcus Lee)", "owner": "Community Lead (Marcus Lee)", "status": "outstanding", "due": "2026-05-26", "note": "Before 1 PM today, then routes to Legal" },
+        { "input": "Legal redline on comms language", "owner": "Legal", "status": "outstanding", "due": "2026-05-28" },
+        { "input": "Heaven paid re-timing brief (held)", "owner": "Heaven Media", "status": "outstanding", "due": "2026-05-29", "note": "Held until Davide signs and date is public" },
+        { "input": "Steam page date update + wishlister notification trigger", "owner": "Product", "status": "outstanding", "due": "2026-05-30" }
+      ]
+    }
   },
   {
     "beat_id": "wonderlands_evergreen_sustain",
@@ -270,7 +347,26 @@
       { "name": "Lurkit", "type": "external", "role": "Performance quest platform", "responsible_for": ["Hours-watched quest setup (brief due Wed)", "Creator payout reconciliation"], "depends_on": ["Marcus brief", "Creator list lock"], "delivers_to": ["Performance Marketing"] },
       { "name": "CPMStar", "type": "external", "role": "Awareness layer", "responsible_for": ["Pre-Free-Weekend awareness flight (quote pending)", "$4.20 CPI estimate validation"], "depends_on": ["Tomás quote approval"], "delivers_to": ["Performance Marketing"] },
       { "name": "Performance Marketing (Tomás Vega)", "type": "internal", "role": "Quote approval + attribution", "responsible_for": ["CPMStar quote sign-off", "Conversion measurement plan"], "depends_on": [], "delivers_to": ["Marketing Mgr II"] }
-    ]
+    ],
+    "lifecycle": {
+      "planning_start": "2026-06-15",
+      "execution_start": "2026-08-08",
+      "wrap_start": "2026-08-12",
+      "wrap_end": "2026-08-15"
+    },
+    "go_no_go": {
+      "decision_owner": "Marketing Mgr II",
+      "decision_date": "2026-07-31",
+      "status": "on_track",
+      "summary": "On track for Aug 8 Free Weekend kickoff. Shortlist + quest setup land this week, CPMStar quote approval gates the awareness layer.",
+      "inputs": [
+        { "input": "CreatorIQ 40 micro/nano shortlist", "owner": "CreatorIQ", "status": "outstanding", "due": "2026-05-29" },
+        { "input": "Lurkit quest setup brief", "owner": "Community Lead (Marcus Lee)", "status": "outstanding", "due": "2026-05-27" },
+        { "input": "CPMStar awareness quote approval ($4.20 CPI)", "owner": "Performance Marketing (Tomás Vega)", "status": "outstanding", "due": "2026-06-12" },
+        { "input": "Creator brief packets locked", "owner": "Community Lead (Marcus Lee)", "status": "outstanding", "due": "2026-07-15" },
+        { "input": "Conversion measurement plan", "owner": "Performance Marketing (Tomás Vega)", "status": "outstanding", "due": "2026-07-31" }
+      ]
+    }
   },
   {
     "beat_id": "ror2_post_free_weekend_conversion",

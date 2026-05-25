@@ -9,7 +9,6 @@ import {
   fmtDate,
 } from "@/lib/data";
 import GanttBar from "./GanttBar";
-import Badge from "./Badge";
 
 const VIEW_START = new Date("2026-05-15T00:00:00Z").getTime();
 const VIEW_END = new Date("2026-09-30T00:00:00Z").getTime();
@@ -24,6 +23,15 @@ const STATUS_COLOR = {
   delayed: "#DC2626",
   planning: "#94A3B8",
   scheduled: "#94A3B8",
+};
+
+const GO_NO_GO_TONE = {
+  cleared: { fill: "#16A34A", label: "Cleared" },
+  on_track: { fill: "#16A34A", label: "On track" },
+  awaiting_decision: { fill: "#D97706", label: "Awaiting decision" },
+  decide_today: { fill: "#D97706", label: "Decide today" },
+  held: { fill: "#DC2626", label: "Held" },
+  blocked: { fill: "#DC2626", label: "Blocked" },
 };
 
 function monthMarkers() {
@@ -79,6 +87,166 @@ const TASK_TYPE_LABEL = {
   platform_event: "Platform event",
 };
 
+// Pack beats into the minimum number of horizontal lanes so they don't overlap.
+function packLanes(items) {
+  const sorted = [...items].sort(
+    (a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime()
+  );
+  const lanes = []; // lanes[i] = last end ms
+  return sorted.map((item) => {
+    const s = new Date(item.start_date).getTime();
+    const e = new Date(item.end_date).getTime();
+    let laneIdx = lanes.findIndex((endMs) => endMs <= s);
+    if (laneIdx === -1) {
+      lanes.push(e);
+      laneIdx = lanes.length - 1;
+    } else {
+      lanes[laneIdx] = e;
+    }
+    return { item, laneIdx };
+  });
+}
+
+function pctOf(ms) {
+  return ((ms - VIEW_START) / (VIEW_END - VIEW_START)) * 100;
+}
+
+function clampedRange(startIso, endIso) {
+  const s = Math.max(new Date(startIso).getTime(), VIEW_START);
+  const e = Math.min(new Date(endIso).getTime(), VIEW_END);
+  if (e <= s) return null;
+  return { s, e, leftPct: pctOf(s), widthPct: pctOf(e) - pctOf(s) };
+}
+
+function BeatSegments({ beat, brandColor, statusColor }) {
+  // If no lifecycle, render single solid bar across start→end.
+  if (!beat.lifecycle) {
+    const r = clampedRange(beat.start_date, beat.end_date);
+    if (!r) return null;
+    return (
+      <span
+        className="absolute inset-y-0 rounded-md border border-white/40 shadow-sm overflow-hidden flex items-center"
+        style={{
+          left: `${r.leftPct}%`,
+          width: `max(${r.widthPct}%, 4px)`,
+          backgroundColor: brandColor,
+        }}
+      >
+        <span
+          className="absolute inset-y-0 left-0 w-1"
+          style={{ backgroundColor: statusColor }}
+        />
+        <span className="block pl-2 pr-1.5 text-[10.5px] font-semibold text-white truncate leading-tight">
+          {beat.beat_name}
+        </span>
+      </span>
+    );
+  }
+
+  const lc = beat.lifecycle;
+  const planning = clampedRange(lc.planning_start, lc.execution_start);
+  const execution = clampedRange(lc.execution_start, lc.wrap_start);
+  const wrap = clampedRange(lc.wrap_start, lc.wrap_end);
+
+  const stripe = `repeating-linear-gradient(45deg, ${brandColor}, ${brandColor} 4px, ${brandColor}88 4px, ${brandColor}88 8px)`;
+
+  // Place beat name label inside whichever segment is widest.
+  const widest = [
+    { key: "execution", r: execution, w: execution?.widthPct || 0 },
+    { key: "planning", r: planning, w: planning?.widthPct || 0 },
+    { key: "wrap", r: wrap, w: wrap?.widthPct || 0 },
+  ].sort((a, b) => b.w - a.w)[0];
+
+  return (
+    <>
+      {planning && (
+        <span
+          className="absolute inset-y-0 rounded-l-md border border-white/30 overflow-hidden flex items-center"
+          style={{
+            left: `${planning.leftPct}%`,
+            width: `max(${planning.widthPct}%, 3px)`,
+            background: stripe,
+            opacity: 0.72,
+          }}
+        >
+          {widest.key === "planning" && (
+            <span className="block pl-2 pr-1.5 text-[10.5px] font-semibold text-white truncate leading-tight">
+              {beat.beat_name}
+            </span>
+          )}
+        </span>
+      )}
+      {execution && (
+        <span
+          className="absolute inset-y-0 border border-white/40 shadow-sm overflow-hidden flex items-center"
+          style={{
+            left: `${execution.leftPct}%`,
+            width: `max(${execution.widthPct}%, 3px)`,
+            backgroundColor: brandColor,
+            borderTopLeftRadius: planning ? 0 : 6,
+            borderBottomLeftRadius: planning ? 0 : 6,
+            borderTopRightRadius: wrap ? 0 : 6,
+            borderBottomRightRadius: wrap ? 0 : 6,
+          }}
+        >
+          <span
+            className="absolute inset-y-0 left-0 w-1"
+            style={{ backgroundColor: statusColor }}
+          />
+          {widest.key === "execution" && (
+            <span className="block pl-2 pr-1.5 text-[10.5px] font-semibold text-white truncate leading-tight">
+              {beat.beat_name}
+            </span>
+          )}
+        </span>
+      )}
+      {wrap && (
+        <span
+          className="absolute inset-y-0 rounded-r-md border border-white/30 overflow-hidden flex items-center"
+          style={{
+            left: `${wrap.leftPct}%`,
+            width: `max(${wrap.widthPct}%, 3px)`,
+            backgroundColor: brandColor,
+            opacity: 0.45,
+          }}
+        >
+          {widest.key === "wrap" && (
+            <span className="block pl-2 pr-1.5 text-[10.5px] font-semibold text-white truncate leading-tight">
+              {beat.beat_name}
+            </span>
+          )}
+        </span>
+      )}
+      {/* GO/NO-GO diamond at execution_start */}
+      {beat.go_no_go && (
+        <GoNoGoDiamond
+          dateIso={lc.execution_start}
+          status={beat.go_no_go.status}
+        />
+      )}
+    </>
+  );
+}
+
+function GoNoGoDiamond({ dateIso, status }) {
+  const ms = new Date(dateIso).getTime();
+  if (ms < VIEW_START || ms > VIEW_END) return null;
+  const left = pctOf(ms);
+  const tone = GO_NO_GO_TONE[status] || GO_NO_GO_TONE.awaiting_decision;
+  return (
+    <span
+      className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-none"
+      style={{ left: `${left}%` }}
+      title={`GO/NO-GO ${tone.label} · ${fmtDate(dateIso)}`}
+    >
+      <span
+        className="block h-3 w-3 rotate-45 border border-white shadow"
+        style={{ backgroundColor: tone.fill }}
+      />
+    </span>
+  );
+}
+
 export default function GlobalCalendar() {
   const [filterTitle, setFilterTitle] = useState("all");
   const [tab, setTab] = useState("beats"); // beats | tasks
@@ -111,6 +279,7 @@ export default function GlobalCalendar() {
         <p className="text-[13px] text-ink-500 mt-1">
           {fmtDate(VIEW_START, { year: true })} to{" "}
           {fmtDate(VIEW_END, { year: true })} · 8 titles · 26 beats · 50+ tasks
+          · planning / execution / wrap shown distinctly with GO/NO-GO gates.
         </p>
       </div>
 
@@ -189,7 +358,6 @@ export default function GlobalCalendar() {
               {m.label}
             </div>
           ))}
-          {/* Today line */}
           <div
             className="absolute top-0 bottom-0 w-px bg-accent-red"
             style={{ left: `${todayPct}%` }}
@@ -200,10 +368,9 @@ export default function GlobalCalendar() {
           </div>
         </div>
 
-        {/* All-titles + beats: title swimlanes. Otherwise per-row item list. */}
+        {/* All-titles + beats: title swimlanes with lane stacking. */}
         {tab === "beats" && filterTitle === "all" ? (
           <div className="relative">
-            {/* Today vertical line through body */}
             <div
               className="absolute top-0 bottom-0 w-px bg-accent-red/40 pointer-events-none z-10"
               style={{ left: `${todayPct}%` }}
@@ -212,6 +379,18 @@ export default function GlobalCalendar() {
               const titleBeats = filteredBeats.filter(
                 (b) => b.title_id === t.title_id
               );
+              const packed = packLanes(titleBeats);
+              const laneCount = packed.reduce(
+                (max, p) => Math.max(max, p.laneIdx + 1),
+                1
+              );
+              const LANE_HEIGHT = 26; // px per lane
+              const LANE_GAP = 4;
+              const rowHeight =
+                Math.max(1, laneCount) * LANE_HEIGHT +
+                Math.max(0, laneCount - 1) * LANE_GAP +
+                16; // top/bottom padding
+
               return (
                 <div
                   key={t.title_id}
@@ -232,43 +411,44 @@ export default function GlobalCalendar() {
                     </div>
                     <div className="text-[10.5px] text-ink-500 mt-0.5">
                       {titleBeats.length} beat
-                      {titleBeats.length === 1 ? "" : "s"} in view
+                      {titleBeats.length === 1 ? "" : "s"} ·{" "}
+                      {laneCount} lane{laneCount === 1 ? "" : "s"}
                     </div>
                   </Link>
-                  <div className="relative h-12">
-                    {titleBeats.map((b) => {
-                      const s = new Date(b.start_date).getTime();
-                      const e = new Date(b.end_date).getTime();
-                      const clampedS = Math.max(s, VIEW_START);
-                      const clampedE = Math.min(e, VIEW_END);
-                      const leftPct =
-                        ((clampedS - VIEW_START) / (VIEW_END - VIEW_START)) *
-                        100;
-                      const widthPct =
-                        ((clampedE - clampedS) / (VIEW_END - VIEW_START)) * 100;
+                  <div
+                    className="relative"
+                    style={{ height: `${rowHeight}px` }}
+                  >
+                    {packed.map(({ item: b, laneIdx }) => {
                       const statusColor =
                         STATUS_COLOR[b.status] || t.brand_color;
+                      const top = 8 + laneIdx * (LANE_HEIGHT + LANE_GAP);
                       return (
                         <Link
                           key={b.beat_id}
                           href={`/titles/${t.franchise_slug}`}
-                          className="absolute top-1/2 -translate-y-1/2 h-6 rounded-md border border-white/40 shadow-sm hover:shadow-md hover:ring-2 hover:ring-ink-900/10 transition-all overflow-hidden"
+                          className="absolute group hover:ring-2 hover:ring-ink-900/10 rounded-md transition-all"
                           style={{
-                            left: `${leftPct}%`,
-                            width: `max(${widthPct}%, 4px)`,
-                            backgroundColor: t.brand_color,
+                            top: `${top}px`,
+                            left: 0,
+                            right: 0,
+                            height: `${LANE_HEIGHT}px`,
                           }}
                           title={`${b.beat_name} · ${b.status} · ${fmtDate(
                             b.start_date
-                          )} → ${fmtDate(b.end_date)}`}
+                          )} → ${fmtDate(b.end_date)}${
+                            b.lifecycle
+                              ? ` · plan→exec ${fmtDate(
+                                  b.lifecycle.execution_start
+                                )}`
+                              : ""
+                          }`}
                         >
-                          <span
-                            className="absolute inset-y-0 left-0 w-1"
-                            style={{ backgroundColor: statusColor }}
+                          <BeatSegments
+                            beat={b}
+                            brandColor={t.brand_color}
+                            statusColor={statusColor}
                           />
-                          <span className="block pl-2 pr-1.5 text-[10.5px] font-semibold text-white truncate leading-6">
-                            {b.beat_name}
-                          </span>
                         </Link>
                       );
                     })}
@@ -284,7 +464,6 @@ export default function GlobalCalendar() {
           </div>
         ) : (
           <div className="relative">
-            {/* Today vertical line through body */}
             <div
               className="absolute top-0 bottom-0 w-px bg-accent-red/40 pointer-events-none z-10"
               style={{ left: `${todayPct}%` }}
@@ -337,27 +516,58 @@ export default function GlobalCalendar() {
       </section>
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-3 text-[11px] text-ink-500">
-        <span className="font-semibold uppercase tracking-wider text-[10px]">
-          Status:
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded bg-accent-success" /> on track /
-          completed
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded bg-accent-primary" /> active /
-          in-progress
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded bg-accent-amber" /> at risk
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded bg-accent-red" /> blocked / delayed
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="h-2 w-2 rounded bg-ink-400" /> planning / scheduled
-        </span>
+      <div className="panel p-3 space-y-2">
+        <div className="flex flex-wrap items-center gap-3 text-[11px] text-ink-700">
+          <span className="font-semibold uppercase tracking-wider text-[10px] text-ink-500">
+            Phases:
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span
+              className="h-3 w-6 rounded-sm border border-line"
+              style={{
+                background:
+                  "repeating-linear-gradient(45deg, #3b82f6, #3b82f6 4px, #3b82f688 4px, #3b82f688 8px)",
+                opacity: 0.72,
+              }}
+            />
+            Planning (striped)
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="h-3 w-6 rounded-sm bg-accent-primary" />
+            Execution (solid)
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span
+              className="h-3 w-6 rounded-sm bg-accent-primary"
+              style={{ opacity: 0.45 }}
+            />
+            Wrap (dimmed)
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="h-2.5 w-2.5 rotate-45 bg-accent-amber border border-white shadow-sm" />
+            GO/NO-GO gate
+          </span>
+        </div>
+        <div className="flex flex-wrap items-center gap-3 text-[11px] text-ink-500 pt-2 border-t border-line">
+          <span className="font-semibold uppercase tracking-wider text-[10px]">
+            Status accent:
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded bg-accent-success" /> on track
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded bg-accent-primary" /> active
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded bg-accent-amber" /> at risk
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded bg-accent-red" /> blocked / delayed
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded bg-ink-400" /> planning
+          </span>
+        </div>
       </div>
     </div>
   );

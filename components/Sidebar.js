@@ -9,11 +9,13 @@ import {
   LayoutGrid,
   Inbox,
   Plug,
+  Gauge,
 } from "lucide-react";
 
 const NAV = [
   { href: "/", label: "Daily Standup", icon: LayoutDashboard },
   { href: "/calendar", label: "Calendar", icon: CalendarDays },
+  { href: "/kpis", label: "KPIs", icon: Gauge },
   { href: "/titles", label: "Titles", icon: LayoutGrid },
   { href: "/inbox", label: "AI Inbox", icon: Inbox },
   { href: "/connections", label: "Connections", icon: Plug },

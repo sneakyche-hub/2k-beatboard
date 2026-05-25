@@ -8,6 +8,78 @@
       "Mafia: TOC creative refresh: Heaven concepts in Brand QA, Davide GO/NO-GO Jun 1 on next $120K tranche.",
       "Civ VII Test of Time launch tail (D7 today): reviews 87% trending up, peak CCU 102K, Shroud co-op stream Thu May 28."
     ],
+    "today_calls": [
+      {
+        "time_iso": "2026-05-26T09:30:00Z",
+        "time_label": "9:30 AM",
+        "title": "NA Integrated weekly sync",
+        "attendees": ["Alex Akiyama", "Marketing Mgr II", "Marcus Lee", "Brand Marketing"],
+        "topic": "Week-of-May-26 priorities, BL4 Phase 2 hold status, Wonderlands comms timeline",
+        "prep_status": "ready",
+        "prep_note": "Standup brief is the pre-read",
+        "linked_ticket_id": null
+      },
+      {
+        "time_iso": "2026-05-26T11:00:00Z",
+        "time_label": "11:00 AM",
+        "title": "Open World check-in (Test of Time creator wrap)",
+        "attendees": ["Alex Akiyama", "Maya Reyes (Open World)"],
+        "topic": "Hero cut handoff path + Thu May 28 Shroud stream prep",
+        "prep_status": "outstanding",
+        "prep_note": "Awaiting Brand Creative cut before this call",
+        "linked_ticket_id": "CIV-1934"
+      },
+      {
+        "time_iso": "2026-05-26T14:00:00Z",
+        "time_label": "2:00 PM",
+        "title": "Davide pre-brief — Mafia: TOC Jun 1 tranche",
+        "attendees": ["Alex Akiyama", "Davide Detta"],
+        "topic": "ROAS readout + Heaven refresh concept walkthrough",
+        "prep_status": "ready",
+        "prep_note": "Pre-read packet on TKT MAF-1010",
+        "linked_ticket_id": "MAF-1010"
+      },
+      {
+        "time_iso": "2026-05-26T15:30:00Z",
+        "time_label": "3:30 PM",
+        "title": "Heaven Media — BL4 Mad Ellie pause confirmation",
+        "attendees": ["Marketing Mgr II", "Heaven Media"],
+        "topic": "Confirm Phase 2 paid is paused, no refresh kickoff until Davide call Jun 5",
+        "prep_status": "ready",
+        "prep_note": "Marketing Mgr II owns",
+        "linked_ticket_id": "BL-2495"
+      }
+    ],
+    "today_followups": [
+      {
+        "owed_to": "Maya Reyes (Open World)",
+        "what": "Confirm hero-cut handoff path by EOD; default to Open World v2 backup if Brand slips again",
+        "original_source": "zoom:civ7_test_of_time_launch_retro",
+        "linked_ticket_id": "CIV-1934",
+        "promised_for": "EOD today"
+      },
+      {
+        "owed_to": "Marcus Lee",
+        "what": "Sign off on Wonderlands re-announce draft v2 so it can route to Legal before Davide review",
+        "original_source": "slack:#wonderlands-live",
+        "linked_ticket_id": "WND-1782",
+        "promised_for": "Before 1 PM"
+      },
+      {
+        "owed_to": "Heaven Media",
+        "what": "Send the BL4 Phase 2 pause-brief in writing so they can hold their CPMStar booking",
+        "original_source": "gmail:thread_heaven_phase2_status",
+        "linked_ticket_id": "BL-2495",
+        "promised_for": "EOD today"
+      },
+      {
+        "owed_to": "Davide Detta",
+        "what": "Submit Wonderlands re-announce draft for sign-off by EOD Fri May 29",
+        "original_source": "manager_1on1_notes",
+        "linked_ticket_id": "WND-1782",
+        "promised_for": "By Fri May 29"
+      }
+    ],
     "today_priorities": [
       {
         "owner": "Alex Akiyama",
@@ -88,6 +160,133 @@
     "tickets_slipped_yesterday": 1,
     "this_week_window_label": "May 26 to Jun 1"
   },
+  "active_campaign_burn": {
+    "week_label": "May 26 to Jun 1",
+    "campaigns": [
+      {
+        "title_id": "borderlands",
+        "campaign_name": "BL4 Mad Ellie SP1 sustain (Phase 1)",
+        "phase": "execution",
+        "committed_this_week_usd": 95000,
+        "spent_to_date_usd": 71200,
+        "remaining_usd": 23800,
+        "pacing_pct": 75,
+        "pacing_status": "on_pace",
+        "owner": "Marketing Mgr II",
+        "note": "Phase 1 always-on holds. Phase 2 $180K surge frozen pending Davide Jun 5."
+      },
+      {
+        "title_id": "civilization",
+        "campaign_name": "Civ VII Test of Time NA launch tail",
+        "phase": "execution",
+        "committed_this_week_usd": 62000,
+        "spent_to_date_usd": 58400,
+        "remaining_usd": 3600,
+        "pacing_pct": 94,
+        "pacing_status": "near_cap",
+        "owner": "Alex Akiyama",
+        "note": "Burning ahead of plan on creator boost; Shroud stream Thu absorbs the rest."
+      },
+      {
+        "title_id": "mafia",
+        "campaign_name": "Mafia: TOC Q2 sustain push",
+        "phase": "execution",
+        "committed_this_week_usd": 48000,
+        "spent_to_date_usd": 42100,
+        "remaining_usd": 5900,
+        "pacing_pct": 88,
+        "pacing_status": "on_pace",
+        "owner": "Alex Akiyama",
+        "note": "Current tranche tail. Next $120K tranche is the Jun 1 decision."
+      },
+      {
+        "title_id": "wonderlands",
+        "campaign_name": "Glutton's Gamble Encore (re-time)",
+        "phase": "planning",
+        "committed_this_week_usd": 0,
+        "spent_to_date_usd": 0,
+        "remaining_usd": 0,
+        "pacing_pct": 0,
+        "pacing_status": "held",
+        "owner": "Alex Akiyama",
+        "note": "Paid surge re-timing to July window held until Davide signs re-announce."
+      },
+      {
+        "title_id": "risk-of-rain",
+        "campaign_name": "RoR2 Seekers Free Weekend ramp",
+        "phase": "planning",
+        "committed_this_week_usd": 12000,
+        "spent_to_date_usd": 4800,
+        "remaining_usd": 7200,
+        "pacing_pct": 40,
+        "pacing_status": "on_pace",
+        "owner": "Marketing Mgr II",
+        "note": "CreatorIQ shortlist + Lurkit quest setup; main spend lands Aug 1."
+      }
+    ]
+  },
+  "pending_decisions": [
+    {
+      "decision_id": "dec_mafia_toc_jun1_tranche",
+      "title_id": "mafia",
+      "decision": "Approve next $120K Mafia: TOC creative refresh tranche",
+      "tranche_amount_usd": 120000,
+      "decision_owner": "Davide Detta",
+      "decision_date": "2026-06-01",
+      "status": "awaiting_decision",
+      "blocking_inputs": [
+        "Heaven 3 refresh concepts (Brand QA Thu May 28)",
+        "ROAS readout (ready, packaged on MAF-1010)"
+      ],
+      "linked_ticket_id": "MAF-1010",
+      "linked_beat_id": "mafia_toc_q2_sustain_push"
+    },
+    {
+      "decision_id": "dec_bl4_phase2_surge",
+      "title_id": "borderlands",
+      "decision": "Release BL4 Mad Ellie Phase 2 paid surge ($180K)",
+      "tranche_amount_usd": 180000,
+      "decision_owner": "Davide Detta",
+      "decision_date": "2026-06-05",
+      "status": "held",
+      "blocking_inputs": [
+        "D30 retention re-measure on Patch 1.2 cohort (Jun 12)",
+        "Heaven Phase 2 pause-brief confirmation (today)"
+      ],
+      "linked_ticket_id": "BL-2495",
+      "linked_beat_id": "bl4_mad_ellie_sp1_sustain_window"
+    },
+    {
+      "decision_id": "dec_wonderlands_reannounce_signoff",
+      "title_id": "wonderlands",
+      "decision": "Sign off Wonderlands DLC re-announce comms (Jul 10 re-date)",
+      "tranche_amount_usd": 0,
+      "decision_owner": "Davide Detta",
+      "decision_date": "2026-05-29",
+      "status": "awaiting_decision",
+      "blocking_inputs": [
+        "Marcus Lee draft v2 (in progress, due before 1 PM today)",
+        "Legal copy review (after Marcus sign-off)"
+      ],
+      "linked_ticket_id": "WND-1782",
+      "linked_beat_id": "wonderlands_gluttons_gamble_encore_drop"
+    },
+    {
+      "decision_id": "dec_civ_tot_asset_backup_path",
+      "title_id": "civilization",
+      "decision": "Confirm Test of Time hero-cut handoff path (Brand final vs Open World v2)",
+      "tranche_amount_usd": 0,
+      "decision_owner": "Alex Akiyama",
+      "decision_date": "2026-05-26",
+      "status": "decide_today",
+      "blocking_inputs": [
+        "Brand Creative hand-off by EOD today",
+        "Default backup: Open World v2 cut (in hand)"
+      ],
+      "linked_ticket_id": "CIV-1934",
+      "linked_beat_id": "civ7_test_of_time_creator_campaign_na"
+    }
+  ],
   "kpi_top_strip": {
     "tickets_due_today": 14,
     "tickets_at_risk_this_week": 9,

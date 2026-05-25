@@ -21,6 +21,8 @@ import GanttBar from "./GanttBar";
 import Sparkline from "./Sparkline";
 import EscalationModal from "./EscalationModal";
 import CollaboratorChain from "./CollaboratorChain";
+import PhaseBreakdown from "./PhaseBreakdown";
+import GoNoGoChecklist from "./GoNoGoChecklist";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -57,6 +59,7 @@ export default function TitleWorkspace({ title }) {
   const [tab, setTab] = useState("overview");
   const [activeDraftId, setActiveDraftId] = useState(null);
   const [openTranscript, setOpenTranscript] = useState(null);
+  const [checklistBeatId, setChecklistBeatId] = useState(null);
 
   const standupEntry = getTitleStandup(title.title_id);
   const beats = getBeatsForTitle(title.title_id);
@@ -258,6 +261,25 @@ export default function TitleWorkspace({ title }) {
       {/* PRODUCTION CALENDAR */}
       {tab === "calendar" && (
         <div className="space-y-5">
+          {/* Granular lifecycle breakdowns for featured beats */}
+          {beats
+            .filter((b) => b.lifecycle)
+            .map((b) => (
+              <div key={`phases-${b.beat_id}`} className="space-y-2">
+                <PhaseBreakdown beat={b} brandColor={title.brand_color} />
+                {b.go_no_go && (
+                  <div className="flex justify-end">
+                    <button
+                      type="button"
+                      onClick={() => setChecklistBeatId(b.beat_id)}
+                      className="text-[11.5px] text-accent-primary font-medium hover:underline inline-flex items-center gap-1"
+                    >
+                      View GO/NO-GO checklist for {b.beat_name} →
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
           {beats.filter((b) => b.collaborators && b.collaborators.length > 0).map((b) => (
             <CollaboratorChain key={`chain-${b.beat_id}`} beat={b} />
           ))}
@@ -741,6 +763,11 @@ export default function TitleWorkspace({ title }) {
       <EscalationModal
         draft={activeDraft}
         onClose={() => setActiveDraftId(null)}
+      />
+      <GoNoGoChecklist
+        beat={beats.find((b) => b.beat_id === checklistBeatId)}
+        titleColor={title.brand_color}
+        onClose={() => setChecklistBeatId(null)}
       />
     </div>
   );
