@@ -8,28 +8,28 @@
     "end_date": "2026-06-15",
     "status": "active",
     "lead_owner": "Priya Iyer",
-    "summary": "Civ VII Test of Time major update launch + 4-week sustain. Anchor beat for Q2 live-service push.",
+    "summary": "Civ VII Test of Time free update (shipped May 19, 2026 — D7 today) + 4-week sustain. Anchor beat for Q2 live-service push. Headline features: Time-Tested Civs (Syncretism), reworked Victories, Triumphs system across 6 Attributes, Fractal Continent map, new Commerce screen, Advisor Council, free leader Alexander the Great. Cross-platform: PS5/PS4/Xbox Series X|S/Xbox One/Switch/Switch 2/PC (Steam + Epic)/Mac/Linux.",
     "budget_usd": 480000,
     "vendor_ids": ["open_world", "gaming_world_media", "gamesight"]
   },
   {
     "beat_id": "civ7_test_of_time_creator_campaign_na",
     "title_id": "civilization",
-    "beat_name": "Test of Time NA Creator Campaign + Shroud Co-op Stream",
+    "beat_name": "Test of Time NA Creator Campaign + Time-Tested Civs Multiplayer Premiere",
     "phase": "live_service",
     "start_date": "2026-05-22",
     "end_date": "2026-06-08",
     "status": "active",
     "lead_owner": "Maya Reyes (Open World)",
     "manager_owner": "Alex Akiyama",
-    "summary": "Lead creator agency: Open World. Shroud co-op stream May 28, Summit + LIRIK May 30. Lurkit performance quest live. Paid social + pre-roll layer.",
+    "summary": "Lead creator agency: Open World. Free Test of Time update shipped May 19 (D7 today). Time-Tested Civs multiplayer premiere May 28 (PotatoMcWhiskey + ursagaming + Boesthius + Quill18). Triumphs system deep-dive premieres May 30. Lurkit performance quest live across Steam + Epic. Paid social + pre-roll layer.",
     "budget_usd": 320000,
     "vendor_ids": ["open_world", "lurkit", "gamesight"],
     "collaborators": [
-      { "name": "Brand Creative", "type": "internal", "role": "Hero cut + paid social masters", "responsible_for": ["Test of Time hero cut (60s + 30s + 15s)", "Paid social adapt set", "Shroud stream pre-roll cut"], "depends_on": [], "delivers_to": ["Open World", "Performance Marketing"] },
-      { "name": "Open World", "type": "external", "role": "Lead creator agency (Maya Reyes, Account Director)", "responsible_for": ["Shroud co-op stream production (May 28)", "Summit + LIRIK splits (May 30)", "Earned-seeding creator wave (68 seeds)"], "depends_on": ["Brand Creative hero cut for pre-roll"], "delivers_to": ["Gamesight (attribution)", "Marcus Lee (sentiment monitoring)"] },
-      { "name": "Lurkit", "type": "external", "role": "Performance quest platform", "responsible_for": ["Test of Time quest hours-watched", "Quest creator payout reconciliation"], "depends_on": ["Open World creator list lock"], "delivers_to": ["Performance Marketing"] },
-      { "name": "Performance Marketing", "type": "internal", "role": "Paid social + pre-roll buy", "responsible_for": ["Paid social flight (May 26 launch)", "Pre-roll buy ahead of Shroud stream"], "depends_on": ["Brand Creative paid social adapt set"], "delivers_to": ["Gamesight (attribution)"] },
+      { "name": "Brand Creative", "type": "internal", "role": "Hero cut + paid social masters", "responsible_for": ["Test of Time hero cut (60s + 30s + 15s) — Time-Tested Civs + Triumphs + Alexander free leader", "Paid social adapt set (cross-platform: PS5/PS4/Xbox Series X|S/Xbox One/Switch/Switch 2/PC/Mac/Linux)", "Multiplayer premiere pre-roll cut"], "depends_on": [], "delivers_to": ["Open World", "Performance Marketing"] },
+      { "name": "Open World", "type": "external", "role": "Lead creator agency (Maya Reyes, Account Director)", "responsible_for": ["Time-Tested Civs multiplayer premiere production (May 28) — PotatoMcWhiskey + ursagaming + Boesthius + Quill18 4-player Fractal Continent showcase", "Triumphs system deep-dive premieres (May 30) — solo VoDs covering the 6 Attributes (Militaristic, Cultural, Scientific, Economic, Diplomatic, Expansionist)", "Earned-seeding creator wave (38 Civ-native seeds — strategy/4X/grand-strategy VoD scene)"], "depends_on": ["Brand Creative hero cut for pre-roll"], "delivers_to": ["Gamesight (attribution)", "Marcus Lee (sentiment monitoring)"] },
+      { "name": "Lurkit", "type": "external", "role": "Performance quest platform", "responsible_for": ["Test of Time quest hours-watched (Time-Tested Civs + Triumphs tags)", "Quest creator payout reconciliation across Steam + Epic"], "depends_on": ["Open World creator list lock"], "delivers_to": ["Performance Marketing"] },
+      { "name": "Performance Marketing", "type": "internal", "role": "Paid social + pre-roll buy", "responsible_for": ["Paid social flight (May 26 launch, cross-platform parity)", "Pre-roll buy ahead of Time-Tested Civs multiplayer premiere"], "depends_on": ["Brand Creative paid social adapt set"], "delivers_to": ["Gamesight (attribution)"] },
       { "name": "Gamesight", "type": "external", "role": "Attribution + UTM hygiene", "responsible_for": ["UTM audit on all creator codes", "Daily attribution report"], "depends_on": ["Open World code distribution"], "delivers_to": ["Alex Akiyama (Davide pre-read)"] }
     ],
     "lifecycle": {
@@ -43,7 +43,7 @@
       "decision_date": "2026-05-21",
       "status": "cleared",
       "cleared_date": "2026-05-21",
-      "summary": "Cleared May 21. Campaign in execution. One residual asset risk (hero cut handoff) tracking via CIV-1934.",
+      "summary": "Cleared May 21. Campaign in execution — Time-Tested Civs multiplayer premiere May 28 (D9), Triumphs deep-dive premieres May 30 (D11). One residual asset risk (hero cut handoff) tracking via CIV-1934.",
       "inputs": [
         { "input": "Brand Creative hero cut master (60s + 30s + 15s)", "owner": "Brand Creative", "status": "outstanding", "due": "2026-05-26", "note": "48h late; backup is Open World v2 from Tuesday" },
         { "input": "Open World creator list lock + code distribution", "owner": "Open World", "status": "delivered", "due": "2026-05-20" },
@@ -141,7 +141,7 @@
     "end_date": "2026-09-15",
     "status": "planning",
     "lead_owner": "Maya Reyes (Open World)",
-    "summary": "FanFest Q3 planning: Novato + Sydney capture events, LA fan event scoping. Open World leading production.",
+    "summary": "FanFest Q3 planning, modeled on the BL4 launch FanFest playbook (103 creators across Novato + Sydney capture + 3-day LA Fan Fest). Creator mix: streamers, cosplayers, mixologists, cooks, prop makers. Open World leading production (Maya Reyes).",
     "budget_usd": 410000,
     "vendor_ids": ["open_world"]
   },
@@ -390,7 +390,7 @@
     "end_date": "2026-06-15",
     "status": "active",
     "lead_owner": "Priya Iyer",
-    "summary": "SGF demo presence — Test of Time hands-on demo + creator capture event coordination.",
+    "summary": "SGF demo presence — Test of Time hands-on (Time-Tested Civs + Triumphs system + Fractal Continent map + new Commerce screen + Advisor Council + free Alexander leader) + creator capture event coordination via Open World.",
     "budget_usd": 120000,
     "vendor_ids": ["open_world"]
   },

@@ -6,7 +6,7 @@
       "BL4 Mad Ellie SP1 Phase 2 paid surge: Davide GO/NO-GO Jun 5. D30 9.8% vs 14% gate is the blocker.",
       "Wonderlands DLC re-announce comms: Davide sign-off owed EOD Fri May 29. Marcus drafting, 65K wishlisters on standalone page.",
       "Mafia: TOC creative refresh: Heaven concepts in Brand QA, Davide GO/NO-GO Jun 1 on next $120K tranche.",
-      "Civ VII Test of Time launch tail (D7 today): reviews 87% trending up, peak CCU 102K, Shroud co-op stream Thu May 28."
+      "Civ VII Test of Time free-update tail (D7 today; shipped May 19): reviews 87% trending up, peak CCU 102K, Time-Tested Civs multiplayer premiere Thu May 28 (PotatoMcWhiskey + ursagaming + Boesthius + Quill18), Triumphs system deep-dive premieres Sat May 30."
     ],
     "today_calls": [
       {
@@ -24,7 +24,7 @@
         "time_label": "11:00 AM",
         "title": "Open World check-in (Test of Time creator wrap)",
         "attendees": ["Alex Akiyama", "Maya Reyes (Open World)"],
-        "topic": "Hero cut handoff path + Thu May 28 Shroud stream prep",
+        "topic": "Hero cut handoff path + Thu May 28 Time-Tested Civs multiplayer premiere prep (PotatoMcWhiskey + ursagaming + Boesthius + Quill18)",
         "prep_status": "outstanding",
         "prep_note": "Awaiting Brand Creative cut before this call",
         "linked_ticket_id": "CIV-1934"
@@ -116,7 +116,7 @@
         {
           "ticket_id": "CIV-1934",
           "title_id": "civilization",
-          "summary": "Lock Test of Time NA creator hero cut: paid social + Shroud pre-roll",
+          "summary": "Lock Test of Time NA creator hero cut: paid social + Time-Tested Civs multiplayer premiere pre-roll",
           "reason": "Brand Creative resource conflict; 48h late",
           "now_due": "2026-05-26"
         }
@@ -144,7 +144,7 @@
       },
       {
         "title_id": "civilization",
-        "blocker": "Hero cut from Brand Creative — 48h late, blocks paid social + Shroud pre-roll Thu May 28.",
+        "blocker": "Hero cut from Brand Creative — 48h late, blocks paid social + Time-Tested Civs multiplayer premiere pre-roll Thu May 28.",
         "owner": "Brand Creative",
         "needed_from": "Brand Creative",
         "by": "2026-05-26"
@@ -185,7 +185,7 @@
         "pacing_pct": 94,
         "pacing_status": "near_cap",
         "owner": "Alex Akiyama",
-        "note": "Burning ahead of plan on creator boost; Shroud stream Thu absorbs the rest."
+        "note": "Burning ahead of plan on creator boost; Time-Tested Civs multiplayer premiere Thu absorbs the rest."
       },
       {
         "title_id": "mafia",
@@ -305,7 +305,7 @@
   "by_title": [
     {
       "title_id": "borderlands",
-      "claude_blurb": "**Next:** June 5. Davide GO/NO-GO on Mad Ellie SP1 Phase 2 paid surge. D30 retention 9.8% vs 14% gate is the blocker. Top-line still strong (82% reviews, 1840/day wishlist velocity on standalone page). Flagging for Davide: recommend Phase 2 surge hold until Patch 1.2 ships and we re-measure D30 cohort Jun 12. Heaven Media pre-warned, brief is paused. Open World creator activation closed clean: Shroud, Summit1G, LIRIK, 68 earned seeds, no breakage on codes.",
+      "claude_blurb": "**Next:** June 5. Davide GO/NO-GO on Mad Ellie SP1 Phase 2 paid surge. D30 retention 9.8% vs 14% gate is the blocker. Top-line still strong (82% reviews, 1840/day wishlist velocity on standalone page). Flagging for Davide: recommend Phase 2 surge hold until Patch 1.2 ships and we re-measure D30 cohort Jun 12. Heaven Media pre-warned, brief is paused. Open World creator activation closed clean (71-creator launch playbook: Shroud, Summit1G, LIRIK, TheBurntPeanut co-op vault stream + 67 earned seeds), no breakage on codes.",
       "phase_gate_check": {
         "kpi_label": "D30 retention",
         "threshold": "≥ 14%",
@@ -317,7 +317,7 @@
     },
     {
       "title_id": "civilization",
-      "claude_blurb": "**Next:** May 28. Shroud co-op stream live (Open World production). Test of Time three days in: 87% reviews trending up, peak CCU 102K (above 95K target), D7 retention 33.6%. One coordination drag: Brand creative hero cut for paid social and Shroud pre-roll is 48h late to Open World. Chasing Brand for EOD handoff today; backup is Open World v2 cut from Tuesday. Escalation draft to Davide queued if it slips again.",
+      "claude_blurb": "**Next:** May 28. Time-Tested Civs multiplayer premiere live (Open World production: PotatoMcWhiskey + ursagaming + Boesthius + Quill18, 4-player Fractal Continent showcase). Test of Time free update one week in (shipped May 19, all platforms — PS5/PS4/Xbox Series X|S/Xbox One/Switch/Switch 2/PC/Mac/Linux): 87% reviews trending up, peak CCU 102K (above 95K target), D7 retention 33.6%. Free Alexander leader unlock landing well in the 4X community. One coordination drag: Brand hero cut for paid social and the premiere pre-roll is 48h late to Open World. Chasing Brand for EOD handoff today; backup is Open World v2 cut from Tuesday. Escalation draft to Davide queued if it slips again.",
       "phase_gate_check": {
         "kpi_label": "Review score (rolling 7d)",
         "threshold": "≥ 85%",
@@ -417,7 +417,7 @@
       "severity": "medium",
       "risk_type": "vendor_dependency_slip",
       "headline": "Test of Time NA creator follow-up at risk: Brand creative slipped 48h",
-      "detail": "Open World blocked on final hero cut for paid social and Shroud co-op stream pre-roll (May 28). Asset owner: Brand Creative. Committed EOD today; not yet in hand.",
+      "detail": "Open World blocked on final hero cut for paid social and Time-Tested Civs multiplayer premiere pre-roll (May 28, PotatoMcWhiskey + ursagaming + Boesthius + Quill18). Asset owner: Brand Creative. Committed EOD today; not yet in hand.",
       "recommended_action": "Chasing Brand for EOD handoff. If it slips again: escalation drafted to Davide with two paths. (1) wait for final Brand cut, (2) ship Open World v2 from Tuesday as backup. Asking for the call by tomorrow AM if needed.",
       "escalation_draft_id": "draft_test_of_time_asset_escalation"
     },
@@ -453,7 +453,7 @@
     }
   ],
   "kpi_movements": [
-    { "kpi_label": "Civ VII Test of Time review score (D3)", "value": "87%", "delta": "+2pp WoW", "direction": "up" },
+    { "kpi_label": "Civ VII Test of Time review score (D7)", "value": "87%", "delta": "+2pp WoW", "direction": "up" },
     { "kpi_label": "BL4 Mad Ellie wishlist velocity", "value": "1,840/day", "delta": "+12% WoW", "direction": "up" },
     { "kpi_label": "BL4 Mad Ellie D30 retention", "value": "9.8%", "delta": "-1.4pp WoW", "direction": "down" },
     { "kpi_label": "Wonderlands D7 retention", "value": "24.1%", "delta": "-3pp WoW (under watch)", "direction": "down" },

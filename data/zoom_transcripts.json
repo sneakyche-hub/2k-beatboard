@@ -17,13 +17,13 @@
       { "speaker": "Davide Detta", "text": "Quick retro on Test of Time D1–D3. Top-line first — Priya, where are we?" },
       { "speaker": "Priya Iyer", "text": "Strong. Review score is at 87% over the rolling 7-day window, trending up. Peak CCU hit 102,400 yesterday, which is above our 95K target. D7 cohort projection is tracking 33%+. Sentiment is the headline though — the top thread on r/civ right now is 'finally the Civ VII I wanted at launch,' and Discord engagement on the Time-Tested Civs mechanic is huge." },
       { "speaker": "Davide Detta", "text": "That's the line we want in the exec roll-up. Marcus, what's the volume look like in the community channels?" },
-      { "speaker": "Marcus Lee", "text": "Reddit threads up 3x over a normal week, Discord daily active up about 40%. The Triumphs system and the new Victories conditions are doing most of the conversation lift — way more than the new civilizations themselves, interestingly. I'm pulling a sentiment slice for the 72h window and we'll have a sentiment report by Tuesday." },
+      { "speaker": "Marcus Lee", "text": "Reddit threads up 3x over a normal week, Discord daily active up about 40%. The Triumphs system across the six Attributes and the reworked Victories conditions are doing most of the conversation lift — way more than the Fractal Continent map or the new Commerce screen, interestingly. Cross-platform reaction on Switch 2 and PS5 is loud too. I'm pulling a sentiment slice for the 72h window and we'll have a sentiment report by Tuesday." },
       { "speaker": "Alex Akiyama", "text": "On the NA creator follow-up — Maya, where are we with assets?" },
-      { "speaker": "Maya Reyes", "text": "We're stuck on the final hero cut for paid social. Brand committed EOD Tuesday, we still don't have it. The Shroud co-op stream is May 28, so I need either the final cut by EOD tomorrow or I'm shipping our v2 cut as the pre-roll. V2 is good — not great. The Brand cut has the Time-Tested Civs reveal moment built in, which is what we want." },
-      { "speaker": "Alex Akiyama", "text": "I'll chase Brand Creative tonight and escalate to Davide if we don't have movement by morning. If we slip again we ship v2 and use the Brand cut for the second wave next week." },
-      { "speaker": "Davide Detta", "text": "Agreed. And on the Shroud schedule — I saw the note he shifted to May 28. Are we moving the rest of the lineup with him or splitting into two days?" },
-      { "speaker": "Maya Reyes", "text": "Splitting. Shroud goes May 28, Summit and LIRIK do the original May 30. Cleaner ops, two beats instead of one." },
-      { "speaker": "Priya Iyer", "text": "One thing for the playbook — we should write up how we handled the launch comms here. Lead with the Time-Tested Civs explainer, Discord AMA in the first 24h, the FAQ post that landed before the bad-faith threads could form. It worked. Worth a case study." },
+      { "speaker": "Maya Reyes", "text": "We're stuck on the final hero cut for paid social. Brand committed EOD Tuesday, we still don't have it. The Time-Tested Civs multiplayer premiere is May 28 — PotatoMcWhiskey, ursagaming, Boesthius, and Quill18 doing a 4-player Fractal Continent run — so I need either the final cut by EOD tomorrow or I'm shipping our v2 cut as the pre-roll. V2 is good — not great. The Brand cut has the Time-Tested Civs Syncretism reveal moment + the Alexander free-leader unlock built in, which is what we want." },
+      { "speaker": "Alex Akiyama", "text": "I'll chase Brand Creative tonight and escalate to Davide if we don't have movement by morning. If we slip again we ship v2 and use the Brand cut for the Triumphs deep-dive premieres on May 30." },
+      { "speaker": "Davide Detta", "text": "Agreed. And on the creator schedule — I saw the note Open World split the lineup. Are we packing it into one beat or really running two days?" },
+      { "speaker": "Maya Reyes", "text": "Two days. Time-Tested Civs multiplayer premiere May 28 (the four-player showcase), Triumphs system deep-dive solo VoDs May 30 covering all six Attributes — Militaristic, Cultural, Scientific, Economic, Diplomatic, Expansionist. Cleaner ops, two visibility spikes instead of one, and the Triumphs day gives us a single-player story for the audience that doesn't want a multiplayer entry point." },
+      { "speaker": "Priya Iyer", "text": "One thing for the playbook — we should write up how we handled the free-update comms here. Lead with the Time-Tested Civs + Syncretism explainer, Discord AMA in the first 24h, the FAQ post on the new Commerce screen and Advisor Council that landed before the bad-faith threads could form. The free Alexander leader unlock as the closer landed clean. It worked. Worth a case study." },
       { "speaker": "Davide Detta", "text": "Yes. Global GTM team should own that — 2 week deliverable, public-facing on the internal wiki. Use Test of Time as the model for the next live-service drop." },
       { "speaker": "Alex Akiyama", "text": "Last thing — the asset handoff slip is the second time in a quarter we've had Brand Creative miss a vendor deadline. We should look at workflow. Not blaming anyone, but the dependency chain is brittle." },
       { "speaker": "Davide Detta", "text": "Agree. Creative Ops should audit — I want a one-pager on where the handoff broke and what changes. One week." },
@@ -60,14 +60,14 @@
       },
       {
         "proposed_ticket_id": "CIV-PROP-003",
-        "title": "Reschedule Open World Shroud co-op stream to May 28; split Summit + LIRIK to May 30",
+        "title": "Reschedule Open World Time-Tested Civs multiplayer premiere to May 28 (PotatoMcWhiskey + ursagaming + Boesthius + Quill18); split Triumphs system deep-dive solo VoDs to May 30",
         "owner": "Manager, NA Integrated Marketing",
         "due_in_days": 1,
         "priority": "P0",
         "vendor_owner": "Open World",
         "linked_kpi": "civ_test_of_time_creator_campaign_reach",
-        "rationale": "Schedule shift from Open World confirmed in-call. Two beats instead of one cleaner for ops and gives us a second visibility spike. Need confirmation routed back to Open World today.",
-        "source_quote": "Splitting. Shroud goes May 28, Summit and LIRIK do the original May 30. Cleaner ops, two beats instead of one."
+        "rationale": "Schedule shift from Open World confirmed in-call. Two beats instead of one — cleaner ops, two visibility spikes, and the Triumphs day gives single-player-leaning audiences a non-multiplayer entry point. Need confirmation routed back to Open World today.",
+        "source_quote": "Two days. Time-Tested Civs multiplayer premiere May 28 (the four-player showcase), Triumphs system deep-dive solo VoDs May 30 covering all six Attributes."
       },
       {
         "proposed_ticket_id": "CIV-PROP-004",
@@ -82,14 +82,14 @@
       },
       {
         "proposed_ticket_id": "CIV-PROP-005",
-        "title": "Lock final hero cut of Test of Time post-launch trailer for paid social + Shroud pre-roll",
+        "title": "Lock final hero cut of Test of Time post-update trailer for paid social + Time-Tested Civs multiplayer premiere pre-roll",
         "owner": "Open World (vendor)",
         "due_in_days": 4,
         "priority": "P1",
         "vendor_owner": "Open World",
         "linked_kpi": "civ_test_of_time_paid_social_ctr",
-        "rationale": "Open World blocked on final hero cut. If Brand Creative misses the EOD ask, ship v2 as pre-roll and use Brand cut for second wave next week. Either path needs a ticket so we don't lose the asset.",
-        "source_quote": "If we slip again we ship v2 and use the Brand cut for the second wave next week."
+        "rationale": "Open World blocked on final hero cut. If Brand Creative misses the EOD ask, ship v2 as pre-roll for the May 28 premiere and use the Brand cut for the May 30 Triumphs deep-dive premieres. Either path needs a ticket so we don't lose the asset.",
+        "source_quote": "If we slip again we ship v2 and use the Brand cut for the Triumphs deep-dive premieres on May 30."
       }
     ]
   },

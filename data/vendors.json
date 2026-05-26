@@ -7,15 +7,15 @@
     "services": ["Creator activation", "Capture event production", "FanFest support", "Earned creator seeding"],
     "assigned_titles": ["borderlands", "civilization"],
     "current_engagements": [
-      { "beat_id": "civ7_test_of_time_creator_campaign_na", "role": "Lead creator agency — NA Test of Time creator campaign + Shroud co-op stream production" },
-      { "beat_id": "bl4_mad_ellie_sp1_launch", "role": "Creator activation lead — 71 creators (Shroud, Summit1G, LIRIK, TheBurntPeanut + 67 earned seeds)" },
-      { "beat_id": "bl4_fanfest_q3_2026_planning", "role": "FanFest event production — Novato + Sydney capture, LA fan event (planning)" }
+      { "beat_id": "civ7_test_of_time_creator_campaign_na", "role": "Lead creator agency — NA Test of Time creator campaign + Time-Tested Civs multiplayer premiere production (PotatoMcWhiskey + ursagaming + Boesthius + Quill18, May 28) + Triumphs system deep-dive premieres (May 30) + 38 Civ-native earned seeds" },
+      { "beat_id": "bl4_mad_ellie_sp1_launch", "role": "Creator activation lead — replays BL4 launch playbook: 71 creators (Shroud + Summit1G + LIRIK + TheBurntPeanut cooperative vault stream + 67 earned VoD/comedian/artist seeds)" },
+      { "beat_id": "bl4_fanfest_q3_2026_planning", "role": "FanFest event production — modeled on the BL4 launch FanFest (103 creators across Novato + Sydney capture + 3-day LA Fan Fest, streamers/cosplayers/mixologists/cooks/prop makers)" }
     ],
     "active_tickets_count": 12,
     "point_of_contact_name": "Maya Reyes",
     "point_of_contact_email": "maya.reyes@openworld.gg",
     "status": "active",
-    "real_world_credential": "Ran the Borderlands 4 launch creator campaign (71 creators, Twitch category dominance) and the Borderlands 4 FanFest (103 creators, capture events in Novato and Sydney, LA fan event)."
+    "real_world_credential": "Ran the Borderlands 4 launch creator campaign — 71 creators total, anchored by a cooperative vault stream with Shroud, Summit1G, LIRIK, TheBurntPeanut, plus wide code seeding to VoD reviewers / comedians / artists; topped Twitch charts launch week. Also ran the Borderlands 4 FanFest — 103 creators across capture events at 2K Novato + 2K Sydney plus a 3-day Fan Fest in Los Angeles, creator mix included streamers, cosplayers, mixologists, cooks, prop makers."
   },
   {
     "vendor_id": "heaven_media",
@@ -105,7 +105,7 @@
     "assigned_titles": ["borderlands", "civilization", "mafia", "homeworld"],
     "current_engagements": [
       { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "UTM taxonomy + attribution for all Mad Ellie paid + creator codes" },
-      { "beat_id": "civ7_test_of_time_creator_campaign_na", "role": "Creator-level ROI tracking for Test of Time NA campaign" }
+      { "beat_id": "civ7_test_of_time_creator_campaign_na", "role": "Creator-level ROI tracking for Test of Time NA campaign (Time-Tested Civs multiplayer premiere + Triumphs deep-dive cohorts, cross-platform UTMs across Steam + Epic)" }
     ],
     "active_tickets_count": 5,
     "point_of_contact_name": "Hideki Tanaka",
