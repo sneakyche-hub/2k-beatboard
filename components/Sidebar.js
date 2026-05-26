@@ -25,10 +25,10 @@ export default function Sidebar() {
   const pathname = usePathname();
   return (
     <aside className="hidden md:flex md:w-60 lg:w-64 shrink-0 flex-col border-r border-line bg-white relative">
-      <div className="absolute top-0 left-0 right-0 h-[3px] bg-twok-gold" />
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-twok-red" />
       <div className="px-5 pt-6 pb-5 border-b border-line">
         <Link href="/" className="flex items-baseline gap-2">
-          <span className="display text-[22px] font-bold tracking-tight bg-twok-black text-twok-gold px-1.5 rounded-sm">
+          <span className="display text-[22px] font-bold tracking-tight bg-twok-red text-white px-1.5 rounded-sm">
             2K
           </span>
           <span className="display text-[22px] font-bold tracking-tight text-ink-900">
@@ -36,7 +36,7 @@ export default function Sidebar() {
           </span>
         </Link>
         <div className="flex items-center gap-1.5 mt-2">
-          <span className="inline-flex items-center text-[9.5px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-twok-gold/30 text-twok-black border border-twok-gold/60">
+          <span className="inline-flex items-center text-[9.5px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-twok-red/10 text-twok-red border border-twok-red/40">
             Custom build
           </span>
           <p className="text-[11px] text-ink-500 leading-tight">

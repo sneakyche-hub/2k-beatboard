@@ -15,18 +15,17 @@ import Badge from "./Badge";
 import EscalationModal from "./EscalationModal";
 import BudgetPanel from "./BudgetPanel";
 import GoNoGoChecklist from "./GoNoGoChecklist";
+import ProductionHealthTiles from "./ProductionHealthTiles";
+import PortfolioHealthGrid from "./PortfolioHealthGrid";
+import CashflowTimeline from "./CashflowTimeline";
 import {
   AlertTriangle,
-  CircleDot,
   Send,
   ArrowUpRight,
   Sparkles,
   ChevronRight,
   CheckCircle2,
-  Clock,
   Inbox,
-  Flag,
-  PlusCircle,
   Phone,
   ListTodo,
   CornerDownRight,
@@ -109,7 +108,7 @@ export default function DailyStandup() {
             Daily Standup · {fmtDate(standup.standup_date, { year: true })}
           </div>
           <h1 className="display text-[28px] md:text-[34px] font-bold tracking-tight mt-1">
-            <span className="bg-twok-gold-soft/60 px-1.5 rounded">NA Integrated Marketing</span>{" "}
+            <span className="bg-twok-red/15 px-1.5 rounded">NA Integrated Marketing</span>{" "}
             daily standup
           </h1>
           <div className="text-[12.5px] text-ink-500 mt-1.5">
@@ -128,76 +127,8 @@ export default function DailyStandup() {
         </Link>
       </div>
 
-      {/* Production health hero — 4 tiles */}
-      <section className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="panel p-4 relative overflow-hidden">
-          <div className="absolute top-0 left-0 h-1 w-full bg-accent-success" />
-          <div className="text-[11px] uppercase tracking-wider text-ink-500 font-semibold flex items-center gap-1.5">
-            <CheckCircle2 className="h-3 w-3 text-accent-success" />
-            On track this week
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="display text-[32px] font-bold tracking-tight">
-              {prod.tickets_on_track_this_week}
-            </span>
-            <span className="text-[12px] text-ink-500">tickets</span>
-          </div>
-          <div className="text-[11.5px] text-ink-500 mt-1">
-            {prod.this_week_window_label}
-          </div>
-        </div>
-
-        <div className="panel p-4 relative overflow-hidden">
-          <div className="absolute top-0 left-0 h-1 w-full bg-accent-amber" />
-          <div className="text-[11px] uppercase tracking-wider text-ink-500 font-semibold flex items-center gap-1.5">
-            <Clock className="h-3 w-3 text-accent-amber" />
-            Need to get ahead of
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="display text-[32px] font-bold tracking-tight">
-              {prod.tickets_need_to_get_ahead_of}
-            </span>
-            <span className="text-[12px] text-ink-500">tickets</span>
-          </div>
-          <div className="text-[11.5px] text-ink-500 mt-1">
-            {prod.tickets_at_risk_this_week} flagged at risk
-          </div>
-        </div>
-
-        <div className="panel p-4 relative overflow-hidden">
-          <div className="absolute top-0 left-0 h-1 w-full bg-accent-primary" />
-          <div className="text-[11px] uppercase tracking-wider text-ink-500 font-semibold flex items-center gap-1.5">
-            <CheckCircle2 className="h-3 w-3 text-accent-primary" />
-            Closed yesterday
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="display text-[32px] font-bold tracking-tight">
-              {prod.tickets_completed_yesterday}
-            </span>
-            <span className="text-[12px] text-ink-500">on time</span>
-          </div>
-          <div className="text-[11.5px] text-ink-500 mt-1">
-            {prod.tickets_slipped_yesterday} slipped (see brief)
-          </div>
-        </div>
-
-        <div className="panel p-4 relative overflow-hidden">
-          <div className="absolute top-0 left-0 h-1 w-full bg-twok-gold" />
-          <div className="text-[11px] uppercase tracking-wider text-ink-500 font-semibold flex items-center gap-1.5">
-            <PlusCircle className="h-3 w-3 text-twok-black" />
-            Opened yesterday
-          </div>
-          <div className="mt-2 flex items-baseline gap-2">
-            <span className="display text-[32px] font-bold tracking-tight">
-              {prod.tickets_opened_yesterday}
-            </span>
-            <span className="text-[12px] text-ink-500">new tickets</span>
-          </div>
-          <div className="text-[11.5px] text-ink-500 mt-1">
-            Self-assigned + vendor inbound
-          </div>
-        </div>
-      </section>
+      {/* Production health hero — 4 expandable tiles */}
+      <ProductionHealthTiles prod={prod} brief={brief} />
 
       {/* Today's agenda — Calls → Priorities → Follow-ups */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -291,7 +222,7 @@ export default function DailyStandup() {
         {/* Today's follow-ups */}
         <div className="panel p-5">
           <h2 className="section-title flex items-center gap-2 mb-3">
-            <CornerDownRight className="h-3.5 w-3.5 text-twok-black" />
+            <CornerDownRight className="h-3.5 w-3.5 text-twok-red" />
             Today's follow-ups
             <span className="text-[10.5px] mono text-ink-500 font-normal ml-1">
               {(brief.today_followups || []).length}
@@ -303,7 +234,7 @@ export default function DailyStandup() {
               return (
                 <li
                   key={i}
-                  className="border-l-2 border-twok-gold pl-2.5 py-0.5"
+                  className="border-l-2 border-twok-red pl-2.5 py-0.5"
                 >
                   <div className="text-[10.5px] uppercase tracking-wider text-ink-500 font-semibold">
                     To {f.owed_to}
@@ -330,9 +261,6 @@ export default function DailyStandup() {
           </ul>
         </div>
       </section>
-
-      {/* Active campaign burn (budget) */}
-      {burn && <BudgetPanel burn={burn} />}
 
       {/* Pending decisions — GO/NO-GO + sign-off queue */}
       {decisions.length > 0 && (
@@ -494,7 +422,7 @@ export default function DailyStandup() {
       {/* New tickets opened yesterday */}
       <section className="panel p-5">
         <h2 className="section-title flex items-center gap-2 mb-3">
-          <Inbox className="h-3.5 w-3.5 text-twok-black" />
+          <Inbox className="h-3.5 w-3.5 text-twok-red" />
           New tickets opened yesterday
           <span className="text-[10.5px] mono text-ink-500 font-normal ml-1">
             {brief.yesterday_closeout.opened_yesterday.length}
@@ -543,23 +471,8 @@ export default function DailyStandup() {
         </ul>
       </section>
 
-      {/* Portfolio health roll-up */}
-      <section className="panel p-4 md:p-5 relative overflow-hidden">
-        <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-accent-primary via-twok-gold to-accent-primary" />
-        <div className="flex items-start gap-3">
-          <div className="h-7 w-7 rounded-lg bg-accent-primary/10 text-accent-primary flex items-center justify-center shrink-0">
-            <Sparkles className="h-3.5 w-3.5" />
-          </div>
-          <div className="min-w-0">
-            <div className="text-[10.5px] uppercase tracking-wider text-ink-500 font-semibold">
-              Portfolio health roll-up · generated by Claude
-            </div>
-            <p className="text-[13.5px] leading-relaxed mt-1.5 text-ink-700">
-              {standup.portfolio_health_summary}
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Portfolio health roll-up — structured by status + per-title cards */}
+      <PortfolioHealthGrid summary={standup.portfolio_health_summary} />
 
       {/* Top risks + suggested escalations */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -659,6 +572,10 @@ export default function DailyStandup() {
           </div>
         </div>
       </section>
+
+      {/* Budget · moved to bottom per PM feedback. Burn first, cashflow second. */}
+      {burn && <BudgetPanel burn={burn} />}
+      <CashflowTimeline />
 
       {/* Quick links footer */}
       <section className="grid grid-cols-1 sm:grid-cols-3 gap-3">

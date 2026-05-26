@@ -104,7 +104,7 @@ export default function CollaboratorChain({ beat }) {
                   </div>
                 )}
                 {c.delivers_to && c.delivers_to.length > 0 && (
-                  <div className="rounded-md bg-twok-gold-soft/30 border border-twok-gold/40 px-2.5 py-1.5">
+                  <div className="rounded-md bg-twok-red/10 border border-twok-red/30 px-2.5 py-1.5">
                     <div className="text-[10px] uppercase tracking-wider text-ink-700 font-semibold flex items-center gap-1">
                       Delivers to <ArrowRight className="h-2.5 w-2.5" />
                     </div>

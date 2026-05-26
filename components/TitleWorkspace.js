@@ -23,6 +23,7 @@ import EscalationModal from "./EscalationModal";
 import CollaboratorChain from "./CollaboratorChain";
 import PhaseBreakdown from "./PhaseBreakdown";
 import GoNoGoChecklist from "./GoNoGoChecklist";
+import TitleInternalCollaborators from "./TitleInternalCollaborators";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -223,6 +224,9 @@ export default function TitleWorkspace({ title }) {
               );
             })}
           </div>
+
+          {/* Internal collaborators · aggregated across featured beats */}
+          <TitleInternalCollaborators beats={beats} title={title} />
 
           {/* Vendors */}
           <div className="panel p-5">

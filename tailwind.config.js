@@ -31,8 +31,10 @@ module.exports = {
         },
         twok: {
           black: "#0A0A0A",
-          gold: "#FFC72C",
-          "gold-soft": "#FFE48A",
+          red: "#E11D2D",
+          "red-deep": "#A30E1B",
+          "red-soft": "#FECDD3",
+          white: "#FFFFFF",
         },
         brand: {
           borderlands: "#FF8400",
