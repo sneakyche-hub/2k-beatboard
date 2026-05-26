@@ -24,6 +24,7 @@ import {
   ArrowUpRight,
   Sparkles,
   ChevronRight,
+  ChevronDown,
   CheckCircle2,
   Inbox,
   Phone,
@@ -82,6 +83,7 @@ function ticketHref(ticketId) {
 export default function DailyStandup() {
   const [activeDraftId, setActiveDraftId] = useState(null);
   const [activeChecklistBeatId, setActiveChecklistBeatId] = useState(null);
+  const [closedOpen, setClosedOpen] = useState(false);
 
   const activeDraft = escalationDrafts.find(
     (d) => d.draft_id === activeDraftId
@@ -386,6 +388,68 @@ export default function DailyStandup() {
                   </div>
                 );
               })}
+            </div>
+          )}
+          {(brief.yesterday_closeout.completed || []).length > 0 && (
+            <div className="mt-3 pt-3 border-t border-line">
+              <button
+                type="button"
+                onClick={() => setClosedOpen((v) => !v)}
+                className="w-full flex items-center justify-between text-left group"
+                aria-expanded={closedOpen}
+              >
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3 w-3 text-accent-success" />
+                  <span className="text-[10.5px] uppercase tracking-wider text-accent-success font-semibold">
+                    Closed yesterday
+                  </span>
+                  <span className="text-[10.5px] mono text-ink-500 font-normal">
+                    {brief.yesterday_closeout.completed.length}
+                  </span>
+                </div>
+                <ChevronDown
+                  className={`h-3.5 w-3.5 text-ink-400 group-hover:text-ink-700 transition-transform ${
+                    closedOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {closedOpen && (
+                <ul className="mt-2 space-y-1.5">
+                  {brief.yesterday_closeout.completed.map((c) => {
+                    const href = ticketHref(c.ticket_id);
+                    const t = titleForId(c.title_id);
+                    return (
+                      <li
+                        key={c.ticket_id}
+                        className="flex items-start gap-2 text-[12px] leading-snug"
+                      >
+                        <CheckCircle2 className="h-3 w-3 text-accent-success/70 mt-[3px] shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-baseline gap-2 flex-wrap">
+                            {t && (
+                              <span
+                                className="text-[9.5px] uppercase tracking-wider font-semibold"
+                                style={{ color: t.brand_color }}
+                              >
+                                {t.title_name}
+                              </span>
+                            )}
+                            <span className="text-ink-700">{c.summary}</span>
+                          </div>
+                        </div>
+                        {href && (
+                          <Link
+                            href={href}
+                            className="text-[10.5px] mono text-accent-primary hover:underline shrink-0"
+                          >
+                            {c.ticket_id} →
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </div>
           )}
         </div>
