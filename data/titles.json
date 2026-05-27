@@ -8,7 +8,7 @@
     "current_phase": "launch_push",
     "campaign_status": "at_risk",
     "current_beat_id": "bl4_mad_ellie_sp1_sustain_window",
-    "next_milestone_name": "Mad Ellie SP1 Phase 2 Paid Surge — GO/NO-GO (Davide)",
+    "next_milestone_name": "Story Pack 1 Phase 2 Paid Surge (Horrors of Kairos window) — GO/NO-GO (Davide)",
     "next_milestone_date": "2026-06-05",
     "budget_committed_usd": 1850000,
     "budget_spent_usd": 1120000,
@@ -26,7 +26,7 @@
       "wishlist_velocity_daily": 1840
     },
     "phase_gate_status": "at_risk",
-    "phase_gate_blocker": "D30 retention 9.8% vs 14% gate. Flagged for Davide — recommending Phase 2 surge hold pending Patch 1.2 + D30 re-measure. Heaven Media pre-warned."
+    "phase_gate_blocker": "D30 retention 9.8% vs 14% gate. Flagged for Davide — recommending Phase 2 surge hold (Horrors of Kairos expansion window) pending Patch 1.2 + D30 re-measure. Heaven Media pre-warned."
   },
   {
     "title_id": "civilization",

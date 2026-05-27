@@ -24,7 +24,7 @@
     "services": ["Lead UA agency", "Creator management", "Paid media planning + execution", "Creative + data + strategy"],
     "assigned_titles": ["borderlands", "mafia", "wonderlands"],
     "current_engagements": [
-      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "Lead UA for the Mad Ellie sustain window (Phase 2 paid surge held pending D30)" },
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "Lead UA for the BL4 Story Pack 1 sustain window (Phase 2 paid surge held pending D30, timed to Horrors of Kairos expansion window)" },
       { "beat_id": "mafia_toc_q2_sustain_push", "role": "Paid creative refresh — 3 concepts in QA, GO/NO-GO June 1" },
       { "beat_id": "wonderlands_gluttons_gamble_encore_drop", "role": "Paid plan to align with new July 10 drop window" }
     ],
@@ -57,7 +57,7 @@
     "services": ["Gaming-native ad network", "In-game video placements", "Geo + behavioral targeting at scale"],
     "assigned_titles": ["borderlands", "risk-of-rain"],
     "current_engagements": [
-      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "In-game placement schedule for Mad Ellie sustain window (Jun–Aug)" },
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "In-game placement schedule for BL4 Story Pack 1 sustain window (Jun–Aug)" },
       { "beat_id": "ror2_seekers_storm_free_weekend", "role": "Pre-Free-Weekend awareness push across browser FPS/co-op adjacency (planned)" }
     ],
     "active_tickets_count": 3,
@@ -89,7 +89,7 @@
     "services": ["Revenue-share affiliate platform (5–30% commission)", "Nano-influencer creator storefronts", "Global payouts (100K+ creators, 50+ countries)"],
     "assigned_titles": ["borderlands", "mafia"],
     "current_engagements": [
-      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "Affiliate storefronts for Mad Ellie cosmetic + season pass post-launch monetization" }
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "Affiliate storefronts for Story Pack 1 cosmetic + Gilded Glory Pack post-launch monetization" }
     ],
     "active_tickets_count": 2,
     "point_of_contact_name": "Sofia Ramos",
@@ -104,7 +104,7 @@
     "services": ["Multi-touch attribution (80+ ad networks)", "Steamworks UTM integration", "Creator-level ROI + cohort retention", "Fraud detection"],
     "assigned_titles": ["borderlands", "civilization", "mafia", "homeworld"],
     "current_engagements": [
-      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "UTM taxonomy + attribution for all Mad Ellie paid + creator codes" },
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "UTM taxonomy + attribution for all BL4 Story Pack 1 paid + creator codes (incl. Switch 2 Vex capture cuts)" },
       { "beat_id": "civ7_test_of_time_creator_campaign_na", "role": "Creator-level ROI tracking for Test of Time NA campaign (Time-Tested Civs multiplayer premiere + Triumphs deep-dive cohorts, cross-platform UTMs across Steam + Epic)" }
     ],
     "active_tickets_count": 5,

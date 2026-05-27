@@ -96,7 +96,7 @@
   {
     "transcript_id": "bl4_mad_ellie_sp1_launch_readiness",
     "title_id": "borderlands",
-    "meeting_title": "Borderlands 4 Mad Ellie SP1 — Launch Readiness Check",
+    "meeting_title": "Borderlands 4 Story Pack 1 — Launch Readiness Check",
     "meeting_date": "2026-03-24",
     "duration_minutes": 52,
     "featured": true,
@@ -109,8 +109,8 @@
       { "name": "Marcus Lee", "role": "Community Lead" }
     ],
     "exchanges": [
-      { "speaker": "Davide Detta", "text": "Two days out from Mad Ellie SP1. Tomás, start with the funnel — where's the base BL4 cohort coming in?" },
-      { "speaker": "Tomás Vega", "text": "Base BL4 D30 retention right now is 13.8%, slightly under our 14% gate but trending in the right direction WoW. Mad Ellie standalone page wishlist velocity is 1,650/day, up 18% over the last 7 days. Capsule CTR on the SP1 page is 5.4%, above our 5% benchmark. We're a green light on top-of-funnel." },
+      { "speaker": "Davide Detta", "text": "Two days out from Story Pack 1. Tomás, start with the funnel — where's the base BL4 cohort coming in?" },
+      { "speaker": "Tomás Vega", "text": "Base BL4 D30 retention right now is 13.8%, slightly under our 14% gate but trending in the right direction WoW. Story Pack 1 standalone page wishlist velocity is 1,650/day, up 18% over the last 7 days. Capsule CTR on the SP1 page is 5.4%, above our 5% benchmark. We're a green light on top-of-funnel." },
       { "speaker": "Alex Akiyama", "text": "Maya, creator activation — final state?" },
       { "speaker": "Maya Reyes", "text": "Locked. Top tier: Shroud, Summit1G, LIRIK, TheBurntPeanut — they get the early-access build Thursday for the launch-day co-op stream Friday. Earned tier: 67 additional creators across YouTube, VoD, and social, each with bespoke briefs and code drops. Same playbook structure as the BL4 main launch — that worked, no reason to reinvent it." },
       { "speaker": "Davide Detta", "text": "Daniel — paid plan?" },
@@ -134,7 +134,7 @@
     "extracted_tickets": [
       {
         "proposed_ticket_id": "BL-PROP-001",
-        "title": "Confirm Open World Mad Ellie creator activation list final-locked + briefs out",
+        "title": "Confirm Open World Story Pack 1 creator activation list final-locked + briefs out",
         "owner": "Manager, NA Integrated Marketing",
         "due_in_days": 2,
         "priority": "P0",
@@ -145,7 +145,7 @@
       },
       {
         "proposed_ticket_id": "BL-PROP-002",
-        "title": "Validate Mad Ellie Steam capsule hits ≥5% CTR benchmark on launch day",
+        "title": "Validate Story Pack 1 Steam capsule hits ≥5% CTR benchmark on launch day",
         "owner": "Brand Marketing",
         "due_in_days": 3,
         "priority": "P1",
@@ -156,7 +156,7 @@
       },
       {
         "proposed_ticket_id": "BL-PROP-003",
-        "title": "Gamesight UTM audit on all Mad Ellie creator codes — pre-launch",
+        "title": "Gamesight UTM audit on all Story Pack 1 creator codes — pre-launch",
         "owner": "Performance Marketing",
         "due_in_days": 4,
         "priority": "P1",
@@ -167,7 +167,7 @@
       },
       {
         "proposed_ticket_id": "BL-PROP-004",
-        "title": "Sentiment monitoring plan — Mad Ellie launch first 72h, 1hr ack SLA, top-5 complaint clusters pre-bucketed",
+        "title": "Sentiment monitoring plan — Story Pack 1 launch first 72h, 1hr ack SLA, top-5 complaint clusters pre-bucketed",
         "owner": "Community Lead",
         "due_in_days": 7,
         "priority": "P1",
@@ -178,7 +178,7 @@
       },
       {
         "proposed_ticket_id": "BL-PROP-005",
-        "title": "Brief CPMStar on Mad Ellie in-game placement schedule for sustain window (June–Aug)",
+        "title": "Brief CPMStar on Story Pack 1 in-game placement schedule for sustain window (June–Aug)",
         "owner": "External Agency (CPMStar)",
         "due_in_days": 5,
         "priority": "P2",
@@ -301,7 +301,7 @@
     "exchanges": [
       { "speaker": "Alex Akiyama", "text": "Quick lap. Civ Test of Time launched yesterday — Priya, anything we need to escalate this week?" },
       { "speaker": "Priya Iyer", "text": "Just the Brand Creative asset slip on the NA creator hero cut. Otherwise everything is well above gates." },
-      { "speaker": "Tomás Vega", "text": "Mad Ellie D30 read for the launch cohort: 9.8%. Under the 14% gate. Holding Phase 2." },
+      { "speaker": "Tomás Vega", "text": "Story Pack 1 D30 read for the launch cohort: 9.8%. Under the 14% gate. Holding Phase 2 — flagging the Horrors of Kairos window as the natural re-entry point if Patch 1.2 clears it." },
       { "speaker": "Marcus Lee", "text": "Wonderlands DLC slips to July 10. Comms plan drafted, going through review this week." },
       { "speaker": "Alex Akiyama", "text": "Risk of Rain Free Weekend kickoff prep — Lurkit brief out by Wednesday, CreatorIQ shortlist Friday." }
     ],

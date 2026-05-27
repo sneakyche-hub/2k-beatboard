@@ -50,7 +50,7 @@ Open [http://localhost:3000](http://localhost:3000).
 Two featured walkthroughs:
 
 - **Civ VII: Test of Time launch retro** — Open `/inbox` → Zoom transcripts → expand "Test of Time D1–D3 launch retro." Three extracted tickets land in `/titles/civilization` → tickets tab.
-- **BL4 Mad Ellie SP1 launch readiness** — Open `/inbox` → expand "Mad Ellie SP1 launch readiness." Phase 2 paid surge GO/NO-GO is the gate Davide is being briefed on June 5; D30 retention 9.8% vs 14% gate flagged on the Standup top-risks panel with the pre-drafted escalation ready in `/inbox` → Drafts.
+- **BL4 Story Pack 1 launch readiness** — Open `/inbox` → expand "Story Pack 1 launch readiness." Phase 2 paid surge GO/NO-GO (timed to the Horrors of Kairos expansion window) is the gate Davide is being briefed on June 5; D30 retention 9.8% vs 14% gate flagged on the Standup top-risks panel with the pre-drafted escalation ready in `/inbox` → Drafts.
 
 ## Build provenance
 
