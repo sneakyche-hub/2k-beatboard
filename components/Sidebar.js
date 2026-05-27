@@ -10,10 +10,12 @@ import {
   Inbox,
   Plug,
   Gauge,
+  FileText,
 } from "lucide-react";
 
 const NAV = [
   { href: "/", label: "Daily Standup", icon: LayoutDashboard },
+  { href: "/brief", label: "Daily Brief", icon: FileText },
   { href: "/calendar", label: "Calendar", icon: CalendarDays },
   { href: "/kpis", label: "KPIs", icon: Gauge },
   { href: "/titles", label: "Titles", icon: LayoutGrid },

@@ -31,6 +31,7 @@ import {
   ListTodo,
   CornerDownRight,
   Gauge,
+  FileText,
 } from "lucide-react";
 
 const STATUS_LABEL = {
@@ -121,12 +122,22 @@ export default function DailyStandup() {
             .
           </div>
         </div>
-        <Link
-          href="/inbox"
-          className="text-[12px] text-accent-primary font-medium flex items-center gap-1 hover:underline"
-        >
-          Open AI Inbox <ArrowUpRight className="h-3 w-3" />
-        </Link>
+        <div className="flex items-center gap-2 flex-wrap">
+          <Link
+            href="/brief"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-twok-red text-white text-[12px] font-semibold hover:bg-twok-red-deep transition-colors"
+          >
+            <FileText className="h-3.5 w-3.5" />
+            Shareable Daily Brief
+            <ArrowUpRight className="h-3 w-3" />
+          </Link>
+          <Link
+            href="/inbox"
+            className="text-[12px] text-accent-primary font-medium flex items-center gap-1 hover:underline"
+          >
+            Open AI Inbox <ArrowUpRight className="h-3 w-3" />
+          </Link>
+        </div>
       </div>
 
       {/* Production health hero — 4 expandable tiles */}

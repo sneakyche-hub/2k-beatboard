@@ -2,15 +2,12 @@
 
 import { useMemo, useState } from "react";
 import {
-  zoomTranscripts,
-  slackMessages,
-  gmailThreads,
   escalationDrafts,
   activityFeed,
   titles,
-  tickets,
-  fmtDate,
   fmtDateTime,
+  buildInboxItems,
+  INBOX_PRIORITY_RANK,
 } from "@/lib/data";
 import Badge from "./Badge";
 import EscalationModal from "./EscalationModal";
@@ -25,16 +22,9 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 
-// -------------------------------------------------------------------
-// Inbox item normalization
-//
-// Pivots the inbox away from channel-tab navigation toward a unified
-// stream that can be grouped by title and sorted by derived priority.
-// Each source (draft / transcript / slack / gmail / activity) maps to
-// a common shape so the UI can group, filter, and sort without caring
-// about origin.
-// -------------------------------------------------------------------
-
+// Type / priority / portfolio metadata. `buildInboxItems` + the
+// priority rank live in `lib/data.js` so the brief and inbox stay
+// in lockstep on which items are P0 vs P1 vs P2.
 const TYPE_META = {
   draft:      { label: "Draft",      Icon: Send,          tone: "violet" },
   transcript: { label: "Transcript", Icon: Video,         tone: "neutral" },
@@ -44,9 +34,9 @@ const TYPE_META = {
 };
 
 const PRIORITY_META = {
-  P0: { label: "P0 · Today",    tone: "red",     rank: 0 },
-  P1: { label: "P1 · This wk",  tone: "amber",   rank: 1 },
-  P2: { label: "P2 · FYI",      tone: "neutral", rank: 2 },
+  P0: { label: "P0 · Today",   tone: "red",     rank: INBOX_PRIORITY_RANK.P0 },
+  P1: { label: "P1 · This wk", tone: "amber",   rank: INBOX_PRIORITY_RANK.P1 },
+  P2: { label: "P2 · FYI",     tone: "neutral", rank: INBOX_PRIORITY_RANK.P2 },
 };
 
 const PORTFOLIO_PSEUDO_TITLE = {
@@ -54,124 +44,6 @@ const PORTFOLIO_PSEUDO_TITLE = {
   title_name: "Portfolio (cross-title)",
   brand_color: "#94A3B8",
 };
-
-function ticketTitleId(ticketId) {
-  if (!ticketId) return null;
-  const tk = tickets.find((t) => t.ticket_id === ticketId);
-  return tk?.title_id || null;
-}
-
-function ticketPriority(ticketId) {
-  if (!ticketId) return null;
-  const tk = tickets.find((t) => t.ticket_id === ticketId);
-  return tk?.priority || null;
-}
-
-function buildInboxItems() {
-  const items = [];
-
-  // Drafts — always P0 (Claude has surfaced an action awaiting Alex).
-  // Priority can sharpen to mirror the linked ticket if it's P0.
-  for (const d of escalationDrafts) {
-    const linkedPriority = ticketPriority(d.related_ticket_id);
-    items.push({
-      id: `draft:${d.draft_id}`,
-      type: "draft",
-      titleId: ticketTitleId(d.related_ticket_id),
-      priority: "P0", // every draft is an action awaiting send
-      headline:
-        d.subject ||
-        `${d.channel} draft to ${d.recipient}`,
-      subline: `${d.channel} · ${d.recipient}${
-        d.related_ticket_id ? ` · ${d.related_ticket_id}` : ""
-      }${linkedPriority ? ` (${linkedPriority})` : ""}`,
-      body: d.body,
-      timestamp: null,
-      raw: d,
-    });
-  }
-
-  // Gmail — flagged threads are P0; threads with a Claude-drafted
-  // reply are P1 (action exists but hasn't been escalated to draft);
-  // everything else is P2 informational.
-  for (const g of gmailThreads) {
-    let priority = "P2";
-    if (g.flagged_for_action) priority = "P0";
-    else if (g.claude_recommended_reply) priority = "P1";
-    items.push({
-      id: `gmail:${g.thread_id}`,
-      type: "gmail",
-      titleId: g.title_id || null,
-      priority,
-      headline: g.subject,
-      subline: `${g.from} · ${fmtDateTime(g.timestamp)}`,
-      body: g.thread_summary,
-      reply: g.claude_recommended_reply || null,
-      timestamp: g.timestamp,
-      raw: g,
-    });
-  }
-
-  // Slack — flagged messages are P0; everything else is P2 (vendor
-  // updates, KPI signals, standup posts). The 5 demo messages skew
-  // toward operational chatter, not action items.
-  for (const m of slackMessages) {
-    items.push({
-      id: `slack:${m.message_id}`,
-      type: "slack",
-      titleId: m.linked_title_id || null,
-      priority: m.flagged_for_action ? "P0" : "P2",
-      headline: m.text,
-      subline: `${m.author} · ${m.channel} · ${fmtDateTime(m.timestamp)}`,
-      body: null,
-      timestamp: m.timestamp,
-      raw: m,
-    });
-  }
-
-  // Transcripts — if any extracted ticket is P0, the transcript needs
-  // attention today (file the ticket, route the action). Otherwise P1.
-  for (const tr of zoomTranscripts) {
-    const hasP0 = (tr.extracted_tickets || []).some(
-      (pt) => pt.priority === "P0"
-    );
-    items.push({
-      id: `transcript:${tr.transcript_id}`,
-      type: "transcript",
-      titleId: tr.title_id || null,
-      priority: hasP0 ? "P0" : "P1",
-      headline: tr.meeting_title,
-      subline: `${fmtDate(tr.meeting_date, { year: true })} · ${
-        tr.duration_minutes
-      } min · ${tr.extracted_tickets.length} extracted tickets`,
-      body: null,
-      timestamp: tr.meeting_date,
-      raw: tr,
-    });
-  }
-
-  // Activity feed — always P2 (read-only audit of what's been
-  // happening). Kept in the unified stream so a single title view
-  // shows full context, but filtered out by default to reduce noise.
-  for (const e of activityFeed) {
-    items.push({
-      id: `activity:${e.event_id}`,
-      type: "activity",
-      titleId: e.title_id || null,
-      priority: "P2",
-      headline: e.summary,
-      subline: `${e.actor} · ${e.source} · ${fmtDateTime(e.timestamp)} · ${e.event_type.replace(
-        /_/g,
-        " "
-      )}`,
-      body: null,
-      timestamp: e.timestamp,
-      raw: e,
-    });
-  }
-
-  return items;
-}
 
 function groupByTitle(items) {
   // Build the title-section list in the canonical titles[] order so

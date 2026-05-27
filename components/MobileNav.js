@@ -8,15 +8,17 @@ import {
   CalendarDays,
   LayoutGrid,
   Inbox,
-  Plug,
+  FileText,
 } from "lucide-react";
 
+// Mobile nav is space-constrained — drop Connect (rarely used on mobile),
+// promote Brief in its place so the shareable view is one tap away.
 const NAV = [
   { href: "/", label: "Standup", icon: LayoutDashboard },
+  { href: "/brief", label: "Brief", icon: FileText },
   { href: "/calendar", label: "Calendar", icon: CalendarDays },
   { href: "/titles", label: "Titles", icon: LayoutGrid },
   { href: "/inbox", label: "Inbox", icon: Inbox },
-  { href: "/connections", label: "Connect", icon: Plug },
 ];
 
 export default function MobileNav() {
