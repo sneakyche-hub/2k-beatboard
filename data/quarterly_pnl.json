@@ -1,0 +1,51 @@
+{
+  "fiscal_year": 2026,
+  "currency": "USD",
+  "source_note": "Quarterly P&L rollups are sourced from the canonical Finance Excel (NA_Integrated_Marketing_FY26_PnL.xlsx, maintained by Marketing Finance) and reconciled monthly against Jira ticket attachments + vendor invoices. The dashboard reads a snapshot; it does not authorize spend or replace the system of record.",
+  "as_of_date": "2026-05-26",
+  "quarters": [
+    {
+      "quarter": "Q1",
+      "period_label": "Jan–Mar 2026",
+      "status": "closed",
+      "closed_date": "2026-04-15",
+      "plan_total_usd": 1180000,
+      "actual_total_usd": 1123000,
+      "variance_total_usd": -57000,
+      "variance_total_pct": -4.8,
+      "headline": "Closed -4.8% under plan. Mad Ellie SP1 launch landed late in the quarter (Mar 26) so most BL4 spend pushed into Q2; Civ VII Apple Arcade light marketing layer + Mafia Free Ride goodwill update drove softer-than-planned Q1 actuals.",
+      "titles": [
+        { "title_id": "civilization", "title_name": "Civilization", "plan_usd": 250000, "actual_usd": 235000, "variance_usd": -15000, "variance_pct": -6.0, "variance_status": "under", "notes": "Apple Arcade launch Feb 5 (Behaviour x Firaxis) + Test of Time pre-launch planning. Apple co-marketing absorbed most awareness lift." },
+        { "title_id": "borderlands", "title_name": "Borderlands", "plan_usd": 250000, "actual_usd": 285000, "variance_usd": 35000, "variance_pct": 14.0, "variance_status": "over", "notes": "Mad Ellie SP1 launch week paid landed Mar 26 — ~$230K landed in Q1 even though most SP1 budget books Q2. Heaven Phase 1 came in +12% over plan." },
+        { "title_id": "mafia", "title_name": "Mafia: The Old Country", "plan_usd": 180000, "actual_usd": 165000, "variance_usd": -15000, "variance_pct": -8.3, "variance_status": "under", "notes": "Q2 sustain push started Apr 1 — Q1 was Free Ride goodwill update + evergreen only. Light by design." },
+        { "title_id": "bioshock", "title_name": "BioShock", "plan_usd": 120000, "actual_usd": 108000, "variance_usd": -12000, "variance_pct": -10.0, "variance_status": "under", "notes": "Pre-reveal hygiene only. Harbor MSA still in Legal redline; quest config not yet billable." },
+        { "title_id": "wonderlands", "title_name": "Wonderlands", "plan_usd": 100000, "actual_usd": 95000, "variance_usd": -5000, "variance_pct": -5.0, "variance_status": "under", "notes": "Evergreen sustain + GG Encore pre-launch awareness (GWM March layer)." },
+        { "title_id": "xcom", "title_name": "XCOM", "plan_usd": 80000, "actual_usd": 72000, "variance_usd": -8000, "variance_pct": -10.0, "variance_status": "under" },
+        { "title_id": "homeworld", "title_name": "Homeworld", "plan_usd": 80000, "actual_usd": 74000, "variance_usd": -6000, "variance_pct": -7.5, "variance_status": "under" },
+        { "title_id": "risk-of-rain", "title_name": "Risk of Rain", "plan_usd": 120000, "actual_usd": 89000, "variance_usd": -31000, "variance_pct": -25.8, "variance_status": "under", "notes": "Free Weekend prep doesn't really start until Q2 — Q1 was scoping only." }
+      ]
+    },
+    {
+      "quarter": "Q2",
+      "period_label": "Apr–Jun 2026",
+      "status": "in_flight",
+      "as_of_date": "2026-05-26",
+      "plan_total_usd": 2640000,
+      "actual_to_date_usd": 1485000,
+      "projected_total_usd": 2420000,
+      "variance_projected_usd": -220000,
+      "variance_projected_pct": -8.3,
+      "headline": "Tracking -8.3% under plan at projected close. Two big holds drive the variance: Mad Ellie SP1 Phase 2 surge ($180K held pending Davide call) and Mafia: TOC $120K creative tranche (held pending June 1 GO/NO-GO). Wonderlands GG Encore slip from June 5 → July 10 also pushes $130K into Q3.",
+      "titles": [
+        { "title_id": "civilization", "title_name": "Civilization", "plan_usd": 850000, "actual_to_date_usd": 590000, "projected_usd": 920000, "variance_projected_usd": 70000, "variance_projected_pct": 8.2, "variance_status": "over", "notes": "Test of Time free update launched May 19, NA creator campaign in execution. Brand Creative hero cut slip drove some replan cost. Tracking +$70K over plan." },
+        { "title_id": "borderlands", "title_name": "Borderlands", "plan_usd": 560000, "actual_to_date_usd": 360000, "projected_usd": 410000, "variance_projected_usd": -150000, "variance_projected_pct": -26.8, "variance_status": "under", "notes": "Mad Ellie SP1 sustain Phase 1 landed clean. Phase 2 $180K paid surge HELD pending Davide Jun 5 call (D30 9.8% vs 14% gate). If gate clears post-Patch-1.2, spend re-enters in Whispering Glacier endgame content beat window; if not, full $180K pushes into Q3." },
+        { "title_id": "mafia", "title_name": "Mafia: The Old Country", "plan_usd": 420000, "actual_to_date_usd": 240000, "projected_usd": 300000, "variance_projected_usd": -120000, "variance_projected_pct": -28.6, "variance_status": "under", "notes": "ROAS down 22% WoW on Q2 sustain. $120K next tranche HELD pending Davide June 1 GO/NO-GO on Heaven refresh concepts. If GO, spend lands Jun-Jul; if NO-GO, full $120K re-plans into Q3 refresh window." },
+        { "title_id": "wonderlands", "title_name": "Wonderlands", "plan_usd": 280000, "actual_to_date_usd": 110000, "projected_usd": 150000, "variance_projected_usd": -130000, "variance_projected_pct": -46.4, "variance_status": "under", "notes": "Glutton's Gamble Encore slipped June 5 → July 10 on engineering stability blocker. Heaven paid surge re-timed to July — $130K shifts to Q3. GWM March layer credit memo also flowing." },
+        { "title_id": "bioshock", "title_name": "BioShock", "plan_usd": 100000, "actual_to_date_usd": 38000, "projected_usd": 95000, "variance_projected_usd": -5000, "variance_projected_pct": -5.0, "variance_status": "under", "notes": "Harbor MSA close still pending — quest config releases Q2 only if Legal closes by Jun 1." },
+        { "title_id": "xcom", "title_name": "XCOM", "plan_usd": 85000, "actual_to_date_usd": 41000, "projected_usd": 82000, "variance_projected_usd": -3000, "variance_projected_pct": -3.5, "variance_status": "under" },
+        { "title_id": "homeworld", "title_name": "Homeworld", "plan_usd": 95000, "actual_to_date_usd": 52000, "projected_usd": 93000, "variance_projected_usd": -2000, "variance_projected_pct": -2.1, "variance_status": "under" },
+        { "title_id": "risk-of-rain", "title_name": "Risk of Rain", "plan_usd": 250000, "actual_to_date_usd": 54000, "projected_usd": 370000, "variance_projected_usd": 120000, "variance_projected_pct": 48.0, "variance_status": "over", "notes": "Free Weekend (Aug 8) ramp shifted heavier than planned — CPMStar awareness flight + CreatorIQ shortlist build accelerated. Big chunk lands Jul. Likely needs replan into Q3." }
+      ]
+    }
+  ]
+}

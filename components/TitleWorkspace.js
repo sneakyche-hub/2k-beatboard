@@ -38,6 +38,7 @@ import {
   Send,
   ChevronDown,
   ChevronRight,
+  Paperclip,
 } from "lucide-react";
 
 const STATUS_LABEL = {
@@ -394,8 +395,21 @@ export default function TitleWorkspace({ title }) {
                       </div>
                       <div className="text-[10.5px] text-ink-500 mt-1.5 flex items-center justify-between">
                         <span className="truncate">{t.owner}</span>
-                        <span className="mono shrink-0 ml-2">
-                          {fmtDate(t.due_date)}
+                        <span className="flex items-center gap-1.5 shrink-0 ml-2">
+                          {t.attachments && t.attachments.length > 0 && (
+                            <span
+                              className="flex items-center gap-0.5 text-ink-600"
+                              title={t.attachments
+                                .map((a) => a.filename)
+                                .join("\n")}
+                            >
+                              <Paperclip className="h-3 w-3" />
+                              <span className="mono">
+                                {t.attachments.length}
+                              </span>
+                            </span>
+                          )}
+                          <span className="mono">{fmtDate(t.due_date)}</span>
                         </span>
                       </div>
                     </li>
