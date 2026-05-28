@@ -462,6 +462,53 @@
     { "kpi_label": "Homeworld 3 D30 retention", "value": "19.4%", "delta": "+0.3pp WoW", "direction": "up" },
     { "kpi_label": "BioShock wishlist bank", "value": "187,400", "delta": "+1.2% WoW", "direction": "up" }
   ],
+  "yesterday_action_items": [
+    {
+      "owner": "Alex Akiyama",
+      "task": "Lock Test of Time NA creator hero cut: paid social + Time-Tested Civs multiplayer premiere pre-roll",
+      "linked_ticket_id": "CIV-1934",
+      "title_id": "civilization",
+      "status": "carried_over",
+      "closed_at": null,
+      "closeout_note": "Brand Creative resource conflict; 48h late. Carries to today as the room's hero-cut blocker."
+    },
+    {
+      "owner": "Alex Akiyama",
+      "task": "Confirm Brand Creative hero cut handoff path (Brand final vs Open World v2)",
+      "linked_ticket_id": "CIV-PROP-005",
+      "title_id": "civilization",
+      "status": "done",
+      "closed_at": "2026-05-25T17:30:00Z",
+      "closeout_note": "Decision: chase Brand by EOD May 26, default to Open World v2 if it slips again."
+    },
+    {
+      "owner": "Alex Akiyama",
+      "task": "Cohort fatigue post-mortem: TOC vs Mafia 2 launch creatives",
+      "linked_ticket_id": "MAF-PROP-002",
+      "title_id": "mafia",
+      "status": "done",
+      "closed_at": "2026-05-25T16:45:00Z",
+      "closeout_note": "Findings packaged into MAF-1010 Davide pre-read."
+    },
+    {
+      "owner": "Marketing Mgr II",
+      "task": "Anniversary trailer cut v3 review with Brand (Homeworld 3)",
+      "linked_ticket_id": "HW-228",
+      "title_id": "homeworld",
+      "status": "done",
+      "closed_at": "2026-05-25T15:10:00Z",
+      "closeout_note": null
+    },
+    {
+      "owner": "Marketing Mgr II",
+      "task": "Lurkit quest setup brief draft (RoR2 Seekers ramp)",
+      "linked_ticket_id": "ROR-117",
+      "title_id": "risk-of-rain",
+      "status": "done",
+      "closed_at": "2026-05-25T14:20:00Z",
+      "closeout_note": null
+    }
+  ],
   "suggested_escalations": [
     {
       "escalation_draft_id": "draft_mad_ellie_surge_hold",
