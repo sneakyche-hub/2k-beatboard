@@ -11,6 +11,7 @@ import {
   Plug,
   Gauge,
   FileText,
+  DollarSign,
 } from "lucide-react";
 
 const NAV = [
@@ -18,6 +19,7 @@ const NAV = [
   { href: "/brief", label: "Daily Brief", icon: FileText },
   { href: "/calendar", label: "Calendar", icon: CalendarDays },
   { href: "/kpis", label: "KPIs", icon: Gauge },
+  { href: "/budgets", label: "Budgets", icon: DollarSign },
   { href: "/titles", label: "Titles", icon: LayoutGrid },
   { href: "/inbox", label: "AI Inbox", icon: Inbox },
   { href: "/connections", label: "Connections", icon: Plug },
