@@ -458,5 +458,44 @@
     "summary": "Discord AMA series, community-led commemorative content (mod showcases, retrospective posts).",
     "budget_usd": 40000,
     "vendor_ids": []
+  },
+  {
+    "beat_id": "bl4_bounty_pack_1_mercenary_day",
+    "title_id": "borderlands",
+    "beat_name": "Bounty Pack 1: How Rush Saved Mercenary Day",
+    "phase": "live_service",
+    "start_date": "2025-11-20",
+    "end_date": "2025-12-23",
+    "status": "completed",
+    "lead_owner": "Brand Marketing",
+    "summary": "Free holiday Bounty Pack — Rush + the Outbounders take on Minister Screw (Timekeeper's underling) in a Mercenary Day-themed mission set. Shipped free to all BL4 owners Nov 20, 2025. Goodwill beat ahead of the paid Mad Ellie SP1 in March. Earned-seeding only — no paid layer. Set the cadence expectation for the BL4 live-service rhythm and warmed the Gamesight 1,200-creator advocacy pool for SP1.",
+    "budget_usd": 65000,
+    "vendor_ids": ["gamesight"]
+  },
+  {
+    "beat_id": "mafia_toc_free_ride_update",
+    "title_id": "mafia",
+    "beat_name": "Mafia: TOC — Free Ride Update",
+    "phase": "live_service",
+    "start_date": "2025-11-20",
+    "end_date": "2025-12-15",
+    "status": "completed",
+    "lead_owner": "Brand Marketing",
+    "summary": "Free post-launch update — Free Ride mode (open-world Sicily drive), Cinema Siciliano (in-game film viewing), Classic Difficulty, First-Person Driving toggle. Shipped Nov 20, 2025. Goodwill content beat ahead of the Q2 sustain push. Strong reception from the open-world driving community + Mafia 2 nostalgia segment — the Mafia 2 cohort baseline that Gamesight is now comparing TOC creative fatigue against was built off this Nov cohort.",
+    "budget_usd": 85000,
+    "vendor_ids": ["heaven_media", "gamesight"]
+  },
+  {
+    "beat_id": "civ7_apple_arcade_launch",
+    "title_id": "civilization",
+    "beat_name": "Civ VII on Apple Arcade — Launch",
+    "phase": "launch_push",
+    "start_date": "2026-02-05",
+    "end_date": "2026-03-31",
+    "status": "completed",
+    "lead_owner": "Brand Marketing",
+    "summary": "Civ VII Apple Arcade launch Feb 5, 2026 — ported by Behaviour Interactive in partnership with Firaxis. Opened the franchise to the Apple ecosystem (iPhone + iPad + Mac + Apple TV) inside Apple Arcade's subscription pool. Marketing layer was light — Apple co-marketing + Apple Arcade editorial featuring did most of the lift, with a small NA paid social skin and Discord community amplification. Important live-service stepping stone before the Test of Time free update in May.",
+    "budget_usd": 95000,
+    "vendor_ids": ["gamesight"]
   }
 ]
