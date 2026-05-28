@@ -22,6 +22,7 @@ import {
   Printer,
   ArrowLeft,
   Check,
+  Timer,
 } from "lucide-react";
 
 // -------------------------------------------------------------------
@@ -169,6 +170,13 @@ export default function DailyBrief() {
           </p>
         </div>
         <div className="brief-actions flex items-center gap-2 shrink-0">
+          <Link
+            href="/brief"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-line bg-white text-[12px] font-medium text-ink-700 hover:border-accent-primary hover:text-accent-primary transition-colors"
+          >
+            <Timer className="h-3.5 w-3.5" />
+            Standup agenda
+          </Link>
           <button
             type="button"
             onClick={handleCopy}
