@@ -69,27 +69,27 @@
   {
     "beat_id": "bl4_mad_ellie_sp1_launch",
     "title_id": "borderlands",
-    "beat_name": "Story Pack 1 — Launch Window",
+    "beat_name": "Mad Ellie and the Vault of the Damned (SP1) — Launch Window",
     "phase": "launch_push",
     "start_date": "2026-03-26",
     "end_date": "2026-04-26",
     "status": "completed",
     "lead_owner": "Heaven Media",
-    "summary": "BL4 Story Pack 1 launch window. 71-creator activation (Shroud + Summit1G + LIRIK + TheBurntPeanut anchor stream; Switch 2 Vex capture cuts in the broader social mix), $185K launch week paid, Phase 1 paid landed +22% benchmark CTR. D30 came in at 9.8% vs 14% gate.",
+    "summary": "BL4 Story Pack 1 'Mad Ellie and the Vault of the Damned' launch window. 71-creator SP1 activation tier drawn from the 1,200-creator BL4 advocacy program organized by Gamesight (5,300+ apps vetted, Joshua Maresca / Jennifer Zall the 2K x Gamesight POC pair). Open World produced the Tier 1 anchor stream (Shroud + Summit1G + LIRIK + TheBurntPeanut co-op vault run); Switch 2 C4SH the Rogue reveal cuts in the broader social mix. $185K launch week paid, Phase 1 paid landed +22% benchmark CTR. D30 came in at 9.8% vs 14% gate.",
     "budget_usd": 920000,
     "vendor_ids": ["heaven_media", "open_world", "cpmstar", "gamesight", "xsolla_rainmaker"]
   },
   {
     "beat_id": "bl4_mad_ellie_sp1_sustain_window",
     "title_id": "borderlands",
-    "beat_name": "Story Pack 1 — Sustain Window (Jun–Aug)",
+    "beat_name": "Mad Ellie SP1 — Sustain Window (Jun–Aug)",
     "phase": "launch_push",
     "start_date": "2026-05-15",
     "end_date": "2026-08-31",
     "status": "at_risk",
     "lead_owner": "Heaven Media",
     "manager_owner": "Alex Akiyama",
-    "summary": "Sustain window held. Phase 2 $180K paid surge flagged for Davide call — timed to the Horrors of Kairos expansion window — pending Patch 1.2 + D30 re-measure. CPMStar in-game placements running.",
+    "summary": "Sustain window held. Phase 2 $180K paid surge flagged for Davide call — timed to the Whispering Glacier endgame content beat window — pending Patch 1.2 + D30 re-measure. CPMStar in-game placements running.",
     "budget_usd": 480000,
     "vendor_ids": ["heaven_media", "cpmstar", "xsolla_rainmaker", "gamesight"],
     "collaborators": [
@@ -97,7 +97,7 @@
       { "name": "Heaven Media", "type": "external", "role": "Paid surge agency", "responsible_for": ["Phase 2 paid brief (currently paused)", "Refresh concepts on standby"], "depends_on": ["Davide GO/NO-GO Jun 5", "Patch 1.2 D30 readout"], "delivers_to": ["CPMStar", "Gamesight"] },
       { "name": "CPMStar", "type": "external", "role": "In-game placement network", "responsible_for": ["In-game awareness layer (running)", "Phase 2 placement schedule"], "depends_on": ["Heaven Media brief"], "delivers_to": ["Gamesight"] },
       { "name": "Performance Marketing", "type": "internal", "role": "Phase 2 paid buy oversight", "responsible_for": ["Spend pacing", "ROAS/CPI monitoring"], "depends_on": ["Heaven brief unlock"], "delivers_to": ["Alex Akiyama"] },
-      { "name": "Gamesight", "type": "external", "role": "Attribution", "responsible_for": ["Cohort attribution for D30 re-measure"], "depends_on": ["Product cohort export"], "delivers_to": ["Alex Akiyama (Davide pre-read)"] }
+      { "name": "Gamesight", "type": "external", "role": "BL4 creator program owner + attribution (Jennifer Zall, Director Creator Strategies)", "responsible_for": ["BL4 advocacy program ownership (1,200 active creators, 5,300+ apps vetted, 4,500+ pieces of content shipped to date)", "SP1 sustain creator tier — quarterly refresh of the BL4 advocacy pool", "Cohort attribution for D30 re-measure", "Daily attribution report into Joshua Maresca (2K Sr Mgr, Influencer/Creator Marketing) + Alex Akiyama"], "depends_on": ["Product cohort export"], "delivers_to": ["Joshua Maresca (2K)", "Alex Akiyama (Davide pre-read)"] }
     ],
     "lifecycle": {
       "planning_start": "2026-05-15",
@@ -122,7 +122,7 @@
   {
     "beat_id": "bl4_mad_ellie_seo_hub_remediation",
     "title_id": "borderlands",
-    "beat_name": "Story Pack 1 Strategy Hub — SEO Residue Sweep",
+    "beat_name": "Mad Ellie SP1 Strategy Hub — SEO Residue Sweep",
     "phase": "launch_push",
     "start_date": "2026-06-01",
     "end_date": "2026-07-15",
@@ -403,7 +403,7 @@
     "end_date": "2026-10-31",
     "status": "planning",
     "lead_owner": "Brand Marketing",
-    "summary": "Story Pack 2 reveal window scoping. Story Pack 1 strategy hub SEO must be healthy before this lands.",
+    "summary": "Story Pack 2 reveal window scoping. Mad Ellie SP1 strategy hub SEO must be healthy before this lands.",
     "budget_usd": 90000,
     "vendor_ids": []
   },

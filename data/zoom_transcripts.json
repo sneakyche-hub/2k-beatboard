@@ -96,7 +96,7 @@
   {
     "transcript_id": "bl4_mad_ellie_sp1_launch_readiness",
     "title_id": "borderlands",
-    "meeting_title": "Borderlands 4 Story Pack 1 — Launch Readiness Check",
+    "meeting_title": "Borderlands 4 Story Pack 1: Mad Ellie and the Vault of the Damned — Launch Readiness Check",
     "meeting_date": "2026-03-24",
     "duration_minutes": 52,
     "featured": true,
@@ -109,17 +109,17 @@
       { "name": "Marcus Lee", "role": "Community Lead" }
     ],
     "exchanges": [
-      { "speaker": "Davide Detta", "text": "Two days out from Story Pack 1. Tomás, start with the funnel — where's the base BL4 cohort coming in?" },
-      { "speaker": "Tomás Vega", "text": "Base BL4 D30 retention right now is 13.8%, slightly under our 14% gate but trending in the right direction WoW. Story Pack 1 standalone page wishlist velocity is 1,650/day, up 18% over the last 7 days. Capsule CTR on the SP1 page is 5.4%, above our 5% benchmark. We're a green light on top-of-funnel." },
+      { "speaker": "Davide Detta", "text": "Two days out from Mad Ellie SP1. Tomás, start with the funnel — where's the base BL4 cohort coming in?" },
+      { "speaker": "Tomás Vega", "text": "Base BL4 D30 retention right now is 13.8%, slightly under our 14% gate but trending in the right direction WoW. Mad Ellie SP1 standalone page wishlist velocity is 1,650/day, up 18% over the last 7 days. Capsule CTR on the SP1 page is 5.4%, above our 5% benchmark. We're a green light on top-of-funnel." },
       { "speaker": "Alex Akiyama", "text": "Maya, creator activation — final state?" },
-      { "speaker": "Maya Reyes", "text": "Locked. Top tier: Shroud, Summit1G, LIRIK, TheBurntPeanut — they get the early-access build Thursday for the launch-day co-op stream Friday. Earned tier: 67 additional creators across YouTube, VoD, and social, each with bespoke briefs and code drops. Same playbook structure as the BL4 main launch — that worked, no reason to reinvent it." },
+      { "speaker": "Maya Reyes", "text": "Locked, working inside the Gamesight 1,200-creator advocacy program. The 71-creator SP1 launch tier breaks out as: Tier 1 anchor stream — Shroud, Summit1G, LIRIK, TheBurntPeanut on the Friday co-op stream covering Mad Ellie / C4SH the Rogue / Whispering Glacier, early-access build Thursday. Earned tier: 67 additional creators across YouTube, VoD, and social, each with bespoke briefs and code drops — Open World runs the Tier 1 anchor-stream production, Gamesight owns the program-of-record across all 71. @TotallyTubularJonathan in the earned tier as a marquee BL voice. Same advocacy playbook structure as the BL4 main launch — that worked, no reason to reinvent it." },
       { "speaker": "Davide Detta", "text": "Daniel — paid plan?" },
       { "speaker": "Daniel Okafor", "text": "Launch week we're at $185K across TikTok, YouTube, and CPMStar in-game placements. CTA is 'Play Now' for the base cohort + 'Wishlist + Play' for first-time-to-Borderlands traffic. Spark Ads boost on the top 5 creator hooks goes live Sunday based on D1 performance signals." },
-      { "speaker": "Tomás Vega", "text": "One thing I want to flag — UTM taxonomy on the creator codes. We rebuilt the schema after Q1 and I want to be sure Gamesight is reading every creator-attributed click cleanly. Last cycle we had three broken codes that under-attributed by about 8% of the creator pool. Doing one more audit pass tomorrow." },
+      { "speaker": "Tomás Vega", "text": "One thing I want to flag — UTM taxonomy on the creator codes. We rebuilt the schema after Q1 and I want to be sure Gamesight is reading every creator-attributed click cleanly across the 71-creator SP1 launch tier. Hideki at Gamesight is running the audit; Jennifer Zall is in the loop on program side, Joshua Maresca on ours. Last cycle we had three broken codes that under-attributed by about 8% of the creator pool. Doing one more audit pass tomorrow." },
       { "speaker": "Alex Akiyama", "text": "Add a ticket for that — Gamesight UTM audit, you own, by EOD Thursday so we're clean before launch." },
-      { "speaker": "Marcus Lee", "text": "On the community side — sentiment monitoring is set up. 1-hour acknowledgement SLA per the playbook. Top 5 expected complaint clusters are pre-bucketed based on the launch survey (loot drop rates, mission length, the new traversal mechanic, the boss pacing, and the SP1-specific cosmetics monetization). We have draft responses for each ready to go." },
-      { "speaker": "Davide Detta", "text": "Good. And on the SP1 cosmetics — is the messaging clean? I don't want to relive Borderlands 3 launch week." },
-      { "speaker": "Marcus Lee", "text": "Cosmetics are framed as the optional cosmetic track, not the gameplay track. Gameplay-affecting items are all in the SP1 base content. We tested the messaging on the BL4 Discord council and it landed clean." },
+      { "speaker": "Marcus Lee", "text": "On the community side — sentiment monitoring is set up. 1-hour acknowledgement SLA per the playbook. Top 5 expected complaint clusters are pre-bucketed based on the launch survey (Mad Ellie SP1 loot drop rates, mission length, the Whispering Glacier traversal mechanic, Mancubus Bloodtooth boss pacing, and the Vault Hunter Pack cosmetics monetization). We have draft responses for each ready to go." },
+      { "speaker": "Davide Detta", "text": "Good. And on the Vault Hunter Pack cosmetics — is the messaging clean? I don't want to relive Borderlands 3 launch week." },
+      { "speaker": "Marcus Lee", "text": "Cosmetics are framed as the optional Vault Hunter Pack track (also rolled into Super Deluxe Edition), not the gameplay track. Gameplay-affecting items — Mad Ellie story beats, C4SH the Rogue unlock, Whispering Glacier missions, Mancubus boss — are all in the SP1 base content. We tested the messaging on the BL4 Discord council and it landed clean." },
       { "speaker": "Alex Akiyama", "text": "CPMStar — Daniel, are they briefed on the in-game placement schedule? I want the placement schedule for the sustain window locked too, not just launch." },
       { "speaker": "Daniel Okafor", "text": "Launch week placements are locked. Sustain window — June through August — schedule is in draft, I'll have it to CPMStar by EOD Monday." },
       { "speaker": "Davide Detta", "text": "Last thing — Phase 2 paid surge is gated on D30 retention hitting 14%. If we come in under, we hold. No exceptions, no 'just push 10% more,' no 'one more weekend.' Discipline." },
@@ -134,18 +134,18 @@
     "extracted_tickets": [
       {
         "proposed_ticket_id": "BL-PROP-001",
-        "title": "Confirm Open World Story Pack 1 creator activation list final-locked + briefs out",
+        "title": "Confirm Gamesight Mad Ellie SP1 71-creator launch tier final-locked + briefs out (Open World Tier 1 anchor stream sub-vendor)",
         "owner": "Manager, NA Integrated Marketing",
         "due_in_days": 2,
         "priority": "P0",
-        "vendor_owner": "Open World",
+        "vendor_owner": "Gamesight",
         "linked_kpi": "mad_ellie_creator_reach",
-        "rationale": "Top tier (Shroud, Summit, LIRIK, TheBurntPeanut) get early-access build Thursday for Friday co-op stream. 67 earned-tier creators need bespoke briefs + code drops same window. Final lock confirmation has to be routed before EOD Wednesday or the build delivery slips.",
-        "source_quote": "Top tier: Shroud, Summit1G, LIRIK, TheBurntPeanut — they get the early-access build Thursday for the launch-day co-op stream Friday."
+        "rationale": "71-creator SP1 launch tier is a subset of Gamesight's 1,200-creator BL4 advocacy program. Tier 1 anchor stream (Shroud, Summit1G, LIRIK, TheBurntPeanut) produced by Open World gets early-access build Thursday for Friday co-op stream covering Mad Ellie / C4SH the Rogue / Whispering Glacier. 67 earned-tier creators need bespoke briefs + code drops same window — @TotallyTubularJonathan marquee. Final lock confirmation has to be routed before EOD Wednesday or the build delivery slips. Jennifer Zall (Gamesight) + Joshua Maresca (2K) co-own program governance.",
+        "source_quote": "Tier 1 anchor stream — Shroud, Summit1G, LIRIK, TheBurntPeanut on the Friday co-op stream covering Mad Ellie / C4SH the Rogue / Whispering Glacier, early-access build Thursday."
       },
       {
         "proposed_ticket_id": "BL-PROP-002",
-        "title": "Validate Story Pack 1 Steam capsule hits ≥5% CTR benchmark on launch day",
+        "title": "Validate Mad Ellie SP1 Steam capsule hits ≥5% CTR benchmark on launch day",
         "owner": "Brand Marketing",
         "due_in_days": 3,
         "priority": "P1",
@@ -156,7 +156,7 @@
       },
       {
         "proposed_ticket_id": "BL-PROP-003",
-        "title": "Gamesight UTM audit on all Story Pack 1 creator codes — pre-launch",
+        "title": "Gamesight UTM audit on all Mad Ellie SP1 creator codes — pre-launch (cc Jennifer Zall, Joshua Maresca)",
         "owner": "Performance Marketing",
         "due_in_days": 4,
         "priority": "P1",
@@ -167,7 +167,7 @@
       },
       {
         "proposed_ticket_id": "BL-PROP-004",
-        "title": "Sentiment monitoring plan — Story Pack 1 launch first 72h, 1hr ack SLA, top-5 complaint clusters pre-bucketed",
+        "title": "Sentiment monitoring plan — Mad Ellie SP1 launch first 72h, 1hr ack SLA, top-5 complaint clusters pre-bucketed",
         "owner": "Community Lead",
         "due_in_days": 7,
         "priority": "P1",
@@ -178,7 +178,7 @@
       },
       {
         "proposed_ticket_id": "BL-PROP-005",
-        "title": "Brief CPMStar on Story Pack 1 in-game placement schedule for sustain window (June–Aug)",
+        "title": "Brief CPMStar on Mad Ellie SP1 in-game placement schedule for sustain window (June–Aug, Whispering Glacier endgame content beat)",
         "owner": "External Agency (CPMStar)",
         "due_in_days": 5,
         "priority": "P2",
@@ -301,7 +301,7 @@
     "exchanges": [
       { "speaker": "Alex Akiyama", "text": "Quick lap. Civ Test of Time launched yesterday — Priya, anything we need to escalate this week?" },
       { "speaker": "Priya Iyer", "text": "Just the Brand Creative asset slip on the NA creator hero cut. Otherwise everything is well above gates." },
-      { "speaker": "Tomás Vega", "text": "Story Pack 1 D30 read for the launch cohort: 9.8%. Under the 14% gate. Holding Phase 2 — flagging the Horrors of Kairos window as the natural re-entry point if Patch 1.2 clears it." },
+      { "speaker": "Tomás Vega", "text": "Mad Ellie SP1 D30 read for the launch cohort: 9.8%. Under the 14% gate. Holding Phase 2 — flagging the Whispering Glacier endgame content beat window as the natural re-entry point if Patch 1.2 clears it." },
       { "speaker": "Marcus Lee", "text": "Wonderlands DLC slips to July 10. Comms plan drafted, going through review this week." },
       { "speaker": "Alex Akiyama", "text": "Risk of Rain Free Weekend kickoff prep — Lurkit brief out by Wednesday, CreatorIQ shortlist Friday." }
     ],

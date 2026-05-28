@@ -40,7 +40,7 @@
     "tickets_completed_this_week": { "current": 22, "trend_4wk": [18, 21, 19, 22] }
   },
   "decisions_pending_director": [
-    { "decision_id": "dec_mad_ellie_surge", "title_id": "borderlands", "summary": "Story Pack 1 Phase 2 paid surge $180K hold vs go (Horrors of Kairos window)", "due_date": "2026-06-05" },
+    { "decision_id": "dec_mad_ellie_surge", "title_id": "borderlands", "summary": "Mad Ellie SP1 Phase 2 paid surge $180K hold vs go (Whispering Glacier endgame content beat window)", "due_date": "2026-06-05" },
     { "decision_id": "dec_wonderlands_comms", "title_id": "wonderlands", "summary": "DLC delay comms re-announce sign-off", "due_date": "2026-05-29" },
     { "decision_id": "dec_mafia_refresh", "title_id": "mafia", "summary": "$120K creative refresh tranche GO/NO-GO", "due_date": "2026-06-01" },
     { "decision_id": "dec_civ_asset_backup", "title_id": "civilization", "summary": "Test of Time hero cut — Brand final vs Open World v2 backup", "due_date": "2026-05-25" }

@@ -7,8 +7,8 @@
     "timestamp": "2026-05-22T08:15:00Z",
     "title_id": null,
     "flagged_for_action": true,
-    "thread_summary": "Davide wants the standard rollup format Tuesday: portfolio health, top 3 risks, decisions pending. Asked specifically for the Story Pack 1 D30 read and the Wonderlands comms framing draft.",
-    "claude_recommended_reply": "Confirmed for Tuesday. Will package: (1) portfolio health one-pager, (2) top 3 risks with recommended actions, (3) decision asks — Story Pack 1 Phase 2 hold (Horrors of Kairos window), Wonderlands comms sign-off, Mafia: TOC June 1 GO/NO-GO setup. Wonderlands draft will land in your inbox Friday EOD per separate thread."
+    "thread_summary": "Davide wants the standard rollup format Tuesday: portfolio health, top 3 risks, decisions pending. Asked specifically for the Mad Ellie SP1 D30 read and the Wonderlands comms framing draft.",
+    "claude_recommended_reply": "Confirmed for Tuesday. Will package: (1) portfolio health one-pager, (2) top 3 risks with recommended actions, (3) decision asks — Mad Ellie SP1 Phase 2 hold (Whispering Glacier endgame content beat window), Wonderlands comms sign-off, Mafia: TOC June 1 GO/NO-GO setup. Wonderlands draft will land in your inbox Friday EOD per separate thread."
   },
   {
     "thread_id": "thread_brand_creative_chase",
@@ -34,7 +34,7 @@
   },
   {
     "thread_id": "thread_heaven_mad_ellie_phase2",
-    "subject": "RE: Story Pack 1 Phase 2 — pause acknowledged",
+    "subject": "RE: Mad Ellie SP1 Phase 2 — pause acknowledged",
     "from": "Daniel Okafor <daniel.okafor@heavenmedia.com>",
     "to": ["Alex Akiyama <alex.akiyama@2k.com>", "Tomás Vega <tomas.vega@2k.com>"],
     "timestamp": "2026-05-22T09:48:00Z",
@@ -111,24 +111,24 @@
   },
   {
     "thread_id": "thread_xsolla_rainmaker_bl_storefronts",
-    "subject": "RE: Story Pack 1 cosmetic storefronts — affiliate creator pool",
+    "subject": "RE: Mad Ellie SP1 cosmetic storefronts — affiliate creator pool",
     "from": "Sofia Ramos <sofia.ramos@xsolla.com>",
     "to": ["Alex Akiyama <alex.akiyama@2k.com>"],
     "timestamp": "2026-05-20T11:30:00Z",
     "title_id": "borderlands",
     "flagged_for_action": false,
-    "thread_summary": "Xsolla x Rainmaker: 220 affiliate creators activated for Story Pack 1 cosmetic + Gilded Glory Pack storefronts. Rev-share live, no upfront. First-week GMV tracking $48K.",
+    "thread_summary": "Xsolla x Rainmaker: 220 affiliate creators activated for Mad Ellie SP1 cosmetic + Vault Hunter Pack (Super Deluxe Edition) storefronts. Rev-share live, no upfront. First-week GMV tracking $48K.",
     "claude_recommended_reply": null
   },
   {
     "thread_id": "thread_gamesight_utm_clean",
-    "subject": "Story Pack 1 creator UTM audit — clean read",
+    "subject": "Mad Ellie SP1 creator UTM audit — clean read (cc Jennifer Zall, Joshua Maresca)",
     "from": "Hideki Tanaka <hideki.tanaka@gamesight.io>",
     "to": ["Tomás Vega <tomas.vega@2k.com>", "Alex Akiyama <alex.akiyama@2k.com>"],
     "timestamp": "2026-05-19T15:00:00Z",
     "title_id": "borderlands",
     "flagged_for_action": false,
-    "thread_summary": "Gamesight: 67 of 71 Story Pack 1 creator codes resolving cleanly. 4 outliers in remediation — issue isolated to two YouTube redirect chains. Fix shipping Wednesday.",
+    "thread_summary": "Gamesight: 67 of 71 Mad Ellie SP1 launch-tier creator codes resolving cleanly (the SP1 tier is a subset of the broader 1,200-creator BL4 advocacy program Gamesight runs). 4 outliers in remediation — issue isolated to two YouTube redirect chains. Fix shipping Wednesday. Jennifer Zall (Director Creator Strategies) and Joshua Maresca (2K Sr Mgr Influencer/Creator Marketing) cc'd for visibility.",
     "claude_recommended_reply": null
   },
   {

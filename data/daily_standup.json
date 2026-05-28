@@ -1,9 +1,9 @@
 {
   "standup_date": "2026-05-26",
-  "portfolio_health_summary": "Tue May 26. 5 titles on track, 2 at risk (BL4 Story Pack 1, Mafia: TOC sustain), 1 blocked (Wonderlands DLC). This week the desk is coordinating BL4 Story Pack 1 Phase 2 surge GO/NO-GO for Davide (Jun 5, timed to the Horrors of Kairos expansion window), the Wonderlands delay re-announce (sign-off owed Fri), Mafia creative refresh (Davide call Jun 1), and the Civ VII Test of Time launch tail.",
+  "portfolio_health_summary": "Tue May 26. 5 titles on track, 2 at risk (BL4 Mad Ellie SP1, Mafia: TOC sustain), 1 blocked (Wonderlands DLC). This week the desk is coordinating BL4 Mad Ellie SP1 Phase 2 surge GO/NO-GO for Davide (Jun 5, timed to the Whispering Glacier endgame content beat window), the Wonderlands delay re-announce (sign-off owed Fri), Mafia creative refresh (Davide call Jun 1), and the Civ VII Test of Time launch tail.",
   "standup_brief": {
     "tracking": [
-      "BL4 Story Pack 1 Phase 2 paid surge (Horrors of Kairos expansion window): Davide GO/NO-GO Jun 5. D30 9.8% vs 14% gate is the blocker.",
+      "BL4 Mad Ellie SP1 Phase 2 paid surge (Whispering Glacier endgame content beat window): Davide GO/NO-GO Jun 5. D30 9.8% vs 14% gate is the blocker.",
       "Wonderlands DLC re-announce comms: Davide sign-off owed EOD Fri May 29. Marcus drafting, 65K wishlisters on standalone page.",
       "Mafia: TOC creative refresh: Heaven concepts in Brand QA, Davide GO/NO-GO Jun 1 on next $120K tranche.",
       "Civ VII Test of Time free-update tail (D7 today; shipped May 19): reviews 87% trending up, peak CCU 102K, Time-Tested Civs multiplayer premiere Thu May 28 (PotatoMcWhiskey + ursagaming + Boesthius + Quill18), Triumphs system deep-dive premieres Sat May 30."
@@ -42,7 +42,7 @@
       {
         "time_iso": "2026-05-26T15:30:00Z",
         "time_label": "3:30 PM",
-        "title": "Heaven Media — BL4 Story Pack 1 Phase 2 pause confirmation",
+        "title": "Heaven Media — BL4 Mad Ellie SP1 Phase 2 pause confirmation",
         "attendees": ["Marketing Mgr II", "Heaven Media"],
         "topic": "Confirm Phase 2 paid is paused, no refresh kickoff until Davide call Jun 5",
         "prep_status": "ready",
@@ -93,7 +93,7 @@
       },
       {
         "owner": "Marketing Mgr II",
-        "task": "Heaven Media Story Pack 1 pause-brief: confirm Phase 2 paid is paused pending Davide call (Horrors of Kairos window), no creative refresh kickoff.",
+        "task": "Heaven Media Mad Ellie SP1 pause-brief: confirm Phase 2 paid is paused pending Davide call (Whispering Glacier endgame content beat window), no creative refresh kickoff.",
         "linked_ticket_id": "BL-2418"
       },
       {
@@ -137,7 +137,7 @@
       },
       {
         "title_id": "borderlands",
-        "blocker": "Story Pack 1 Phase 2 surge held pending Patch 1.2 + D30 re-measure Jun 12. No paid kickoff (Horrors of Kairos window) until Davide call Jun 5.",
+        "blocker": "Mad Ellie SP1 Phase 2 surge held pending Patch 1.2 + D30 re-measure Jun 12. No paid kickoff (Whispering Glacier endgame content beat window) until Davide call Jun 5.",
         "owner": "Alex",
         "needed_from": "Davide Detta",
         "by": "2026-06-05"
@@ -165,7 +165,7 @@
     "campaigns": [
       {
         "title_id": "borderlands",
-        "campaign_name": "BL4 Story Pack 1 sustain (Phase 1)",
+        "campaign_name": "BL4 Mad Ellie SP1 sustain (Phase 1)",
         "phase": "execution",
         "committed_this_week_usd": 95000,
         "spent_to_date_usd": 71200,
@@ -244,7 +244,7 @@
     {
       "decision_id": "dec_bl4_phase2_surge",
       "title_id": "borderlands",
-      "decision": "Release BL4 Story Pack 1 Phase 2 paid surge ($180K) — Horrors of Kairos expansion window",
+      "decision": "Release BL4 Mad Ellie SP1 Phase 2 paid surge ($180K) — Whispering Glacier endgame content beat window",
       "tranche_amount_usd": 180000,
       "decision_owner": "Davide Detta",
       "decision_date": "2026-06-05",
@@ -305,7 +305,7 @@
   "by_title": [
     {
       "title_id": "borderlands",
-      "claude_blurb": "**Next:** June 5. Davide GO/NO-GO on BL4 Story Pack 1 Phase 2 paid surge — timed to the Horrors of Kairos expansion window. D30 retention 9.8% vs 14% gate is the blocker. Top-line still strong (82% reviews, 1840/day wishlist velocity on Story Pack 1 standalone page). Flagging for Davide: recommend Phase 2 surge hold until Patch 1.2 ships and we re-measure D30 cohort Jun 12. Heaven Media pre-warned, brief is paused. Open World creator activation closed clean (71-creator launch playbook: Shroud, Summit1G, LIRIK, TheBurntPeanut co-op vault stream + 67 earned seeds), Switch 2 Vex capture cuts performing strongly on social, no breakage on codes.",
+      "claude_blurb": "**Next:** June 5. Davide GO/NO-GO on BL4 Mad Ellie SP1 Phase 2 paid surge — timed to the Whispering Glacier endgame content beat window. D30 retention 9.8% vs 14% gate is the blocker. Top-line still strong (82% reviews, 1840/day wishlist velocity on Mad Ellie and the Vault of the Damned standalone page). Flagging for Davide: recommend Phase 2 surge hold until Patch 1.2 ships and we re-measure D30 cohort Jun 12. Heaven Media pre-warned, brief is paused. Creator activation closed clean (Gamesight-organized program, 71-creator SP1 launch tier drawn from the 1,200-creator BL4 advocacy pool: Shroud, Summit1G, LIRIK, TheBurntPeanut anchor co-op vault stream produced by Open World + 67 Gamesight-seeded earned wave, @TotallyTubularJonathan-style narrative VoDs leading the long-tail mix), Switch 2 C4SH the Rogue reveal cuts performing strongly on social, no breakage on codes.",
       "phase_gate_check": {
         "kpi_label": "D30 retention",
         "threshold": "≥ 14%",
@@ -406,9 +406,9 @@
       "title_id": "borderlands",
       "severity": "high",
       "risk_type": "leaky_bucket",
-      "headline": "BL4 Story Pack 1 leaky bucket: D30 9.8% under 14% gate",
-      "detail": "Top of funnel fine (1,840/day wishlist on Story Pack 1 standalone page, 82% reviews). This is a retention problem, not awareness. Pushing more paid into a cohort that isn't sticking burns budget — especially with Horrors of Kairos expansion window still 3 weeks out.",
-      "recommended_action": "Flagging for Davide. Recommend Phase 2 $180K surge hold. Hand-off plan to Heaven: pause brief, re-measure D30 on Patch 1.2 cohort (target Jun 12), unlock spend if gate clears in time for the Horrors of Kairos window. Drafted Slack pre-warning to #borderlands-sp1.",
+      "headline": "BL4 Mad Ellie SP1 leaky bucket: D30 9.8% under 14% gate",
+      "detail": "Top of funnel fine (1,840/day wishlist on Mad Ellie and the Vault of the Damned standalone page, 82% reviews). This is a retention problem, not awareness. Pushing more paid into a cohort that isn't sticking burns budget — especially with Whispering Glacier endgame content beat still 3 weeks out.",
+      "recommended_action": "Flagging for Davide. Recommend Phase 2 $180K surge hold. Hand-off plan to Heaven: pause brief, re-measure D30 on Patch 1.2 cohort (target Jun 12), unlock spend if gate clears in time for the Whispering Glacier window. Drafted Slack pre-warning to #borderlands-sp1.",
       "escalation_draft_id": "draft_mad_ellie_surge_hold"
     },
     {
@@ -446,16 +446,16 @@
       "title_id": "borderlands",
       "severity": "low",
       "risk_type": "narrative_drift",
-      "headline": "Narrative drift: BL3 endgame coverage still ranking ahead of BL4 Story Pack 1 pages",
-      "detail": "SEO residue from old BL3 'best endgame guides' content outranking the BL4 Story Pack 1 strategy hub on long-tail queries (Harlowe/Vex/Timekeeper terms still soft). Not urgent but accumulating ahead of the Horrors of Kairos window.",
+      "headline": "Narrative drift: BL3 endgame coverage still ranking ahead of BL4 Mad Ellie SP1 pages",
+      "detail": "SEO residue from old BL3 'best endgame guides' content outranking the BL4 Mad Ellie SP1 strategy hub on long-tail queries (Harlowe/Vex/C4SH the Rogue/Whispering Glacier/Mancubus Bloodtooth terms still soft). Not urgent but accumulating ahead of the Whispering Glacier endgame content beat.",
       "recommended_action": "Drafted brief for #2k-na-integrated proposing 4-week content seeding push + internal SEO link decoupling. Looping Comms in for ownership. Flagging for your awareness: no decision needed.",
       "escalation_draft_id": "draft_bl4_seo_residue_brief"
     }
   ],
   "kpi_movements": [
     { "kpi_label": "Civ VII Test of Time review score (D7)", "value": "87%", "delta": "+2pp WoW", "direction": "up" },
-    { "kpi_label": "BL4 Story Pack 1 wishlist velocity", "value": "1,840/day", "delta": "+12% WoW", "direction": "up" },
-    { "kpi_label": "BL4 Story Pack 1 D30 retention", "value": "9.8%", "delta": "-1.4pp WoW", "direction": "down" },
+    { "kpi_label": "BL4 Mad Ellie SP1 wishlist velocity", "value": "1,840/day", "delta": "+12% WoW", "direction": "up" },
+    { "kpi_label": "BL4 Mad Ellie SP1 D30 retention", "value": "9.8%", "delta": "-1.4pp WoW", "direction": "down" },
     { "kpi_label": "Wonderlands D7 retention", "value": "24.1%", "delta": "-3pp WoW (under watch)", "direction": "down" },
     { "kpi_label": "Mafia: TOC ROAS (rolling 7d)", "value": "1.87", "delta": "-22% WoW", "direction": "down" },
     { "kpi_label": "Civ VII Test of Time peak CCU", "value": "102,400", "delta": "+8% vs target", "direction": "up" },
@@ -467,7 +467,7 @@
       "escalation_draft_id": "draft_mad_ellie_surge_hold",
       "channel": "slack",
       "recipient": "#borderlands-sp1",
-      "summary": "Pre-warn team: Story Pack 1 Phase 2 surge hold recommended pending Davide call"
+      "summary": "Pre-warn team: Mad Ellie SP1 Phase 2 surge hold recommended pending Davide call"
     },
     {
       "escalation_draft_id": "draft_wonderlands_dlc_delay_comms",

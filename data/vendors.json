@@ -8,7 +8,7 @@
     "assigned_titles": ["borderlands", "civilization"],
     "current_engagements": [
       { "beat_id": "civ7_test_of_time_creator_campaign_na", "role": "Lead creator agency — NA Test of Time creator campaign + Time-Tested Civs multiplayer premiere production (PotatoMcWhiskey + ursagaming + Boesthius + Quill18, May 28) + Triumphs system deep-dive premieres (May 30) + 38 Civ-native earned seeds" },
-      { "beat_id": "bl4_mad_ellie_sp1_launch", "role": "Creator activation lead — replays BL4 launch playbook: 71 creators (Shroud + Summit1G + LIRIK + TheBurntPeanut cooperative vault stream + 67 earned VoD/comedian/artist seeds)" },
+      { "beat_id": "bl4_mad_ellie_sp1_launch", "role": "Tier 1 anchor stream production for the Mad Ellie SP1 71-creator launch tier (Shroud + Summit1G + LIRIK + TheBurntPeanut cooperative vault stream + 67 earned VoD/comedian/artist seeds) — operating inside the 1,200-creator BL4 advocacy program organized by Gamesight" },
       { "beat_id": "bl4_fanfest_q3_2026_planning", "role": "FanFest event production — modeled on the BL4 launch FanFest (103 creators across Novato + Sydney capture + 3-day LA Fan Fest, streamers/cosplayers/mixologists/cooks/prop makers)" }
     ],
     "active_tickets_count": 12,
@@ -24,7 +24,7 @@
     "services": ["Lead UA agency", "Creator management", "Paid media planning + execution", "Creative + data + strategy"],
     "assigned_titles": ["borderlands", "mafia", "wonderlands"],
     "current_engagements": [
-      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "Lead UA for the BL4 Story Pack 1 sustain window (Phase 2 paid surge held pending D30, timed to Horrors of Kairos expansion window)" },
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "Lead UA for the BL4 Mad Ellie SP1 sustain window (Phase 2 paid surge held pending D30, timed to Whispering Glacier endgame content beat window)" },
       { "beat_id": "mafia_toc_q2_sustain_push", "role": "Paid creative refresh — 3 concepts in QA, GO/NO-GO June 1" },
       { "beat_id": "wonderlands_gluttons_gamble_encore_drop", "role": "Paid plan to align with new July 10 drop window" }
     ],
@@ -57,7 +57,7 @@
     "services": ["Gaming-native ad network", "In-game video placements", "Geo + behavioral targeting at scale"],
     "assigned_titles": ["borderlands", "risk-of-rain"],
     "current_engagements": [
-      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "In-game placement schedule for BL4 Story Pack 1 sustain window (Jun–Aug)" },
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "In-game placement schedule for BL4 Mad Ellie SP1 sustain window (Jun–Aug)" },
       { "beat_id": "ror2_seekers_storm_free_weekend", "role": "Pre-Free-Weekend awareness push across browser FPS/co-op adjacency (planned)" }
     ],
     "active_tickets_count": 3,
@@ -89,7 +89,7 @@
     "services": ["Revenue-share affiliate platform (5–30% commission)", "Nano-influencer creator storefronts", "Global payouts (100K+ creators, 50+ countries)"],
     "assigned_titles": ["borderlands", "mafia"],
     "current_engagements": [
-      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "Affiliate storefronts for Story Pack 1 cosmetic + Gilded Glory Pack post-launch monetization" }
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "Affiliate storefronts for Mad Ellie SP1 cosmetic + Vault Hunter Pack (Super Deluxe Edition) post-launch monetization" }
     ],
     "active_tickets_count": 2,
     "point_of_contact_name": "Sofia Ramos",
@@ -101,17 +101,19 @@
     "vendor_id": "gamesight",
     "name": "Gamesight",
     "url": "https://gamesight.io",
-    "services": ["Multi-touch attribution (80+ ad networks)", "Steamworks UTM integration", "Creator-level ROI + cohort retention", "Fraud detection"],
+    "services": ["BL4 creator advocacy program ownership (1,200 active creators, 5,300+ apps vetted, 4,500+ content pieces shipped)", "Multi-touch attribution (80+ ad networks)", "Steamworks UTM integration", "Creator-level ROI + cohort retention", "Fraud detection"],
     "assigned_titles": ["borderlands", "civilization", "mafia", "homeworld"],
     "current_engagements": [
-      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "UTM taxonomy + attribution for all BL4 Story Pack 1 paid + creator codes (incl. Switch 2 Vex capture cuts)" },
+      { "beat_id": "bl4_mad_ellie_sp1_launch", "role": "Program-of-record for the BL4 creator advocacy ecosystem — 1,200 active creators vetted from 5,300+ applications, 4,500+ pieces of creator content shipped to date. Mad Ellie SP1 71-creator launch tier was drawn from this pool (Jennifer Zall, Director Creator Strategies, with Joshua Maresca, 2K Sr Mgr Influencer/Creator Marketing). Philosophy: advocacy partnerships, not transactional buys. @TotallyTubularJonathan one of the named narrative VoD anchors." },
+      { "beat_id": "bl4_mad_ellie_sp1_sustain_window", "role": "BL4 creator program quarterly refresh + UTM taxonomy + attribution for all Mad Ellie SP1 paid + creator codes (incl. Switch 2 C4SH the Rogue reveal cuts)" },
       { "beat_id": "civ7_test_of_time_creator_campaign_na", "role": "Creator-level ROI tracking for Test of Time NA campaign (Time-Tested Civs multiplayer premiere + Triumphs deep-dive cohorts, cross-platform UTMs across Steam + Epic)" }
     ],
-    "active_tickets_count": 5,
-    "point_of_contact_name": "Hideki Tanaka",
-    "point_of_contact_email": "hideki.tanaka@gamesight.io",
+    "active_tickets_count": 6,
+    "point_of_contact_name": "Jennifer Zall (BL4 advocacy program) / Hideki Tanaka (attribution)",
+    "point_of_contact_email": "jennifer.zall@gamesight.io",
+    "internal_stakeholder": "Joshua Maresca — 2K Sr Mgr, Influencer/Creator Marketing",
     "status": "active",
-    "real_world_credential": "80+ ad networks, Steamworks integration, multi-touch attribution + cohort LTV forecasting."
+    "real_world_credential": "Designed and operates the Borderlands 4 creator advocacy program — 1,200 active creators vetted from 5,300+ applications, 4,500+ pieces of content shipped (per Gamesight × 2K case study). Also: 80+ ad networks, Steamworks integration, multi-touch attribution + cohort LTV forecasting."
   },
   {
     "vendor_id": "creatoriq",
