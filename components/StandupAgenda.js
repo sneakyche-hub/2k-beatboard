@@ -27,6 +27,7 @@ import {
   MapPin,
   Plus,
   X,
+  Mail,
 } from "lucide-react";
 
 // -------------------------------------------------------------------
@@ -304,6 +305,13 @@ export default function StandupAgenda() {
           >
             <FileText className="h-3.5 w-3.5" />
             Full digest
+          </Link>
+          <Link
+            href="/brief/weekly"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-line bg-white text-[12px] font-medium text-ink-700 hover:border-accent-primary hover:text-accent-primary transition-colors"
+          >
+            <Mail className="h-3.5 w-3.5" />
+            Weekly update
           </Link>
           <button
             type="button"

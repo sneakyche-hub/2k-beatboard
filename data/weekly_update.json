@@ -1,0 +1,139 @@
+{
+  "week_ending": "2026-05-29",
+  "week_label": "May 25 – 29",
+  "from": "Alex Akiyama, Manager, Integrated Marketing (NA)",
+  "to": ["Davide Detta (Sr Mgr)", "Marketing Manager II (peer)"],
+  "cc": ["Brand Marketing", "Comms Lead", "Marcus Lee (Community)"],
+  "drafted_at": "2026-05-29T16:30:00Z",
+  "status": "ready_to_send",
+  "subject_line": "NA Integrated · Week of May 25 — BL4 hold confirmed, Wonderlands re-announce shipped, Test of Time tracking above plan",
+  "headline": "BL4 Mad Ellie SP1 surge hold confirmed; Wonderlands DLC re-announce shipped clean; Test of Time tracking above plan into D7.",
+  "narrative_arc": "Two intentional holds (BL4 Phase 2, Mafia tranche) and one shipped recovery (Wonderlands re-announce) define the week. Test of Time continues to outperform on review score and CCU — that's the budget headroom that lets us hold the BL4 surge without dragging the portfolio. Next week is decision-heavy: Mafia $120K tranche call Jun 1, BL4 Phase 2 $180K surge call Jun 5.",
+  "wins_this_week": [
+    {
+      "headline": "Wonderlands DLC re-announce shipped clean",
+      "detail": "Marcus draft v2 signed off by Davide Fri AM; comms posted with Sentiment Defense framing. 1hr community ack window closed without escalation. 65K standalone-page wishlisters notified via Steam date-shift.",
+      "linked_ticket_ids": ["WND-1782"],
+      "title_id": "wonderlands"
+    },
+    {
+      "headline": "Civ VII Test of Time D7 retention 33.6% (target 30%)",
+      "detail": "Time-Tested Civs multiplayer premiere Thu landed 18K concurrent (PotatoMcWhiskey + ursagaming + Boesthius + Quill18). Review score 87% up 2pp WoW. Test of Time tail clearing every gate.",
+      "linked_ticket_ids": ["CIV-1934"],
+      "title_id": "civilization"
+    },
+    {
+      "headline": "Mafia refresh concepts cleared Brand QA",
+      "detail": "Heaven's 3 refresh concepts cleared Brand QA Thu; ROAS readout packaged on MAF-1010 for Davide pre-read. Ready for Jun 1 GO/NO-GO.",
+      "linked_ticket_ids": ["MAF-1010"],
+      "title_id": "mafia"
+    },
+    {
+      "headline": "Cohort fatigue post-mortem closed",
+      "detail": "TOC vs Mafia 2 launch creative comparison documented; findings feed the Mafia refresh recommendation. Pattern: paid CPI drift precedes ROAS decay by 2-3 weeks across the sustain catalog.",
+      "linked_ticket_ids": ["MAF-PROP-002"],
+      "title_id": "mafia"
+    }
+  ],
+  "intentional_holds": [
+    {
+      "headline": "BL4 Mad Ellie SP1 Phase 2 paid surge on hold",
+      "detail": "D30 retention 9.8% vs 14% gate. Heaven Phase 2 pause-brief confirmed in writing Tue; no creative kickoff until Davide call Jun 5. Patch 1.2 D30 re-measure Jun 12. Top-of-funnel remains strong (1,840/day wishlist, 82% reviews) — this is a retention problem, not awareness.",
+      "linked_ticket_ids": ["BL-2418", "BL-2495"],
+      "title_id": "borderlands"
+    }
+  ],
+  "decisions_made_this_week": [
+    {
+      "what": "Test of Time hero-cut handoff path",
+      "outcome": "go",
+      "decided_by": "Alex Akiyama",
+      "decided_at": "2026-05-26",
+      "rationale": "Chase Brand by EOD Tue, default to Open World v2 cut if not in hand. Brand delivered 6:42 PM; backup not needed.",
+      "linked_decision_id": "dec_civ_tot_asset_backup_path"
+    }
+  ],
+  "decisions_open_into_next_week": [
+    {
+      "what": "Mafia TOC next $120K creative refresh tranche",
+      "owner": "Davide Detta",
+      "by": "2026-06-01",
+      "linked_decision_id": "dec_mafia_toc_jun1_tranche",
+      "alex_recommendation": "GO — concepts cleared Brand QA, ROAS path is the right one. Recommend smaller pilot at $40K first 2 weeks before full tranche release."
+    },
+    {
+      "what": "BL4 Mad Ellie SP1 Phase 2 paid surge ($180K)",
+      "owner": "Davide Detta",
+      "by": "2026-06-05",
+      "linked_decision_id": "dec_bl4_phase2_surge",
+      "alex_recommendation": "HOLD pending Patch 1.2 D30 re-measure Jun 12. Recommend re-spec around Whispering Glacier endgame window rather than spending into current cohort."
+    }
+  ],
+  "kpi_movements_week": [
+    { "kpi": "Civ VII Test of Time review score (D7)", "value": "87%", "delta": "+2pp WoW", "direction": "up" },
+    { "kpi": "Civ VII Test of Time peak CCU", "value": "102,400", "delta": "+8% vs target", "direction": "up" },
+    { "kpi": "BL4 Mad Ellie SP1 wishlist velocity", "value": "1,840/day", "delta": "+12% WoW", "direction": "up" },
+    { "kpi": "BL4 Mad Ellie SP1 D30 retention", "value": "9.8%", "delta": "-1.4pp WoW", "direction": "down" },
+    { "kpi": "Mafia: TOC ROAS (rolling 7d)", "value": "1.87", "delta": "-22% WoW", "direction": "down" },
+    { "kpi": "Wonderlands D7 retention", "value": "24.1%", "delta": "-3pp WoW", "direction": "down" },
+    { "kpi": "Portfolio wishlist velocity (weekly)", "value": "22,680", "delta": "+9% WoW", "direction": "up" },
+    { "kpi": "Avg review score across active titles", "value": "85%", "delta": "+1pp WoW", "direction": "up" }
+  ],
+  "coming_up_next_week": {
+    "week_label": "Jun 1 – 5",
+    "headline_beats": [
+      {
+        "what": "Mafia TOC — Davide GO/NO-GO on $120K refresh tranche",
+        "owner": "Davide Detta",
+        "date": "2026-06-01",
+        "title_id": "mafia"
+      },
+      {
+        "what": "Civ VII Test of Time D14 retention read",
+        "owner": "Alex Akiyama",
+        "date": "2026-06-02",
+        "title_id": "civilization"
+      },
+      {
+        "what": "Homeworld 3 Anniversary trailer drop",
+        "owner": "Marketing Mgr II",
+        "date": "2026-06-03",
+        "title_id": "homeworld"
+      },
+      {
+        "what": "BL4 Mad Ellie SP1 — Davide GO/NO-GO on Phase 2 surge ($180K)",
+        "owner": "Davide Detta",
+        "date": "2026-06-05",
+        "title_id": "borderlands"
+      },
+      {
+        "what": "RoR2 Seekers — Lurkit + CreatorIQ shortlist due",
+        "owner": "Marketing Mgr II",
+        "date": "2026-06-05",
+        "title_id": "risk-of-rain"
+      }
+    ],
+    "watch_items": [
+      "Patch 1.2 ship-date confirmation for BL4 D30 re-measure window (Jun 12 target)",
+      "Wonderlands community sentiment 72hr post-re-announce window",
+      "Heaven Media Q3 capacity check — 4 active title commits, BL4 Phase 2 + Mafia refresh + Wonderlands July re-time would push to 6 concurrent"
+    ]
+  },
+  "asks_of_davide": [
+    {
+      "ask": "Final framing read on BL4 Mad Ellie SP1 Phase 2 surge pre-Jun 5 call",
+      "by": "2026-06-04",
+      "context": "Want to walk into Jun 5 aligned on whether we're treating this as a hold-and-reload or a full re-spec of Phase 2 around the Whispering Glacier endgame window. My read is re-spec — happy to back into either."
+    },
+    {
+      "ask": "Approve $48K incremental for Civ VII Time-Tested Civs creator wave 2",
+      "by": "2026-06-02",
+      "context": "Test of Time outperforming on every gate; recommend extending the creator program for a second wave to carry momentum into D30. Open World can produce by Jun 12. Funded out of Civ Q2 sustain underspend ($62K committed, $58.4K spent — $3.6K remaining)."
+    }
+  ],
+  "themes_tracking_into_next_month": [
+    "Portfolio-level creative fatigue across sustain campaigns. Mafia is the canary; BL4 Mad Ellie SP1 paid will need a fresh creative track ahead of Whispering Glacier window.",
+    "Heaven Media Q3 capacity. Currently 4 active title commits — checking bandwidth before stacking BL4 Phase 2 + Wonderlands July re-time + Mafia refresh concurrent execution.",
+    "Brand Creative bandwidth. Third asset slip in 4 weeks (CIV-1934 most recent). Worth a structural conversation on protected slot allocation before Q3 planning locks."
+  ]
+}
