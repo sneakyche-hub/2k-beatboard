@@ -98,22 +98,26 @@
       {
         "owner": "Alex Akiyama",
         "task": "Chase Brand Creative for Test of Time hero cut handoff (48h late). Loop in Open World by 2pm if not received.",
-        "linked_ticket_id": "CIV-1934"
+        "linked_ticket_id": "CIV-1934",
+        "action_category": "execution"
       },
       {
         "owner": "Alex Akiyama",
         "task": "Finalize Wonderlands re-announce draft with Marcus; route to Davide for Fri EOD sign-off.",
-        "linked_ticket_id": "WND-1782"
+        "linked_ticket_id": "WND-1782",
+        "action_category": "execution"
       },
       {
         "owner": "Marketing Mgr II",
         "task": "Heaven Media Mad Ellie SP1 pause-brief: confirm Phase 2 paid is paused pending Davide call (Whispering Glacier endgame content beat window), no creative refresh kickoff.",
-        "linked_ticket_id": "BL-2418"
+        "linked_ticket_id": "BL-2418",
+        "action_category": "execution"
       },
       {
         "owner": "Alex Akiyama",
         "task": "Mafia: TOC. Package Heaven's 3 refresh concepts + ROAS readout for Davide pre-read ahead of Jun 1 call.",
-        "linked_ticket_id": "MAF-987"
+        "linked_ticket_id": "MAF-987",
+        "action_category": "decision_prep"
       }
     ],
     "yesterday_closeout": {
@@ -190,7 +194,8 @@
         "owner": "Alex",
         "needed_from": "Davide Detta",
         "by": "2026-05-29",
-        "linked_ticket_id": "WND-1782"
+        "linked_ticket_id": "WND-1782",
+        "blocker_category": "exec_approval"
       },
       {
         "title_id": "borderlands",
@@ -198,7 +203,8 @@
         "owner": "Alex",
         "needed_from": "Davide Detta",
         "by": "2026-06-05",
-        "linked_ticket_id": "BL-2418"
+        "linked_ticket_id": "BL-2418",
+        "blocker_category": "kpi_decision"
       },
       {
         "title_id": "civilization",
@@ -206,7 +212,8 @@
         "owner": "Brand Creative",
         "needed_from": "Brand Creative",
         "by": "2026-05-26",
-        "linked_ticket_id": "CIV-1934"
+        "linked_ticket_id": "CIV-1934",
+        "blocker_category": "production_input"
       }
     ]
   },

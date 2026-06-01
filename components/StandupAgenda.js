@@ -39,6 +39,8 @@ import {
   UserCheck,
   User,
   Link2,
+  Hammer,
+  TrendingDown,
 } from "lucide-react";
 
 // -------------------------------------------------------------------
@@ -131,12 +133,42 @@ const ATTACHMENT_TYPE_LABEL = {
   screenshot:      "Screenshot",
 };
 
-// Chip style per blocker type
-const BLOCKER_TYPE_CLASS = {
-  exec:     "bg-violet-50 text-violet-700 border border-violet-200",
-  external: "bg-amber-50 text-amber-700 border border-amber-200",
-  internal: "bg-blue-50 text-blue-700 border border-blue-200",
+// Blocker category: production/input issue vs KPI decision vs exec approval.
+// Execution-first sort: production_input → exec_approval → kpi_decision → internal.
+const BLOCKER_CATEGORY = {
+  production_input: {
+    label:     "Production block",
+    icon:      Hammer,
+    chipClass: "bg-red-50 text-red-700 border border-red-200",
+  },
+  exec_approval: {
+    label:     "Exec sign-off",
+    icon:      UserCheck,
+    chipClass: "bg-violet-50 text-violet-700 border border-violet-200",
+  },
+  kpi_decision: {
+    label:     "KPI decision",
+    icon:      TrendingDown,
+    chipClass: "bg-indigo-50 text-indigo-700 border border-indigo-200",
+  },
+  internal: {
+    label:     "Internal handoff",
+    icon:      User,
+    chipClass: "bg-blue-50 text-blue-700 border border-blue-200",
+  },
 };
+
+const BLOCKER_CATEGORY_RANK = {
+  production_input: 0,
+  exec_approval:    1,
+  kpi_decision:     2,
+  internal:         3,
+};
+
+// Action item type: execution (operational, ships today) vs decision_prep (readying a decision).
+// Execution sorts first.
+const ACTION_CATEGORY_RANK = { execution: 0, decision_prep: 1 };
+const ACTION_CATEGORY_LABEL = { execution: "Execution", decision_prep: "Decision prep" };
 
 function getTicket(ticketId) {
   if (!ticketId) return null;
@@ -152,20 +184,6 @@ function getBeatName(beatId) {
   if (!beatId) return null;
   const beat = beats.find((b) => b.beat_id === beatId);
   return beat?.beat_name || null;
-}
-
-// Returns blocker type based on context: who needs to act, and is the
-// vendor an external party?
-function getBlockerType(ticket, neededFrom) {
-  if (!ticket) return null;
-  const from = (neededFrom || "").toLowerCase();
-  if (from.includes("davide")) {
-    return { label: "Exec sign-off · Davide", key: "exec" };
-  }
-  if (ticket.vendor_owner) {
-    return { label: `External · ${ticket.vendor_owner}`, key: "external" };
-  }
-  return { label: `Internal · ${ticket.owner}`, key: "internal" };
 }
 
 // Maps ticket.source field to a human label + inbox deep-link
@@ -290,6 +308,18 @@ export default function StandupAgenda() {
   const brief = standup.standup_brief;
   const blockers = brief.blockers || [];
 
+  // Sort execution-first: production blocks → exec approvals → KPI decisions.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const sortedBlockers = useMemo(
+    () =>
+      [...blockers].sort(
+        (a, b) =>
+          (BLOCKER_CATEGORY_RANK[a.blocker_category] ?? 9) -
+          (BLOCKER_CATEGORY_RANK[b.blocker_category] ?? 9)
+      ),
+    [] // blockers is from a static JSON import — never changes at runtime
+  );
+
   const decisions = useMemo(() => {
     return [...(standup.pending_decisions || [])]
       .filter(
@@ -318,7 +348,17 @@ export default function StandupAgenda() {
       });
   }, []);
 
-  const actionItems = brief.today_priorities || [];
+  // Sort execution actions before decision-prep actions.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const actionItems = useMemo(
+    () =>
+      [...(brief.today_priorities || [])].sort(
+        (a, b) =>
+          (ACTION_CATEGORY_RANK[a.action_category] ?? 9) -
+          (ACTION_CATEGORY_RANK[b.action_category] ?? 9)
+      ),
+    [] // brief is from a static JSON import — never changes at runtime
+  );
 
   const yesterdayItems = useMemo(() => {
     return [...(standup.yesterday_action_items || [])].sort(
@@ -334,8 +374,9 @@ export default function StandupAgenda() {
     return c;
   }, [yesterdayItems]);
 
-  // Stable item IDs for resolve state
-  const blockerIds = blockers.map((_, i) => `blocker:${i}`);
+  // Stable item IDs for resolve state — keyed by ticket ID so sort order
+  // changes don't reset checkmarks mid-meeting.
+  const blockerIds = blockers.map((b, i) => `blocker:${b.linked_ticket_id || i}`);
   const decisionIds = decisions.map((d) => `decision:${d.decision_id}`);
   const callIds = calls.map((_, i) => `call:${i}`);
   const inboxIds = p0Inbox.map((it) => `inbox:${it.id}`);
@@ -618,9 +659,12 @@ export default function StandupAgenda() {
           open={sectionOpen[1]}
           onToggle={() => toggleSection(1)}
         >
+          {/* Category breakdown — quick scan of what type of blockers the room faces */}
+          <BlockerBreakdown blockers={blockers} />
+
           <ul className="space-y-2.5">
-            {blockers.map((b, i) => {
-              const id = `blocker:${i}`;
+            {sortedBlockers.map((b, i) => {
+              const id = `blocker:${b.linked_ticket_id || i}`;
               const resolved = meeting.isResolved(id);
               const t = titleForId(b.title_id);
               const inRoom = isTrio(b.needed_from);
@@ -630,14 +674,14 @@ export default function StandupAgenda() {
 
               return (
                 <ResolvableRow
-                  key={i}
+                  key={b.linked_ticket_id || i}
                   id={id}
                   resolved={resolved}
                   onToggle={meeting.toggleResolved}
                   bulletColor="text-accent-red"
                   drawer={
                     ticket && isDrawerOpen ? (
-                      <TicketDrawer ticket={ticket} neededFrom={b.needed_from} />
+                      <TicketDrawer ticket={ticket} blockerCategory={b.blocker_category} />
                     ) : undefined
                   }
                 >
@@ -662,6 +706,9 @@ export default function StandupAgenda() {
                     )}
                   </div>
                   <div className="text-[11.5px] text-ink-500 mt-0.5 flex items-center gap-2 flex-wrap">
+                    {b.blocker_category && (
+                      <BlockerCategoryChip category={b.blocker_category} />
+                    )}
                     <span>
                       Owner: <span className="text-ink-700">{b.owner}</span>
                     </span>
@@ -909,6 +956,17 @@ export default function StandupAgenda() {
                     </button>
                     <div className={`min-w-0 flex-1 ${resolved ? "opacity-60" : ""}`}>
                       <div className="flex items-center gap-2 flex-wrap">
+                        {a.action_category && (
+                          <span
+                            className={`text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded ${
+                              a.action_category === "execution"
+                                ? "bg-accent-success/10 text-accent-success border border-accent-success/20"
+                                : "bg-ink-300/20 text-ink-500 border border-line"
+                            }`}
+                          >
+                            {ACTION_CATEGORY_LABEL[a.action_category] || a.action_category}
+                          </span>
+                        )}
                         <span className="text-[11px] mono font-semibold text-ink-900 px-1.5 py-0.5 rounded bg-ink-300/20">
                           {a.owner}
                         </span>
@@ -972,6 +1030,65 @@ export default function StandupAgenda() {
 }
 
 // -------------------------------------------------------------------
+// BlockerCategoryChip — inline chip showing blocker type in the meta row.
+// -------------------------------------------------------------------
+function BlockerCategoryChip({ category }) {
+  const def = BLOCKER_CATEGORY[category];
+  if (!def) return null;
+  const Icon = def.icon;
+  return (
+    <span
+      className={`inline-flex items-center gap-1 text-[10.5px] px-1.5 py-0.5 rounded-full font-medium ${def.chipClass}`}
+    >
+      <Icon className="h-3 w-3" />
+      {def.label}
+    </span>
+  );
+}
+
+// -------------------------------------------------------------------
+// BlockerBreakdown — compact category summary shown at the top of the
+// blockers section. Lets the room see at a glance whether they're
+// dealing with production blocks, exec decisions, or KPI gates.
+// -------------------------------------------------------------------
+function BlockerBreakdown({ blockers }) {
+  if (!blockers || blockers.length === 0) return null;
+
+  // Count by category in execution-priority order
+  const order = ["production_input", "exec_approval", "kpi_decision", "internal"];
+  const counts = blockers.reduce((acc, b) => {
+    const cat = b.blocker_category || "internal";
+    acc[cat] = (acc[cat] || 0) + 1;
+    return acc;
+  }, {});
+
+  const chips = order.filter((k) => counts[k]).map((k) => ({ key: k, count: counts[k] }));
+  if (chips.length === 0) return null;
+
+  return (
+    <div className="flex items-center gap-1.5 flex-wrap mb-3">
+      <span className="text-[10px] uppercase tracking-wider text-ink-400 font-semibold shrink-0">
+        In this room:
+      </span>
+      {chips.map(({ key, count }) => {
+        const def = BLOCKER_CATEGORY[key];
+        if (!def) return null;
+        const Icon = def.icon;
+        return (
+          <span
+            key={key}
+            className={`inline-flex items-center gap-1 text-[10.5px] px-2 py-0.5 rounded-full font-medium ${def.chipClass}`}
+          >
+            <Icon className="h-3 w-3" />
+            {count} {def.label}{count > 1 ? "s" : ""}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+// -------------------------------------------------------------------
 // TicketChip — small clickable badge that opens the ticket drawer.
 // Active state (blue tint + rotated chevron) shows when drawer is open.
 // -------------------------------------------------------------------
@@ -1000,11 +1117,10 @@ function TicketChip({ ticketId, isOpen, onToggle }) {
 // owner/vendor meta, days open, source provenance link, beat name,
 // attachments with notes, and escalation draft button.
 // -------------------------------------------------------------------
-function TicketDrawer({ ticket, neededFrom }) {
+function TicketDrawer({ ticket, blockerCategory }) {
   if (!ticket) return null;
 
   const draft = getDraft(ticket.ticket_id);
-  const blockerType = getBlockerType(ticket, neededFrom);
   const openLabel = daysOpenLabel(ticket.created_date);
   const source = parseSource(ticket.source);
   const attachments = ticket.attachments || [];
@@ -1016,7 +1132,7 @@ function TicketDrawer({ ticket, neededFrom }) {
     label: ticket.status?.replace(/_/g, " ") || "unknown",
     tone: "neutral",
   };
-  const btClass = blockerType ? (BLOCKER_TYPE_CLASS[blockerType.key] || "") : "";
+  const catDef = blockerCategory ? BLOCKER_CATEGORY[blockerCategory] : null;
 
   return (
     <div className="border border-line rounded-lg overflow-hidden bg-white shadow-sm text-[12.5px]">
@@ -1034,12 +1150,10 @@ function TicketDrawer({ ticket, neededFrom }) {
         </a>
         <Badge tone={priorityTone} size="xs">{ticket.priority}</Badge>
         <Badge tone={statusDisplay.tone} size="xs">{statusDisplay.label}</Badge>
-        {blockerType && (
-          <span className={`inline-flex items-center gap-1 text-[10.5px] px-2 py-0.5 rounded-full font-medium ${btClass}`}>
-            {blockerType.key === "exec"     && <UserCheck  className="h-3 w-3" />}
-            {blockerType.key === "external" && <Building2  className="h-3 w-3" />}
-            {blockerType.key === "internal" && <User       className="h-3 w-3" />}
-            {blockerType.label}
+        {catDef && (
+          <span className={`inline-flex items-center gap-1 text-[10.5px] px-2 py-0.5 rounded-full font-medium ${catDef.chipClass}`}>
+            <catDef.icon className="h-3 w-3" />
+            {catDef.label}
           </span>
         )}
       </div>
