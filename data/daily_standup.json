@@ -189,21 +189,24 @@
         "blocker": "DLC re-date locked to Jul 10 \u2014 comms cannot ship until Davide signs the re-announce draft.",
         "owner": "Alex",
         "needed_from": "Davide Detta",
-        "by": "2026-05-29"
+        "by": "2026-05-29",
+        "linked_ticket_id": "WND-1782"
       },
       {
         "title_id": "borderlands",
         "blocker": "Mad Ellie SP1 Phase 2 surge held pending Patch 1.2 + D30 re-measure Jun 12. No paid kickoff (Whispering Glacier endgame content beat window) until Davide call Jun 5.",
         "owner": "Alex",
         "needed_from": "Davide Detta",
-        "by": "2026-06-05"
+        "by": "2026-06-05",
+        "linked_ticket_id": "BL-2418"
       },
       {
         "title_id": "civilization",
         "blocker": "Hero cut from Brand Creative \u2014 48h late, blocks paid social + Time-Tested Civs multiplayer premiere pre-roll Thu May 28.",
         "owner": "Brand Creative",
         "needed_from": "Brand Creative",
-        "by": "2026-05-26"
+        "by": "2026-05-26",
+        "linked_ticket_id": "CIV-1934"
       }
     ]
   },

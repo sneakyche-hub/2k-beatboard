@@ -5,7 +5,11 @@ import Link from "next/link";
 import {
   standup,
   titles,
+  tickets,
+  escalationDrafts,
+  beats,
   fmtDate,
+  DEMO_TODAY_ISO,
   buildInboxItems,
 } from "@/lib/data";
 import Badge from "./Badge";
@@ -29,6 +33,12 @@ import {
   X,
   Mail,
   ChevronDown,
+  ExternalLink,
+  Paperclip,
+  Building2,
+  UserCheck,
+  User,
+  Link2,
 } from "lucide-react";
 
 // -------------------------------------------------------------------
@@ -40,15 +50,10 @@ import {
 // Target: 15-20 min total. Four time-boxed sections (5+5+4+2 = 16 min
 // inside an 18 min target), plus a Parking Lot capture below.
 //
-// Working-agenda behaviors:
-//   - Yesterday's commitments panel (closes the loop day-over-day)
-//   - Collapsible sections: overview strip shows all time allotments
-//     at a glance; expand each section as you reach it in the meeting
-//   - Per-item resolve toggle persisted in localStorage by standup_date
-//   - Parking Lot for off-agenda capture without blowing the time-box
-//   - Reset Meeting State button for clean demo replay
-//
-// The shareable roll-up version (full digest) lives at /brief/digest.
+// Ticket drawer: every agenda item linked to a ticket shows a clickable
+// chip that expands an inline detail panel — blocker type (exec sign-off /
+// external vendor / internal team), owner, vendor, attachments, source
+// provenance, and escalation draft link.
 // -------------------------------------------------------------------
 
 const TRIO = ["Davide Detta", "Alex Akiyama", "Marketing Mgr II", "Alex"];
@@ -98,6 +103,98 @@ const YESTERDAY_STATUS_RANK = {
   dropped: 1,
   done: 2,
 };
+
+// -------------------------------------------------------------------
+// Ticket helpers
+// -------------------------------------------------------------------
+
+const PRIORITY_TONE = { P0: "red", P1: "amber", P2: "neutral" };
+
+const STATUS_DISPLAY = {
+  open:        { label: "Open",        tone: "neutral"  },
+  in_progress: { label: "In progress", tone: "primary"  },
+  at_risk:     { label: "At risk",     tone: "red"      },
+  blocked:     { label: "Blocked",     tone: "red"      },
+  completed:   { label: "Completed",   tone: "success"  },
+  scheduled:   { label: "Scheduled",   tone: "neutral"  },
+};
+
+const ATTACHMENT_TYPE_LABEL = {
+  sow:             "SOW",
+  brief:           "Brief",
+  deck:            "Deck",
+  spreadsheet:     "Data",
+  contract:        "Contract",
+  vendor_invoice:  "Invoice",
+  creative_master: "Creative",
+  cohort_export:   "Export",
+  screenshot:      "Screenshot",
+};
+
+// Chip style per blocker type
+const BLOCKER_TYPE_CLASS = {
+  exec:     "bg-violet-50 text-violet-700 border border-violet-200",
+  external: "bg-amber-50 text-amber-700 border border-amber-200",
+  internal: "bg-blue-50 text-blue-700 border border-blue-200",
+};
+
+function getTicket(ticketId) {
+  if (!ticketId) return null;
+  return tickets.find((t) => t.ticket_id === ticketId) || null;
+}
+
+function getDraft(ticketId) {
+  if (!ticketId) return null;
+  return escalationDrafts.find((d) => d.related_ticket_id === ticketId) || null;
+}
+
+function getBeatName(beatId) {
+  if (!beatId) return null;
+  const beat = beats.find((b) => b.beat_id === beatId);
+  return beat?.beat_name || null;
+}
+
+// Returns blocker type based on context: who needs to act, and is the
+// vendor an external party?
+function getBlockerType(ticket, neededFrom) {
+  if (!ticket) return null;
+  const from = (neededFrom || "").toLowerCase();
+  if (from.includes("davide")) {
+    return { label: "Exec sign-off · Davide", key: "exec" };
+  }
+  if (ticket.vendor_owner) {
+    return { label: `External · ${ticket.vendor_owner}`, key: "external" };
+  }
+  return { label: `Internal · ${ticket.owner}`, key: "internal" };
+}
+
+// Maps ticket.source field to a human label + inbox deep-link
+function parseSource(source) {
+  if (!source) return null;
+  if (source.startsWith("slack:"))  return { label: "Slack",          href: "/inbox" };
+  if (source.startsWith("zoom:"))   return { label: "Zoom call",       href: "/inbox" };
+  if (source.startsWith("gmail:") || source === "from_heaven_email")
+                                    return { label: "Gmail",           href: "/inbox" };
+  if (source.startsWith("from_zoom_transcript"))
+                                    return { label: "Zoom transcript", href: "/inbox" };
+  return null;
+}
+
+function fmtFileSize(sizeKb) {
+  if (!sizeKb) return "";
+  if (sizeKb >= 1024) return `${(sizeKb / 1024).toFixed(1)} MB`;
+  return `${sizeKb} KB`;
+}
+
+function daysOpenLabel(createdDate) {
+  if (!createdDate) return null;
+  const today = new Date(DEMO_TODAY_ISO + "T00:00:00Z");
+  const created = new Date(createdDate + "T00:00:00Z");
+  const days = Math.floor((today - created) / 86400000);
+  if (days === 0) return "opened today";
+  if (days === 1) return "1d open";
+  return `${days}d open`;
+}
 
 // -------------------------------------------------------------------
 // useMeetingState — client-only meeting state (resolved items +
@@ -171,6 +268,7 @@ function useMeetingState(standupDate) {
 
 export default function StandupAgenda() {
   const [copied, setCopied] = useState(false);
+
   // All sections collapsed by default — overview strip shows the full
   // agenda at a glance; expand each section as you reach it.
   const [sectionOpen, setSectionOpen] = useState({
@@ -180,6 +278,12 @@ export default function StandupAgenda() {
     4: false,
     5: false,
   });
+
+  // Tracks which ticket drawer is open: "b:{ticket_id}", "c:{idx}",
+  // "a:{ticket_id}". One open at a time; clicking same key closes it.
+  const [openDrawerKey, setOpenDrawerKey] = useState(null);
+  const toggleDrawer = (key) =>
+    setOpenDrawerKey((prev) => (prev === key ? null : key));
 
   const meeting = useMeetingState(standup.standup_date);
 
@@ -412,7 +516,7 @@ export default function StandupAgenda() {
         </div>
       </header>
 
-      {/* Yesterday's commitments — closes the loop day-over-day */}
+      {/* Yesterday's commitments */}
       {yesterdayItems.length > 0 && (
         <YesterdayPanel items={yesterdayItems} counts={yesterdayCounts} />
       )}
@@ -427,8 +531,7 @@ export default function StandupAgenda() {
         </p>
       </section>
 
-      {/* Agenda overview — all sections and time allotments at a glance.
-          Tap any row to expand that section. */}
+      {/* Agenda overview */}
       <section className="panel p-4">
         <div className="flex items-center justify-between mb-3 gap-3 flex-wrap">
           <div className="flex items-center gap-2">
@@ -521,6 +624,10 @@ export default function StandupAgenda() {
               const resolved = meeting.isResolved(id);
               const t = titleForId(b.title_id);
               const inRoom = isTrio(b.needed_from);
+              const ticket = getTicket(b.linked_ticket_id);
+              const drawerKey = `b:${b.linked_ticket_id || i}`;
+              const isDrawerOpen = openDrawerKey === drawerKey;
+
               return (
                 <ResolvableRow
                   key={i}
@@ -528,6 +635,11 @@ export default function StandupAgenda() {
                   resolved={resolved}
                   onToggle={meeting.toggleResolved}
                   bulletColor="text-accent-red"
+                  drawer={
+                    ticket && isDrawerOpen ? (
+                      <TicketDrawer ticket={ticket} neededFrom={b.needed_from} />
+                    ) : undefined
+                  }
                 >
                   <div className="flex items-baseline gap-2 flex-wrap">
                     {t && (
@@ -542,23 +654,28 @@ export default function StandupAgenda() {
                       {b.blocker}
                     </span>
                     {resolved ? (
-                      <Badge tone="success" size="xs">
-                        Resolved
-                      </Badge>
+                      <Badge tone="success" size="xs">Resolved</Badge>
                     ) : inRoom ? (
-                      <Badge tone="red" size="xs">
-                        Unblock in room
-                      </Badge>
+                      <Badge tone="red" size="xs">Unblock in room</Badge>
                     ) : (
-                      <Badge tone="amber" size="xs">
-                        Escalation path
-                      </Badge>
+                      <Badge tone="amber" size="xs">Escalation path</Badge>
                     )}
                   </div>
-                  <div className="text-[11.5px] text-ink-500 mt-0.5">
-                    Owner: <span className="text-ink-700">{b.owner}</span> ·
-                    Needs <span className="text-ink-700">{b.needed_from}</span>{" "}
-                    by <span className="text-ink-700 mono">{fmtDate(b.by)}</span>
+                  <div className="text-[11.5px] text-ink-500 mt-0.5 flex items-center gap-2 flex-wrap">
+                    <span>
+                      Owner: <span className="text-ink-700">{b.owner}</span>
+                    </span>
+                    <span>
+                      Needs <span className="text-ink-700">{b.needed_from}</span>{" "}
+                      by <span className="text-ink-700 mono">{fmtDate(b.by)}</span>
+                    </span>
+                    {ticket && (
+                      <TicketChip
+                        ticketId={b.linked_ticket_id}
+                        isOpen={isDrawerOpen}
+                        onToggle={() => toggleDrawer(drawerKey)}
+                      />
+                    )}
                   </div>
                 </ResolvableRow>
               );
@@ -608,18 +725,14 @@ export default function StandupAgenda() {
                       {d.decision}
                     </span>
                     {resolved ? (
-                      <Badge tone="success" size="xs">
-                        Discussed
-                      </Badge>
+                      <Badge tone="success" size="xs">Discussed</Badge>
                     ) : (
                       <>
                         <Badge tone={tone} size="xs">
                           {DECISION_STATUS_LABEL[d.status] || d.status}
                         </Badge>
                         {needsDavide && (
-                          <Badge tone="violet" size="xs">
-                            Needs Davide GO/NO-GO
-                          </Badge>
+                          <Badge tone="violet" size="xs">Needs Davide GO/NO-GO</Badge>
                         )}
                       </>
                     )}
@@ -666,6 +779,10 @@ export default function StandupAgenda() {
                 {calls.map((c, i) => {
                   const id = `call:${i}`;
                   const resolved = meeting.isResolved(id);
+                  const ticket = getTicket(c.linked_ticket_id);
+                  const drawerKey = `c:${c.linked_ticket_id || i}`;
+                  const isDrawerOpen = openDrawerKey === drawerKey;
+
                   return (
                     <ResolvableRow
                       key={i}
@@ -678,13 +795,31 @@ export default function StandupAgenda() {
                         </span>
                       }
                       tight
+                      drawer={
+                        ticket && isDrawerOpen ? (
+                          <TicketDrawer ticket={ticket} />
+                        ) : undefined
+                      }
                     >
-                      <span className={resolved ? "text-ink-500 line-through" : "text-ink-700"}>
-                        <span className={resolved ? "text-ink-500" : "text-ink-900 font-medium"}>
+                      <div className={resolved ? "text-ink-500" : "text-ink-700"}>
+                        <span className={resolved ? "text-ink-500 line-through" : "text-ink-900 font-medium"}>
                           {c.title}
                         </span>
-                        {c.topic && <span className="text-ink-500"> — {c.topic}</span>}
-                      </span>
+                        {c.topic && (
+                          <span className={resolved ? "text-ink-400 line-through" : "text-ink-500"}>
+                            {" "}— {c.topic}
+                          </span>
+                        )}
+                      </div>
+                      {ticket && (
+                        <div className="mt-1">
+                          <TicketChip
+                            ticketId={c.linked_ticket_id}
+                            isOpen={isDrawerOpen}
+                            onToggle={() => toggleDrawer(drawerKey)}
+                          />
+                        </div>
+                      )}
                     </ResolvableRow>
                   );
                 })}
@@ -753,43 +888,61 @@ export default function StandupAgenda() {
               const id = `action:${a.linked_ticket_id || i}`;
               const resolved = meeting.isResolved(id);
               const t = titleForId(inferTitleIdFromTicket(a.linked_ticket_id));
+              const ticket = getTicket(a.linked_ticket_id);
+              const drawerKey = `a:${a.linked_ticket_id || i}`;
+              const isDrawerOpen = openDrawerKey === drawerKey;
+
               return (
-                <li key={i} className="text-[13px] leading-relaxed flex gap-2.5 group">
-                  <button
-                    type="button"
-                    onClick={() => meeting.toggleResolved(id)}
-                    className={`mt-0.5 shrink-0 transition-colors ${resolved ? "text-accent-success" : "text-ink-500 hover:text-accent-success"}`}
-                    aria-label={resolved ? "Mark as not done" : "Mark as done"}
-                  >
-                    {resolved ? (
-                      <CheckCircle2 className="h-4 w-4" />
-                    ) : (
-                      <span className="inline-block h-4 w-4 border-2 border-current rounded-sm" />
-                    )}
-                  </button>
-                  <div className={`min-w-0 flex-1 ${resolved ? "opacity-60" : ""}`}>
-                    <div className="flex items-baseline gap-2 flex-wrap">
-                      <span className="text-[11px] mono font-semibold text-ink-900 px-1.5 py-0.5 rounded bg-ink-300/20">
-                        {a.owner}
-                      </span>
-                      {t && (
-                        <span
-                          className="text-[10px] uppercase tracking-wider font-bold"
-                          style={{ color: t.brand_color }}
-                        >
-                          {t.title_name}
-                        </span>
+                <li key={i} className="text-[13px] leading-relaxed group">
+                  <div className="flex gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => meeting.toggleResolved(id)}
+                      className={`mt-0.5 shrink-0 transition-colors ${resolved ? "text-accent-success" : "text-ink-500 hover:text-accent-success"}`}
+                      aria-label={resolved ? "Mark as not done" : "Mark as done"}
+                    >
+                      {resolved ? (
+                        <CheckCircle2 className="h-4 w-4" />
+                      ) : (
+                        <span className="inline-block h-4 w-4 border-2 border-current rounded-sm" />
                       )}
-                      {a.linked_ticket_id && (
-                        <span className="text-[11px] mono text-ink-500">
-                          {a.linked_ticket_id}
+                    </button>
+                    <div className={`min-w-0 flex-1 ${resolved ? "opacity-60" : ""}`}>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-[11px] mono font-semibold text-ink-900 px-1.5 py-0.5 rounded bg-ink-300/20">
+                          {a.owner}
                         </span>
-                      )}
+                        {t && (
+                          <span
+                            className="text-[10px] uppercase tracking-wider font-bold"
+                            style={{ color: t.brand_color }}
+                          >
+                            {t.title_name}
+                          </span>
+                        )}
+                        {a.linked_ticket_id && ticket && (
+                          <TicketChip
+                            ticketId={a.linked_ticket_id}
+                            isOpen={isDrawerOpen}
+                            onToggle={() => !resolved && toggleDrawer(drawerKey)}
+                          />
+                        )}
+                        {a.linked_ticket_id && !ticket && (
+                          <span className="text-[11px] mono text-ink-500">
+                            {a.linked_ticket_id}
+                          </span>
+                        )}
+                      </div>
+                      <p className={resolved ? "text-ink-700 mt-0.5 line-through" : "text-ink-700 mt-0.5"}>
+                        {a.task}
+                      </p>
                     </div>
-                    <p className={resolved ? "text-ink-700 mt-0.5 line-through" : "text-ink-700 mt-0.5"}>
-                      {a.task}
-                    </p>
                   </div>
+                  {ticket && isDrawerOpen && (
+                    <div className="ml-7 mt-2">
+                      <TicketDrawer ticket={ticket} />
+                    </div>
+                  )}
                 </li>
               );
             })}
@@ -819,9 +972,213 @@ export default function StandupAgenda() {
 }
 
 // -------------------------------------------------------------------
-// YesterdayPanel — closes the loop on yesterday's commitments.
-// Compact: one row per item; carry-overs sort first; done items
-// show line-through. Counts in the header tell the whole story.
+// TicketChip — small clickable badge that opens the ticket drawer.
+// Active state (blue tint + rotated chevron) shows when drawer is open.
+// -------------------------------------------------------------------
+function TicketChip({ ticketId, isOpen, onToggle }) {
+  return (
+    <button
+      type="button"
+      onClick={(e) => { e.stopPropagation(); onToggle(); }}
+      className={`inline-flex items-center gap-1 text-[11px] mono font-semibold px-1.5 py-0.5 rounded transition-colors ${
+        isOpen
+          ? "bg-accent-primary/15 text-accent-primary"
+          : "bg-ink-300/20 text-ink-600 hover:bg-accent-primary/10 hover:text-accent-primary"
+      }`}
+    >
+      {ticketId}
+      <ChevronDown
+        className={`h-3 w-3 transition-transform ${isOpen ? "" : "-rotate-90"}`}
+      />
+    </button>
+  );
+}
+
+// -------------------------------------------------------------------
+// TicketDrawer — inline detail panel that expands below an agenda item.
+// Shows: ticket ID + Jira link, priority, status, blocker type chip,
+// owner/vendor meta, days open, source provenance link, beat name,
+// attachments with notes, and escalation draft button.
+// -------------------------------------------------------------------
+function TicketDrawer({ ticket, neededFrom }) {
+  if (!ticket) return null;
+
+  const draft = getDraft(ticket.ticket_id);
+  const blockerType = getBlockerType(ticket, neededFrom);
+  const openLabel = daysOpenLabel(ticket.created_date);
+  const source = parseSource(ticket.source);
+  const attachments = ticket.attachments || [];
+  const beatName = getBeatName(ticket.beat_id);
+  const jiraUrl = `https://2kgames.atlassian.net/browse/${ticket.ticket_id}`;
+
+  const priorityTone = PRIORITY_TONE[ticket.priority] || "neutral";
+  const statusDisplay = STATUS_DISPLAY[ticket.status] || {
+    label: ticket.status?.replace(/_/g, " ") || "unknown",
+    tone: "neutral",
+  };
+  const btClass = blockerType ? (BLOCKER_TYPE_CLASS[blockerType.key] || "") : "";
+
+  return (
+    <div className="border border-line rounded-lg overflow-hidden bg-white shadow-sm text-[12.5px]">
+      {/* Header row */}
+      <div className="flex items-center gap-2 px-3 py-2 bg-ink-100/40 border-b border-line flex-wrap">
+        <a
+          href={jiraUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 mono text-[11.5px] font-bold px-2 py-0.5 rounded bg-accent-primary/10 text-accent-primary hover:bg-accent-primary/20 transition-colors"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {ticket.ticket_id}
+          <ExternalLink className="h-2.5 w-2.5" />
+        </a>
+        <Badge tone={priorityTone} size="xs">{ticket.priority}</Badge>
+        <Badge tone={statusDisplay.tone} size="xs">{statusDisplay.label}</Badge>
+        {blockerType && (
+          <span className={`inline-flex items-center gap-1 text-[10.5px] px-2 py-0.5 rounded-full font-medium ${btClass}`}>
+            {blockerType.key === "exec"     && <UserCheck  className="h-3 w-3" />}
+            {blockerType.key === "external" && <Building2  className="h-3 w-3" />}
+            {blockerType.key === "internal" && <User       className="h-3 w-3" />}
+            {blockerType.label}
+          </span>
+        )}
+      </div>
+
+      {/* Body */}
+      <div className="px-3 py-3 space-y-2.5">
+        {/* Summary */}
+        <p className="text-[13px] font-medium text-ink-900 leading-snug">
+          {ticket.summary}
+        </p>
+
+        {/* Owner / vendor / due / age */}
+        <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11.5px] text-ink-500">
+          <span>
+            Owner:{" "}
+            <span className="text-ink-700 font-medium">{ticket.owner}</span>
+          </span>
+          {ticket.vendor_owner && (
+            <span>
+              Vendor:{" "}
+              <span className="text-ink-700 font-medium">{ticket.vendor_owner}</span>
+            </span>
+          )}
+          {ticket.due_date && (
+            <span>
+              Due:{" "}
+              <span className="text-ink-700 font-medium mono">
+                {fmtDate(ticket.due_date)}
+              </span>
+            </span>
+          )}
+          {openLabel && (
+            <span className="mono text-ink-400">{openLabel}</span>
+          )}
+        </div>
+
+        {/* Source + beat */}
+        {(source || beatName) && (
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11.5px] text-ink-500">
+            {source && (
+              <Link
+                href={source.href}
+                className="inline-flex items-center gap-1 text-accent-primary hover:underline"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Link2 className="h-3 w-3" />
+                From {source.label}
+              </Link>
+            )}
+            {beatName && (
+              <span>
+                Beat:{" "}
+                <span className="text-ink-600 font-medium">{beatName}</span>
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Attachments */}
+        {attachments.length > 0 && (
+          <div className="space-y-2 pt-2 border-t border-line">
+            <div className="text-[10px] uppercase tracking-wider text-ink-500 font-semibold flex items-center gap-1.5">
+              <Paperclip className="h-3 w-3" />
+              Attachments ({attachments.length})
+            </div>
+            {attachments.map((att) => (
+              <AttachmentRow key={att.attachment_id} att={att} />
+            ))}
+          </div>
+        )}
+
+        {/* Escalation draft */}
+        {draft && (
+          <div className="pt-2 border-t border-line">
+            <Link
+              href="/inbox"
+              className="inline-flex items-center gap-1.5 text-[12px] text-accent-primary font-medium hover:underline"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              View Claude-drafted {draft.channel} to {draft.recipient}
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// -------------------------------------------------------------------
+// AttachmentRow — one line per ticket attachment. Shows type badge,
+// uploader, date, size, linked invoice if present, and AP notes.
+// -------------------------------------------------------------------
+function AttachmentRow({ att }) {
+  const typeLabel = ATTACHMENT_TYPE_LABEL[att.type] || att.type;
+  const sizeFmt = fmtFileSize(att.size_kb);
+
+  return (
+    <div className="flex items-start gap-2">
+      <FileText className="h-3.5 w-3.5 text-ink-400 mt-0.5 shrink-0" />
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className="text-[12px] text-ink-700 font-medium break-all leading-snug">
+            {att.filename}
+          </span>
+          <Badge tone="neutral" size="xs">{typeLabel}</Badge>
+          {att.po_number && (
+            <span className="text-[10.5px] mono text-ink-500">{att.po_number}</span>
+          )}
+          {att.linked_invoice_id && (
+            <span className="text-[10.5px] mono text-accent-primary font-semibold">
+              {att.linked_invoice_id}
+            </span>
+          )}
+          {att.amount_usd && (
+            <span className="text-[10.5px] mono text-ink-700">
+              {att.amount_usd < 0
+                ? `-$${(Math.abs(att.amount_usd) / 1000).toFixed(0)}K credit`
+                : `$${(att.amount_usd / 1000).toFixed(0)}K`}
+            </span>
+          )}
+        </div>
+        <div className="text-[11px] text-ink-400 mt-0.5">
+          {att.uploaded_by}
+          {att.uploaded_at && ` · ${fmtDate(att.uploaded_at)}`}
+          {sizeFmt && ` · ${sizeFmt}`}
+        </div>
+        {att.notes && (
+          <div className="text-[11px] text-amber-700 bg-amber-50 rounded px-2 py-1 mt-1 leading-relaxed border border-amber-100">
+            {att.notes}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// -------------------------------------------------------------------
+// YesterdayPanel
 // -------------------------------------------------------------------
 function YesterdayPanel({ items, counts }) {
   const [open, setOpen] = useState(false);
@@ -914,43 +1271,47 @@ function YesterdayPanel({ items, counts }) {
 
 // -------------------------------------------------------------------
 // ResolvableRow — wraps a row with a hover-revealed resolve button.
-// Used by sections 1, 2, 3. Section 4 (action items) uses a more
-// prominent checkbox inline since each row IS the commitment.
+// Optionally renders a ticket drawer below the main flex row.
 // -------------------------------------------------------------------
-function ResolvableRow({ id, resolved, onToggle, bulletColor, bullet, tight, children }) {
+function ResolvableRow({ id, resolved, onToggle, bulletColor, bullet, tight, drawer, children }) {
   return (
-    <li className={`text-[13px] leading-relaxed flex gap-2.5 group relative ${resolved ? "opacity-70" : ""}`}>
-      {bullet ? (
-        bullet
-      ) : (
-        <span className={`mt-0.5 shrink-0 ${bulletColor || "text-ink-500"}`}>•</span>
-      )}
-      <div className="min-w-0 flex-1 pr-7">{children}</div>
-      <button
-        type="button"
-        onClick={() => onToggle(id)}
-        className={`resolve-btn absolute top-0 right-0 h-6 w-6 rounded-md flex items-center justify-center transition-all ${
-          resolved
-            ? "text-accent-success opacity-100"
-            : "text-ink-500 opacity-0 group-hover:opacity-100 hover:text-accent-success hover:bg-accent-success/10"
-        }`}
-        aria-label={resolved ? "Mark unresolved" : "Mark resolved"}
-        title={resolved ? "Mark unresolved" : "Mark resolved"}
-      >
-        {resolved ? (
-          <CheckCircle2 className="h-4 w-4" />
+    <li className={`text-[13px] leading-relaxed group relative ${resolved ? "opacity-70" : ""}`}>
+      <div className="flex gap-2.5 items-start">
+        {bullet ? (
+          bullet
         ) : (
-          <Check className="h-3.5 w-3.5" />
+          <span className={`mt-0.5 shrink-0 ${bulletColor || "text-ink-500"}`}>•</span>
         )}
-      </button>
+        <div className="min-w-0 flex-1 pr-7">{children}</div>
+        <button
+          type="button"
+          onClick={() => onToggle(id)}
+          className={`resolve-btn absolute top-0 right-0 h-6 w-6 rounded-md flex items-center justify-center transition-all ${
+            resolved
+              ? "text-accent-success opacity-100"
+              : "text-ink-500 opacity-0 group-hover:opacity-100 hover:text-accent-success hover:bg-accent-success/10"
+          }`}
+          aria-label={resolved ? "Mark unresolved" : "Mark resolved"}
+          title={resolved ? "Mark unresolved" : "Mark resolved"}
+        >
+          {resolved ? (
+            <CheckCircle2 className="h-4 w-4" />
+          ) : (
+            <Check className="h-3.5 w-3.5" />
+          )}
+        </button>
+      </div>
+      {drawer && (
+        <div className="ml-5 mt-2 mb-0.5">
+          {drawer}
+        </div>
+      )}
     </li>
   );
 }
 
 // -------------------------------------------------------------------
-// ParkingLot — off-agenda capture. Items live in localStorage so they
-// survive the meeting and can be triaged after. Collapsible header
-// keeps it out of the way until needed.
+// ParkingLot
 // -------------------------------------------------------------------
 function ParkingLot({ parked, onAdd, onRemove, open, onToggle }) {
   const [text, setText] = useState("");
@@ -1064,11 +1425,11 @@ function inferTitleIdFromTicket(ticketId) {
   if (!ticketId) return null;
   const prefix = ticketId.split("-")[0];
   const map = {
-    BL: "borderlands",
+    BL:  "borderlands",
     CIV: "civilization",
     MAF: "mafia",
     WND: "wonderlands",
-    HW: "homeworld",
+    HW:  "homeworld",
     XCM: "xcom",
     ROR: "risk-of-rain",
     BIO: "bioshock",
@@ -1077,14 +1438,12 @@ function inferTitleIdFromTicket(ticketId) {
 }
 
 // -------------------------------------------------------------------
-// AgendaSection — collapsible time-boxed section. The header always
-// shows the section number, title, item count, and time allocation.
-// Click anywhere on the header to expand/collapse the content.
+// AgendaSection — collapsible time-boxed section.
 // -------------------------------------------------------------------
 function AgendaSection({ number, title, timeBox, tone, Icon, totalCount, resolvedCount, open, onToggle, children }) {
   const toneClass = {
-    red: "text-accent-red border-l-accent-red",
-    amber: "text-accent-amber border-l-accent-amber",
+    red:     "text-accent-red border-l-accent-red",
+    amber:   "text-accent-amber border-l-accent-amber",
     primary: "text-accent-primary border-l-accent-primary",
     success: "text-accent-success border-l-accent-success",
   }[tone] || "text-ink-700 border-l-ink-300";
@@ -1137,7 +1496,6 @@ function AgendaSection({ number, title, timeBox, tone, Icon, totalCount, resolve
 
 // -------------------------------------------------------------------
 // Markdown digest for the Copy-agenda button.
-// Includes a one-line yesterday's-commitments recap up top.
 // -------------------------------------------------------------------
 function buildAgendaDigest({ standup: s, blockers, decisions, calls, p0Inbox, actionItems, yesterdayCounts }) {
   const lines = [];
@@ -1168,8 +1526,9 @@ function buildAgendaDigest({ standup: s, blockers, decisions, calls, p0Inbox, ac
     for (const b of blockers) {
       const t = titleForId(b.title_id);
       const name = t ? `[${t.title_name}] ` : "";
+      const tkId = b.linked_ticket_id ? ` · ${b.linked_ticket_id}` : "";
       lines.push(
-        `• ${name}${b.blocker} — needs *${b.needed_from}* by ${fmtDate(b.by)}`
+        `• ${name}${b.blocker} — needs *${b.needed_from}* by ${fmtDate(b.by)}${tkId}`
       );
     }
     lines.push("");
@@ -1195,7 +1554,8 @@ function buildAgendaDigest({ standup: s, blockers, decisions, calls, p0Inbox, ac
   if (calls.length > 0 || p0Inbox.length > 0) {
     lines.push(`*3. Today's external touchpoints (4 min)*`);
     for (const c of calls) {
-      lines.push(`• ${c.time_label} — ${c.title}`);
+      const tkId = c.linked_ticket_id ? ` · ${c.linked_ticket_id}` : "";
+      lines.push(`• ${c.time_label} — ${c.title}${tkId}`);
     }
     for (const it of p0Inbox) {
       const t = titleForId(it.titleId);
@@ -1208,7 +1568,8 @@ function buildAgendaDigest({ standup: s, blockers, decisions, calls, p0Inbox, ac
   if (actionItems.length > 0) {
     lines.push(`*4. Action items out (2 min)*`);
     for (const a of actionItems) {
-      lines.push(`• ${a.owner} — ${a.task}`);
+      const tkId = a.linked_ticket_id ? ` · ${a.linked_ticket_id}` : "";
+      lines.push(`• ${a.owner} — ${a.task}${tkId}`);
     }
     lines.push("");
   }
