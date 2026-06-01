@@ -555,70 +555,98 @@ export default function DailyStandup() {
       {/* Portfolio health roll-up — structured by status + per-title cards */}
       <PortfolioHealthGrid summary={standup.portfolio_health_summary} />
 
-      {/* Top risks + suggested escalations */}
+      {/* Execution flags + suggested escalations */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2 panel p-5">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="section-title flex items-center gap-2">
-              <AlertTriangle className="h-3.5 w-3.5 text-accent-amber" />
-              Top risks · what I'm flagging up
-            </h2>
-            <span className="text-[11px] text-ink-500">
-              {standup.top_risks.length} this week
-            </span>
-          </div>
-          <ul className="divide-y divide-line">
-            {standup.top_risks.map((r) => {
-              const draft = escalationDrafts.find(
-                (d) => d.draft_id === r.escalation_draft_id
-              );
-              const t = titleForId(r.title_id);
-              return (
-                <li key={r.risk_id} className="py-3 first:pt-0 last:pb-0">
-                  <div className="flex items-start gap-3">
-                    <Badge tone={SEVERITY_TONE[r.severity]} size="xs">
-                      {r.severity}
-                    </Badge>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-baseline gap-2 flex-wrap">
-                        <span className="text-[13.5px] font-semibold">
-                          {r.headline}
-                        </span>
-                        {t && (
-                          <span
-                            className="text-[10px] uppercase tracking-wider font-semibold"
-                            style={{ color: t.brand_color }}
-                          >
-                            {t.title_name}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-[12.5px] text-ink-700 mt-1">
-                        {r.detail}
-                      </p>
-                      <p className="text-[12.5px] text-ink-900 mt-1.5">
-                        <span className="text-[10px] uppercase tracking-wider font-semibold text-ink-500 mr-1.5">
-                          Action
-                        </span>
-                        {r.recommended_action}
-                      </p>
-                      {draft && (
-                        <button
-                          type="button"
-                          onClick={() => setActiveDraftId(draft.draft_id)}
-                          className="mt-2 inline-flex items-center gap-1.5 text-[11.5px] text-accent-primary font-medium hover:underline"
-                        >
-                          <Send className="h-3 w-3" />
-                          View Claude-drafted {draft.channel} to{" "}
-                          {draft.recipient}
-                        </button>
-                      )}
-                    </div>
+          {(() => {
+            const execRisks = (standup.top_risks || []).filter(
+              (r) => r.flag_type !== "kpi"
+            );
+            const kpiRiskCount = (standup.top_risks || []).filter(
+              (r) => r.flag_type === "kpi"
+            ).length;
+            return (
+              <>
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="section-title flex items-center gap-2">
+                    <AlertTriangle className="h-3.5 w-3.5 text-accent-amber" />
+                    Execution flags
+                  </h2>
+                  <span className="text-[11px] text-ink-500">
+                    {execRisks.length} this week
+                  </span>
+                </div>
+                <ul className="divide-y divide-line">
+                  {execRisks.map((r) => {
+                    const draft = escalationDrafts.find(
+                      (d) => d.draft_id === r.escalation_draft_id
+                    );
+                    const t = titleForId(r.title_id);
+                    return (
+                      <li key={r.risk_id} className="py-3 first:pt-0 last:pb-0">
+                        <div className="flex items-start gap-3">
+                          <Badge tone={SEVERITY_TONE[r.severity]} size="xs">
+                            {r.severity}
+                          </Badge>
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-baseline gap-2 flex-wrap">
+                              <span className="text-[13.5px] font-semibold">
+                                {r.headline}
+                              </span>
+                              {t && (
+                                <span
+                                  className="text-[10px] uppercase tracking-wider font-semibold"
+                                  style={{ color: t.brand_color }}
+                                >
+                                  {t.title_name}
+                                </span>
+                              )}
+                              <span className="text-[9.5px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded bg-ink-300/20 text-ink-500">
+                                {r.flag_type}
+                              </span>
+                            </div>
+                            <p className="text-[12.5px] text-ink-700 mt-1">
+                              {r.detail}
+                            </p>
+                            <p className="text-[12.5px] text-ink-900 mt-1.5">
+                              <span className="text-[10px] uppercase tracking-wider font-semibold text-ink-500 mr-1.5">
+                                Action
+                              </span>
+                              {r.recommended_action}
+                            </p>
+                            {draft && (
+                              <button
+                                type="button"
+                                onClick={() => setActiveDraftId(draft.draft_id)}
+                                className="mt-2 inline-flex items-center gap-1.5 text-[11.5px] text-accent-primary font-medium hover:underline"
+                              >
+                                <Send className="h-3 w-3" />
+                                View Claude-drafted {draft.channel} to{" "}
+                                {draft.recipient}
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+                {kpiRiskCount > 0 && (
+                  <div className="mt-3 pt-3 border-t border-line flex items-center justify-between">
+                    <p className="text-[11.5px] text-ink-500">
+                      <span className="font-semibold text-ink-700">{kpiRiskCount} KPI signal{kpiRiskCount > 1 ? "s" : ""}</span> filtered out — metric flags live in KPIs, not the standup.
+                    </p>
+                    <Link
+                      href="/kpis"
+                      className="inline-flex items-center gap-1 text-[11.5px] text-accent-primary font-medium hover:underline shrink-0 ml-3"
+                    >
+                      View KPI alerts <ArrowUpRight className="h-3 w-3" />
+                    </Link>
                   </div>
-                </li>
-              );
-            })}
-          </ul>
+                )}
+              </>
+            );
+          })()}
         </div>
 
         <div className="panel p-5">
