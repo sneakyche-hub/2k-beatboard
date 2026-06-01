@@ -7,6 +7,7 @@
     "timestamp": "2026-05-22T08:15:00Z",
     "title_id": null,
     "flagged_for_action": true,
+    "op_category": "execution",
     "thread_summary": "Davide wants the standard rollup format Tuesday: portfolio health, top 3 risks, decisions pending. Asked specifically for the Mad Ellie SP1 D30 read and the Wonderlands comms framing draft.",
     "claude_recommended_reply": "Confirmed for Tuesday. Will package: (1) portfolio health one-pager, (2) top 3 risks with recommended actions, (3) decision asks — Mad Ellie SP1 Phase 2 hold (Whispering Glacier endgame content beat window), Wonderlands comms sign-off, Mafia: TOC June 1 GO/NO-GO setup. Wonderlands draft will land in your inbox Friday EOD per separate thread."
   },
@@ -18,6 +19,7 @@
     "timestamp": "2026-05-22T11:30:00Z",
     "title_id": "civilization",
     "flagged_for_action": true,
+    "op_category": "production",
     "thread_summary": "Chasing Brand Creative on the 48h-late hero cut for Open World. Need it tonight or escalation goes to Davide tomorrow AM.",
     "claude_recommended_reply": "Following up — confirming we'll have the final hero cut by EOD today. If timing's slipping, please flag now so we can run the Open World v2 backup decision through Davide by AM. Cheers."
   },
@@ -62,6 +64,7 @@
     "timestamp": "2026-05-13T16:45:00Z",
     "title_id": "bioshock",
     "flagged_for_action": true,
+    "op_category": "budget",
     "thread_summary": "Harbor MSA in final Legal redline for BioShock pre-reveal wishlist quest config. Estimated turnaround 5–7 business days.",
     "claude_recommended_reply": "Tracking with Legal — will flag if redline turnaround slips past June 1. Once signed, configuring the quest immediately for the reveal window prep timeline."
   },
@@ -95,6 +98,7 @@
     "timestamp": "2026-05-22T13:00:00Z",
     "title_id": "wonderlands",
     "flagged_for_action": true,
+    "op_category": "execution",
     "thread_summary": "Sending Marcus's draft re-announce copy to Legal for quick review. Need turnaround by Thursday so we can land Davide sign-off Friday.",
     "claude_recommended_reply": null
   },
@@ -139,6 +143,7 @@
     "timestamp": "2026-05-22T07:45:00Z",
     "title_id": "mafia",
     "flagged_for_action": true,
+    "op_category": "budget",
     "thread_summary": "Davide asking for a pre-brief Friday morning ahead of the June 1 GO/NO-GO so he can see the refresh concepts before formal call.",
     "claude_recommended_reply": "Booking 30 min Friday AM. Will package: 3 refresh concepts from Heaven + Brand QA notes from Thursday + ROAS/CPI trend chart + recommended GO/NO-GO posture. Pre-read in your inbox Thursday EOD."
   },

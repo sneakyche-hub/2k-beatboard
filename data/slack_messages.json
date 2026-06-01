@@ -8,6 +8,7 @@
     "text": "Test of Time D2 sentiment looking strong on r/civ — top thread says 'finally the Civ VII I wanted at launch'. Steam reviews trending 87% over last 48h. @comms can we pull a sentiment slide for tomorrow's exec roll-up?",
     "thread_replies": 4,
     "flagged_for_action": true,
+    "op_category": "kpi",
     "linked_ticket_id": "CIV-1928",
     "linked_title_id": "civilization"
   },
@@ -20,6 +21,7 @@
     "text": "Heads up team, PotatoMcWhiskey's schedule shifted — we can lock the 4-player Time-Tested Civs multiplayer premiere (Potato + ursagaming + Boesthius + Quill18, Fractal Continent showcase) for May 28 instead of May 30. Need confirmation on whether we move the Triumphs system deep-dive solo VoDs with them or split into two days. @alex",
     "thread_replies": 6,
     "flagged_for_action": true,
+    "op_category": "production",
     "linked_ticket_id": "CIV-1934",
     "linked_title_id": "civilization"
   },
@@ -32,6 +34,7 @@
     "text": "Mad Ellie SP1 D30 cohort coming in at 9.8% — under our 14% gate. Recommend we hold the Phase 2 paid surge until we see Patch 1.2 land and re-measure. Drafting brief for Davide — if cohort clears we can re-enter against the Whispering Glacier endgame content beat window.",
     "thread_replies": 11,
     "flagged_for_action": true,
+    "op_category": "kpi",
     "linked_ticket_id": "BL-2418",
     "linked_title_id": "borderlands"
   },
@@ -44,6 +47,7 @@
     "text": "Crash repro on the encounter transition into the second arena. Reliable, can't ship June 5. Realistic new date is July 10. Looping in @marcus and @alex on comms framing.",
     "thread_replies": 8,
     "flagged_for_action": true,
+    "op_category": "production",
     "linked_ticket_id": "WND-1782",
     "linked_title_id": "wonderlands"
   },
@@ -56,6 +60,7 @@
     "text": "Three refresh creative concepts in QA. Brand review Thursday. Realistically GO/NO-GO June 1 — three days QA, two days traffic split. Sharing the concept boards in this thread shortly.",
     "thread_replies": 5,
     "flagged_for_action": true,
+    "op_category": "budget",
     "linked_ticket_id": "MAF-PROP-001",
     "linked_title_id": "mafia"
   },
@@ -92,6 +97,7 @@
     "text": "Lurkit Test of Time quest update: 8,200 hours watched D1–D3, 142 streamers participated across Steam + Epic. Cost-per-hour-watched landing at $0.18, well under our $0.25 ceiling. Extending the quest through the weekend to ride the Time-Tested Civs multiplayer premiere halo (Thu May 28) and the Triumphs deep-dive premieres (Sat May 30).",
     "thread_replies": 4,
     "flagged_for_action": true,
+    "op_category": "execution",
     "linked_ticket_id": "CIV-1941",
     "linked_title_id": "civilization"
   },
@@ -116,6 +122,7 @@
     "text": "Brand creative final hero cut for Test of Time NA paid social is in QA now — I have it. Tracking to land in Open World's hands by 4pm today. Sorry for the slip. Audit on the workflow is owed.",
     "thread_replies": 1,
     "flagged_for_action": true,
+    "op_category": "production",
     "linked_ticket_id": "CIV-1934",
     "linked_title_id": "civilization"
   }

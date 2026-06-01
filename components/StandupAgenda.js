@@ -41,6 +41,10 @@ import {
   Link2,
   Hammer,
   TrendingDown,
+  Zap,
+  DollarSign,
+  Wrench,
+  AlertTriangle,
 } from "lucide-react";
 
 // -------------------------------------------------------------------
@@ -169,6 +173,38 @@ const BLOCKER_CATEGORY_RANK = {
 // Execution sorts first.
 const ACTION_CATEGORY_RANK = { execution: 0, decision_prep: 1 };
 const ACTION_CATEGORY_LABEL = { execution: "Execution", decision_prep: "Decision prep" };
+
+// Operational category for calls and outbound inbox items.
+// Priority: production → execution → budget → kpi (deprioritized — awareness, not action).
+const OP_CATEGORY = {
+  production: {
+    label:     "Production",
+    icon:      Wrench,
+    chipClass: "bg-red-50 text-red-700 border border-red-200",
+    headerClass: "text-red-700",
+  },
+  execution: {
+    label:     "Execution",
+    icon:      Zap,
+    chipClass: "bg-emerald-50 text-emerald-700 border border-emerald-200",
+    headerClass: "text-emerald-700",
+  },
+  budget: {
+    label:     "Budget",
+    icon:      DollarSign,
+    chipClass: "bg-amber-50 text-amber-700 border border-amber-200",
+    headerClass: "text-amber-700",
+  },
+  kpi: {
+    label:     "KPI",
+    icon:      TrendingDown,
+    chipClass: "bg-indigo-50 text-indigo-700 border border-indigo-200",
+    headerClass: "text-indigo-600",
+  },
+};
+
+const OP_CATEGORY_ORDER = ["production", "execution", "budget", "kpi"];
+const OP_CATEGORY_RANK = { production: 0, execution: 1, budget: 2, kpi: 3 };
 
 function getTicket(ticketId) {
   if (!ticketId) return null;
@@ -343,6 +379,10 @@ export default function StandupAgenda() {
     return buildInboxItems()
       .filter((it) => it.priority === "P0")
       .sort((a, b) => {
+        // Primary: op category (production → execution → budget → kpi)
+        const rCat = (OP_CATEGORY_RANK[a.opCategory] ?? 9) - (OP_CATEGORY_RANK[b.opCategory] ?? 9);
+        if (rCat !== 0) return rCat;
+        // Secondary: channel type (draft → gmail → slack)
         const order = { draft: 0, gmail: 1, slack: 2, transcript: 3, activity: 4 };
         return (order[a.type] ?? 9) - (order[b.type] ?? 9);
       });
@@ -817,18 +857,24 @@ export default function StandupAgenda() {
           open={sectionOpen[3]}
           onToggle={() => toggleSection(3)}
         >
+          {/* Category breakdown across calls + outbound actions */}
+          <TouchpointBreakdown calls={calls} p0Inbox={p0Inbox} />
+
+          {/* Calls — kept in time order since they're calendar-anchored */}
           {calls.length > 0 && (
-            <div>
-              <div className="text-[10.5px] uppercase tracking-wider text-ink-500 font-semibold mb-1.5">
-                Calls
+            <div className="mb-4">
+              <div className="text-[10px] uppercase tracking-wider text-ink-500 font-semibold mb-2">
+                Calls ({calls.length})
               </div>
-              <ul className="space-y-1.5 mb-3">
+              <ul className="space-y-2">
                 {calls.map((c, i) => {
                   const id = `call:${i}`;
                   const resolved = meeting.isResolved(id);
                   const ticket = getTicket(c.linked_ticket_id);
                   const drawerKey = `c:${c.linked_ticket_id || i}`;
                   const isDrawerOpen = openDrawerKey === drawerKey;
+                  const catDef = c.call_category ? OP_CATEGORY[c.call_category] : null;
+                  const prepOutstanding = c.prep_status === "outstanding";
 
                   return (
                     <ResolvableRow
@@ -844,74 +890,112 @@ export default function StandupAgenda() {
                       tight
                       drawer={
                         ticket && isDrawerOpen ? (
-                          <TicketDrawer ticket={ticket} />
+                          <TicketDrawer ticket={ticket} blockerCategory={null} />
                         ) : undefined
                       }
                     >
-                      <div className={resolved ? "text-ink-500" : "text-ink-700"}>
-                        <span className={resolved ? "text-ink-500 line-through" : "text-ink-900 font-medium"}>
-                          {c.title}
-                        </span>
-                        {c.topic && (
-                          <span className={resolved ? "text-ink-400 line-through" : "text-ink-500"}>
-                            {" "}— {c.topic}
+                      <div className={resolved ? "text-ink-500" : ""}>
+                        <div className="flex items-center gap-1.5 flex-wrap mb-0.5">
+                          {catDef && (
+                            <OpCategoryChip category={c.call_category} />
+                          )}
+                          <span className={resolved ? "text-ink-500 line-through text-[13px] font-medium" : "text-ink-900 font-medium text-[13px]"}>
+                            {c.title}
                           </span>
+                          {prepOutstanding && !resolved && (
+                            <span className="inline-flex items-center gap-1 text-[10px] px-1.5 py-0.5 rounded-full font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                              <AlertTriangle className="h-2.5 w-2.5" />
+                              Prep outstanding
+                            </span>
+                          )}
+                        </div>
+                        {c.topic && (
+                          <div className={resolved ? "text-ink-400 text-[12px] line-through" : "text-ink-500 text-[12px]"}>
+                            {c.topic}
+                          </div>
+                        )}
+                        {c.prep_note && prepOutstanding && !resolved && (
+                          <div className="text-[11px] text-amber-700 mt-0.5">{c.prep_note}</div>
+                        )}
+                        {ticket && (
+                          <div className="mt-1">
+                            <TicketChip
+                              ticketId={c.linked_ticket_id}
+                              isOpen={isDrawerOpen}
+                              onToggle={() => toggleDrawer(drawerKey)}
+                            />
+                          </div>
                         )}
                       </div>
-                      {ticket && (
-                        <div className="mt-1">
-                          <TicketChip
-                            ticketId={c.linked_ticket_id}
-                            isOpen={isDrawerOpen}
-                            onToggle={() => toggleDrawer(drawerKey)}
-                          />
-                        </div>
-                      )}
                     </ResolvableRow>
                   );
                 })}
               </ul>
             </div>
           )}
+
+          {/* Outbound actions grouped by category: production → execution → budget → KPI */}
           {p0Inbox.length > 0 && (
             <div>
-              <div className="text-[10.5px] uppercase tracking-wider text-ink-500 font-semibold mb-1.5">
-                P0 actions leaving the building
+              <div className="text-[10px] uppercase tracking-wider text-ink-500 font-semibold mb-2">
+                Outbound actions ({p0Inbox.length})
               </div>
-              <ul className="space-y-1.5">
-                {p0Inbox.map((it) => {
-                  const id = `inbox:${it.id}`;
-                  const resolved = meeting.isResolved(id);
-                  const t = titleForId(it.titleId);
-                  return (
-                    <ResolvableRow
-                      key={it.id}
-                      id={id}
-                      resolved={resolved}
-                      onToggle={meeting.toggleResolved}
-                      bulletColor="text-accent-violet"
-                      tight
-                    >
-                      <span className={resolved ? "opacity-60" : ""}>
-                        {t && (
-                          <span
-                            className="text-[10px] uppercase tracking-wider font-bold mr-1.5"
-                            style={{ color: t.brand_color }}
-                          >
-                            {t.title_name}
-                          </span>
-                        )}
-                        <span className="text-[10px] uppercase tracking-wider text-ink-500 font-semibold mr-1.5">
-                          {it.type}
-                        </span>
-                        <span className={resolved ? "text-ink-700 line-through" : "text-ink-900"}>
-                          {it.headline}
-                        </span>
+              {OP_CATEGORY_ORDER.map((cat) => {
+                const catItems = p0Inbox.filter((it) => it.opCategory === cat);
+                if (catItems.length === 0) return null;
+                const catDef = OP_CATEGORY[cat];
+                const CatIcon = catDef.icon;
+                const isKpi = cat === "kpi";
+
+                return (
+                  <div key={cat} className={`mb-3 ${isKpi ? "opacity-80" : ""}`}>
+                    <div className="flex items-center gap-1.5 mb-1.5">
+                      <span className={`inline-flex items-center gap-1 text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded-full ${catDef.chipClass}`}>
+                        <CatIcon className="h-3 w-3" />
+                        {catDef.label}
                       </span>
-                    </ResolvableRow>
-                  );
-                })}
-              </ul>
+                      {isKpi && (
+                        <span className="text-[10px] text-ink-400">awareness · no action needed</span>
+                      )}
+                    </div>
+                    <ul className="space-y-1.5 pl-1">
+                      {catItems.map((it) => {
+                        const id = `inbox:${it.id}`;
+                        const resolved = meeting.isResolved(id);
+                        const t = titleForId(it.titleId);
+                        const channelLabel = it.type === "draft" ? "Draft" : it.type === "gmail" ? "Gmail" : it.type === "slack" ? "Slack" : it.type;
+                        return (
+                          <ResolvableRow
+                            key={it.id}
+                            id={id}
+                            resolved={resolved}
+                            onToggle={meeting.toggleResolved}
+                            bulletColor={isKpi ? "text-ink-300" : "text-accent-primary"}
+                            tight
+                          >
+                            <span className={resolved ? "opacity-60" : ""}>
+                              {t && (
+                                <span
+                                  className="text-[10px] uppercase tracking-wider font-bold mr-1.5"
+                                  style={{ color: t.brand_color }}
+                                >
+                                  {t.title_name}
+                                </span>
+                              )}
+                              <span className={`text-[10px] mono font-medium mr-1.5 ${isKpi ? "text-ink-400" : "text-ink-500"}`}>
+                                {channelLabel}
+                              </span>
+                              <span className={resolved ? "text-ink-700 line-through" : isKpi ? "text-ink-600" : "text-ink-900"}>
+                                {it.headline}
+                              </span>
+                            </span>
+                          </ResolvableRow>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
           )}
         </AgendaSection>
@@ -1081,6 +1165,64 @@ function BlockerBreakdown({ blockers }) {
           >
             <Icon className="h-3 w-3" />
             {count} {def.label}{count > 1 ? "s" : ""}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+// -------------------------------------------------------------------
+// OpCategoryChip — shows the operational category (production / execution /
+// budget / KPI) on calls and outbound inbox items.
+// -------------------------------------------------------------------
+function OpCategoryChip({ category }) {
+  const def = OP_CATEGORY[category];
+  if (!def) return null;
+  const Icon = def.icon;
+  return (
+    <span
+      className={`inline-flex items-center gap-1 text-[10px] uppercase tracking-wider font-semibold px-1.5 py-0.5 rounded-full ${def.chipClass}`}
+    >
+      <Icon className="h-3 w-3" />
+      {def.label}
+    </span>
+  );
+}
+
+// -------------------------------------------------------------------
+// TouchpointBreakdown — category mix summary for Section 3.
+// Shows counts across both calls and outbound items so the room can
+// see at a glance whether today is a production day, a budget day, etc.
+// -------------------------------------------------------------------
+function TouchpointBreakdown({ calls, p0Inbox }) {
+  const totals = {};
+  for (const c of calls) {
+    if (c.call_category) totals[c.call_category] = (totals[c.call_category] || 0) + 1;
+  }
+  for (const it of p0Inbox) {
+    if (it.opCategory) totals[it.opCategory] = (totals[it.opCategory] || 0) + 1;
+  }
+
+  const chips = OP_CATEGORY_ORDER.filter((k) => totals[k]);
+  if (chips.length === 0) return null;
+
+  return (
+    <div className="flex items-center gap-1.5 flex-wrap mb-4">
+      <span className="text-[10px] uppercase tracking-wider text-ink-400 font-semibold shrink-0">
+        Today:
+      </span>
+      {chips.map((key) => {
+        const def = OP_CATEGORY[key];
+        const Icon = def.icon;
+        const count = totals[key];
+        return (
+          <span
+            key={key}
+            className={`inline-flex items-center gap-1 text-[10.5px] px-2 py-0.5 rounded-full font-medium ${def.chipClass}`}
+          >
+            <Icon className="h-3 w-3" />
+            {count} {def.label}
           </span>
         );
       })}

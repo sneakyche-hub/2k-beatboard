@@ -22,7 +22,8 @@
         "topic": "Week-of-May-26 priorities, BL4 Phase 2 hold status, Wonderlands comms timeline",
         "prep_status": "ready",
         "prep_note": "Standup brief is the pre-read",
-        "linked_ticket_id": null
+        "linked_ticket_id": null,
+        "call_category": "execution"
       },
       {
         "time_iso": "2026-05-26T11:00:00Z",
@@ -35,7 +36,8 @@
         "topic": "Hero cut handoff path + Thu May 28 Time-Tested Civs multiplayer premiere prep (PotatoMcWhiskey + ursagaming + Boesthius + Quill18)",
         "prep_status": "outstanding",
         "prep_note": "Awaiting Brand Creative cut before this call",
-        "linked_ticket_id": "CIV-1934"
+        "linked_ticket_id": "CIV-1934",
+        "call_category": "production"
       },
       {
         "time_iso": "2026-05-26T14:00:00Z",
@@ -48,7 +50,8 @@
         "topic": "ROAS readout + Heaven refresh concept walkthrough",
         "prep_status": "ready",
         "prep_note": "Pre-read packet on TKT MAF-1010",
-        "linked_ticket_id": "MAF-1010"
+        "linked_ticket_id": "MAF-1010",
+        "call_category": "budget"
       },
       {
         "time_iso": "2026-05-26T15:30:00Z",
@@ -61,7 +64,8 @@
         "topic": "Confirm Phase 2 paid is paused, no refresh kickoff until Davide call Jun 5",
         "prep_status": "ready",
         "prep_note": "Marketing Mgr II owns",
-        "linked_ticket_id": "BL-2495"
+        "linked_ticket_id": "BL-2495",
+        "call_category": "budget"
       }
     ],
     "today_followups": [
