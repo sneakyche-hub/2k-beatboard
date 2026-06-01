@@ -28,6 +28,7 @@ import {
   Plus,
   X,
   Mail,
+  ChevronDown,
 } from "lucide-react";
 
 // -------------------------------------------------------------------
@@ -40,10 +41,12 @@ import {
 // inside an 18 min target), plus a Parking Lot capture below.
 //
 // Working-agenda behaviors:
-//   • Yesterday's commitments panel (closes the loop day-over-day)
-//   • Per-item resolve toggle persisted in localStorage by standup_date
-//   • Parking Lot for off-agenda capture without blowing the time-box
-//   • Reset Meeting State button for clean demo replay
+//   - Yesterday's commitments panel (closes the loop day-over-day)
+//   - Collapsible sections: overview strip shows all time allotments
+//     at a glance; expand each section as you reach it in the meeting
+//   - Per-item resolve toggle persisted in localStorage by standup_date
+//   - Parking Lot for off-agenda capture without blowing the time-box
+//   - Reset Meeting State button for clean demo replay
 //
 // The shareable roll-up version (full digest) lives at /brief/digest.
 // -------------------------------------------------------------------
@@ -168,6 +171,15 @@ function useMeetingState(standupDate) {
 
 export default function StandupAgenda() {
   const [copied, setCopied] = useState(false);
+  // All sections collapsed by default — overview strip shows the full
+  // agenda at a glance; expand each section as you reach it.
+  const [sectionOpen, setSectionOpen] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+  });
 
   const meeting = useMeetingState(standup.standup_date);
 
@@ -224,6 +236,57 @@ export default function StandupAgenda() {
   const callIds = calls.map((_, i) => `call:${i}`);
   const inboxIds = p0Inbox.map((it) => `inbox:${it.id}`);
   const actionIds = actionItems.map((a, i) => `action:${a.linked_ticket_id || i}`);
+
+  // Section definitions used for the overview strip
+  const sectionDefs = [
+    {
+      n: 1,
+      label: "Blockers needing the room",
+      shortLabel: "Blockers",
+      time: 5,
+      count: blockers.length,
+      tone: "red",
+      resolvedCount: meeting.resolvedCount(blockerIds),
+    },
+    {
+      n: 2,
+      label: "Decisions on the table",
+      shortLabel: "Decisions",
+      time: 5,
+      count: decisions.length,
+      tone: "amber",
+      resolvedCount: meeting.resolvedCount(decisionIds),
+    },
+    {
+      n: 3,
+      label: "External touchpoints",
+      shortLabel: "Touchpoints",
+      time: 4,
+      count: calls.length + p0Inbox.length,
+      tone: "primary",
+      resolvedCount: meeting.resolvedCount([...callIds, ...inboxIds]),
+    },
+    {
+      n: 4,
+      label: "Action items out",
+      shortLabel: "Actions",
+      time: 2,
+      count: actionItems.length,
+      tone: "success",
+      resolvedCount: meeting.resolvedCount(actionIds),
+    },
+  ];
+
+  const totalMinutes = sectionDefs.reduce((sum, s) => sum + s.time, 0);
+
+  const toggleSection = (n) =>
+    setSectionOpen((s) => ({ ...s, [n]: !s[n] }));
+
+  const mainSectionsOpen = [1, 2, 3, 4].every((n) => sectionOpen[n]);
+  const toggleAll = () => {
+    const next = !mainSectionsOpen;
+    setSectionOpen((s) => ({ ...s, 1: next, 2: next, 3: next, 4: next }));
+  };
 
   const handleCopy = async () => {
     const md = buildAgendaDigest({
@@ -364,6 +427,81 @@ export default function StandupAgenda() {
         </p>
       </section>
 
+      {/* Agenda overview — all sections and time allotments at a glance.
+          Tap any row to expand that section. */}
+      <section className="panel p-4">
+        <div className="flex items-center justify-between mb-3 gap-3 flex-wrap">
+          <div className="flex items-center gap-2">
+            <span className="text-[10.5px] uppercase tracking-wider text-ink-500 font-semibold">
+              Agenda
+            </span>
+            <span className="inline-flex items-center gap-1 text-[11px] mono font-semibold px-1.5 py-0.5 rounded bg-accent-primary/10 text-accent-primary border border-accent-primary/30">
+              <Timer className="h-3 w-3" /> {totalMinutes} min
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={toggleAll}
+            className="text-[11.5px] text-accent-primary hover:underline font-medium"
+          >
+            {mainSectionsOpen ? "Collapse all" : "Expand all"}
+          </button>
+        </div>
+        <div className="divide-y divide-line">
+          {sectionDefs.map((s) => {
+            const toneColor = {
+              red: "text-accent-red",
+              amber: "text-accent-amber",
+              primary: "text-accent-primary",
+              success: "text-accent-success",
+            }[s.tone] || "text-ink-700";
+
+            const isOpen = sectionOpen[s.n];
+            const allResolved = s.count > 0 && s.resolvedCount === s.count;
+            const someResolved = s.resolvedCount > 0 && s.resolvedCount < s.count;
+
+            return (
+              <button
+                key={s.n}
+                type="button"
+                onClick={() => toggleSection(s.n)}
+                className={`w-full flex items-center gap-3 py-2.5 px-1 text-left transition-colors group hover:bg-ink-100/30 rounded-md ${
+                  isOpen ? "bg-ink-100/20" : ""
+                }`}
+              >
+                <span className="mono text-[11px] font-bold px-1.5 py-0.5 rounded bg-ink-300/20 text-ink-700 shrink-0 w-5 text-center">
+                  {s.n}
+                </span>
+                <span className={`text-[13px] font-medium flex-1 min-w-0 ${isOpen ? toneColor : "text-ink-700"}`}>
+                  {s.label}
+                </span>
+                {allResolved ? (
+                  <span className="text-[11px] mono text-accent-success font-semibold shrink-0">
+                    All resolved
+                  </span>
+                ) : someResolved ? (
+                  <span className="text-[11px] mono text-ink-500 shrink-0">
+                    {s.resolvedCount}/{s.count}
+                  </span>
+                ) : (
+                  <span className="text-[11px] mono text-ink-500 shrink-0">
+                    {s.count} {s.count === 1 ? "item" : "items"}
+                  </span>
+                )}
+                <span className="inline-flex items-center gap-1 text-[11px] mono font-semibold text-ink-500 shrink-0 w-14 justify-end">
+                  <Timer className="h-3 w-3" /> {s.time} min
+                </span>
+                <ChevronDown
+                  className={`h-4 w-4 text-ink-400 transition-transform shrink-0 ${
+                    isOpen ? "" : "-rotate-90"
+                  }`}
+                />
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
       {/* 1. Blockers needing the room — 5 min */}
       {blockers.length > 0 && (
         <AgendaSection
@@ -374,6 +512,8 @@ export default function StandupAgenda() {
           Icon={AlertOctagon}
           totalCount={blockers.length}
           resolvedCount={meeting.resolvedCount(blockerIds)}
+          open={sectionOpen[1]}
+          onToggle={() => toggleSection(1)}
         >
           <ul className="space-y-2.5">
             {blockers.map((b, i) => {
@@ -437,6 +577,8 @@ export default function StandupAgenda() {
           Icon={Gauge}
           totalCount={decisions.length}
           resolvedCount={meeting.resolvedCount(decisionIds)}
+          open={sectionOpen[2]}
+          onToggle={() => toggleSection(2)}
         >
           <ul className="space-y-2.5">
             {decisions.map((d) => {
@@ -512,6 +654,8 @@ export default function StandupAgenda() {
           Icon={Phone}
           totalCount={calls.length + p0Inbox.length}
           resolvedCount={meeting.resolvedCount([...callIds, ...inboxIds])}
+          open={sectionOpen[3]}
+          onToggle={() => toggleSection(3)}
         >
           {calls.length > 0 && (
             <div>
@@ -601,6 +745,8 @@ export default function StandupAgenda() {
           Icon={ListChecks}
           totalCount={actionItems.length}
           resolvedCount={meeting.resolvedCount(actionIds)}
+          open={sectionOpen[4]}
+          onToggle={() => toggleSection(4)}
         >
           <ul className="space-y-2">
             {actionItems.map((a, i) => {
@@ -656,6 +802,8 @@ export default function StandupAgenda() {
         parked={meeting.parked}
         onAdd={meeting.addParked}
         onRemove={meeting.removeParked}
+        open={sectionOpen[5]}
+        onToggle={() => toggleSection(5)}
       />
 
       {/* Footer */}
@@ -676,13 +824,18 @@ export default function StandupAgenda() {
 // show line-through. Counts in the header tell the whole story.
 // -------------------------------------------------------------------
 function YesterdayPanel({ items, counts }) {
+  const [open, setOpen] = useState(false);
   const total = items.length;
   const done = counts.done || 0;
   const carrying = counts.carried_over || 0;
 
   return (
-    <section className="panel p-5">
-      <div className="flex items-baseline justify-between mb-3 gap-3 flex-wrap">
+    <section className="panel border-l-4 border-l-ink-300">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="w-full flex items-center justify-between p-5 gap-3 text-left"
+      >
         <h2 className="text-[13px] font-bold flex items-center gap-2 text-ink-700">
           <CornerDownRight className="h-4 w-4 text-ink-500" />
           Yesterday's commitments
@@ -696,56 +849,65 @@ function YesterdayPanel({ items, counts }) {
             )}
           </span>
         </h2>
-        <span className="text-[11px] mono text-ink-500">Mon May 25</span>
-      </div>
-      <ul className="space-y-2">
-        {items.map((it, i) => {
-          const t = titleForId(it.title_id);
-          const isDone = it.status === "done";
-          return (
-            <li key={i} className="text-[13px] leading-relaxed flex gap-2.5">
-              <span className="mt-0.5 shrink-0">
-                {isDone ? (
-                  <CheckCircle2 className="h-4 w-4 text-accent-success" />
-                ) : (
-                  <CornerDownRight className="h-4 w-4 text-accent-amber" />
-                )}
-              </span>
-              <div className={`min-w-0 flex-1 ${isDone ? "opacity-70" : ""}`}>
-                <div className="flex items-baseline gap-2 flex-wrap">
-                  <span className="text-[11px] mono font-semibold text-ink-900 px-1.5 py-0.5 rounded bg-ink-300/20">
-                    {it.owner}
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-[11px] mono text-ink-500">Mon May 25</span>
+          <ChevronDown
+            className={`h-4 w-4 text-ink-400 transition-transform ${open ? "" : "-rotate-90"}`}
+          />
+        </div>
+      </button>
+      {open && (
+        <div className="px-5 pb-5 pt-0 border-t border-line">
+          <ul className="space-y-2 pt-3">
+            {items.map((it, i) => {
+              const t = titleForId(it.title_id);
+              const isDone = it.status === "done";
+              return (
+                <li key={i} className="text-[13px] leading-relaxed flex gap-2.5">
+                  <span className="mt-0.5 shrink-0">
+                    {isDone ? (
+                      <CheckCircle2 className="h-4 w-4 text-accent-success" />
+                    ) : (
+                      <CornerDownRight className="h-4 w-4 text-accent-amber" />
+                    )}
                   </span>
-                  {t && (
-                    <span
-                      className="text-[10px] uppercase tracking-wider font-bold"
-                      style={{ color: t.brand_color }}
-                    >
-                      {t.title_name}
-                    </span>
-                  )}
-                  <span className={isDone ? "text-ink-700 line-through" : "text-ink-900"}>
-                    {it.task}
-                  </span>
-                  <Badge tone={YESTERDAY_STATUS_TONE[it.status]} size="xs">
-                    {YESTERDAY_STATUS_LABEL[it.status]}
-                  </Badge>
-                  {it.linked_ticket_id && (
-                    <span className="text-[11px] mono text-ink-500">
-                      {it.linked_ticket_id}
-                    </span>
-                  )}
-                </div>
-                {it.closeout_note && (
-                  <div className="text-[11.5px] text-ink-500 mt-0.5">
-                    {it.closeout_note}
+                  <div className={`min-w-0 flex-1 ${isDone ? "opacity-70" : ""}`}>
+                    <div className="flex items-baseline gap-2 flex-wrap">
+                      <span className="text-[11px] mono font-semibold text-ink-900 px-1.5 py-0.5 rounded bg-ink-300/20">
+                        {it.owner}
+                      </span>
+                      {t && (
+                        <span
+                          className="text-[10px] uppercase tracking-wider font-bold"
+                          style={{ color: t.brand_color }}
+                        >
+                          {t.title_name}
+                        </span>
+                      )}
+                      <span className={isDone ? "text-ink-700 line-through" : "text-ink-900"}>
+                        {it.task}
+                      </span>
+                      <Badge tone={YESTERDAY_STATUS_TONE[it.status]} size="xs">
+                        {YESTERDAY_STATUS_LABEL[it.status]}
+                      </Badge>
+                      {it.linked_ticket_id && (
+                        <span className="text-[11px] mono text-ink-500">
+                          {it.linked_ticket_id}
+                        </span>
+                      )}
+                    </div>
+                    {it.closeout_note && (
+                      <div className="text-[11.5px] text-ink-500 mt-0.5">
+                        {it.closeout_note}
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }
@@ -787,10 +949,10 @@ function ResolvableRow({ id, resolved, onToggle, bulletColor, bullet, tight, chi
 
 // -------------------------------------------------------------------
 // ParkingLot — off-agenda capture. Items live in localStorage so they
-// survive the meeting and can be triaged after. Empty state explains
-// the affordance.
+// survive the meeting and can be triaged after. Collapsible header
+// keeps it out of the way until needed.
 // -------------------------------------------------------------------
-function ParkingLot({ parked, onAdd, onRemove }) {
+function ParkingLot({ parked, onAdd, onRemove, open, onToggle }) {
   const [text, setText] = useState("");
   const [raisedBy, setRaisedBy] = useState("Alex");
 
@@ -801,8 +963,12 @@ function ParkingLot({ parked, onAdd, onRemove }) {
   };
 
   return (
-    <section className="panel p-5 border-l-4 border-l-ink-300">
-      <div className="flex items-baseline justify-between mb-3 gap-3 flex-wrap">
+    <section className="panel border-l-4 border-l-ink-300">
+      <button
+        type="button"
+        onClick={onToggle}
+        className="w-full flex items-center justify-between p-5 gap-3 text-left"
+      >
         <h2 className="text-[13px] font-bold flex items-center gap-2 text-ink-700">
           <span className="mono text-[11px] font-bold px-1.5 py-0.5 rounded bg-ink-300/20 text-ink-700">
             5
@@ -810,74 +976,77 @@ function ParkingLot({ parked, onAdd, onRemove }) {
           <MapPin className="h-4 w-4" />
           Parking lot
           <span className="text-[11.5px] text-ink-500 font-normal ml-1">
-            ({parked.length})
+            ({parked.length}) · capture and continue
           </span>
         </h2>
-        <span className="text-[11px] text-ink-500">
-          Capture &amp; continue
-        </span>
-      </div>
-
-      {parked.length === 0 ? (
-        <p className="text-[12.5px] text-ink-500 italic mb-3">
-          Nothing parked yet. Off-agenda items captured here stay out of the time-box but don't get lost.
-        </p>
-      ) : (
-        <ul className="space-y-1.5 mb-3">
-          {parked.map((p) => (
-            <li key={p.id} className="text-[13px] leading-relaxed flex items-baseline gap-2.5 group">
-              <span className="mono text-[11px] text-ink-500 shrink-0 w-16">
-                {fmtClock(p.raised_at)}
-              </span>
-              <span className="text-[11px] mono font-semibold text-ink-900 px-1.5 py-0.5 rounded bg-ink-300/20 shrink-0">
-                {p.raised_by}
-              </span>
-              <span className="text-ink-700 min-w-0 flex-1">{p.text}</span>
-              <button
-                type="button"
-                onClick={() => onRemove(p.id)}
-                className="text-ink-500 hover:text-accent-red opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
-                aria-label="Remove parked item"
-              >
-                <X className="h-3.5 w-3.5" />
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-
-      <form
-        className="park-form flex items-center gap-2 flex-wrap"
-        onSubmit={(e) => {
-          e.preventDefault();
-          submit();
-        }}
-      >
-        <select
-          value={raisedBy}
-          onChange={(e) => setRaisedBy(e.target.value)}
-          className="text-[12px] mono font-semibold px-2 py-1.5 rounded-lg border border-line bg-white text-ink-900 focus:border-accent-primary focus:outline-none"
-        >
-          {TRIO_OPTIONS.map((opt) => (
-            <option key={opt} value={opt}>{opt}</option>
-          ))}
-        </select>
-        <input
-          type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Park for later…"
-          className="flex-1 min-w-[200px] text-[13px] px-3 py-1.5 rounded-lg border border-line bg-white text-ink-900 placeholder:text-ink-500 focus:border-accent-primary focus:outline-none"
+        <ChevronDown
+          className={`h-4 w-4 text-ink-400 transition-transform shrink-0 ${open ? "" : "-rotate-90"}`}
         />
-        <button
-          type="submit"
-          disabled={!text.trim()}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-line bg-white text-[12px] font-medium text-ink-700 hover:border-accent-primary hover:text-accent-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-        >
-          <Plus className="h-3.5 w-3.5" />
-          Park
-        </button>
-      </form>
+      </button>
+      {open && (
+        <div className="px-5 pb-5 pt-0 border-t border-line">
+          {parked.length === 0 ? (
+            <p className="text-[12.5px] text-ink-500 italic my-3">
+              Nothing parked yet. Off-agenda items captured here stay out of the time-box but don't get lost.
+            </p>
+          ) : (
+            <ul className="space-y-1.5 my-3">
+              {parked.map((p) => (
+                <li key={p.id} className="text-[13px] leading-relaxed flex items-baseline gap-2.5 group">
+                  <span className="mono text-[11px] text-ink-500 shrink-0 w-16">
+                    {fmtClock(p.raised_at)}
+                  </span>
+                  <span className="text-[11px] mono font-semibold text-ink-900 px-1.5 py-0.5 rounded bg-ink-300/20 shrink-0">
+                    {p.raised_by}
+                  </span>
+                  <span className="text-ink-700 min-w-0 flex-1">{p.text}</span>
+                  <button
+                    type="button"
+                    onClick={() => onRemove(p.id)}
+                    className="text-ink-500 hover:text-accent-red opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                    aria-label="Remove parked item"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <form
+            className="park-form flex items-center gap-2 flex-wrap"
+            onSubmit={(e) => {
+              e.preventDefault();
+              submit();
+            }}
+          >
+            <select
+              value={raisedBy}
+              onChange={(e) => setRaisedBy(e.target.value)}
+              className="text-[12px] mono font-semibold px-2 py-1.5 rounded-lg border border-line bg-white text-ink-900 focus:border-accent-primary focus:outline-none"
+            >
+              {TRIO_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>{opt}</option>
+              ))}
+            </select>
+            <input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Park for later..."
+              className="flex-1 min-w-[200px] text-[13px] px-3 py-1.5 rounded-lg border border-line bg-white text-ink-900 placeholder:text-ink-500 focus:border-accent-primary focus:outline-none"
+            />
+            <button
+              type="submit"
+              disabled={!text.trim()}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-line bg-white text-[12px] font-medium text-ink-700 hover:border-accent-primary hover:text-accent-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              Park
+            </button>
+          </form>
+        </div>
+      )}
     </section>
   );
 }
@@ -907,7 +1076,12 @@ function inferTitleIdFromTicket(ticketId) {
   return map[prefix] || null;
 }
 
-function AgendaSection({ number, title, timeBox, tone, Icon, totalCount, resolvedCount, children }) {
+// -------------------------------------------------------------------
+// AgendaSection — collapsible time-boxed section. The header always
+// shows the section number, title, item count, and time allocation.
+// Click anywhere on the header to expand/collapse the content.
+// -------------------------------------------------------------------
+function AgendaSection({ number, title, timeBox, tone, Icon, totalCount, resolvedCount, open, onToggle, children }) {
   const toneClass = {
     red: "text-accent-red border-l-accent-red",
     amber: "text-accent-amber border-l-accent-amber",
@@ -923,8 +1097,12 @@ function AgendaSection({ number, title, timeBox, tone, Icon, totalCount, resolve
     resolvedCount > 0;
 
   return (
-    <section className={`panel p-5 border-l-4 ${borderClass}`}>
-      <div className="flex items-baseline justify-between mb-3 gap-3 flex-wrap">
+    <section className={`panel border-l-4 ${borderClass}`}>
+      <button
+        type="button"
+        onClick={onToggle}
+        className="w-full flex items-center justify-between p-5 gap-3 text-left"
+      >
         <h2 className={`text-[13px] font-bold flex items-center gap-2 ${titleColor}`}>
           <span className="mono text-[11px] font-bold px-1.5 py-0.5 rounded bg-ink-300/20 text-ink-700">
             {number}
@@ -939,11 +1117,20 @@ function AgendaSection({ number, title, timeBox, tone, Icon, totalCount, resolve
             </span>
           )}
         </h2>
-        <span className="inline-flex items-center gap-1 text-[11px] mono font-semibold text-ink-500">
-          <Timer className="h-3 w-3" /> {timeBox}
-        </span>
-      </div>
-      {children}
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="inline-flex items-center gap-1 text-[11px] mono font-semibold text-ink-500">
+            <Timer className="h-3 w-3" /> {timeBox}
+          </span>
+          <ChevronDown
+            className={`h-4 w-4 text-ink-400 transition-transform ${open ? "" : "-rotate-90"}`}
+          />
+        </div>
+      </button>
+      {open && (
+        <div className="px-5 pb-5 pt-0 border-t border-line">
+          <div className="pt-4">{children}</div>
+        </div>
+      )}
     </section>
   );
 }
