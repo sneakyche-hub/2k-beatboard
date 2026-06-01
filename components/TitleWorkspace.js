@@ -301,8 +301,23 @@ export default function TitleWorkspace({ title }) {
                   <div className="text-[12.5px] font-medium truncate">
                     {b.beat_name}
                   </div>
-                  <div className="text-[10.5px] text-ink-500 truncate">
-                    {b.lead_owner} · {fmtMoney(b.budget_usd)}
+                  <div className="text-[10.5px] text-ink-500 truncate flex items-center gap-1.5">
+                    {b.lifecycle_stage && (
+                      <span className={`inline-flex items-center text-[9px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded border shrink-0 ${
+                        b.lifecycle_stage === "Asset Lock"
+                          ? "bg-accent-red/10 text-accent-red border-accent-red/30"
+                          : b.lifecycle_stage === "QA"
+                          ? "bg-accent-amber/10 text-accent-amber border-accent-amber/30"
+                          : b.lifecycle_stage === "Live"
+                          ? "bg-accent-success/10 text-accent-success border-accent-success/30"
+                          : b.lifecycle_stage === "Retro" || b.lifecycle_stage === "Wrap"
+                          ? "bg-ink-300/30 text-ink-500 border-ink-300/50"
+                          : "bg-accent-primary/10 text-accent-primary border-accent-primary/30"
+                      }`}>
+                        {b.lifecycle_stage}
+                      </span>
+                    )}
+                    <span className="truncate">{b.lead_owner} · {fmtMoney(b.budget_usd)}</span>
                   </div>
                 </div>
                 <div className="px-2">

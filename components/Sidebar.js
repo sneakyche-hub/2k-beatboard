@@ -12,6 +12,7 @@ import {
   Gauge,
   FileText,
   DollarSign,
+  ClipboardCheck,
 } from "lucide-react";
 
 const NAV = [
@@ -20,6 +21,7 @@ const NAV = [
   { href: "/calendar", label: "Calendar", icon: CalendarDays },
   { href: "/kpis", label: "KPIs", icon: Gauge },
   { href: "/budgets", label: "Budgets", icon: DollarSign },
+  { href: "/decisions", label: "Decision Log", icon: ClipboardCheck },
   { href: "/titles", label: "Titles", icon: LayoutGrid },
   { href: "/inbox", label: "AI Inbox", icon: Inbox },
   { href: "/connections", label: "Connections", icon: Plug },

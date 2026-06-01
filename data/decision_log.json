@@ -1,0 +1,122 @@
+[
+  {
+    "decision_id": "dec_wonderlands_reannounce_signoff",
+    "title_id": "wonderlands",
+    "decision": "Sign off Wonderlands DLC re-announce comms (Jul 10 re-date)",
+    "decided_at": "2026-05-29",
+    "decided_by": "Davide Detta",
+    "decision_outcome": "go",
+    "tranche_amount_usd": 0,
+    "rationale_note": "Marcus draft v2 signed off Fri AM. Sentiment Defense framing cleared legal. 1hr community ack window closed without escalation. 65K standalone-page wishlisters notified via Steam date-shift.",
+    "outcome_30d_note": null,
+    "linked_ticket_id": "WND-1782"
+  },
+  {
+    "decision_id": "dec_civ_tot_asset_backup_path",
+    "title_id": "civilization",
+    "decision": "Confirm Test of Time hero-cut handoff path (Brand final vs Open World v2 backup)",
+    "decided_at": "2026-05-26",
+    "decided_by": "Alex Akiyama",
+    "decision_outcome": "go",
+    "tranche_amount_usd": 0,
+    "rationale_note": "Chase Brand by EOD Tue, default to Open World v2 cut if not in hand. Brand delivered 6:42 PM — backup not needed. Chase-then-default protocol worked.",
+    "outcome_30d_note": null,
+    "linked_ticket_id": "CIV-1934"
+  },
+  {
+    "decision_id": "dec_civ7_tot_creator_campaign",
+    "title_id": "civilization",
+    "decision": "GO on Test of Time NA Creator Campaign ($320K) — Open World + Lurkit",
+    "decided_at": "2026-05-21",
+    "decided_by": "Davide Detta",
+    "decision_outcome": "go",
+    "tranche_amount_usd": 320000,
+    "rationale_note": "D7 retention tracking at 33.6% vs 30% target. Time-Tested Civs multiplayer premiere anchored by PotatoMcWhiskey + ursagaming + Boesthius + Quill18 (May 28). Review score trajectory supports the spend.",
+    "outcome_30d_note": null,
+    "linked_ticket_id": "CIV-1934"
+  },
+  {
+    "decision_id": "dec_bl4_fanfest_q3_budget",
+    "title_id": "borderlands",
+    "decision": "Allocate $95K BL4 FanFest Q3 activation budget",
+    "decided_at": "2026-05-10",
+    "decided_by": "Davide Detta",
+    "decision_outcome": "go",
+    "tranche_amount_usd": 95000,
+    "rationale_note": "FanFest Q3 slot confirmed. BL4 SP2 reveal window aligns with activation. Budget within Q3 committed ceiling. Marketing Mgr II owns production.",
+    "outcome_30d_note": null,
+    "linked_ticket_id": null
+  },
+  {
+    "decision_id": "dec_ror2_seekers_free_weekend",
+    "title_id": "risk-of-rain",
+    "decision": "GO on RoR2 Seekers of the Storm free weekend (May 30)",
+    "decided_at": "2026-05-05",
+    "decided_by": "Davide Detta",
+    "decision_outcome": "go",
+    "tranche_amount_usd": 45000,
+    "rationale_note": "Lurkit + CreatorIQ shortlist cleared. Steam free-weekend slot confirmed. Conversion creative in QA. $45K total: $28K paid layer + $17K creator seeding.",
+    "outcome_30d_note": null,
+    "linked_ticket_id": null
+  },
+  {
+    "decision_id": "dec_mafia_toc_creative_refresh_v1",
+    "title_id": "mafia",
+    "decision": "Approve Mafia: TOC creative refresh v1 — Heaven 3 concepts (tranche $120K)",
+    "decided_at": "2026-04-28",
+    "decided_by": "Davide Detta",
+    "decision_outcome": "deferred",
+    "tranche_amount_usd": 120000,
+    "rationale_note": "Heaven 3 concepts did not clear Brand QA. Deferred: rework round requested. ROAS continuing to decay — window to course-correct narrowing. Retable Jun 1 once revised concepts clear.",
+    "outcome_30d_note": "Heaven 3 revised concepts cleared Brand QA May 29. Tranche decision rescheduled to Jun 1 GO/NO-GO call with Davide.",
+    "linked_ticket_id": "MAF-1010"
+  },
+  {
+    "decision_id": "dec_hw3_anniversary_activation",
+    "title_id": "homeworld",
+    "decision": "GO on HW3 Anniversary content update activation ($62K)",
+    "decided_at": "2026-04-20",
+    "decided_by": "Davide Detta",
+    "decision_outcome": "go",
+    "tranche_amount_usd": 62000,
+    "rationale_note": "HW3 anniversary trailer confirmed Jun 3. Creator seeding (RTS-native VoD scene) and paid layer approved. Marketing Mgr II owns execution.",
+    "outcome_30d_note": null,
+    "linked_ticket_id": null
+  },
+  {
+    "decision_id": "dec_bl4_sp1_phase1_surge",
+    "title_id": "borderlands",
+    "decision": "Release BL4 Mad Ellie SP1 Phase 1 paid surge ($185K) — launch window",
+    "decided_at": "2026-03-25",
+    "decided_by": "Davide Detta",
+    "decision_outcome": "go",
+    "tranche_amount_usd": 185000,
+    "rationale_note": "Wishlist velocity 1,640/day and 84% review score at D7. Heaven Media capacity confirmed. Phase 1 CTR benchmarked against BL3 DLC launch set. Strong top-of-funnel signal.",
+    "outcome_30d_note": "Phase 1 CTR landed +22% vs benchmark. D30 retention came in at 9.8% vs 14% gate. Retention problem, not awareness. Phase 2 surge held pending Patch 1.2 D30 re-measure (Jun 12 target).",
+    "linked_ticket_id": "BL-2418"
+  },
+  {
+    "decision_id": "dec_mafia_toc_initial_brief",
+    "title_id": "mafia",
+    "decision": "Approve Mafia: TOC sustain campaign initial brief ($60K tranche 1)",
+    "decided_at": "2026-03-10",
+    "decided_by": "Davide Detta",
+    "decision_outcome": "go",
+    "tranche_amount_usd": 60000,
+    "rationale_note": "Catalog sustain play for TOC. Heaven assigned as lead agency. Initial ROAS target 2.4x on a 6-week window. Cohort fatigue post-mortem to run at 8 weeks to catch drift early.",
+    "outcome_30d_note": "ROAS peaked at 2.4x week 4, now tracking 1.87x rolling 7d (22% WoW decline). Cohort fatigue pattern matching BL3 sustain decay playbook. Creative refresh proposal advanced to Brand QA.",
+    "linked_ticket_id": "MAF-1010"
+  },
+  {
+    "decision_id": "dec_xcom_30th_bundle_prep",
+    "title_id": "xcom",
+    "decision": "GO on XCOM 30th Anniversary bundle prep ($38K) — catalog refresh + Steam sale alignment",
+    "decided_at": "2026-03-01",
+    "decided_by": "Alex Akiyama",
+    "decision_outcome": "go",
+    "tranche_amount_usd": 38000,
+    "rationale_note": "30th anniversary window in Q3. Bundle positioning approved by Brand. Steam sale slot confirmed. Marketing Mgr II owns execution within Civ/XCOM catalog budget.",
+    "outcome_30d_note": null,
+    "linked_ticket_id": null
+  }
+]

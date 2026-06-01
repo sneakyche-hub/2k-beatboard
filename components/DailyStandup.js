@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   standup,
@@ -10,6 +10,7 @@ import {
   beats,
   getBeat,
   fmtDate,
+  buildDeltaItems,
 } from "@/lib/data";
 import Badge from "./Badge";
 import EscalationModal from "./EscalationModal";
@@ -32,6 +33,8 @@ import {
   CornerDownRight,
   Gauge,
   FileText,
+  Zap,
+  ClipboardCheck,
 } from "lucide-react";
 
 const STATUS_LABEL = {
@@ -139,6 +142,9 @@ export default function DailyStandup() {
           </Link>
         </div>
       </div>
+
+      {/* Needs attention — pre-computed delta strip */}
+      <DeltaStrip />
 
       {/* Production health hero — 4 expandable tiles */}
       <ProductionHealthTiles prod={prod} brief={brief} />
@@ -712,5 +718,119 @@ export default function DailyStandup() {
         Demo data · 2K BeatBoard prototype · built with Claude Code
       </footer>
     </div>
+  );
+}
+
+// -------------------------------------------------------------------
+// DeltaStrip — "Needs attention" surface on the homepage.
+//
+// Computes production signals from buildDeltaItems() (Asset Lock
+// stalls, decisions due today, at-risk/delayed beats). Items carry
+// a "New" badge on first view; localStorage tracks which items have
+// been acknowledged so repeat visits are clean. "Mark all seen"
+// clears the badges without hiding the signals — the signals stay
+// surfaced as long as the underlying condition exists.
+// -------------------------------------------------------------------
+function DeltaStrip() {
+  const [seenIds, setSeenIds] = useState(new Set());
+  const [hydrated, setHydrated] = useState(false);
+
+  const items = buildDeltaItems();
+
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem("beatboard:delta:seen");
+      if (raw) setSeenIds(new Set(JSON.parse(raw)));
+    } catch {}
+    setHydrated(true);
+  }, []);
+
+  const markAllSeen = () => {
+    const next = new Set(items.map((i) => i.id));
+    setSeenIds(next);
+    try {
+      window.localStorage.setItem("beatboard:delta:seen", JSON.stringify([...next]));
+    } catch {}
+  };
+
+  const unseenCount = hydrated ? items.filter((i) => !seenIds.has(i.id)).length : 0;
+
+  if (items.length === 0) return null;
+
+  return (
+    <section className="panel border-l-4 border-l-twok-red p-4">
+      <div className="flex items-center justify-between mb-3 gap-2 flex-wrap">
+        <h2 className="text-[12px] font-semibold flex items-center gap-2 text-ink-700">
+          <Zap className="h-3.5 w-3.5 text-twok-red" />
+          Needs attention
+          {unseenCount > 0 && (
+            <span className="inline-flex items-center justify-center h-4 min-w-4 px-1 rounded-full bg-twok-red text-white text-[9px] font-bold">
+              {unseenCount}
+            </span>
+          )}
+        </h2>
+        <div className="flex items-center gap-3">
+          {unseenCount > 0 && (
+            <button
+              type="button"
+              onClick={markAllSeen}
+              className="text-[11px] text-accent-primary hover:underline"
+            >
+              Mark all seen
+            </button>
+          )}
+          <Link
+            href="/decisions"
+            className="inline-flex items-center gap-1 text-[11px] text-ink-500 hover:text-accent-primary"
+          >
+            <ClipboardCheck className="h-3 w-3" />
+            Decision log
+          </Link>
+        </div>
+      </div>
+      <div className="divide-y divide-line">
+        {items.map((item) => {
+          const isSeen = hydrated && seenIds.has(item.id);
+          const t = titles.find((ti) => ti.title_id === item.title_id);
+          return (
+            <div
+              key={item.id}
+              className={`flex items-baseline gap-2.5 py-2 text-[13px] transition-opacity ${
+                isSeen ? "opacity-40" : ""
+              }`}
+            >
+              <span
+                className={`shrink-0 text-[9.5px] font-bold mono px-1.5 py-0.5 rounded ${
+                  item.priority === "P0"
+                    ? "bg-accent-red/10 text-accent-red"
+                    : "bg-accent-amber/10 text-accent-amber"
+                }`}
+              >
+                {item.priority}
+              </span>
+              {t && (
+                <span
+                  className="text-[10px] uppercase tracking-wider font-bold shrink-0"
+                  style={{ color: t.brand_color }}
+                >
+                  {t.title_name}
+                </span>
+              )}
+              <span className={`min-w-0 flex-1 ${isSeen ? "text-ink-700" : "text-ink-900"}`}>
+                {item.headline}
+              </span>
+              <span className="text-[11px] text-ink-500 shrink-0 hidden sm:inline truncate max-w-[260px]">
+                {item.detail}
+              </span>
+              {!isSeen && hydrated && (
+                <span className="text-[9px] uppercase font-bold text-accent-success shrink-0">
+                  New
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
