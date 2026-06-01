@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   standup,
@@ -45,6 +45,9 @@ import {
   DollarSign,
   Wrench,
   AlertTriangle,
+  StickyNote,
+  Edit3,
+  ArrowUpRight,
 } from "lucide-react";
 
 // -------------------------------------------------------------------
@@ -259,7 +262,12 @@ function daysOpenLabel(createdDate) {
 function useMeetingState(standupDate) {
   const storageKey = `beatboard:standup:${standupDate}`;
   const [hydrated, setHydrated] = useState(false);
-  const [state, setState] = useState({ resolved: {}, parked: [] });
+  const [state, setState] = useState({
+    resolved: {},
+    parked: [],
+    notes: {},
+    followUps: [],
+  });
 
   useEffect(() => {
     try {
@@ -267,8 +275,10 @@ function useMeetingState(standupDate) {
       if (raw) {
         const parsed = JSON.parse(raw);
         setState({
-          resolved: parsed.resolved || {},
-          parked: parsed.parked || [],
+          resolved:   parsed.resolved   || {},
+          parked:     parsed.parked     || [],
+          notes:      parsed.notes      || {},
+          followUps:  parsed.followUps  || [],
         });
       }
     } catch (e) {
@@ -306,7 +316,63 @@ function useMeetingState(standupDate) {
   const removeParked = (id) =>
     setState((s) => ({ ...s, parked: s.parked.filter((p) => p.id !== id) }));
 
-  const resetAll = () => setState({ resolved: {}, parked: [] });
+  // --- Notes ---
+  const setNote = (itemId, text) =>
+    setState((s) => ({
+      ...s,
+      notes: text ? { ...s.notes, [itemId]: text } : Object.fromEntries(
+        Object.entries(s.notes).filter(([k]) => k !== itemId)
+      ),
+    }));
+
+  const getNote = (itemId) => state.notes[itemId] || "";
+
+  // --- Follow-ups ---
+  const addFollowUp = (text, source, assignee) => {
+    if (!text?.trim()) return;
+    const item = {
+      id: `fu_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+      text: text.trim(),
+      source: source || null,
+      assignee: assignee || "Alex",
+      done: false,
+      created_at: new Date().toISOString(),
+    };
+    setState((s) => ({ ...s, followUps: [...s.followUps, item] }));
+  };
+
+  const toggleFollowUp = (id) =>
+    setState((s) => ({
+      ...s,
+      followUps: s.followUps.map((f) =>
+        f.id === id ? { ...f, done: !f.done } : f
+      ),
+    }));
+
+  const removeFollowUp = (id) =>
+    setState((s) => ({
+      ...s,
+      followUps: s.followUps.filter((f) => f.id !== id),
+    }));
+
+  const updateFollowUp = (id, text) =>
+    setState((s) => ({
+      ...s,
+      followUps: s.followUps.map((f) =>
+        f.id === id ? { ...f, text } : f
+      ),
+    }));
+
+  const updateFollowUpAssignee = (id, assignee) =>
+    setState((s) => ({
+      ...s,
+      followUps: s.followUps.map((f) =>
+        f.id === id ? { ...f, assignee } : f
+      ),
+    }));
+
+  const resetAll = () =>
+    setState({ resolved: {}, parked: [], notes: {}, followUps: [] });
 
   return {
     hydrated,
@@ -316,6 +382,14 @@ function useMeetingState(standupDate) {
     parked: state.parked,
     addParked,
     removeParked,
+    getNote,
+    setNote,
+    followUps: state.followUps,
+    addFollowUp,
+    toggleFollowUp,
+    removeFollowUp,
+    updateFollowUp,
+    updateFollowUpAssignee,
     resetAll,
   };
 }
@@ -330,7 +404,8 @@ export default function StandupAgenda() {
     2: false,
     3: false,
     4: false,
-    5: false,
+    5: false, // follow-ups
+    6: false, // parking lot
   });
 
   // Tracks which ticket drawer is open: "b:{ticket_id}", "c:{idx}",
@@ -470,7 +545,7 @@ export default function StandupAgenda() {
   const mainSectionsOpen = [1, 2, 3, 4].every((n) => sectionOpen[n]);
   const toggleAll = () => {
     const next = !mainSectionsOpen;
-    setSectionOpen((s) => ({ ...s, 1: next, 2: next, 3: next, 4: next }));
+    setSectionOpen((s) => ({ ...s, 1: next, 2: next, 3: next, 4: next, 5: next }));
   };
 
   const handleCopy = async () => {
@@ -482,6 +557,7 @@ export default function StandupAgenda() {
       p0Inbox,
       actionItems,
       yesterdayCounts,
+      followUps: meeting.followUps,
     });
     try {
       await navigator.clipboard.writeText(md);
@@ -724,6 +800,13 @@ export default function StandupAgenda() {
                       <TicketDrawer ticket={ticket} blockerCategory={b.blocker_category} />
                     ) : undefined
                   }
+                  noteSlot={
+                    <ItemNote
+                      itemId={id}
+                      itemLabel={`${t?.title_name || b.title_id} blocker${b.linked_ticket_id ? ` · ${b.linked_ticket_id}` : ""}`}
+                      meeting={meeting}
+                    />
+                  }
                 >
                   <div className="flex items-baseline gap-2 flex-wrap">
                     {t && (
@@ -798,6 +881,13 @@ export default function StandupAgenda() {
                   resolved={resolved}
                   onToggle={meeting.toggleResolved}
                   bulletColor="text-accent-amber"
+                  noteSlot={
+                    <ItemNote
+                      itemId={id}
+                      itemLabel={`Decision: ${d.decision.slice(0, 60)}${d.decision.length > 60 ? "…" : ""}`}
+                      meeting={meeting}
+                    />
+                  }
                 >
                   <div className="flex items-baseline gap-2 flex-wrap">
                     {t && (
@@ -893,6 +983,13 @@ export default function StandupAgenda() {
                           <TicketDrawer ticket={ticket} blockerCategory={null} />
                         ) : undefined
                       }
+                      noteSlot={
+                        <ItemNote
+                          itemId={id}
+                          itemLabel={`${c.time_label} ${c.title}`}
+                          meeting={meeting}
+                        />
+                      }
                     >
                       <div className={resolved ? "text-ink-500" : ""}>
                         <div className="flex items-center gap-1.5 flex-wrap mb-0.5">
@@ -972,6 +1069,15 @@ export default function StandupAgenda() {
                             onToggle={meeting.toggleResolved}
                             bulletColor={isKpi ? "text-ink-300" : "text-accent-primary"}
                             tight
+                            noteSlot={
+                              !isKpi ? (
+                                <ItemNote
+                                  itemId={id}
+                                  itemLabel={it.headline.slice(0, 60) + (it.headline.length > 60 ? "…" : "")}
+                                  meeting={meeting}
+                                />
+                              ) : undefined
+                            }
                           >
                             <span className={resolved ? "opacity-60" : ""}>
                               {t && (
@@ -1078,6 +1184,11 @@ export default function StandupAgenda() {
                       <p className={resolved ? "text-ink-700 mt-0.5 line-through" : "text-ink-700 mt-0.5"}>
                         {a.task}
                       </p>
+                      <ItemNote
+                        itemId={id}
+                        itemLabel={`${a.owner}: ${a.task.slice(0, 60)}${a.task.length > 60 ? "…" : ""}`}
+                        meeting={meeting}
+                      />
                     </div>
                   </div>
                   {ticket && isDrawerOpen && (
@@ -1092,13 +1203,25 @@ export default function StandupAgenda() {
         </AgendaSection>
       )}
 
-      {/* 5. Parking lot */}
+      {/* 5. Follow-ups from this standup */}
+      <FollowUpSection
+        followUps={meeting.followUps}
+        onAdd={meeting.addFollowUp}
+        onToggle={meeting.toggleFollowUp}
+        onRemove={meeting.removeFollowUp}
+        onUpdate={meeting.updateFollowUp}
+        onUpdateAssignee={meeting.updateFollowUpAssignee}
+        open={sectionOpen[5]}
+        onSectionToggle={() => toggleSection(5)}
+      />
+
+      {/* 6. Parking lot */}
       <ParkingLot
         parked={meeting.parked}
         onAdd={meeting.addParked}
         onRemove={meeting.removeParked}
-        open={sectionOpen[5]}
-        onToggle={() => toggleSection(5)}
+        open={sectionOpen[6]}
+        onToggle={() => toggleSection(6)}
       />
 
       {/* Footer */}
@@ -1529,7 +1652,7 @@ function YesterdayPanel({ items, counts }) {
 // ResolvableRow — wraps a row with a hover-revealed resolve button.
 // Optionally renders a ticket drawer below the main flex row.
 // -------------------------------------------------------------------
-function ResolvableRow({ id, resolved, onToggle, bulletColor, bullet, tight, drawer, children }) {
+function ResolvableRow({ id, resolved, onToggle, bulletColor, bullet, tight, drawer, noteSlot, children }) {
   return (
     <li className={`text-[13px] leading-relaxed group relative ${resolved ? "opacity-70" : ""}`}>
       <div className="flex gap-2.5 items-start">
@@ -1562,6 +1685,11 @@ function ResolvableRow({ id, resolved, onToggle, bulletColor, bullet, tight, dra
           {drawer}
         </div>
       )}
+      {noteSlot && (
+        <div className="ml-5 mt-1">
+          {noteSlot}
+        </div>
+      )}
     </li>
   );
 }
@@ -1588,7 +1716,7 @@ function ParkingLot({ parked, onAdd, onRemove, open, onToggle }) {
       >
         <h2 className="text-[13px] font-bold flex items-center gap-2 text-ink-700">
           <span className="mono text-[11px] font-bold px-1.5 py-0.5 rounded bg-ink-300/20 text-ink-700">
-            5
+            6
           </span>
           <MapPin className="h-4 w-4" />
           Parking lot
@@ -1694,6 +1822,292 @@ function inferTitleIdFromTicket(ticketId) {
 }
 
 // -------------------------------------------------------------------
+// ItemNote — inline amber note area that can be attached to any agenda
+// item. Saves to localStorage via meeting.setNote/getNote. Has a
+// one-click "Add as follow-up" that promotes the note text to Section 5.
+// -------------------------------------------------------------------
+function ItemNote({ itemId, itemLabel, meeting }) {
+  const savedNote = meeting.getNote(itemId);
+  const [open, setOpen] = useState(!!savedNote);
+  const [draft, setDraft] = useState(savedNote);
+  const [promoted, setPromoted] = useState(false);
+  const textareaRef = useRef(null);
+
+  // Sync with external reset
+  useEffect(() => {
+    const cur = meeting.getNote(itemId);
+    setDraft(cur);
+    if (!cur) setOpen(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemId]);
+
+  // Focus when opened
+  useEffect(() => {
+    if (open && textareaRef.current) textareaRef.current.focus();
+  }, [open]);
+
+  const save = () => {
+    meeting.setNote(itemId, draft.trim());
+  };
+
+  const promote = () => {
+    const text = draft.trim();
+    if (!text) return;
+    meeting.addFollowUp(text, itemLabel || itemId);
+    setPromoted(true);
+    setTimeout(() => setPromoted(false), 2200);
+  };
+
+  const clear = () => {
+    setDraft("");
+    meeting.setNote(itemId, "");
+    setOpen(false);
+  };
+
+  // No note, closed → subtle "Note" button
+  if (!open && !savedNote) {
+    return (
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); setOpen(true); }}
+        className="inline-flex items-center gap-1 text-[10.5px] text-ink-300 hover:text-ink-500 transition-colors mt-1 select-none"
+      >
+        <StickyNote className="h-3 w-3" />
+        Note
+      </button>
+    );
+  }
+
+  // Note exists, closed → amber preview card (click to edit)
+  if (!open && savedNote) {
+    return (
+      <div
+        className="mt-1.5 flex items-start gap-1.5 text-[12px] text-ink-700 bg-amber-50/70 border border-amber-100 rounded-md px-2.5 py-1.5 cursor-pointer hover:border-amber-300 transition-colors group/note"
+        onClick={() => setOpen(true)}
+        title="Click to edit note"
+      >
+        <StickyNote className="h-3 w-3 text-amber-500 mt-0.5 shrink-0" />
+        <span className="flex-1 min-w-0 leading-relaxed">{savedNote}</span>
+        <Edit3 className="h-3 w-3 text-ink-400 opacity-0 group-hover/note:opacity-100 transition-opacity shrink-0 mt-0.5" />
+      </div>
+    );
+  }
+
+  // Open → textarea + save / promote / clear
+  return (
+    <div className="mt-1.5 space-y-1.5" onClick={(e) => e.stopPropagation()}>
+      <textarea
+        ref={textareaRef}
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+        onBlur={save}
+        placeholder="Note for this item..."
+        rows={2}
+        className="w-full text-[12.5px] px-2.5 py-2 rounded-md border border-amber-200 bg-amber-50/40 text-ink-900 placeholder:text-ink-400 focus:border-amber-400 focus:outline-none resize-none"
+      />
+      <div className="flex items-center gap-2 flex-wrap">
+        <button
+          type="button"
+          onClick={() => { save(); setOpen(false); }}
+          className="text-[11px] font-medium text-ink-600 hover:text-ink-900 transition-colors"
+        >
+          Done
+        </button>
+        <button
+          type="button"
+          onClick={promote}
+          disabled={!draft.trim()}
+          className={`inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+            promoted
+              ? "bg-accent-success/15 text-accent-success"
+              : "bg-accent-success/10 text-accent-success hover:bg-accent-success/20"
+          }`}
+        >
+          <ArrowUpRight className="h-3 w-3" />
+          {promoted ? "Added to follow-ups ✓" : "Add as follow-up"}
+        </button>
+        {savedNote && (
+          <button
+            type="button"
+            onClick={clear}
+            className="text-[11px] text-ink-400 hover:text-accent-red transition-colors"
+          >
+            Clear
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// -------------------------------------------------------------------
+// FollowUpSection — Section 5. Aggregates follow-up items promoted
+// from inline notes, plus freeform additions. Each item has an assignee,
+// editable text, source attribution (e.g., "from BL-2418 blocker"),
+// and a done toggle.
+// -------------------------------------------------------------------
+function FollowUpRow({ fu, onToggle, onRemove, onUpdate, onUpdateAssignee }) {
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(fu.text);
+
+  return (
+    <li className="text-[13px] leading-relaxed flex items-start gap-2.5 group">
+      <button
+        type="button"
+        onClick={() => onToggle(fu.id)}
+        className={`mt-0.5 shrink-0 transition-colors ${
+          fu.done ? "text-accent-success" : "text-ink-400 hover:text-accent-success"
+        }`}
+        aria-label={fu.done ? "Mark not done" : "Mark done"}
+      >
+        {fu.done ? (
+          <CheckCircle2 className="h-4 w-4" />
+        ) : (
+          <span className="inline-block h-4 w-4 border-2 border-current rounded-sm" />
+        )}
+      </button>
+      <div className={`min-w-0 flex-1 ${fu.done ? "opacity-60" : ""}`}>
+        <div className="flex items-center gap-1.5 flex-wrap mb-0.5">
+          <select
+            value={fu.assignee || "Alex"}
+            onChange={(e) => onUpdateAssignee(fu.id, e.target.value)}
+            disabled={fu.done}
+            className="text-[10.5px] mono font-semibold px-1.5 py-0.5 rounded bg-ink-300/20 text-ink-900 border-none focus:outline-none focus:ring-1 focus:ring-accent-primary disabled:cursor-not-allowed"
+          >
+            {TRIO_OPTIONS.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+          </select>
+          {fu.source && (
+            <span className="text-[10px] text-ink-400 mono">
+              from {fu.source}
+            </span>
+          )}
+        </div>
+        {editing ? (
+          <input
+            autoFocus
+            type="text"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            onBlur={() => { onUpdate(fu.id, draft); setEditing(false); }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") { onUpdate(fu.id, draft); setEditing(false); }
+              if (e.key === "Escape") { setDraft(fu.text); setEditing(false); }
+            }}
+            className="w-full text-[13px] px-2 py-0.5 rounded border border-accent-primary focus:outline-none text-ink-900 bg-white"
+          />
+        ) : (
+          <div
+            className={`text-ink-700 ${fu.done ? "line-through" : "cursor-text hover:text-ink-900"}`}
+            onClick={() => !fu.done && setEditing(true)}
+            title={fu.done ? "" : "Click to edit"}
+          >
+            {fu.text}
+          </div>
+        )}
+      </div>
+      <button
+        type="button"
+        onClick={() => onRemove(fu.id)}
+        className="text-ink-300 hover:text-accent-red opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-0.5"
+        aria-label="Remove follow-up"
+      >
+        <X className="h-3.5 w-3.5" />
+      </button>
+    </li>
+  );
+}
+
+function FollowUpSection({ followUps, onAdd, onToggle, onRemove, onUpdate, onUpdateAssignee, open, onSectionToggle }) {
+  const [text, setText] = useState("");
+  const [assignee, setAssignee] = useState("Alex");
+  const doneCount = followUps.filter((f) => f.done).length;
+
+  const submit = () => {
+    if (!text.trim()) return;
+    onAdd(text.trim(), null, assignee);
+    setText("");
+  };
+
+  return (
+    <section className="panel border-l-4 border-l-accent-success">
+      <button
+        type="button"
+        onClick={onSectionToggle}
+        className="w-full flex items-center justify-between p-5 gap-3 text-left"
+      >
+        <h2 className="text-[13px] font-bold flex items-center gap-2 text-accent-success">
+          <span className="mono text-[11px] font-bold px-1.5 py-0.5 rounded bg-ink-300/20 text-ink-700">
+            5
+          </span>
+          <StickyNote className="h-4 w-4" />
+          Follow-ups from this standup
+          <span className="text-[11.5px] text-ink-500 font-normal ml-1">
+            ({followUps.length})
+            {doneCount > 0 && (
+              <> · <span className="text-accent-success">{doneCount} done</span></>
+            )}
+          </span>
+        </h2>
+        <ChevronDown
+          className={`h-4 w-4 text-ink-400 transition-transform shrink-0 ${open ? "" : "-rotate-90"}`}
+        />
+      </button>
+      {open && (
+        <div className="px-5 pb-5 pt-0 border-t border-line">
+          {followUps.length === 0 ? (
+            <p className="text-[12.5px] text-ink-500 italic my-3">
+              No follow-ups yet. Add a note to any agenda item above and click{" "}
+              <span className="font-medium text-accent-success not-italic">Add as follow-up</span>{" "}
+              — or add one directly here.
+            </p>
+          ) : (
+            <ul className="space-y-2.5 my-3">
+              {followUps.map((fu) => (
+                <FollowUpRow
+                  key={fu.id}
+                  fu={fu}
+                  onToggle={onToggle}
+                  onRemove={onRemove}
+                  onUpdate={onUpdate}
+                  onUpdateAssignee={onUpdateAssignee}
+                />
+              ))}
+            </ul>
+          )}
+          <form
+            className="park-form flex items-center gap-2 flex-wrap"
+            onSubmit={(e) => { e.preventDefault(); submit(); }}
+          >
+            <select
+              value={assignee}
+              onChange={(e) => setAssignee(e.target.value)}
+              className="text-[12px] mono font-semibold px-2 py-1.5 rounded-lg border border-line bg-white text-ink-900 focus:border-accent-primary focus:outline-none"
+            >
+              {TRIO_OPTIONS.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+            </select>
+            <input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              placeholder="Add follow-up directly..."
+              className="flex-1 min-w-[200px] text-[13px] px-3 py-1.5 rounded-lg border border-line bg-white text-ink-900 placeholder:text-ink-500 focus:border-accent-success focus:outline-none"
+            />
+            <button
+              type="submit"
+              disabled={!text.trim()}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-line bg-white text-[12px] font-medium text-ink-700 hover:border-accent-success hover:text-accent-success transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              Add
+            </button>
+          </form>
+        </div>
+      )}
+    </section>
+  );
+}
+
+// -------------------------------------------------------------------
 // AgendaSection — collapsible time-boxed section.
 // -------------------------------------------------------------------
 function AgendaSection({ number, title, timeBox, tone, Icon, totalCount, resolvedCount, open, onToggle, children }) {
@@ -1753,7 +2167,7 @@ function AgendaSection({ number, title, timeBox, tone, Icon, totalCount, resolve
 // -------------------------------------------------------------------
 // Markdown digest for the Copy-agenda button.
 // -------------------------------------------------------------------
-function buildAgendaDigest({ standup: s, blockers, decisions, calls, p0Inbox, actionItems, yesterdayCounts }) {
+function buildAgendaDigest({ standup: s, blockers, decisions, calls, p0Inbox, actionItems, yesterdayCounts, followUps, notes }) {
   const lines = [];
   const dateStr = fmtDate(s.standup_date, { year: true });
 
@@ -1826,6 +2240,17 @@ function buildAgendaDigest({ standup: s, blockers, decisions, calls, p0Inbox, ac
     for (const a of actionItems) {
       const tkId = a.linked_ticket_id ? ` · ${a.linked_ticket_id}` : "";
       lines.push(`• ${a.owner} — ${a.task}${tkId}`);
+    }
+    lines.push("");
+  }
+
+  // Follow-ups
+  const pendingFollowUps = (followUps || []).filter((f) => !f.done);
+  if (pendingFollowUps.length > 0) {
+    lines.push(`*Follow-ups from this standup*`);
+    for (const f of pendingFollowUps) {
+      const src = f.source ? ` · from ${f.source}` : "";
+      lines.push(`☐ ${f.assignee || "Alex"} — ${f.text}${src}`);
     }
     lines.push("");
   }
