@@ -12,9 +12,11 @@ import {
   getGmailForTitle,
   getDraftsForTitle,
   getVendorsForTitle,
+  getInvoicesForTitle,
   fmtMoney,
   fmtDate,
   fmtDateTime,
+  DEMO_TODAY_ISO,
 } from "@/lib/data";
 import Badge from "./Badge";
 import GanttBar from "./GanttBar";
@@ -72,6 +74,7 @@ export default function TitleWorkspace({ title }) {
   const gmails = getGmailForTitle(title.title_id);
   const drafts = getDraftsForTitle(title.title_id);
   const vendors = getVendorsForTitle(title.title_id);
+  const titleInvoices = getInvoicesForTitle(title.title_id);
 
   const activeDraft = drafts.find((d) => d.draft_id === activeDraftId);
 
@@ -509,7 +512,20 @@ export default function TitleWorkspace({ title }) {
                 >
                   <div className="min-w-0">
                     <div className="font-medium truncate">{b.beat_name}</div>
-                    <div className="text-[11px] text-ink-500">
+                    <div className="text-[11px] text-ink-500 flex items-center gap-1.5">
+                      {b.lifecycle_stage && (
+                        <span className={`inline-flex items-center text-[9px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded border shrink-0 ${
+                          b.lifecycle_stage === "Asset Lock"
+                            ? "bg-accent-red/10 text-accent-red border-accent-red/30"
+                            : b.lifecycle_stage === "Live"
+                            ? "bg-accent-success/10 text-accent-success border-accent-success/30"
+                            : b.lifecycle_stage === "Retro" || b.lifecycle_stage === "Wrap"
+                            ? "bg-ink-300/30 text-ink-500 border-ink-300/50"
+                            : "bg-accent-primary/10 text-accent-primary border-accent-primary/30"
+                        }`}>
+                          {b.lifecycle_stage}
+                        </span>
+                      )}
                       {b.lead_owner} · {b.status.replace(/_/g, " ")}
                     </div>
                   </div>
@@ -520,6 +536,112 @@ export default function TitleWorkspace({ title }) {
               ))}
             </ul>
           </div>
+
+          {/* Invoice ledger */}
+          {titleInvoices.length > 0 && (() => {
+            const today = DEMO_TODAY_ISO;
+            const outstanding = titleInvoices.filter((i) => i.status !== "paid");
+            const paid = titleInvoices.filter((i) => i.status === "paid");
+
+            const STATUS_CONFIG = {
+              past_due: { label: "Past due", tone: "red" },
+              due:      { label: "Due",      tone: "amber" },
+              scheduled:{ label: "Scheduled",tone: "neutral" },
+              paid:     { label: "Paid",     tone: "success" },
+            };
+
+            const InvoiceRow = ({ inv }) => {
+              const cfg = STATUS_CONFIG[inv.status] || { label: inv.status, tone: "neutral" };
+              const daysOver = inv.status === "past_due"
+                ? Math.floor((new Date(today + "T00:00:00Z") - new Date(inv.due_date + "T00:00:00Z")) / 86400000)
+                : null;
+              return (
+                <li className="py-3 text-[13px]">
+                  <div className="flex items-start justify-between gap-3 flex-wrap">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-baseline gap-2 flex-wrap">
+                        <span className="mono font-semibold text-ink-900 shrink-0">
+                          {fmtMoney(inv.amount_usd)}
+                        </span>
+                        <span className="text-ink-700 font-medium">{inv.vendor}</span>
+                        <span className="mono text-[11px] text-ink-500">{inv.invoice_id}</span>
+                        {inv.po_number && (
+                          <span className="mono text-[10.5px] text-ink-400">{inv.po_number}</span>
+                        )}
+                      </div>
+                      {inv.description && (
+                        <p className="text-[11.5px] text-ink-500 mt-0.5 leading-relaxed">
+                          {inv.description}
+                        </p>
+                      )}
+                      {inv.notes && (
+                        <p className="text-[11.5px] text-accent-amber mt-0.5 leading-relaxed">
+                          {inv.notes}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex flex-col items-end gap-1 shrink-0">
+                      <Badge tone={cfg.tone} size="xs">{cfg.label}</Badge>
+                      <div className="text-[11px] text-ink-500 mono">
+                        {inv.status === "paid" ? `Paid ${fmtDate(inv.due_date)}` : `Due ${fmtDate(inv.due_date)}`}
+                      </div>
+                      {daysOver !== null && (
+                        <div className="text-[10.5px] font-semibold text-accent-red">
+                          {daysOver}d overdue
+                        </div>
+                      )}
+                      {inv.net_terms && (
+                        <div className="text-[10.5px] text-ink-400">
+                          Net {inv.net_terms}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              );
+            };
+
+            return (
+              <>
+                {outstanding.length > 0 && (
+                  <div className="panel p-5">
+                    <h3 className="section-title mb-3 flex items-center gap-2">
+                      <AlertTriangle className="h-3.5 w-3.5 text-accent-amber" />
+                      Outstanding invoices
+                      <span className="text-ink-500 font-normal text-[11px] ml-1">
+                        ({outstanding.length}) · {fmtMoney(outstanding.reduce((s, i) => s + i.amount_usd, 0))} total
+                      </span>
+                    </h3>
+                    <ul className="divide-y divide-line">
+                      {outstanding
+                        .sort((a, b) => {
+                          const r = { past_due: 0, due: 1, scheduled: 2 };
+                          const diff = (r[a.status] ?? 3) - (r[b.status] ?? 3);
+                          return diff !== 0 ? diff : a.due_date.localeCompare(b.due_date);
+                        })
+                        .map((inv) => <InvoiceRow key={inv.invoice_id} inv={inv} />)}
+                    </ul>
+                  </div>
+                )}
+                {paid.length > 0 && (
+                  <div className="panel p-5">
+                    <h3 className="section-title mb-3 flex items-center gap-2">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-accent-success" />
+                      Paid invoices
+                      <span className="text-ink-500 font-normal text-[11px] ml-1">
+                        ({paid.length}) · {fmtMoney(paid.reduce((s, i) => s + i.amount_usd, 0))} cleared
+                      </span>
+                    </h3>
+                    <ul className="divide-y divide-line">
+                      {paid
+                        .sort((a, b) => b.due_date.localeCompare(a.due_date))
+                        .map((inv) => <InvoiceRow key={inv.invoice_id} inv={inv} />)}
+                    </ul>
+                  </div>
+                )}
+              </>
+            );
+          })()}
         </div>
       )}
 

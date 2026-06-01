@@ -10,7 +10,9 @@
     "due_date": "2026-05-22",
     "net_terms": 30,
     "po_number": "PO-2026-441",
-    "notes": "Phase 1 media buy reconciliation. AP flagged: missing matched receipts on $4.2K line; Marketing Mgr II chasing."
+    "notes": "Phase 1 media buy reconciliation. AP flagged: missing matched receipts on $4.2K line; Marketing Mgr II chasing.",
+    "beat_id": "bl4_mad_ellie_sp1_launch",
+    "description": "Phase 1 media buy reconciliation \u2014 Heaven SP1 launch window paid campaign"
   },
   {
     "invoice_id": "INV-CPM-0118",
@@ -23,7 +25,9 @@
     "due_date": "2026-06-03",
     "net_terms": 30,
     "po_number": "PO-2026-446",
-    "notes": "Pre-roll buy May 4 to May 18. Clean."
+    "notes": "Pre-roll buy May 4 to May 18. Clean.",
+    "beat_id": "bl4_mad_ellie_sp1_sustain_window",
+    "description": "CPMStar display retargeting \u2014 BL4 sustain window"
   },
   {
     "invoice_id": "INV-OPW-0233",
@@ -36,7 +40,9 @@
     "due_date": "2026-05-29",
     "net_terms": 14,
     "po_number": "PO-2026-462",
-    "notes": "Time-Tested Civs multiplayer premiere production deposit — May 28 (PotatoMcWhiskey + ursagaming + Boesthius + Quill18, Fractal Continent showcase). Net-14 because of premiere date proximity."
+    "notes": "Time-Tested Civs multiplayer premiere production deposit \u2014 May 28 (PotatoMcWhiskey + ursagaming + Boesthius + Quill18, Fractal Continent showcase). Net-14 because of premiere date proximity.",
+    "beat_id": "civ7_test_of_time_creator_campaign_na",
+    "description": "Open World \u2014 Test of Time creator campaign production (multiplayer premiere + Triumphs deep-dives)"
   },
   {
     "invoice_id": "INV-OPW-0241",
@@ -49,7 +55,9 @@
     "due_date": "2026-06-12",
     "net_terms": 14,
     "po_number": "PO-2026-462",
-    "notes": "Earned-seeding wave reconciliation (38 Civ-native seeds across strategy/4X/grand-strategy VoD scene) + May 30 Triumphs system deep-dive solo VoD production. Will issue post-premieres."
+    "notes": "Earned-seeding wave reconciliation (38 Civ-native seeds across strategy/4X/grand-strategy VoD scene) + May 30 Triumphs system deep-dive solo VoD production. Will issue post-premieres.",
+    "beat_id": "civ7_test_of_time_creator_campaign_na",
+    "description": "Open World \u2014 Test of Time wave 2 creator seeding (D14 window, Jun 12)"
   },
   {
     "invoice_id": "INV-LRK-0078",
@@ -62,7 +70,9 @@
     "due_date": "2026-06-02",
     "net_terms": 14,
     "po_number": "PO-2026-470",
-    "notes": "Quest hours-watched payout (rolling weekly). On plan."
+    "notes": "Quest hours-watched payout (rolling weekly). On plan.",
+    "beat_id": "civ7_test_of_time_creator_campaign_na",
+    "description": "Lurkit \u2014 Test of Time quest hours-watched platform fee"
   },
   {
     "invoice_id": "INV-GMS-0044",
@@ -76,7 +86,9 @@
     "paid_date": "2026-05-12",
     "net_terms": 14,
     "po_number": "PO-2026-451",
-    "notes": "Attribution + UTM hygiene retainer (April)."
+    "notes": "Attribution + UTM hygiene retainer (April).",
+    "beat_id": "civ7_test_of_time_creator_campaign_na",
+    "description": "Gamesight \u2014 UTM audit + daily attribution report, Test of Time campaign"
   },
   {
     "invoice_id": "INV-HVN-0428",
@@ -89,7 +101,9 @@
     "due_date": "2026-06-09",
     "net_terms": 30,
     "po_number": "PO-2026-455",
-    "notes": "Current tranche media buy. Pacing on plan."
+    "notes": "Current tranche media buy. Pacing on plan.",
+    "beat_id": "mafia_toc_q2_sustain_push",
+    "description": "Heaven \u2014 Mafia: TOC Q2 sustain paid campaign, tranche 2 media buy"
   },
   {
     "invoice_id": "INV-HVN-0431",
@@ -102,7 +116,9 @@
     "due_date": "2026-06-25",
     "net_terms": 30,
     "po_number": "PO-2026-455",
-    "notes": "Creative refresh production fee. Gated on Davide Jun 1 GO/NO-GO."
+    "notes": "Creative refresh production fee. Gated on Davide Jun 1 GO/NO-GO.",
+    "beat_id": "mafia_toc_q2_sustain_push",
+    "description": "Heaven \u2014 Mafia: TOC Q3 evergreen refresh tranche (pending GO/NO-GO Jun 1)"
   },
   {
     "invoice_id": "INV-GWM-0102",
@@ -115,7 +131,9 @@
     "due_date": "2026-05-15",
     "net_terms": 30,
     "po_number": "PO-2026-433",
-    "notes": "March awareness layer. AP holds: cancellation credit memo expected against July re-time. Alex to chase Marcus."
+    "notes": "March awareness layer. AP holds: cancellation credit memo expected against July re-time. Alex to chase Marcus.",
+    "beat_id": "wonderlands_gluttons_gamble_encore_drop",
+    "description": "Gaming World Media \u2014 Wonderlands Glutton's Gamble paid layer (retimed to Jul window)"
   },
   {
     "invoice_id": "INV-CIQ-0091",
@@ -129,7 +147,9 @@
     "paid_date": "2026-05-13",
     "net_terms": 14,
     "po_number": "PO-2026-460",
-    "notes": "Shortlist build (40 micro/nano FPS creators). Clean."
+    "notes": "Shortlist build (40 micro/nano FPS creators). Clean.",
+    "beat_id": "ror2_seekers_storm_free_weekend",
+    "description": "CreatorIQ \u2014 RoR2 Seekers free weekend creator shortlist + campaign setup"
   },
   {
     "invoice_id": "INV-LRK-0081",
@@ -142,7 +162,9 @@
     "due_date": "2026-06-15",
     "net_terms": 14,
     "po_number": "PO-2026-475",
-    "notes": "Quest setup brief (in production). Bills on launch."
+    "notes": "Quest setup brief (in production). Bills on launch.",
+    "beat_id": "ror2_post_free_weekend_conversion",
+    "description": "Lurkit \u2014 RoR2 post-free-weekend conversion quest platform fee"
   },
   {
     "invoice_id": "INV-HBR-0029",
@@ -155,7 +177,9 @@
     "due_date": "2026-05-28",
     "net_terms": 16,
     "po_number": "PO-2026-466",
-    "notes": "Localization QA on Test of Time creator deliverables. Routing for approval today."
+    "notes": "Localization QA on Test of Time creator deliverables. Routing for approval today.",
+    "beat_id": "civ7_e3_demo_q2_planning",
+    "description": "HBR Media \u2014 Civ VII Summer Game Fest demo earned media + press briefing"
   },
   {
     "invoice_id": "INV-XSR-0017",
@@ -168,7 +192,9 @@
     "due_date": "2026-06-30",
     "net_terms": 30,
     "po_number": "PO-2026-472",
-    "notes": "Direct-to-consumer creator commission true-up (monthly). Bills end of June."
+    "notes": "Direct-to-consumer creator commission true-up (monthly). Bills end of June.",
+    "beat_id": "bl4_mad_ellie_sp1_sustain_window",
+    "description": "Xsolla Rainmaker \u2014 BL4 SP1 influencer payout reconciliation, Jun-Jul window"
   },
   {
     "invoice_id": "INV-HVN-0440",
@@ -181,6 +207,8 @@
     "due_date": "2026-07-10",
     "net_terms": 30,
     "po_number": "PO-DRAFT-PH2",
-    "notes": "Phase 2 surge media buy (frozen). Releases only if Davide clears Jun 5 GO/NO-GO."
+    "notes": "Phase 2 surge media buy (frozen). Releases only if Davide clears Jun 5 GO/NO-GO.",
+    "beat_id": "bl4_mad_ellie_sp1_sustain_window",
+    "description": "Heaven \u2014 BL4 Mad Ellie SP1 Phase 2 surge (gated: pending Davide GO/NO-GO Jun 5)"
   }
 ]
