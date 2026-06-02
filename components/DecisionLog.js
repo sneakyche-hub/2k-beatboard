@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { decisionLog, standup, titles, fmtDate, fmtMoney } from "@/lib/data";
 import Badge from "./Badge";
@@ -47,6 +47,30 @@ export default function DecisionLog() {
   const [titleFilter, setTitleFilter] = useState("all");
   const [outcomeFilter, setOutcomeFilter] = useState("all");
   const [expandedId, setExpandedId] = useState(null);
+  const [flashId, setFlashId] = useState(null);
+
+  // Deep-link: /decisions?focus=<decision_id> expands, scrolls to, and
+  // briefly highlights the matching decision so a trace from a ticket or
+  // standup item lands exactly on the recorded call.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const focus = new URLSearchParams(window.location.search).get("focus");
+    if (!focus) return;
+    setTitleFilter("all");
+    setOutcomeFilter("all");
+    setExpandedId(focus);
+    setFlashId(focus);
+    const domId = "decision-" + focus.replace(/[^a-zA-Z0-9_-]/g, "_");
+    const scrollTimer = setTimeout(() => {
+      const el = document.getElementById(domId);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 120);
+    const flashTimer = setTimeout(() => setFlashId(null), 2800);
+    return () => {
+      clearTimeout(scrollTimer);
+      clearTimeout(flashTimer);
+    };
+  }, []);
 
   const pendingDecisions = useMemo(() => standup.pending_decisions || [], []);
 
@@ -192,7 +216,12 @@ export default function DecisionLog() {
               return (
                 <div
                   key={d.decision_id}
-                  className="panel border-l-4 border-l-accent-amber overflow-hidden"
+                  id={"decision-" + d.decision_id.replace(/[^a-zA-Z0-9_-]/g, "_")}
+                  className={`panel border-l-4 border-l-accent-amber overflow-hidden scroll-mt-24 ${
+                    flashId === d.decision_id
+                      ? "ring-2 ring-accent-primary ring-offset-2"
+                      : ""
+                  }`}
                 >
                   <button
                     type="button"
@@ -283,7 +312,12 @@ export default function DecisionLog() {
               return (
                 <div
                   key={d.decision_id}
-                  className={`panel border-l-4 ${borderColor} overflow-hidden`}
+                  id={"decision-" + d.decision_id.replace(/[^a-zA-Z0-9_-]/g, "_")}
+                  className={`panel border-l-4 ${borderColor} overflow-hidden scroll-mt-24 ${
+                    flashId === d.decision_id
+                      ? "ring-2 ring-accent-primary ring-offset-2"
+                      : ""
+                  }`}
                 >
                   <button
                     type="button"

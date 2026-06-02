@@ -10,6 +10,11 @@ import {
   Target,
   DollarSign,
   Inbox,
+  Video,
+  MessageSquare,
+  Mail,
+  ClipboardCheck,
+  ArrowUpRight,
 } from "lucide-react";
 import Badge from "./Badge";
 import {
@@ -22,6 +27,7 @@ import {
   isTicketDone,
   inboxRefForSource,
   inboxHrefForSource,
+  buildTicketContext,
   COMPONENT_LABEL,
   COMPONENT_TONE,
   fmtDate,
@@ -211,6 +217,48 @@ function Section({ title, tone, children }) {
   );
 }
 
+// ---- Connected-context rows (meetings / slack / gmail / decisions) ----
+function ContextRow({ icon: Icon, item }) {
+  return (
+    <Link
+      href={item.href}
+      className="group flex items-start gap-2 p-2 rounded-md border border-line hover:border-accent-primary/40 hover:bg-base/60"
+    >
+      <Icon className="h-3.5 w-3.5 text-ink-500 mt-0.5 shrink-0" />
+      <div className="min-w-0 flex-1">
+        <div className="text-[11.5px] text-ink-900 leading-snug line-clamp-2">
+          {item.label}
+        </div>
+        <div className="text-[10.5px] text-ink-500 mt-0.5 flex items-center gap-1.5 flex-wrap">
+          <span className="truncate">{item.sub}</span>
+          {item.flag && (
+            <span className="px-1 py-0.5 rounded bg-accent-primary/10 text-accent-primary font-medium shrink-0">
+              {item.flag}
+            </span>
+          )}
+        </div>
+      </div>
+      <ArrowUpRight className="h-3 w-3 text-ink-300 group-hover:text-accent-primary shrink-0 mt-0.5" />
+    </Link>
+  );
+}
+
+function ContextGroup({ icon, label, items }) {
+  if (!items || items.length === 0) return null;
+  return (
+    <div>
+      <div className="text-[10.5px] uppercase tracking-wider text-ink-500 font-semibold mb-1.5">
+        {label} ({items.length})
+      </div>
+      <div className="space-y-1.5">
+        {items.map((it) => (
+          <ContextRow key={it.id} icon={icon} item={it} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function TicketDrawer({ ticketId, titleInvoices, onClose, onSelect }) {
   const ticket = ticketId ? getTicket(ticketId) : null;
   if (!ticket) return null;
@@ -220,6 +268,18 @@ export function TicketDrawer({ ticketId, titleInvoices, onClose, onSelect }) {
   const blocks = getTicketsBlockedBy(ticket.ticket_id);
   const beat = ticket.beat_id ? getBeat(ticket.beat_id) : null;
   const sourceRef = inboxRefForSource(ticket.source);
+  const ctx = buildTicketContext(ticket.ticket_id) || {
+    meetings: [],
+    slack: [],
+    gmail: [],
+    decisions: [],
+    relatedTickets: [],
+  };
+  const hasContext =
+    ctx.meetings.length ||
+    ctx.slack.length ||
+    ctx.gmail.length ||
+    ctx.decisions.length;
 
   // Invoice tied via an attachment's linked_invoice_id.
   const linkedInvoiceIds = (ticket.attachments || [])
@@ -307,6 +367,30 @@ export function TicketDrawer({ ticketId, titleInvoices, onClose, onSelect }) {
             </Link>
           )}
 
+          {/* Connected context — every artifact touching this ticket */}
+          {hasContext > 0 && (
+            <Section title="Connected context">
+              <div className="space-y-3">
+                <ContextGroup
+                  icon={Video}
+                  label="Meetings"
+                  items={ctx.meetings}
+                />
+                <ContextGroup
+                  icon={MessageSquare}
+                  label="Slack"
+                  items={ctx.slack}
+                />
+                <ContextGroup icon={Mail} label="Email" items={ctx.gmail} />
+                <ContextGroup
+                  icon={ClipboardCheck}
+                  label="Decisions"
+                  items={ctx.decisions}
+                />
+              </div>
+            </Section>
+          )}
+
           {/* Linked KPI */}
           {ticket.linked_kpi && (
             <Section title="Linked KPI">
@@ -362,6 +446,17 @@ export function TicketDrawer({ ticketId, titleInvoices, onClose, onSelect }) {
             <Section title={`Blocks (${blocks.length})`}>
               <div className="space-y-1.5">
                 {blocks.map((b) => (
+                  <DepRow key={b.ticket_id} t={b} onSelect={onSelect} />
+                ))}
+              </div>
+            </Section>
+          )}
+
+          {/* Related tickets on the same beat */}
+          {ctx.relatedTickets.length > 0 && (
+            <Section title={`Same beat (${ctx.relatedTickets.length})`}>
+              <div className="space-y-1.5">
+                {ctx.relatedTickets.map((b) => (
                   <DepRow key={b.ticket_id} t={b} onSelect={onSelect} />
                 ))}
               </div>
