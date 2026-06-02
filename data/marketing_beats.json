@@ -348,7 +348,8 @@
       ]
     },
     "lifecycle_stage": "Asset Lock",
-    "lifecycle_stage_entered_at": "2026-05-21"
+    "lifecycle_stage_entered_at": "2026-05-21",
+    "blocker_summary": "Phase 2 paid surge held for Davide GO/NO-GO"
   },
   {
     "beat_id": "bl4_mad_ellie_seo_hub_remediation",
@@ -511,7 +512,8 @@
       ]
     },
     "lifecycle_stage": "Asset Lock",
-    "lifecycle_stage_entered_at": "2026-05-20"
+    "lifecycle_stage_entered_at": "2026-05-20",
+    "blocker_summary": "Creative refresh in QA — GO/NO-GO Jun 1"
   },
   {
     "beat_id": "mafia_toc_q3_evergreen",
@@ -735,7 +737,8 @@
       ]
     },
     "lifecycle_stage": "Asset Lock",
-    "lifecycle_stage_entered_at": "2026-05-18"
+    "lifecycle_stage_entered_at": "2026-05-18",
+    "blocker_summary": "DLC slipped to Jul 10 — engineering stability"
   },
   {
     "beat_id": "wonderlands_evergreen_sustain",
