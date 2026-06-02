@@ -26,6 +26,7 @@ import CollaboratorChain from "./CollaboratorChain";
 import PhaseBreakdown from "./PhaseBreakdown";
 import GoNoGoChecklist from "./GoNoGoChecklist";
 import TitleInternalCollaborators from "./TitleInternalCollaborators";
+import TitleCalendar from "./TitleCalendar";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -268,106 +269,13 @@ export default function TitleWorkspace({ title }) {
 
       {/* PRODUCTION CALENDAR */}
       {tab === "calendar" && (
-        <div className="space-y-5">
-          {/* Granular lifecycle breakdowns for featured beats */}
-          {beats
-            .filter((b) => b.lifecycle)
-            .map((b) => (
-              <div key={`phases-${b.beat_id}`} className="space-y-2">
-                <PhaseBreakdown beat={b} brandColor={title.brand_color} />
-                {b.go_no_go && (
-                  <div className="flex justify-end">
-                    <button
-                      type="button"
-                      onClick={() => setChecklistBeatId(b.beat_id)}
-                      className="text-[11.5px] text-accent-primary font-medium hover:underline inline-flex items-center gap-1"
-                    >
-                      View GO/NO-GO checklist for {b.beat_name} →
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
-          {beats.filter((b) => b.collaborators && b.collaborators.length > 0).map((b) => (
-            <CollaboratorChain key={`chain-${b.beat_id}`} beat={b} />
-          ))}
-          <div className="panel p-3 overflow-hidden">
-            <div className="text-[11px] text-ink-500 px-2 pt-1 pb-2 uppercase tracking-wider font-semibold">
-              Beats · {fmtDate(ganttStart)} → {fmtDate(ganttEnd)}
-            </div>
-            {beats.map((b) => (
-              <div
-                key={b.beat_id}
-                className="grid grid-cols-[180px_1fr] md:grid-cols-[260px_1fr] border-t border-line py-2 items-center"
-              >
-                <div className="px-2 min-w-0">
-                  <div className="text-[12.5px] font-medium truncate">
-                    {b.beat_name}
-                  </div>
-                  <div className="text-[10.5px] text-ink-500 truncate flex items-center gap-1.5">
-                    {b.lifecycle_stage && (
-                      <span className={`inline-flex items-center text-[9px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded border shrink-0 ${
-                        b.lifecycle_stage === "Asset Lock"
-                          ? "bg-accent-red/10 text-accent-red border-accent-red/30"
-                          : b.lifecycle_stage === "QA"
-                          ? "bg-accent-amber/10 text-accent-amber border-accent-amber/30"
-                          : b.lifecycle_stage === "Live"
-                          ? "bg-accent-success/10 text-accent-success border-accent-success/30"
-                          : b.lifecycle_stage === "Retro" || b.lifecycle_stage === "Wrap"
-                          ? "bg-ink-300/30 text-ink-500 border-ink-300/50"
-                          : "bg-accent-primary/10 text-accent-primary border-accent-primary/30"
-                      }`}>
-                        {b.lifecycle_stage}
-                      </span>
-                    )}
-                    <span className="truncate">{b.lead_owner} · {fmtMoney(b.budget_usd)}</span>
-                  </div>
-                </div>
-                <div className="px-2">
-                  <GanttBar
-                    label={b.status.replace(/_/g, " ")}
-                    startDate={b.start_date}
-                    endDate={b.end_date}
-                    status={b.status}
-                    rangeStart={ganttStart}
-                    rangeEnd={ganttEnd}
-                    brandColor={title.brand_color}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="panel p-3 overflow-hidden">
-            <div className="text-[11px] text-ink-500 px-2 pt-1 pb-2 uppercase tracking-wider font-semibold">
-              Tasks
-            </div>
-            {tasks.map((t) => (
-              <div
-                key={t.task_id}
-                className="grid grid-cols-[180px_1fr] md:grid-cols-[260px_1fr] border-t border-line py-2 items-center"
-              >
-                <div className="px-2 min-w-0">
-                  <div className="text-[12.5px] font-medium truncate">
-                    {t.task_name}
-                  </div>
-                  <div className="text-[10.5px] text-ink-500 truncate">
-                    {t.owner}
-                  </div>
-                </div>
-                <div className="px-2">
-                  <GanttBar
-                    label={t.status.replace(/_/g, " ")}
-                    startDate={t.start_date}
-                    endDate={t.end_date}
-                    status={t.status}
-                    rangeStart={ganttStart}
-                    rangeEnd={ganttEnd}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <TitleCalendar
+          title={title}
+          tasks={tasks}
+          beats={beats}
+          tickets={tickets}
+          invoices={titleInvoices}
+        />
       )}
 
       {/* TICKETS — Kanban */}
