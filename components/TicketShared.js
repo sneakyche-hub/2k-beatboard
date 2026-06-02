@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   X,
   ExternalLink,
@@ -8,6 +9,7 @@ import {
   CheckCircle2,
   Target,
   DollarSign,
+  Inbox,
 } from "lucide-react";
 import Badge from "./Badge";
 import {
@@ -18,6 +20,8 @@ import {
   getActiveBlockers,
   getTicketsBlockedBy,
   isTicketDone,
+  inboxRefForSource,
+  inboxHrefForSource,
   COMPONENT_LABEL,
   COMPONENT_TONE,
   fmtDate,
@@ -215,6 +219,7 @@ export function TicketDrawer({ ticketId, titleInvoices, onClose, onSelect }) {
   const activeBlockers = getActiveBlockers(ticket);
   const blocks = getTicketsBlockedBy(ticket.ticket_id);
   const beat = ticket.beat_id ? getBeat(ticket.beat_id) : null;
+  const sourceRef = inboxRefForSource(ticket.source);
 
   // Invoice tied via an attachment's linked_invoice_id.
   const linkedInvoiceIds = (ticket.attachments || [])
@@ -290,6 +295,17 @@ export function TicketDrawer({ ticketId, titleInvoices, onClose, onSelect }) {
             )}
             <Meta label="From" value={sourceLabel(ticket.source)} />
           </div>
+
+          {/* Trace to the raw signal this ticket was created from */}
+          {sourceRef && (
+            <Link
+              href={inboxHrefForSource(ticket.source, ticket.title_id)}
+              className="inline-flex items-center gap-1.5 text-[11.5px] text-accent-primary font-medium hover:underline"
+            >
+              <Inbox className="h-3.5 w-3.5" />
+              View source signal in AI Inbox
+            </Link>
+          )}
 
           {/* Linked KPI */}
           {ticket.linked_kpi && (

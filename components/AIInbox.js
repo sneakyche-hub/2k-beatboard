@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   escalationDrafts,
   activityFeed,
@@ -111,12 +111,44 @@ export default function AIInbox() {
   const [priorityFilter, setPriorityFilter] = useState("all");
   const [activeDraftId, setActiveDraftId] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
+  const [flashId, setFlashId] = useState(null);
 
   const activeDraft = escalationDrafts.find(
     (d) => d.draft_id === activeDraftId
   );
 
   const allItems = useMemo(() => buildInboxItems(), []);
+
+  // Deep-link support: /inbox?focus=<item-id> (e.g. slack:slack_003)
+  // opens, scrolls to, and briefly highlights the exact signal a
+  // standup item or ticket linked from. /inbox?title=<id> just filters.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const focus = params.get("focus");
+    const title = params.get("title");
+    if (focus) {
+      // Clear filters so the focused item can't be hidden.
+      setTitleFilter("all");
+      setTypeFilter("all");
+      setPriorityFilter("all");
+      setExpandedId(focus);
+      setFlashId(focus);
+      const domId = "inbox-item-" + focus.replace(/[^a-zA-Z0-9_-]/g, "_");
+      const scrollTimer = setTimeout(() => {
+        const el = document.getElementById(domId);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 120);
+      const flashTimer = setTimeout(() => setFlashId(null), 2800);
+      return () => {
+        clearTimeout(scrollTimer);
+        clearTimeout(flashTimer);
+      };
+    }
+    if (title && titles.some((t) => t.title_id === title)) {
+      setTitleFilter(title);
+    }
+  }, []);
 
   const filteredItems = useMemo(() => {
     return allItems.filter((it) => {
@@ -256,6 +288,7 @@ export default function AIInbox() {
                   key={it.id}
                   item={it}
                   expanded={expandedId === it.id}
+                  flash={flashId === it.id}
                   onToggle={() =>
                     setExpandedId(expandedId === it.id ? null : it.id)
                   }
@@ -318,15 +351,19 @@ function countByPriority(items) {
   return <>{parts}</>;
 }
 
-function InboxRow({ item, expanded, onToggle, onOpenDraft, titleColor }) {
+function InboxRow({ item, expanded, flash, onToggle, onOpenDraft, titleColor }) {
   const meta = TYPE_META[item.type];
   const Icon = meta.Icon;
   const pri = PRIORITY_META[item.priority];
+  const domId = "inbox-item-" + item.id.replace(/[^a-zA-Z0-9_-]/g, "_");
+  const flashCls = flash
+    ? "ring-2 ring-accent-primary ring-offset-2 rounded-xl"
+    : "";
 
   // Drafts route to the existing escalation modal directly (no inline expand).
   if (item.type === "draft") {
     return (
-      <li>
+      <li id={domId} className={`scroll-mt-24 ${flashCls}`}>
         <button
           type="button"
           onClick={() => onOpenDraft(item.raw.draft_id)}
@@ -356,7 +393,7 @@ function InboxRow({ item, expanded, onToggle, onOpenDraft, titleColor }) {
   // Everything else expands in-place to reveal full body / transcript /
   // recommended reply, etc.
   return (
-    <li>
+    <li id={domId} className={`scroll-mt-24 ${flashCls}`}>
       <div className="panel overflow-hidden">
         <button
           type="button"

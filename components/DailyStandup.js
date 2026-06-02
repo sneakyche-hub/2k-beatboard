@@ -12,6 +12,8 @@ import {
   fmtDate,
   buildDeltaItems,
   buildSprintCadence,
+  inboxHrefForTicket,
+  inboxHrefForTitle,
 } from "@/lib/data";
 import Badge from "./Badge";
 import EscalationModal from "./EscalationModal";
@@ -489,7 +491,7 @@ export default function DailyStandup() {
                       ))}
                     </ul>
                   )}
-                  <div className="flex items-center gap-3 mt-2.5 pt-2.5 border-t border-line">
+                  <div className="flex items-center gap-3 mt-2.5 pt-2.5 border-t border-line flex-wrap">
                     {d.linked_beat_id && (
                       <button
                         type="button"
@@ -499,6 +501,16 @@ export default function DailyStandup() {
                         View GO/NO-GO checklist <ArrowUpRight className="h-3 w-3" />
                       </button>
                     )}
+                    <Link
+                      href={
+                        (d.linked_ticket_id &&
+                          inboxHrefForTicket(d.linked_ticket_id)) ||
+                        inboxHrefForTitle(d.title_id)
+                      }
+                      className="text-[11.5px] text-ink-600 font-medium hover:text-accent-primary hover:underline inline-flex items-center gap-1"
+                    >
+                      Trace to source signal <ArrowUpRight className="h-3 w-3" />
+                    </Link>
                     {href && (
                       <Link
                         href={href}
@@ -967,13 +979,11 @@ function DeltaStrip() {
         {items.map((item) => {
           const isSeen = hydrated && seenIds.has(item.id);
           const t = titles.find((ti) => ti.title_id === item.title_id);
-          return (
-            <div
-              key={item.id}
-              className={`flex items-baseline gap-2.5 py-2 text-[13px] transition-opacity ${
-                isSeen ? "opacity-40" : ""
-              }`}
-            >
+          const rowClass = `flex items-baseline gap-2.5 py-2 text-[13px] transition-opacity ${
+            isSeen ? "opacity-40" : ""
+          }`;
+          const inner = (
+            <>
               <span
                 className={`shrink-0 text-[9.5px] font-bold mono px-1.5 py-0.5 rounded ${
                   item.priority === "P0"
@@ -1002,6 +1012,23 @@ function DeltaStrip() {
                   New
                 </span>
               )}
+              {item.href && (
+                <ArrowUpRight className="h-3.5 w-3.5 text-ink-400 shrink-0 group-hover:text-accent-primary" />
+              )}
+            </>
+          );
+          return item.href ? (
+            <Link
+              key={item.id}
+              href={item.href}
+              title="Trace to source signal in AI Inbox"
+              className={`group ${rowClass} -mx-2 px-2 rounded-md hover:bg-base/70`}
+            >
+              {inner}
+            </Link>
+          ) : (
+            <div key={item.id} className={rowClass}>
+              {inner}
             </div>
           );
         })}
