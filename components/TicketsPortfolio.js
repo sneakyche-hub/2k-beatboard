@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { LayoutGrid, AlertTriangle, Ban, CalendarClock, Target } from "lucide-react";
 import {
   tickets as allTickets,
@@ -93,6 +93,18 @@ export default function TicketsPortfolio() {
   const [savedFilter, setSavedFilter] = useState("open");
   const [activeComponents, setActiveComponents] = useState(() => new Set());
   const [groupBy, setGroupBy] = useState("title");
+
+  // Deep-link: ?focus=TICKET_ID opens that ticket's drawer on arrival, so a
+  // Jira key clicked anywhere in the app lands directly on the ticket. The
+  // drawer is a modal overlay, so it shows regardless of the active filters.
+  useEffect(() => {
+    try {
+      const focus = new URLSearchParams(window.location.search).get("focus");
+      if (focus && allTickets.some((t) => t.ticket_id === focus)) {
+        setSelectedId(focus);
+      }
+    } catch {}
+  }, []);
 
   // Portfolio-wide stat tiles — always over the full ticket set so the
   // headline numbers don't shift as filters change.

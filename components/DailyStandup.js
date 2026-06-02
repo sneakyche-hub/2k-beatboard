@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   standup,
   titles,
-  tickets,
   escalationDrafts,
   beats,
   getBeat,
@@ -14,6 +13,7 @@ import {
   buildSprintCadence,
   inboxHrefForTicket,
   inboxHrefForTitle,
+  ticketDeepLink,
 } from "@/lib/data";
 import Badge from "./Badge";
 import EscalationModal from "./EscalationModal";
@@ -82,11 +82,9 @@ function titleForId(id) {
 }
 
 function ticketHref(ticketId) {
-  if (!ticketId) return null;
-  const tk = tickets.find((t) => t.ticket_id === ticketId);
-  if (!tk) return null;
-  const t = titleForId(tk.title_id);
-  return t ? `/titles/${t.franchise_slug}#tickets` : null;
+  // Every Jira key links straight to the ticket on the portfolio board,
+  // which opens the ticket drawer on arrival.
+  return ticketDeepLink(ticketId);
 }
 
 // -------------------------------------------------------------------
@@ -982,8 +980,32 @@ function DeltaStrip() {
           const rowClass = `flex items-baseline gap-2.5 py-2 text-[13px] transition-opacity ${
             isSeen ? "opacity-40" : ""
           }`;
-          const inner = (
+          const jiraLink = item.ticketId ? ticketDeepLink(item.ticketId) : null;
+          // Headline + detail + arrow trace to the source signal in the AI
+          // Inbox; the Jira chip is its own link straight to the ticket.
+          const signal = (
             <>
+              <span className={`min-w-0 flex-1 ${isSeen ? "text-ink-700" : "text-ink-900"}`}>
+                {item.headline}
+              </span>
+              <span className="text-[11px] text-ink-500 shrink-0 hidden sm:inline truncate max-w-[260px]">
+                {item.detail}
+              </span>
+              {!isSeen && hydrated && (
+                <span className="text-[9px] uppercase font-bold text-accent-success shrink-0">
+                  New
+                </span>
+              )}
+              {item.href && (
+                <ArrowUpRight className="h-3.5 w-3.5 text-ink-400 shrink-0 group-hover:text-accent-primary" />
+              )}
+            </>
+          );
+          return (
+            <div
+              key={item.id}
+              className={`group ${rowClass} -mx-2 px-2 rounded-md hover:bg-base/70`}
+            >
               <span
                 className={`shrink-0 text-[9.5px] font-bold mono px-1.5 py-0.5 rounded ${
                   item.priority === "P0"
@@ -1001,42 +1023,34 @@ function DeltaStrip() {
                   {t.title_name}
                 </span>
               )}
-              {item.ticketId && (
-                <span
-                  className="mono text-[9.5px] font-semibold px-1.5 py-0.5 rounded bg-accent-primary/10 text-accent-primary shrink-0"
-                  title={`Tracked in Jira · ${item.ticketId}`}
+              {item.ticketId &&
+                (jiraLink ? (
+                  <Link
+                    href={jiraLink}
+                    title={`Open ${item.ticketId} in Tickets`}
+                    className="mono text-[9.5px] font-semibold px-1.5 py-0.5 rounded bg-accent-primary/10 text-accent-primary shrink-0 hover:bg-accent-primary hover:text-white transition-colors"
+                  >
+                    {item.ticketId}
+                  </Link>
+                ) : (
+                  <span
+                    className="mono text-[9.5px] font-semibold px-1.5 py-0.5 rounded bg-accent-primary/10 text-accent-primary shrink-0"
+                    title={`Tracked in Jira · ${item.ticketId}`}
+                  >
+                    {item.ticketId}
+                  </span>
+                ))}
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  title="Trace to source signal in AI Inbox"
+                  className="group min-w-0 flex-1 flex items-baseline gap-2.5"
                 >
-                  {item.ticketId}
-                </span>
+                  {signal}
+                </Link>
+              ) : (
+                signal
               )}
-              <span className={`min-w-0 flex-1 ${isSeen ? "text-ink-700" : "text-ink-900"}`}>
-                {item.headline}
-              </span>
-              <span className="text-[11px] text-ink-500 shrink-0 hidden sm:inline truncate max-w-[260px]">
-                {item.detail}
-              </span>
-              {!isSeen && hydrated && (
-                <span className="text-[9px] uppercase font-bold text-accent-success shrink-0">
-                  New
-                </span>
-              )}
-              {item.href && (
-                <ArrowUpRight className="h-3.5 w-3.5 text-ink-400 shrink-0 group-hover:text-accent-primary" />
-              )}
-            </>
-          );
-          return item.href ? (
-            <Link
-              key={item.id}
-              href={item.href}
-              title="Trace to source signal in AI Inbox"
-              className={`group ${rowClass} -mx-2 px-2 rounded-md hover:bg-base/70`}
-            >
-              {inner}
-            </Link>
-          ) : (
-            <div key={item.id} className={rowClass}>
-              {inner}
             </div>
           );
         })}

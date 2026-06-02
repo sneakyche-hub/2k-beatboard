@@ -10,7 +10,7 @@ import {
   ChevronUp,
   AlertTriangle,
 } from "lucide-react";
-import { tickets, titles, fmtDate, DEMO_TODAY_ISO } from "@/lib/data";
+import { tickets, titles, fmtDate, DEMO_TODAY_ISO, ticketDeepLink } from "@/lib/data";
 import Badge from "./Badge";
 
 function titleFor(id) {
@@ -18,8 +18,8 @@ function titleFor(id) {
 }
 
 function ticketHref(ticket) {
-  const t = titleFor(ticket.title_id);
-  return t ? `/titles/${t.franchise_slug}#tickets` : null;
+  // Link straight to the ticket on the portfolio board (opens its drawer).
+  return ticketDeepLink(ticket.ticket_id);
 }
 
 // Bucket filters. The headline numbers come from prod (static, curated) but the

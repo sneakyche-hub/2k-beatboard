@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { decisionLog, standup, titles, fmtDate, fmtMoney } from "@/lib/data";
+import { decisionLog, standup, titles, fmtDate, fmtMoney, ticketDeepLink } from "@/lib/data";
 import Badge from "./Badge";
 import {
   ArrowLeft,
@@ -14,6 +14,7 @@ import {
   Sparkles,
   BookOpen,
   RotateCcw,
+  ArrowUpRight,
 } from "lucide-react";
 
 // -------------------------------------------------------------------
@@ -393,7 +394,19 @@ export default function DecisionLog() {
                       )}
                       {d.linked_ticket_id && (
                         <div className="text-[11.5px] mono text-ink-500">
-                          Ticket: {d.linked_ticket_id}
+                          Ticket:{" "}
+                          {ticketDeepLink(d.linked_ticket_id) ? (
+                            <Link
+                              href={ticketDeepLink(d.linked_ticket_id)}
+                              title={`Open ${d.linked_ticket_id} in Tickets`}
+                              className="text-accent-primary hover:underline inline-flex items-center gap-0.5"
+                            >
+                              {d.linked_ticket_id}
+                              <ArrowUpRight className="h-3 w-3" />
+                            </Link>
+                          ) : (
+                            d.linked_ticket_id
+                          )}
                         </div>
                       )}
                     </div>

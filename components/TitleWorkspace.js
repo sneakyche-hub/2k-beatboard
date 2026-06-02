@@ -17,6 +17,7 @@ import {
   fmtDate,
   fmtDateTime,
   DEMO_TODAY_ISO,
+  ticketDeepLink,
 } from "@/lib/data";
 import Badge from "./Badge";
 import GanttBar from "./GanttBar";
@@ -723,9 +724,19 @@ export default function TitleWorkspace({ title }) {
                                 className="border border-line rounded p-2 text-[12px]"
                               >
                                 <div className="flex items-center justify-between">
-                                  <span className="mono text-[10px] text-ink-500">
-                                    {pt.proposed_ticket_id}
-                                  </span>
+                                  {ticketDeepLink(pt.proposed_ticket_id) ? (
+                                    <Link
+                                      href={ticketDeepLink(pt.proposed_ticket_id)}
+                                      title={`Open ${pt.proposed_ticket_id} in Tickets`}
+                                      className="mono text-[10px] text-accent-primary hover:underline"
+                                    >
+                                      {pt.proposed_ticket_id}
+                                    </Link>
+                                  ) : (
+                                    <span className="mono text-[10px] text-ink-500">
+                                      {pt.proposed_ticket_id}
+                                    </span>
+                                  )}
                                   <Badge status={pt.priority} size="xs">
                                     {pt.priority}
                                   </Badge>
