@@ -13,12 +13,14 @@ import {
   FileText,
   DollarSign,
   ClipboardCheck,
+  Ticket,
 } from "lucide-react";
 
 const NAV = [
   { href: "/", label: "Daily Standup", icon: LayoutDashboard },
   { href: "/brief", label: "Daily Brief", icon: FileText },
   { href: "/calendar", label: "Calendar", icon: CalendarDays },
+  { href: "/tickets", label: "Tickets", icon: Ticket },
   { href: "/kpis", label: "KPIs", icon: Gauge },
   { href: "/budgets", label: "Budgets", icon: DollarSign },
   { href: "/decisions", label: "Decision Log", icon: ClipboardCheck },

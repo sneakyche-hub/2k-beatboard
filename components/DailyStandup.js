@@ -11,6 +11,7 @@ import {
   getBeat,
   fmtDate,
   buildDeltaItems,
+  buildSprintCadence,
 } from "@/lib/data";
 import Badge from "./Badge";
 import EscalationModal from "./EscalationModal";
@@ -35,6 +36,8 @@ import {
   FileText,
   Zap,
   ClipboardCheck,
+  CalendarRange,
+  Ban,
 } from "lucide-react";
 
 const STATUS_LABEL = {
@@ -82,6 +85,147 @@ function ticketHref(ticketId) {
   if (!tk) return null;
   const t = titleForId(tk.title_id);
   return t ? `/titles/${t.franchise_slug}#tickets` : null;
+}
+
+// -------------------------------------------------------------------
+// SprintCadencePanel (#6)
+//
+// Frames the week like a sprint: what we committed and finished, what's
+// still due this week, and what carried over (overdue). Derived from
+// each ticket's due_date + status via buildSprintCadence(), so it stays
+// in sync with the board with no separate sprint state to maintain.
+// -------------------------------------------------------------------
+function CadenceColumn({ label, tone, tickets: items }) {
+  const headTone =
+    tone === "success"
+      ? "text-accent-success"
+      : tone === "amber"
+      ? "text-accent-amber"
+      : tone === "red"
+      ? "text-accent-red"
+      : "text-ink-500";
+  const shown = items.slice(0, 6);
+  const rest = items.length - shown.length;
+  return (
+    <div className="border border-line rounded-lg p-3 bg-white">
+      <div className="flex items-center justify-between mb-2">
+        <span className={`text-[11px] uppercase tracking-wider font-semibold ${headTone}`}>
+          {label}
+        </span>
+        <span className="text-[12px] mono font-bold text-ink-900">
+          {items.length}
+        </span>
+      </div>
+      <ul className="space-y-1.5">
+        {shown.map((t) => {
+          const href = ticketHref(t.ticket_id);
+          const title = titleForId(t.title_id);
+          const row = (
+            <div className="flex items-start gap-2">
+              <Badge status={t.priority} size="xs">
+                {t.priority}
+              </Badge>
+              <span className="text-[11.5px] leading-snug flex-1 min-w-0">
+                {t.summary}
+              </span>
+              {title && (
+                <span
+                  className="h-2 w-2 rounded-full shrink-0 mt-1"
+                  style={{ backgroundColor: title.brand_color }}
+                  title={title.title_name}
+                />
+              )}
+            </div>
+          );
+          return (
+            <li key={t.ticket_id}>
+              {href ? (
+                <Link
+                  href={href}
+                  className="block rounded-md p-1.5 -mx-1.5 hover:bg-base/70"
+                >
+                  {row}
+                </Link>
+              ) : (
+                <div className="p-1.5">{row}</div>
+              )}
+            </li>
+          );
+        })}
+        {items.length === 0 && (
+          <li className="text-[11px] text-ink-400 italic">Nothing here.</li>
+        )}
+        {rest > 0 && (
+          <li className="text-[11px] text-ink-500 pt-0.5">+{rest} more</li>
+        )}
+      </ul>
+    </div>
+  );
+}
+
+function SprintCadencePanel() {
+  const c = buildSprintCadence();
+  const pct = c.completionPct ?? 0;
+  const barTone =
+    pct >= 70 ? "bg-accent-success" : pct >= 40 ? "bg-accent-amber" : "bg-accent-red";
+
+  return (
+    <section className="panel p-5">
+      <div className="flex items-center gap-2 mb-1">
+        <CalendarRange className="h-3.5 w-3.5 text-accent-primary" />
+        <h2 className="section-title">This week&rsquo;s cadence</h2>
+        <span className="text-[10.5px] mono text-ink-500 font-normal ml-1">
+          {fmtDate(c.startISO)}–{fmtDate(c.endISO)}
+        </span>
+        {c.blockedCount > 0 && (
+          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-accent-red/10 text-accent-red text-[10.5px] font-medium ml-auto">
+            <Ban className="h-2.5 w-2.5" />
+            {c.blockedCount} blocked
+          </span>
+        )}
+      </div>
+
+      {/* Completion bar */}
+      <div className="mb-4">
+        <div className="flex items-center justify-between text-[11px] text-ink-500 mb-1">
+          <span>
+            {c.doneThisWeek.length} of {c.committed} committed tickets done
+          </span>
+          <span className="mono">{pct}%</span>
+        </div>
+        <div className="h-1.5 rounded-full bg-ink-300/30 overflow-hidden">
+          <div className={`h-full ${barTone}`} style={{ width: `${pct}%` }} />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <CadenceColumn
+          label="Done this week"
+          tone="success"
+          tickets={c.doneThisWeek}
+        />
+        <CadenceColumn
+          label="Due this week"
+          tone="amber"
+          tickets={c.dueThisWeek}
+        />
+        <CadenceColumn
+          label="Carried over"
+          tone="red"
+          tickets={c.carryover}
+        />
+      </div>
+
+      <div className="mt-3 text-right">
+        <Link
+          href="/tickets"
+          className="text-[11px] mono text-accent-primary hover:underline"
+        >
+          Open portfolio board →
+        </Link>
+      </div>
+    </section>
+  );
 }
 
 export default function DailyStandup() {
@@ -551,6 +695,9 @@ export default function DailyStandup() {
           })}
         </ul>
       </section>
+
+      {/* #6 — Sprint cadence: committed / done / carried over this week */}
+      <SprintCadencePanel />
 
       {/* Portfolio health roll-up — structured by status + per-title cards */}
       <PortfolioHealthGrid summary={standup.portfolio_health_summary} />
