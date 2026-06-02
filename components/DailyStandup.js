@@ -13,12 +13,13 @@ import {
   buildSprintCadence,
   inboxHrefForTicket,
   inboxHrefForTitle,
-  ticketDeepLink,
+  jiraTicketHref,
 } from "@/lib/data";
 import Badge from "./Badge";
 import EscalationModal from "./EscalationModal";
 import BudgetPanel from "./BudgetPanel";
 import GoNoGoChecklist from "./GoNoGoChecklist";
+import JiraLink from "./JiraLink";
 import ProductionHealthTiles from "./ProductionHealthTiles";
 import PortfolioHealthGrid from "./PortfolioHealthGrid";
 import CashflowTimeline from "./CashflowTimeline";
@@ -82,9 +83,8 @@ function titleForId(id) {
 }
 
 function ticketHref(ticketId) {
-  // Every Jira key links straight to the ticket on the portfolio board,
-  // which opens the ticket drawer on arrival.
-  return ticketDeepLink(ticketId);
+  // Every ticket reference links straight to the actual Jira ticket.
+  return jiraTicketHref(ticketId);
 }
 
 // -------------------------------------------------------------------
@@ -140,12 +140,15 @@ function CadenceColumn({ label, tone, tickets: items }) {
           return (
             <li key={t.ticket_id}>
               {href ? (
-                <Link
+                <a
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`Open ${t.ticket_id} in Jira`}
                   className="block rounded-md p-1.5 -mx-1.5 hover:bg-base/70"
                 >
                   {row}
-                </Link>
+                </a>
               ) : (
                 <div className="p-1.5">{row}</div>
               )}
@@ -307,7 +310,6 @@ export default function DailyStandup() {
           <ul className="space-y-3">
             {(brief.today_calls || []).map((c, i) => {
               const prep = PREP_TONE[c.prep_status] || PREP_TONE.outstanding;
-              const href = ticketHref(c.linked_ticket_id);
               return (
                 <li
                   key={i}
@@ -334,13 +336,11 @@ export default function DailyStandup() {
                       {c.prep_note}
                     </div>
                   )}
-                  {href && (
-                    <Link
-                      href={href}
-                      className="text-[11px] mono text-accent-primary hover:underline mt-1 inline-block"
-                    >
-                      {c.linked_ticket_id} →
-                    </Link>
+                  {c.linked_ticket_id && (
+                    <JiraLink
+                      ticketId={c.linked_ticket_id}
+                      className="text-[11px] mono text-accent-primary hover:underline mt-1"
+                    />
                   )}
                 </li>
               );
@@ -356,7 +356,6 @@ export default function DailyStandup() {
           </h2>
           <ul className="space-y-3">
             {brief.today_priorities.map((p, i) => {
-              const href = ticketHref(p.linked_ticket_id);
               return (
                 <li
                   key={i}
@@ -368,13 +367,11 @@ export default function DailyStandup() {
                   <div className="text-[12.5px] text-ink-900 leading-relaxed mt-0.5">
                     {p.task}
                   </div>
-                  {href && (
-                    <Link
-                      href={href}
-                      className="text-[11px] mono text-accent-primary hover:underline mt-1 inline-block"
-                    >
-                      {p.linked_ticket_id} →
-                    </Link>
+                  {p.linked_ticket_id && (
+                    <JiraLink
+                      ticketId={p.linked_ticket_id}
+                      className="text-[11px] mono text-accent-primary hover:underline mt-1"
+                    />
                   )}
                 </li>
               );
@@ -393,7 +390,6 @@ export default function DailyStandup() {
           </h2>
           <ul className="space-y-3">
             {(brief.today_followups || []).map((f, i) => {
-              const href = ticketHref(f.linked_ticket_id);
               return (
                 <li
                   key={i}
@@ -409,13 +405,11 @@ export default function DailyStandup() {
                     <span>
                       Promised: <span className="text-ink-700">{f.promised_for}</span>
                     </span>
-                    {href && (
-                      <Link
-                        href={href}
+                    {f.linked_ticket_id && (
+                      <JiraLink
+                        ticketId={f.linked_ticket_id}
                         className="mono text-accent-primary hover:underline"
-                      >
-                        {f.linked_ticket_id} →
-                      </Link>
+                      />
                     )}
                   </div>
                 </li>
@@ -438,7 +432,6 @@ export default function DailyStandup() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {decisions.map((d) => {
               const t = titleForId(d.title_id);
-              const href = ticketHref(d.linked_ticket_id);
               const tone = DECISION_STATUS_TONE[d.status] || "neutral";
               return (
                 <div
@@ -509,13 +502,11 @@ export default function DailyStandup() {
                     >
                       Trace to source signal <ArrowUpRight className="h-3 w-3" />
                     </Link>
-                    {href && (
-                      <Link
-                        href={href}
+                    {d.linked_ticket_id && (
+                      <JiraLink
+                        ticketId={d.linked_ticket_id}
                         className="text-[11px] mono text-ink-500 hover:text-accent-primary hover:underline"
-                      >
-                        {d.linked_ticket_id} →
-                      </Link>
+                      />
                     )}
                   </div>
                 </div>
@@ -541,20 +532,17 @@ export default function DailyStandup() {
                 Slipped
               </div>
               {brief.yesterday_closeout.slipped.map((s) => {
-                const href = ticketHref(s.ticket_id);
                 return (
                   <div key={s.ticket_id} className="mt-1">
                     <div className="text-[12.5px] text-ink-900">{s.summary}</div>
                     <div className="text-[11px] text-ink-500 mt-0.5">
                       {s.reason} · now due {fmtDate(s.now_due)}
                     </div>
-                    {href && (
-                      <Link
-                        href={href}
+                    {s.ticket_id && (
+                      <JiraLink
+                        ticketId={s.ticket_id}
                         className="text-[11px] mono text-accent-primary hover:underline"
-                      >
-                        {s.ticket_id} →
-                      </Link>
+                      />
                     )}
                   </div>
                 );
@@ -587,7 +575,6 @@ export default function DailyStandup() {
               {closedOpen && (
                 <ul className="mt-2 space-y-1.5">
                   {brief.yesterday_closeout.completed.map((c) => {
-                    const href = ticketHref(c.ticket_id);
                     const t = titleForId(c.title_id);
                     return (
                       <li
@@ -608,13 +595,11 @@ export default function DailyStandup() {
                             <span className="text-ink-700">{c.summary}</span>
                           </div>
                         </div>
-                        {href && (
-                          <Link
-                            href={href}
+                        {c.ticket_id && (
+                          <JiraLink
+                            ticketId={c.ticket_id}
                             className="text-[10.5px] mono text-accent-primary hover:underline shrink-0"
-                          >
-                            {c.ticket_id} →
-                          </Link>
+                          />
                         )}
                       </li>
                     );
@@ -665,7 +650,6 @@ export default function DailyStandup() {
         </h2>
         <ul className="divide-y divide-line">
           {brief.yesterday_closeout.opened_yesterday.map((o) => {
-            const href = ticketHref(o.ticket_id);
             const t = titleForId(o.title_id);
             return (
               <li key={o.ticket_id} className="py-2.5 first:pt-0 last:pb-0">
@@ -691,13 +675,11 @@ export default function DailyStandup() {
                       Source: {o.source.replace(/_/g, " ")}
                     </div>
                   </div>
-                  {href && (
-                    <Link
-                      href={href}
+                  {o.ticket_id && (
+                    <JiraLink
+                      ticketId={o.ticket_id}
                       className="text-[11px] mono text-accent-primary hover:underline shrink-0"
-                    >
-                      {o.ticket_id} →
-                    </Link>
+                    />
                   )}
                 </div>
               </li>
@@ -980,9 +962,8 @@ function DeltaStrip() {
           const rowClass = `flex items-baseline gap-2.5 py-2 text-[13px] transition-opacity ${
             isSeen ? "opacity-40" : ""
           }`;
-          const jiraLink = item.ticketId ? ticketDeepLink(item.ticketId) : null;
           // Headline + detail + arrow trace to the source signal in the AI
-          // Inbox; the Jira chip is its own link straight to the ticket.
+          // Inbox; the Jira chip is its own link straight to the Jira ticket.
           const signal = (
             <>
               <span className={`min-w-0 flex-1 ${isSeen ? "text-ink-700" : "text-ink-900"}`}>
@@ -1023,23 +1004,13 @@ function DeltaStrip() {
                   {t.title_name}
                 </span>
               )}
-              {item.ticketId &&
-                (jiraLink ? (
-                  <Link
-                    href={jiraLink}
-                    title={`Open ${item.ticketId} in Tickets`}
-                    className="mono text-[9.5px] font-semibold px-1.5 py-0.5 rounded bg-accent-primary/10 text-accent-primary shrink-0 hover:bg-accent-primary hover:text-white transition-colors"
-                  >
-                    {item.ticketId}
-                  </Link>
-                ) : (
-                  <span
-                    className="mono text-[9.5px] font-semibold px-1.5 py-0.5 rounded bg-accent-primary/10 text-accent-primary shrink-0"
-                    title={`Tracked in Jira · ${item.ticketId}`}
-                  >
-                    {item.ticketId}
-                  </span>
-                ))}
+              {item.ticketId && (
+                <JiraLink
+                  ticketId={item.ticketId}
+                  showIcon={false}
+                  className="mono text-[9.5px] font-semibold px-1.5 py-0.5 rounded bg-accent-primary/10 text-accent-primary shrink-0 hover:bg-accent-primary hover:text-white transition-colors"
+                />
+              )}
               {item.href ? (
                 <Link
                   href={item.href}

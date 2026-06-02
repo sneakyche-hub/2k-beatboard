@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { weeklyUpdate, titles, fmtDate, ticketDeepLink } from "@/lib/data";
+import { weeklyUpdate, titles, fmtDate } from "@/lib/data";
+import JiraLink from "./JiraLink";
 import Badge from "./Badge";
 import {
   Sparkles,
@@ -510,25 +511,17 @@ function WeeklyItem({ item }) {
         <span className="font-semibold text-ink-900">{item.headline}</span>
         {item.linked_ticket_ids && item.linked_ticket_ids.length > 0 && (
           <span className="text-[11px] mono text-ink-500 inline-flex items-center gap-1 flex-wrap">
-            {item.linked_ticket_ids.map((tid, i) => {
-              const href = ticketDeepLink(tid);
-              return (
-                <span key={tid} className="inline-flex items-center">
-                  {i > 0 && <span className="mx-1 text-ink-400">·</span>}
-                  {href ? (
-                    <Link
-                      href={href}
-                      title={`Open ${tid} in Tickets`}
-                      className="text-accent-primary hover:underline"
-                    >
-                      {tid}
-                    </Link>
-                  ) : (
-                    tid
-                  )}
-                </span>
-              );
-            })}
+            {item.linked_ticket_ids.map((tid, i) => (
+              <span key={tid} className="inline-flex items-center">
+                {i > 0 && <span className="mx-1 text-ink-400">·</span>}
+                <JiraLink
+                  ticketId={tid}
+                  showIcon={false}
+                  className="text-accent-primary hover:underline"
+                  fallbackClassName="text-ink-500"
+                />
+              </span>
+            ))}
           </span>
         )}
       </div>

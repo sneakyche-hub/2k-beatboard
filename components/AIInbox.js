@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 import {
   escalationDrafts,
   activityFeed,
@@ -9,9 +8,9 @@ import {
   fmtDateTime,
   buildInboxItems,
   INBOX_PRIORITY_RANK,
-  ticketDeepLink,
 } from "@/lib/data";
 import Badge from "./Badge";
+import JiraLink from "./JiraLink";
 import EscalationModal from "./EscalationModal";
 import {
   Inbox,
@@ -461,20 +460,11 @@ function ExpandedContent({ item, titleColor }) {
                 className="border border-line rounded p-2.5 text-[12.5px]"
               >
                 <div className="flex items-center justify-between">
-                  {ticketDeepLink(pt.proposed_ticket_id) ? (
-                    <Link
-                      href={ticketDeepLink(pt.proposed_ticket_id)}
-                      title={`Open ${pt.proposed_ticket_id} in Tickets`}
-                      className="mono text-[10px] text-accent-primary hover:underline inline-flex items-center gap-0.5"
-                    >
-                      {pt.proposed_ticket_id}
-                      <ArrowUpRight className="h-2.5 w-2.5" />
-                    </Link>
-                  ) : (
-                    <span className="mono text-[10px] text-ink-500">
-                      {pt.proposed_ticket_id}
-                    </span>
-                  )}
+                  <JiraLink
+                    ticketId={pt.proposed_ticket_id}
+                    className="mono text-[10px] text-accent-primary hover:underline"
+                    fallbackClassName="mono text-[10px] text-ink-500"
+                  />
                   <Badge
                     tone={
                       pt.priority === "P0"
@@ -545,19 +535,13 @@ function ExpandedContent({ item, titleColor }) {
         <div className="text-[11px] text-ink-500 mt-2 flex items-center gap-3 flex-wrap">
           <span>{m.author_role}</span>
           {m.thread_replies > 0 && <span>{m.thread_replies} replies</span>}
-          {m.linked_ticket_id &&
-            (ticketDeepLink(m.linked_ticket_id) ? (
-              <Link
-                href={ticketDeepLink(m.linked_ticket_id)}
-                title={`Open ${m.linked_ticket_id} in Tickets`}
-                className="mono text-accent-primary hover:underline inline-flex items-center gap-0.5"
-              >
-                {m.linked_ticket_id}
-                <ArrowUpRight className="h-3 w-3" />
-              </Link>
-            ) : (
-              <span className="mono">{m.linked_ticket_id}</span>
-            ))}
+          {m.linked_ticket_id && (
+            <JiraLink
+              ticketId={m.linked_ticket_id}
+              className="mono text-accent-primary hover:underline"
+              fallbackClassName="mono text-ink-500"
+            />
+          )}
           {m.flagged_for_action && (
             <Badge tone="amber" size="xs">Flagged for action</Badge>
           )}

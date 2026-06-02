@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import {
   CheckCircle2,
   Clock,
@@ -10,16 +9,12 @@ import {
   ChevronUp,
   AlertTriangle,
 } from "lucide-react";
-import { tickets, titles, fmtDate, DEMO_TODAY_ISO, ticketDeepLink } from "@/lib/data";
+import { tickets, titles, fmtDate, DEMO_TODAY_ISO } from "@/lib/data";
 import Badge from "./Badge";
+import JiraLink from "./JiraLink";
 
 function titleFor(id) {
   return titles.find((t) => t.title_id === id);
-}
-
-function ticketHref(ticket) {
-  // Link straight to the ticket on the portfolio board (opens its drawer).
-  return ticketDeepLink(ticket.ticket_id);
 }
 
 // Bucket filters. The headline numbers come from prod (static, curated) but the
@@ -198,7 +193,6 @@ export default function ProductionHealthTiles({ prod, brief }) {
             <ul className="divide-y divide-line">
               {activeList.map((t) => {
                 const ti = titleFor(t.title_id);
-                const href = ticketHref(t);
                 const isLate = t.due_date && t.due_date < DEMO_TODAY_ISO;
                 return (
                   <li key={t.ticket_id} className="py-2 first:pt-0 last:pb-0">
@@ -255,13 +249,11 @@ export default function ProductionHealthTiles({ prod, brief }) {
                           )}
                         </div>
                       </div>
-                      {href && (
-                        <Link
-                          href={href}
+                      {t.ticket_id && (
+                        <JiraLink
+                          ticketId={t.ticket_id}
                           className="text-[11px] mono text-accent-primary hover:underline shrink-0"
-                        >
-                          {t.ticket_id} →
-                        </Link>
+                        />
                       )}
                     </div>
                   </li>

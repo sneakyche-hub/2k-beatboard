@@ -11,9 +11,9 @@ import {
   fmtDate,
   DEMO_TODAY_ISO,
   buildInboxItems,
-  ticketDeepLink,
 } from "@/lib/data";
 import Badge from "./Badge";
+import JiraLink from "./JiraLink";
 import {
   Sparkles,
   AlertOctagon,
@@ -1627,21 +1627,13 @@ function YesterdayPanel({ items, counts }) {
                       <Badge tone={YESTERDAY_STATUS_TONE[it.status]} size="xs">
                         {YESTERDAY_STATUS_LABEL[it.status]}
                       </Badge>
-                      {it.linked_ticket_id &&
-                        (ticketDeepLink(it.linked_ticket_id) ? (
-                          <Link
-                            href={ticketDeepLink(it.linked_ticket_id)}
-                            title={`Open ${it.linked_ticket_id} in Tickets`}
-                            className="text-[11px] mono text-accent-primary hover:underline inline-flex items-center gap-0.5"
-                          >
-                            {it.linked_ticket_id}
-                            <ArrowUpRight className="h-3 w-3" />
-                          </Link>
-                        ) : (
-                          <span className="text-[11px] mono text-ink-500">
-                            {it.linked_ticket_id}
-                          </span>
-                        ))}
+                      {it.linked_ticket_id && (
+                        <JiraLink
+                          ticketId={it.linked_ticket_id}
+                          className="text-[11px] mono text-accent-primary hover:underline"
+                          fallbackClassName="text-[11px] mono text-ink-500"
+                        />
+                      )}
                     </div>
                     {it.closeout_note && (
                       <div className="text-[11.5px] text-ink-500 mt-0.5">
