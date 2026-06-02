@@ -27,6 +27,7 @@ import PhaseBreakdown from "./PhaseBreakdown";
 import GoNoGoChecklist from "./GoNoGoChecklist";
 import TitleInternalCollaborators from "./TitleInternalCollaborators";
 import TitleCalendar from "./TitleCalendar";
+import TicketsBoard from "./TicketsBoard";
 import {
   ArrowLeft,
   CheckCircle2,
@@ -41,7 +42,6 @@ import {
   Send,
   ChevronDown,
   ChevronRight,
-  Paperclip,
 } from "lucide-react";
 
 const STATUS_LABEL = {
@@ -278,78 +278,14 @@ export default function TitleWorkspace({ title }) {
         />
       )}
 
-      {/* TICKETS — Kanban */}
+      {/* TICKETS — Kanban + readiness rail + detail drawer */}
       {tab === "tickets" && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-          {["open", "in_progress", "at_risk", "completed"].map((col) => {
-            const items = tickets.filter(
-              (t) =>
-                t.status === col ||
-                (col === "in_progress" && t.status === "scheduled") ||
-                (col === "at_risk" && t.status === "blocked")
-            );
-            const labels = {
-              open: "Open",
-              in_progress: "In progress",
-              at_risk: "At risk / blocked",
-              completed: "Done",
-            };
-            return (
-              <div key={col} className="panel p-3">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="section-title">{labels[col]}</h3>
-                  <span className="text-[11px] text-ink-500 mono">
-                    {items.length}
-                  </span>
-                </div>
-                <ul className="space-y-2">
-                  {items.map((t) => (
-                    <li
-                      key={t.ticket_id}
-                      className="border border-line rounded-md p-2.5 hover:border-ink-300 hover:shadow-sm bg-white"
-                    >
-                      <div className="flex items-center justify-between gap-1">
-                        <span className="mono text-[10px] text-ink-500">
-                          {t.ticket_id}
-                        </span>
-                        <Badge status={t.priority} size="xs">
-                          {t.priority}
-                        </Badge>
-                      </div>
-                      <div className="text-[12.5px] font-medium mt-1 leading-snug">
-                        {t.summary}
-                      </div>
-                      <div className="text-[10.5px] text-ink-500 mt-1.5 flex items-center justify-between">
-                        <span className="truncate">{t.owner}</span>
-                        <span className="flex items-center gap-1.5 shrink-0 ml-2">
-                          {t.attachments && t.attachments.length > 0 && (
-                            <span
-                              className="flex items-center gap-0.5 text-ink-600"
-                              title={t.attachments
-                                .map((a) => a.filename)
-                                .join("\n")}
-                            >
-                              <Paperclip className="h-3 w-3" />
-                              <span className="mono">
-                                {t.attachments.length}
-                              </span>
-                            </span>
-                          )}
-                          <span className="mono">{fmtDate(t.due_date)}</span>
-                        </span>
-                      </div>
-                    </li>
-                  ))}
-                  {items.length === 0 && (
-                    <li className="text-[11px] text-ink-400 italic py-1">
-                      Nothing here.
-                    </li>
-                  )}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
+        <TicketsBoard
+          title={title}
+          tickets={tickets}
+          beats={beats}
+          invoices={titleInvoices}
+        />
       )}
 
       {/* BUDGET */}
