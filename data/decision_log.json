@@ -45,7 +45,7 @@
     "tranche_amount_usd": 95000,
     "rationale_note": "FanFest Q3 slot confirmed. BL4 SP2 reveal window aligns with activation. Budget within Q3 committed ceiling. Marketing Mgr II owns production.",
     "outcome_30d_note": null,
-    "linked_ticket_id": null
+    "linked_ticket_id": "BL-2480"
   },
   {
     "decision_id": "dec_ror2_seekers_free_weekend",
@@ -57,7 +57,7 @@
     "tranche_amount_usd": 45000,
     "rationale_note": "Lurkit + CreatorIQ shortlist cleared. Steam free-weekend slot confirmed. Conversion creative in QA. $45K total: $28K paid layer + $17K creator seeding.",
     "outcome_30d_note": null,
-    "linked_ticket_id": null
+    "linked_ticket_id": "ROR-PROP-001"
   },
   {
     "decision_id": "dec_mafia_toc_creative_refresh_v1",
@@ -81,7 +81,7 @@
     "tranche_amount_usd": 62000,
     "rationale_note": "HW3 anniversary trailer confirmed Jun 3. Creator seeding (RTS-native VoD scene) and paid layer approved. Marketing Mgr II owns execution.",
     "outcome_30d_note": null,
-    "linked_ticket_id": null
+    "linked_ticket_id": "HW-220"
   },
   {
     "decision_id": "dec_bl4_sp1_phase1_surge",
@@ -117,6 +117,6 @@
     "tranche_amount_usd": 38000,
     "rationale_note": "30th anniversary window in Q3. Bundle positioning approved by Brand. Steam sale slot confirmed. Marketing Mgr II owns execution within Civ/XCOM catalog budget.",
     "outcome_30d_note": null,
-    "linked_ticket_id": null
+    "linked_ticket_id": "XCM-512"
   }
 ]

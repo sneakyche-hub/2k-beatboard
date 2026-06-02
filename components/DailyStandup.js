@@ -1001,6 +1001,14 @@ function DeltaStrip() {
                   {t.title_name}
                 </span>
               )}
+              {item.ticketId && (
+                <span
+                  className="mono text-[9.5px] font-semibold px-1.5 py-0.5 rounded bg-accent-primary/10 text-accent-primary shrink-0"
+                  title={`Tracked in Jira · ${item.ticketId}`}
+                >
+                  {item.ticketId}
+                </span>
+              )}
               <span className={`min-w-0 flex-1 ${isSeen ? "text-ink-700" : "text-ink-900"}`}>
                 {item.headline}
               </span>
