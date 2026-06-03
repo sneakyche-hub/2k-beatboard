@@ -34,6 +34,67 @@ const GO_NO_GO_TONE = {
   blocked: { fill: "#DC2626", label: "Blocked" },
 };
 
+// Marketing lifecycle phase — where a title sits in its cadence. Values come
+// straight from each beat's `phase` field (no invention); ordered pre-launch
+// → launch → post-launch → sustain → catalog.
+const PHASE_META = {
+  pre_launch: { label: "Pre-launch", short: "Pre", color: "#7C3AED", order: 1 },
+  launch_push: { label: "Launch", short: "Launch", color: "#1F4FDB", order: 2 },
+  post_launch: { label: "Post-launch", short: "Post", color: "#0891B2", order: 3 },
+  sustain_scale: { label: "Sustain", short: "Sustain", color: "#16A34A", order: 4 },
+  catalog: { label: "Catalog", short: "Catalog", color: "#64748B", order: 5 },
+};
+const PHASE_ORDER = Object.keys(PHASE_META).sort(
+  (a, b) => PHASE_META[a].order - PHASE_META[b].order
+);
+
+// A title's current lifecycle stage: the phase of the beat live today, else the
+// next upcoming beat, else the most recently ended one.
+function currentPhaseFor(titleBeats) {
+  if (!titleBeats.length) return null;
+  const ms = (d) => new Date(d).getTime();
+  const active = titleBeats.find(
+    (b) => ms(b.start_date) <= TODAY && ms(b.end_date) >= TODAY
+  );
+  if (active) return active.phase;
+  const upcoming = [...titleBeats]
+    .filter((b) => ms(b.start_date) > TODAY)
+    .sort((a, b) => ms(a.start_date) - ms(b.start_date))[0];
+  if (upcoming) return upcoming.phase;
+  return [...titleBeats].sort((a, b) => ms(b.end_date) - ms(a.end_date))[0]
+    .phase;
+}
+
+// Distinct phases a title's beats span, in lifecycle order.
+function phaseSpanFor(titleBeats) {
+  const present = new Set(titleBeats.map((b) => b.phase).filter(Boolean));
+  return PHASE_ORDER.filter((p) => present.has(p));
+}
+
+function PhasePill({ phase, emphasized = false }) {
+  const meta = PHASE_META[phase];
+  if (!meta) return null;
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded-full text-[9.5px] font-semibold leading-none px-1.5 py-0.5 ${
+        emphasized ? "text-white" : ""
+      }`}
+      style={
+        emphasized
+          ? { backgroundColor: meta.color }
+          : { backgroundColor: `${meta.color}1A`, color: meta.color }
+      }
+      title={`Lifecycle phase: ${meta.label}`}
+    >
+      <span
+        className="h-1.5 w-1.5 rounded-full shrink-0"
+        style={{ backgroundColor: emphasized ? "#ffffff" : meta.color }}
+      />
+      {meta.label}
+    </span>
+  );
+}
+
 function monthMarkers() {
   const markers = [];
   let cursor = new Date(VIEW_START);
@@ -279,7 +340,8 @@ export default function GlobalCalendar() {
         <p className="text-[13px] text-ink-500 mt-1">
           {fmtDate(VIEW_START, { year: true })} to{" "}
           {fmtDate(VIEW_END, { year: true })} · 8 titles · 26 beats · 50+ tasks
-          · planning / execution / wrap shown distinctly with GO/NO-GO gates.
+          · each title tagged by lifecycle phase, with planning / execution /
+          wrap and GO/NO-GO gates per beat.
         </p>
       </div>
 
@@ -414,6 +476,28 @@ export default function GlobalCalendar() {
                       {titleBeats.length === 1 ? "" : "s"} ·{" "}
                       {laneCount} lane{laneCount === 1 ? "" : "s"}
                     </div>
+                    {titleBeats.length > 0 &&
+                      (() => {
+                        const current = currentPhaseFor(titleBeats);
+                        const span = phaseSpanFor(titleBeats);
+                        return (
+                          <div className="flex items-center gap-1 mt-1.5 flex-wrap">
+                            {current && (
+                              <PhasePill phase={current} emphasized />
+                            )}
+                            {span
+                              .filter((p) => p !== current)
+                              .map((p) => (
+                                <span
+                                  key={p}
+                                  className="h-2 w-2 rounded-full shrink-0"
+                                  style={{ backgroundColor: PHASE_META[p].color }}
+                                  title={`Also: ${PHASE_META[p].label}`}
+                                />
+                              ))}
+                          </div>
+                        );
+                      })()}
                   </Link>
                   <div
                     className="relative"
@@ -493,8 +577,13 @@ export default function GlobalCalendar() {
                         {label}
                       </span>
                     </div>
-                    <div className="text-[11px] text-ink-500 mt-0.5 truncate">
-                      {sub}
+                    <div className="flex items-center gap-1.5 mt-0.5 min-w-0">
+                      {tab === "beats" && item.phase && (
+                        <PhasePill phase={item.phase} />
+                      )}
+                      <span className="text-[11px] text-ink-500 truncate">
+                        {sub}
+                      </span>
                     </div>
                   </div>
                   <div className="relative px-2">
@@ -518,6 +607,20 @@ export default function GlobalCalendar() {
       {/* Legend */}
       <div className="panel p-3 space-y-2">
         <div className="flex flex-wrap items-center gap-3 text-[11px] text-ink-700">
+          <span className="font-semibold uppercase tracking-wider text-[10px] text-ink-500">
+            Lifecycle:
+          </span>
+          {PHASE_ORDER.map((p) => (
+            <span key={p} className="flex items-center gap-1.5">
+              <span
+                className="h-2.5 w-2.5 rounded-full"
+                style={{ backgroundColor: PHASE_META[p].color }}
+              />
+              {PHASE_META[p].label}
+            </span>
+          ))}
+        </div>
+        <div className="flex flex-wrap items-center gap-3 text-[11px] text-ink-700 pt-2 border-t border-line">
           <span className="font-semibold uppercase tracking-wider text-[10px] text-ink-500">
             Phases:
           </span>
