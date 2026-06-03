@@ -1,0 +1,144 @@
+{
+  "civilization": {
+    "as_of": "2026-05-26",
+    "headline": "Launch holding strong — creator premiere is the only live coordination thread",
+    "synthesis": "Test of Time is the healthiest title in the portfolio right now: sentiment is climbing (87% Steam, r/civ rallying), the Discord AMA passed with zero flashpoints, and the Lurkit quest is beating its cost ceiling. The one thing that actually needs a person is a scheduling decision — Open World moved the Time-Tested Civs multiplayer premiere to May 28, and the brand hero cut slipped, so the production thread needs a call on sequencing. Nothing here is escalation-grade; it's coordination, not risk.",
+    "needs_you": [
+      { "text": "Confirm whether the Triumphs deep-dive solo VoDs move with the May 28 multiplayer premiere or split to a second day (Open World waiting on Alex).", "ticket_id": "CIV-1934" }
+    ],
+    "channel_summaries": {
+      "#civ-vii-launch": {
+        "purpose": "Product + KPI launch war room",
+        "summary": "Sentiment and review-score signals trending up; comms pulling a sentiment slide for the exec roll-up. Lurkit quest extended through the weekend to ride the premiere halo.",
+        "tone": "positive"
+      },
+      "#vendor-open-world": {
+        "purpose": "Creator agency coordination (Open World)",
+        "summary": "Premiere date moved to May 28; agency needs a call on whether the Triumphs deep-dive VoDs run same-day or split.",
+        "tone": "watch"
+      },
+      "#civ-community": {
+        "purpose": "Community / Discord sentiment",
+        "summary": "AMA recap clean — 1,400 live, the pre-emptive FAQ defused the bad-faith threads before they formed.",
+        "tone": "positive"
+      },
+      "#2k-na-integrated": {
+        "purpose": "Cross-title NA marketing standup",
+        "summary": "Brand hero cut for NA paid social slipped to QA; tracking to land with Open World same day. Workflow audit owed.",
+        "tone": "watch"
+      }
+    }
+  },
+  "borderlands": {
+    "as_of": "2026-05-26",
+    "headline": "D30 under gate — Phase 2 surge is paused and waiting on Davide's call",
+    "synthesis": "Every channel is converging on the same decision: Mad Ellie SP1's D30 cohort is at 9.8% against a 14% gate, so Tomás is recommending the Phase 2 paid surge hold until Patch 1.2 lands and the cohort re-measures. Heaven Media has paused paid, Gamesight is holding the creator seeding brief, and everyone is deliberately not firing spend against a paused layer. This is the cleanest example of the team self-coordinating around a gate — but the GO/NO-GO itself is Davide's, briefed June 5, timed to the Whispering Glacier endgame content beat window.",
+    "needs_you": [
+      { "text": "Phase 2 paid surge is held pending Patch 1.2 + D30 re-measure — escalation drafted for Davide's June 5 GO/NO-GO.", "ticket_id": "BL-2418" }
+    ],
+    "channel_summaries": {
+      "#borderlands-sp1": {
+        "purpose": "SP1 launch + KPI tracking",
+        "summary": "D30 at 9.8% vs 14% gate. Tomás recommends holding Phase 2 surge until Patch 1.2; drafting the brief for Davide.",
+        "tone": "risk"
+      },
+      "#vendor-heaven-media": {
+        "purpose": "Lead UA agency (Heaven Media)",
+        "summary": "Phase 1 paid landed clean — Spark Ads 22% above benchmark CTR. Phase 2 paused per the D30 call; brief refresh held until the gate clears.",
+        "tone": "watch"
+      },
+      "#bl4-creators": {
+        "purpose": "Creator advocacy (Gamesight program)",
+        "summary": "1,200-creator pool warm, 340 confirmed for the Whispering Glacier beat. Seeding brief held until Tomás's D30 call so codes don't fire against paused paid.",
+        "tone": "watch"
+      }
+    }
+  },
+  "mafia": {
+    "as_of": "2026-05-26",
+    "headline": "Creative fatigue — refresh in QA, GO/NO-GO June 1",
+    "synthesis": "The Old Country sustain push is showing creative fatigue (ROAS 1.87 vs 2.4 target), and the response is already in motion: Heaven has three refresh concepts in QA with a brand review Thursday and a realistic GO/NO-GO of June 1 for the next $120K tranche. The sequencing is tight — three days QA, two days traffic split — so the date depends on the brand review landing clean.",
+    "needs_you": [
+      { "text": "Q2 creative refresh GO/NO-GO tracking for June 1 — next $120K tranche release is Davide's call.", "ticket_id": "MAF-PROP-001" }
+    ],
+    "channel_summaries": {
+      "#mafia-old-country": {
+        "purpose": "Sustain push + creative refresh (Heaven)",
+        "summary": "Three refresh concepts in QA, brand review Thursday. Realistic GO/NO-GO June 1 — three days QA, two days traffic split.",
+        "tone": "watch"
+      }
+    }
+  },
+  "wonderlands": {
+    "as_of": "2026-05-26",
+    "headline": "Encore date slip confirmed — re-announce comms need Davide sign-off",
+    "synthesis": "The Glutton's Gamble Encore can't hit June 5: there's a reliable crash repro on the second-arena encounter transition, and the Eng Producer's realistic re-date is July 10. The marketing problem is the 65K standalone wishlisters who get a Steam notification the moment the date moves, so the comms framing is load-bearing. Marcus is drafting the re-announce — leading with stability-over-rush and a concrete July 10 target — and it needs Davide's sign-off before it goes out EOD Friday.",
+    "needs_you": [
+      { "text": "Re-announce comms for the July 10 Encore slip drafted, awaiting Davide sign-off before EOD Friday (65K wishlisters notified on date change).", "ticket_id": "WND-1782" }
+    ],
+    "channel_summaries": {
+      "#wonderlands-live": {
+        "purpose": "Engineering + production status",
+        "summary": "Reliable crash repro on the second-arena transition. Can't ship June 5; realistic new date July 10. Eng looping in comms.",
+        "tone": "risk"
+      },
+      "#wonderlands-community": {
+        "purpose": "Community comms",
+        "summary": "Date-slip re-announce in draft — leading with the why (stability over a rushed drop) and a concrete July 10 target. Needs Davide sign-off.",
+        "tone": "watch"
+      }
+    }
+  },
+  "risk-of-rain": {
+    "as_of": "2026-05-26",
+    "headline": "Free Weekend prep on rails — nothing needs you yet",
+    "synthesis": "Seekers of the Storm Free Weekend is in clean prep mode: CreatorIQ's shortlist of 40 micro/nano FPS-adjacent creators lands Friday, the Lurkit brief goes out Wednesday, and the CPMStar awareness quote came back at $4.20 CPM. No blockers, no decisions pending — this is a title that's simply executing to plan.",
+    "needs_you": [],
+    "channel_summaries": {
+      "#ror2-content": {
+        "purpose": "Free Weekend prep",
+        "summary": "CreatorIQ shortlist (40 creators) lands Friday, Lurkit brief sends Wednesday, CPMStar awareness quote at $4.20 CPM.",
+        "tone": "positive"
+      }
+    }
+  },
+  "xcom": {
+    "as_of": "2026-05-26",
+    "headline": "Anniversary bundle on the radar — catalog cadence, nothing urgent",
+    "synthesis": "The XCOM 30th Anniversary bundle is tracking to the Sept 8 Steam page refresh, with the commemorative trailer in edit and a Discord AMA slot held. This is catalog-mode cadence — flagged early so it's on the radar before the autumn sale window, but nothing here needs a decision now.",
+    "needs_you": [],
+    "channel_summaries": {
+      "#xcom-anniversary": {
+        "purpose": "30th anniversary planning",
+        "summary": "Bundle on track for the Sept 8 Steam page refresh. Trailer in edit, AMA slot held. Catalog cadence — flagged early, low urgency.",
+        "tone": "neutral"
+      }
+    }
+  },
+  "bioshock": {
+    "as_of": "2026-05-26",
+    "headline": "Pre-reveal SEO climbing but below target — comms drafting a content plan",
+    "synthesis": "Everything is still under embargo — no external assets live. The one signal worth watching is the pre-reveal narrative SEO sweep at 52% share vs a 60% target, with fan-wiki lore pages outranking us on a few key terms. Comms is already drafting a content plan to close the gap before the reveal window, so this is a watch item, not an ask.",
+    "needs_you": [],
+    "channel_summaries": {
+      "#bioshock-reveal": {
+        "purpose": "Pre-reveal narrative control",
+        "summary": "Narrative SEO at 52% vs 60% target — fan-wiki pages outranking us on key terms. Comms drafting a content plan to close the gap. All under embargo.",
+        "tone": "watch"
+      }
+    }
+  },
+  "homeworld": {
+    "as_of": "2026-05-26",
+    "headline": "Anniversary update seeding underway — sustain is healthy",
+    "synthesis": "Homeworld 3's Anniversary Content Update is on an evergreen cadence: RTS/strategy micro-creators are shortlisted with keys going out for the June 28 update, and D30 is holding at 19.4% against an 18% target. A low-lift beat that's running itself — no decisions pending.",
+    "needs_you": [],
+    "channel_summaries": {
+      "#hw3-anniversary": {
+        "purpose": "Anniversary content update",
+        "summary": "Creator seeding kicking off for the June 28 update (RTS/strategy micro-creators). D30 at 19.4% vs 18% target — sustain healthy.",
+        "tone": "positive"
+      }
+    }
+  }
+}

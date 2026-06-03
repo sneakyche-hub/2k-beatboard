@@ -26,6 +26,7 @@ import CollaboratorChain from "./CollaboratorChain";
 import PhaseBreakdown from "./PhaseBreakdown";
 import GoNoGoChecklist from "./GoNoGoChecklist";
 import TitleInternalCollaborators from "./TitleInternalCollaborators";
+import TitleSlackDigest from "./TitleSlackDigest";
 import TitleCalendar from "./TitleCalendar";
 import TicketsBoard from "./TicketsBoard";
 import JiraLink from "./JiraLink";
@@ -203,6 +204,12 @@ export default function TitleWorkspace({ title }) {
               )}
             </div>
           )}
+
+          {/* Slack digest · Claude across the title's channels (Davide's #1 ask) */}
+          <TitleSlackDigest
+            title={title}
+            onOpenInbox={() => setTab("inbox")}
+          />
 
           {/* KPI strip */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -508,7 +515,7 @@ export default function TitleWorkspace({ title }) {
                 const meets =
                   v == null || target == null
                     ? null
-                    : k.includes("ceiling") || k.includes("cpi")
+                    : k.includes("ceiling") || k.includes("cpa")
                     ? v <= target
                     : v >= target;
                 return (

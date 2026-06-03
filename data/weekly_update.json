@@ -30,7 +30,7 @@
     },
     {
       "headline": "Cohort fatigue post-mortem closed",
-      "detail": "TOC vs Mafia 2 launch creative comparison documented; findings feed the Mafia refresh recommendation. Pattern: paid CPI drift precedes ROAS decay by 2-3 weeks across the sustain catalog.",
+      "detail": "TOC vs Mafia 2 launch creative comparison documented; findings feed the Mafia refresh recommendation. Pattern: paid CPA drift precedes ROAS decay by 2-3 weeks across the sustain catalog.",
       "linked_ticket_ids": ["MAF-PROP-002"],
       "title_id": "mafia"
     }

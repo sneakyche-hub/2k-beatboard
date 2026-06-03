@@ -15,7 +15,8 @@
     { "phase": "pre_launch", "title_count": 1, "budget_committed_usd": 410000, "budget_spent_usd": 88000 },
     { "phase": "launch_push", "title_count": 1, "budget_committed_usd": 1850000, "budget_spent_usd": 1120000 },
     { "phase": "sustain_scale", "title_count": 2, "budget_committed_usd": 1100000, "budget_spent_usd": 652000 },
-    { "phase": "live_service", "title_count": 4, "budget_committed_usd": 2480000, "budget_spent_usd": 1082000 }
+    { "phase": "post_launch", "title_count": 3, "budget_committed_usd": 2000000, "budget_spent_usd": 1018000 },
+    { "phase": "catalog", "title_count": 1, "budget_committed_usd": 280000, "budget_spent_usd": 64000 }
   ],
   "by_status": [
     { "status": "on_track", "title_count": 5 },

@@ -24,7 +24,7 @@
       { "speaker": "Davide Detta", "text": "Agreed. And on the creator schedule — I saw the note Open World split the lineup. Are we packing it into one beat or really running two days?" },
       { "speaker": "Maya Reyes", "text": "Two days. Time-Tested Civs multiplayer premiere May 28 (the four-player showcase), Triumphs system deep-dive solo VoDs May 30 covering all six Attributes — Militaristic, Cultural, Scientific, Economic, Diplomatic, Expansionist. Cleaner ops, two visibility spikes instead of one, and the Triumphs day gives us a single-player story for the audience that doesn't want a multiplayer entry point." },
       { "speaker": "Priya Iyer", "text": "One thing for the playbook — we should write up how we handled the free-update comms here. Lead with the Time-Tested Civs + Syncretism explainer, Discord AMA in the first 24h, the FAQ post on the new Commerce screen and Advisor Council that landed before the bad-faith threads could form. The free Alexander leader unlock as the closer landed clean. It worked. Worth a case study." },
-      { "speaker": "Davide Detta", "text": "Yes. Global GTM team should own that — 2 week deliverable, public-facing on the internal wiki. Use Test of Time as the model for the next live-service drop." },
+      { "speaker": "Davide Detta", "text": "Yes. Global GTM team should own that — 2 week deliverable, public-facing on the internal wiki. Use Test of Time as the model for the next content drop." },
       { "speaker": "Alex Akiyama", "text": "Last thing — the asset handoff slip is the second time in a quarter we've had Brand Creative miss a vendor deadline. We should look at workflow. Not blaming anyone, but the dependency chain is brittle." },
       { "speaker": "Davide Detta", "text": "Agree. Creative Ops should audit — I want a one-pager on where the handoff broke and what changes. One week." },
       { "speaker": "Marcus Lee", "text": "Last note from me — Lurkit performance quest is exceeding expectations. 8K hours watched in D1–D3, payout efficient. We should consider extending the quest window through the weekend." }
@@ -49,13 +49,13 @@
       },
       {
         "proposed_ticket_id": "CIV-PROP-002",
-        "title": "Draft live-service launch comms playbook — Test of Time case study",
+        "title": "Draft content-drop launch comms playbook — Test of Time case study",
         "owner": "Sr Manager, Global GTM, Core",
         "due_in_days": 14,
         "priority": "P2",
         "vendor_owner": null,
         "linked_kpi": null,
-        "rationale": "Test of Time launch comms worked end-to-end (Time-Tested Civs explainer, Discord AMA in 24h, pre-emptive FAQ). Codifying it gives the next live-service drop a model to follow.",
+        "rationale": "Test of Time launch comms worked end-to-end (Time-Tested Civs explainer, Discord AMA in 24h, pre-emptive FAQ). Codifying it gives the next content drop a model to follow.",
         "source_quote": "Lead with the Time-Tested Civs explainer, Discord AMA in the first 24h, the FAQ post that landed before the bad-faith threads could form. It worked. Worth a case study."
       },
       {
@@ -203,7 +203,7 @@
       { "name": "Tomás Vega", "role": "Performance Marketing Lead" }
     ],
     "exchanges": [
-      { "speaker": "Tomás Vega", "text": "ROAS is down 22% WoW on the Q2 sustain push. 1.87 against a 2.4 target. CPI drifted from $9.50 to $10.80. Funnel below the click is fine — D30 holds at 14.1%. This is creative fatigue, top of funnel." },
+      { "speaker": "Tomás Vega", "text": "ROAS is down 22% WoW on the Q2 sustain push. 1.87 against a 2.4 target. CPA drifted from $9.50 to $10.80. Funnel below the click is fine — D30 holds at 14.1%. This is creative fatigue, top of funnel." },
       { "speaker": "Daniel Okafor", "text": "Heaven has three new creative concepts in QA. We were planning a refresh next quarter, but we should accelerate. Three days to QA-clear, two days to traffic split test, GO/NO-GO June 1." },
       { "speaker": "Alex Akiyama", "text": "Recommend we hold the next $120K tranche until then — flagging for your call. No more spend against current creatives if you agree." },
       { "speaker": "Davide Detta", "text": "Agreed. Hold the tranche, GO/NO-GO June 1 on the refresh. And let's do a post-mortem on the original launch creatives — what made them tire faster than the Mafia 2 era launch creatives? May tell us something about the messaging." },
@@ -211,7 +211,7 @@
     ],
     "claude_extracted_kpi_signals": [
       { "kpi": "mafia_roas_rolling_7d", "value": "1.87", "source_speaker": "Tomás Vega" },
-      { "kpi": "mafia_cpi", "value": "$10.80", "source_speaker": "Tomás Vega" },
+      { "kpi": "mafia_cpa", "value": "$10.80", "source_speaker": "Tomás Vega" },
       { "kpi": "mafia_d30_retention", "value": "14.1%", "source_speaker": "Tomás Vega" }
     ],
     "extracted_tickets": [

@@ -3,12 +3,12 @@
     "beat_id": "civ7_test_of_time_update_launch",
     "title_id": "civilization",
     "beat_name": "Test of Time \u2014 Major Update Launch",
-    "phase": "live_service",
+    "phase": "post_launch",
     "start_date": "2026-05-20",
     "end_date": "2026-06-15",
     "status": "active",
     "lead_owner": "Priya Iyer",
-    "summary": "Civ VII Test of Time free update (shipped May 19, 2026 \u2014 D7 today) + 4-week sustain. Anchor beat for Q2 live-service push. Headline features: Time-Tested Civs (Syncretism), reworked Victories, Triumphs system across 6 Attributes, Fractal Continent map, new Commerce screen, Advisor Council, free leader Alexander the Great. Cross-platform: PS5/PS4/Xbox Series X|S/Xbox One/Switch/Switch 2/PC (Steam + Epic)/Mac/Linux.",
+    "summary": "Civ VII Test of Time free update (shipped May 19, 2026 \u2014 D7 today) + 4-week sustain. Anchor beat for Q2 post-launch content push. Headline features: Time-Tested Civs (Syncretism), reworked Victories, Triumphs system across 6 Attributes, Fractal Continent map, new Commerce screen, Advisor Council, free leader Alexander the Great. Cross-platform: PS5/PS4/Xbox Series X|S/Xbox One/Switch/Switch 2/PC (Steam + Epic)/Mac/Linux.",
     "budget_usd": 480000,
     "vendor_ids": [
       "open_world",
@@ -22,7 +22,7 @@
     "beat_id": "civ7_test_of_time_creator_campaign_na",
     "title_id": "civilization",
     "beat_name": "Test of Time NA Creator Campaign + Time-Tested Civs Multiplayer Premiere",
-    "phase": "live_service",
+    "phase": "post_launch",
     "start_date": "2026-05-22",
     "end_date": "2026-06-08",
     "status": "active",
@@ -168,7 +168,7 @@
     "beat_id": "civ7_qa_test_of_time_sustain",
     "title_id": "civilization",
     "beat_name": "Test of Time Sustain Push \u2014 Q3 Plan",
-    "phase": "live_service",
+    "phase": "post_launch",
     "start_date": "2026-06-16",
     "end_date": "2026-09-30",
     "status": "planning",
@@ -224,7 +224,7 @@
     ],
     "collaborators": [
       {
-        "name": "Product / Live Service",
+        "name": "Product / Post-Launch Content",
         "type": "internal",
         "role": "Patch 1.2 ship + D30 re-measure",
         "responsible_for": [
@@ -274,7 +274,7 @@
         "role": "Phase 2 paid buy oversight",
         "responsible_for": [
           "Spend pacing",
-          "ROAS/CPI monitoring"
+          "ROAS/CPA monitoring"
         ],
         "depends_on": [
           "Heaven brief unlock"
@@ -317,13 +317,13 @@
       "inputs": [
         {
           "input": "Patch 1.2 ship confirmation",
-          "owner": "Product / Live Service",
+          "owner": "Product / Post-Launch Content",
           "status": "outstanding",
           "due": "2026-06-03"
         },
         {
           "input": "D30 retention re-measure (Patch 1.2 cohort)",
-          "owner": "Product / Live Service",
+          "owner": "Product / Post-Launch Content",
           "status": "outstanding",
           "due": "2026-06-12"
         },
@@ -370,7 +370,7 @@
     "beat_id": "bl4_fanfest_q3_2026_planning",
     "title_id": "borderlands",
     "beat_name": "Borderlands FanFest Q3 2026 \u2014 Planning",
-    "phase": "live_service",
+    "phase": "launch_push",
     "start_date": "2026-06-01",
     "end_date": "2026-09-15",
     "status": "planning",
@@ -440,7 +440,7 @@
         "type": "internal",
         "role": "Paid spend oversight",
         "responsible_for": [
-          "ROAS/CPI tracking",
+          "ROAS/CPA tracking",
           "Spend pacing report for Davide pre-read"
         ],
         "depends_on": [
@@ -536,7 +536,7 @@
     "beat_id": "xcom_30th_anniversary_bundle_prep",
     "title_id": "xcom",
     "beat_name": "XCOM 30th Anniversary Bundle \u2014 Sept Launch Prep",
-    "phase": "live_service",
+    "phase": "catalog",
     "start_date": "2026-05-01",
     "end_date": "2026-09-08",
     "status": "active",
@@ -551,7 +551,7 @@
     "beat_id": "xcom_catalog_steam_sale_sept",
     "title_id": "xcom",
     "beat_name": "XCOM Catalog Steam Sale \u2014 September",
-    "phase": "live_service",
+    "phase": "catalog",
     "start_date": "2026-09-09",
     "end_date": "2026-09-30",
     "status": "planning",
@@ -600,7 +600,7 @@
     "beat_id": "wonderlands_gluttons_gamble_encore_drop",
     "title_id": "wonderlands",
     "beat_name": "Glutton's Gamble Encore \u2014 DLC Drop",
-    "phase": "live_service",
+    "phase": "post_launch",
     "start_date": "2026-05-01",
     "end_date": "2026-07-31",
     "status": "delayed",
@@ -744,7 +744,7 @@
     "beat_id": "wonderlands_evergreen_sustain",
     "title_id": "wonderlands",
     "beat_name": "Wonderlands \u2014 Evergreen Sustain",
-    "phase": "live_service",
+    "phase": "post_launch",
     "start_date": "2026-04-01",
     "end_date": "2026-12-31",
     "status": "active",
@@ -792,7 +792,7 @@
     "beat_id": "ror2_seekers_storm_free_weekend",
     "title_id": "risk-of-rain",
     "beat_name": "Seekers of the Storm \u2014 Free Weekend (Aug 8\u201311)",
-    "phase": "live_service",
+    "phase": "post_launch",
     "start_date": "2026-06-15",
     "end_date": "2026-08-15",
     "status": "active",
@@ -857,7 +857,7 @@
         "role": "Awareness layer",
         "responsible_for": [
           "Pre-Free-Weekend awareness flight (quote pending)",
-          "$4.20 CPI estimate validation"
+          "$4.20 CPM estimate validation"
         ],
         "depends_on": [
           "Tom\u00e1s quote approval"
@@ -906,7 +906,7 @@
           "due": "2026-05-27"
         },
         {
-          "input": "CPMStar awareness quote approval ($4.20 CPI)",
+          "input": "CPMStar awareness quote approval ($4.20 CPM)",
           "owner": "Performance Marketing (Tom\u00e1s Vega)",
           "status": "outstanding",
           "due": "2026-06-12"
@@ -932,7 +932,7 @@
     "beat_id": "ror2_post_free_weekend_conversion",
     "title_id": "risk-of-rain",
     "beat_name": "RoR Post-Free-Weekend Conversion Push",
-    "phase": "live_service",
+    "phase": "post_launch",
     "start_date": "2026-08-12",
     "end_date": "2026-08-31",
     "status": "planning",
@@ -949,7 +949,7 @@
     "beat_id": "civ7_e3_demo_q2_planning",
     "title_id": "civilization",
     "beat_name": "Civ VII Summer Game Fest \u2014 Demo Planning",
-    "phase": "live_service",
+    "phase": "post_launch",
     "start_date": "2026-05-15",
     "end_date": "2026-06-15",
     "status": "active",
@@ -1028,7 +1028,7 @@
     "beat_id": "xcom_community_anniversary_layer",
     "title_id": "xcom",
     "beat_name": "XCOM 30th Anniversary \u2014 Community Layer",
-    "phase": "live_service",
+    "phase": "catalog",
     "start_date": "2026-06-01",
     "end_date": "2026-09-30",
     "status": "active",
@@ -1043,12 +1043,12 @@
     "beat_id": "bl4_bounty_pack_1_mercenary_day",
     "title_id": "borderlands",
     "beat_name": "Bounty Pack 1: How Rush Saved Mercenary Day",
-    "phase": "live_service",
+    "phase": "launch_push",
     "start_date": "2025-11-20",
     "end_date": "2025-12-23",
     "status": "completed",
     "lead_owner": "Brand Marketing",
-    "summary": "Free holiday Bounty Pack \u2014 Rush + the Outbounders take on Minister Screw (Timekeeper's underling) in a Mercenary Day-themed mission set. Shipped free to all BL4 owners Nov 20, 2025. Goodwill beat ahead of the paid Mad Ellie SP1 in March. Earned-seeding only \u2014 no paid layer. Set the cadence expectation for the BL4 live-service rhythm and warmed the Gamesight 1,200-creator advocacy pool for SP1.",
+    "summary": "Free holiday Bounty Pack \u2014 Rush + the Outbounders take on Minister Screw (Timekeeper's underling) in a Mercenary Day-themed mission set. Shipped free to all BL4 owners Nov 20, 2025. Goodwill beat ahead of the paid Mad Ellie SP1 in March. Earned-seeding only \u2014 no paid layer. Set the cadence expectation for the BL4 post-launch content rhythm and warmed the Gamesight 1,200-creator advocacy pool for SP1.",
     "budget_usd": 65000,
     "vendor_ids": [
       "gamesight"
@@ -1060,7 +1060,7 @@
     "beat_id": "mafia_toc_free_ride_update",
     "title_id": "mafia",
     "beat_name": "Mafia: TOC \u2014 Free Ride Update",
-    "phase": "live_service",
+    "phase": "sustain_scale",
     "start_date": "2025-11-20",
     "end_date": "2025-12-15",
     "status": "completed",
@@ -1083,7 +1083,7 @@
     "end_date": "2026-03-31",
     "status": "completed",
     "lead_owner": "Brand Marketing",
-    "summary": "Civ VII Apple Arcade launch Feb 5, 2026 \u2014 ported by Behaviour Interactive in partnership with Firaxis. Opened the franchise to the Apple ecosystem (iPhone + iPad + Mac + Apple TV) inside Apple Arcade's subscription pool. Marketing layer was light \u2014 Apple co-marketing + Apple Arcade editorial featuring did most of the lift, with a small NA paid social skin and Discord community amplification. Important live-service stepping stone before the Test of Time free update in May.",
+    "summary": "Civ VII Apple Arcade launch Feb 5, 2026 \u2014 ported by Behaviour Interactive in partnership with Firaxis. Opened the franchise to the Apple ecosystem (iPhone + iPad + Mac + Apple TV) inside Apple Arcade's subscription pool. Marketing layer was light \u2014 Apple co-marketing + Apple Arcade editorial featuring did most of the lift, with a small NA paid social skin and Discord community amplification. Important post-launch stepping stone before the Test of Time free update in May.",
     "budget_usd": 95000,
     "vendor_ids": [
       "gamesight"

@@ -21,6 +21,10 @@ import {
   Sparkles,
   ChevronDown,
   ArrowUpRight,
+  CheckCircle2,
+  X,
+  Undo2,
+  Plus,
 } from "lucide-react";
 
 // Type / priority / portfolio metadata. `buildInboxItems` + the
@@ -113,6 +117,23 @@ export default function AIInbox() {
   const [activeDraftId, setActiveDraftId] = useState(null);
   const [expandedId, setExpandedId] = useState(null);
   const [flashId, setFlashId] = useState(null);
+
+  // The human approve/dismiss step on Claude-extracted tickets. Map of
+  // proposed_ticket_id -> "approved" | "dismissed"; absent = pending.
+  // Demo-only client state (no backend) — mirrors how "Send to Davide"
+  // on escalation drafts is a gesture, not a real write.
+  const [ticketApprovals, setTicketApprovals] = useState({});
+  const setTicketStatus = (ids, status) => {
+    const list = Array.isArray(ids) ? ids : [ids];
+    setTicketApprovals((prev) => {
+      const next = { ...prev };
+      for (const id of list) {
+        if (status === null) delete next[id];
+        else next[id] = status;
+      }
+      return next;
+    });
+  };
 
   const activeDraft = escalationDrafts.find(
     (d) => d.draft_id === activeDraftId
@@ -295,6 +316,8 @@ export default function AIInbox() {
                   }
                   onOpenDraft={(draftId) => setActiveDraftId(draftId)}
                   titleColor={title.brand_color}
+                  ticketApprovals={ticketApprovals}
+                  onTicketStatus={setTicketStatus}
                 />
               ))}
             </ul>
@@ -352,7 +375,16 @@ function countByPriority(items) {
   return <>{parts}</>;
 }
 
-function InboxRow({ item, expanded, flash, onToggle, onOpenDraft, titleColor }) {
+function InboxRow({
+  item,
+  expanded,
+  flash,
+  onToggle,
+  onOpenDraft,
+  titleColor,
+  ticketApprovals,
+  onTicketStatus,
+}) {
   const meta = TYPE_META[item.type];
   const Icon = meta.Icon;
   const pri = PRIORITY_META[item.priority];
@@ -422,16 +454,33 @@ function InboxRow({ item, expanded, flash, onToggle, onOpenDraft, titleColor }) 
           />
         </button>
         {expanded && (
-          <ExpandedContent item={item} titleColor={titleColor} />
+          <ExpandedContent
+            item={item}
+            titleColor={titleColor}
+            ticketApprovals={ticketApprovals}
+            onTicketStatus={onTicketStatus}
+          />
         )}
       </div>
     </li>
   );
 }
 
-function ExpandedContent({ item, titleColor }) {
+function ExpandedContent({ item, titleColor, ticketApprovals, onTicketStatus }) {
   if (item.type === "transcript") {
     const tr = item.raw;
+    const approvals = ticketApprovals || {};
+    const proposed = tr.extracted_tickets || [];
+    const statusOf = (pt) => approvals[pt.proposed_ticket_id] || "pending";
+    const pendingIds = proposed
+      .filter((pt) => statusOf(pt) === "pending")
+      .map((pt) => pt.proposed_ticket_id);
+    const approvedCount = proposed.filter((pt) => statusOf(pt) === "approved")
+      .length;
+    const dismissedCount = proposed.filter(
+      (pt) => statusOf(pt) === "dismissed"
+    ).length;
+
     return (
       <div className="border-t border-line p-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div>
@@ -450,50 +499,153 @@ function ExpandedContent({ item, titleColor }) {
           </div>
         </div>
         <div>
-          <div className="text-[10.5px] uppercase tracking-wider text-ink-500 font-semibold mb-2">
-            Claude-extracted tickets
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <div className="text-[10.5px] uppercase tracking-wider text-ink-500 font-semibold flex items-center gap-1.5">
+              <Sparkles className="h-3 w-3 text-twok-red" />
+              Claude-extracted tickets
+            </div>
+            {onTicketStatus && pendingIds.length > 0 && (
+              <button
+                type="button"
+                onClick={() => onTicketStatus(pendingIds, "approved")}
+                className="text-[10.5px] font-semibold inline-flex items-center gap-1 px-2 py-1 rounded border border-accent-success/40 text-accent-success hover:bg-accent-success/10 transition-colors"
+              >
+                <CheckCircle2 className="h-3 w-3" />
+                Approve all ({pendingIds.length})
+              </button>
+            )}
+          </div>
+          <div className="text-[10.5px] text-ink-500 mb-2">
+            {proposed.length} proposed · approve to create in Jira
+            {(approvedCount > 0 || dismissedCount > 0) && (
+              <>
+                {" · "}
+                <span className="text-accent-success font-semibold">
+                  {approvedCount} created
+                </span>
+                {dismissedCount > 0 && <> · {dismissedCount} dismissed</>}
+              </>
+            )}
           </div>
           <ul className="space-y-2">
-            {tr.extracted_tickets.map((pt) => (
-              <li
-                key={pt.proposed_ticket_id}
-                className="border border-line rounded p-2.5 text-[12.5px]"
-              >
-                <div className="flex items-center justify-between">
-                  <JiraLink
-                    ticketId={pt.proposed_ticket_id}
-                    className="mono text-[10px] text-accent-primary hover:underline"
-                    fallbackClassName="mono text-[10px] text-ink-500"
-                  />
-                  <Badge
-                    tone={
-                      pt.priority === "P0"
-                        ? "red"
-                        : pt.priority === "P1"
-                        ? "amber"
-                        : "neutral"
-                    }
-                    size="xs"
+            {proposed.map((pt) => {
+              const status = statusOf(pt);
+              const approved = status === "approved";
+              const dismissed = status === "dismissed";
+              return (
+                <li
+                  key={pt.proposed_ticket_id}
+                  className={`border rounded p-2.5 text-[12.5px] transition-all ${
+                    approved
+                      ? "border-accent-success/40 bg-accent-success/5"
+                      : dismissed
+                      ? "border-line bg-base/40 opacity-60"
+                      : "border-line"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="mono text-[10px] text-ink-500">
+                      {pt.proposed_ticket_id}
+                    </span>
+                    <Badge
+                      tone={
+                        pt.priority === "P0"
+                          ? "red"
+                          : pt.priority === "P1"
+                          ? "amber"
+                          : "neutral"
+                      }
+                      size="xs"
+                    >
+                      {pt.priority}
+                    </Badge>
+                  </div>
+                  <div
+                    className={`font-medium mt-0.5 ${
+                      dismissed ? "line-through" : ""
+                    }`}
                   >
-                    {pt.priority}
-                  </Badge>
-                </div>
-                <div className="font-medium mt-0.5">{pt.title}</div>
-                <div className="text-[10.5px] text-ink-500 mt-0.5">
-                  Owner: {pt.owner}
-                  {pt.vendor_owner && ` · ${pt.vendor_owner}`}
-                </div>
-                <div className="text-[11px] text-ink-700 italic mt-1.5">
-                  "{pt.source_quote}"
-                </div>
-                <div className="text-[11px] text-ink-900 mt-1.5">
-                  <span className="text-[10px] uppercase tracking-wider font-semibold text-ink-500 mr-1">
-                    Rationale
-                  </span>
-                  {pt.rationale}
-                </div>
-              </li>
-            ))}
+                    {pt.title}
+                  </div>
+                  <div className="text-[10.5px] text-ink-500 mt-0.5">
+                    Owner: {pt.owner}
+                    {pt.vendor_owner && ` · ${pt.vendor_owner}`}
+                  </div>
+                  <div className="text-[11px] text-ink-700 italic mt-1.5">
+                    "{pt.source_quote}"
+                  </div>
+                  <div className="text-[11px] text-ink-900 mt-1.5">
+                    <span className="text-[10px] uppercase tracking-wider font-semibold text-ink-500 mr-1">
+                      Rationale
+                    </span>
+                    {pt.rationale}
+                  </div>
+
+                  {onTicketStatus && (
+                    <div className="mt-2.5 pt-2.5 border-t border-line/70 flex items-center gap-2 flex-wrap">
+                      {status === "pending" && (
+                        <>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              onTicketStatus(pt.proposed_ticket_id, "approved")
+                            }
+                            className="text-[11px] font-semibold inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-accent-success text-white hover:opacity-90 transition-opacity"
+                          >
+                            <Plus className="h-3 w-3" />
+                            Approve · create in Jira
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              onTicketStatus(pt.proposed_ticket_id, "dismissed")
+                            }
+                            className="text-[11px] font-medium inline-flex items-center gap-1 px-2.5 py-1 rounded-md border border-line text-ink-500 hover:border-ink-400 hover:text-ink-700 transition-colors"
+                          >
+                            <X className="h-3 w-3" />
+                            Dismiss
+                          </button>
+                        </>
+                      )}
+                      {approved && (
+                        <>
+                          <span className="text-[11px] font-semibold inline-flex items-center gap-1 text-accent-success">
+                            <CheckCircle2 className="h-3.5 w-3.5" />
+                            Created in Jira · {pt.proposed_ticket_id}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              onTicketStatus(pt.proposed_ticket_id, null)
+                            }
+                            className="text-[10.5px] text-ink-400 hover:text-ink-700 inline-flex items-center gap-0.5 ml-auto"
+                          >
+                            <Undo2 className="h-3 w-3" /> Undo
+                          </button>
+                        </>
+                      )}
+                      {dismissed && (
+                        <>
+                          <span className="text-[11px] font-medium inline-flex items-center gap-1 text-ink-500">
+                            <X className="h-3.5 w-3.5" />
+                            Dismissed
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              onTicketStatus(pt.proposed_ticket_id, null)
+                            }
+                            className="text-[10.5px] text-ink-400 hover:text-ink-700 inline-flex items-center gap-0.5 ml-auto"
+                          >
+                            <Undo2 className="h-3 w-3" /> Undo
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

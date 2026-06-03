@@ -74,9 +74,9 @@ const KPI_DEFS = {
     higher_better: true,
     fmt: (v) => v?.toFixed(2),
   },
-  cpi_usd: {
-    target_key: "cpi_ceiling_usd",
-    label: "CPI",
+  cpa_usd: {
+    target_key: "cpa_ceiling_usd",
+    label: "Cost per acquisition",
     category: "monetization",
     higher_better: false,
     fmt: (v) => `$${v?.toFixed(2)}`,

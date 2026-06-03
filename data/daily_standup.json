@@ -425,7 +425,7 @@
     },
     {
       "title_id": "mafia",
-      "claude_blurb": "**Next:** June 1. Davide GO/NO-GO on next $120K creative tranche. Classic top-of-funnel fatigue: ROAS 1.87 vs 2.4 target (-22% WoW), CPI drifted $9.50 to $10.80. D30 holding at 14.1% so funnel itself is fine. Heaven has 3 refresh concepts in QA, Brand reviews Thursday. Tracking for your call Jun 1. No action needed from you today.",
+      "claude_blurb": "**Next:** June 1. Davide GO/NO-GO on next $120K creative tranche. Classic top-of-funnel fatigue: ROAS 1.87 vs 2.4 target (-22% WoW), CPA drifted $9.50 to $10.80. D30 holding at 14.1% so funnel itself is fine. Heaven has 3 refresh concepts in QA, Brand reviews Thursday. Tracking for your call Jun 1. No action needed from you today.",
       "phase_gate_check": {
         "kpi_label": "ROAS (rolling 7d)",
         "threshold": "\u2265 2.4",
@@ -552,7 +552,7 @@
     },
     {
       "title_id": "risk-of-rain",
-      "claude_blurb": "**Next:** Aug 8. Seekers of the Storm Free Weekend kickoff (Steam Aug 8 to 11). Wishlist velocity +12% WoW heading in. This week: Lurkit quest setup brief out Wednesday, CreatorIQ shortlist of 40 micro/nano FPS-adjacent creators landing Friday. CPMStar quote on the awareness layer $4.20 CPI estimated.",
+      "claude_blurb": "**Next:** Aug 8. Seekers of the Storm Free Weekend kickoff (Steam Aug 8 to 11). Wishlist velocity +12% WoW heading in. This week: Lurkit quest setup brief out Wednesday, CreatorIQ shortlist of 40 micro/nano FPS-adjacent creators landing Friday. CPMStar quote on the awareness layer $4.20 CPM estimated.",
       "phase_gate_check": {
         "kpi_label": "Wishlist velocity (daily)",
         "threshold": "\u2265 280",
@@ -618,7 +618,7 @@
       "severity": "medium",
       "risk_type": "creative_fatigue",
       "headline": "Mafia: TOC Q2 sustain: paid creative fatigue, ROAS down 22% WoW",
-      "detail": "CPI drifted $9.50 to $10.80. D30 funnel fine: top of funnel is the issue. Heaven has 3 new creative concepts in QA.",
+      "detail": "CPA drifted $9.50 to $10.80. D30 funnel fine: top of funnel is the issue. Heaven has 3 new creative concepts in QA.",
       "recommended_action": "Tracking for Davide GO/NO-GO Jun 1 on next $120K tranche. Brand reviews refresh concepts Thursday; will package recommendation for your call by Friday. No action needed this week.",
       "escalation_draft_id": "draft_mafia_creative_refresh_hold",
       "flag_type": "kpi"

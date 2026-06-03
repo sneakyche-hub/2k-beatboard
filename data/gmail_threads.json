@@ -88,7 +88,7 @@
     "timestamp": "2026-05-11T14:20:00Z",
     "title_id": "risk-of-rain",
     "flagged_for_action": false,
-    "thread_summary": "CPMStar quote: $4.20 estimated CPI on browser FPS/co-op adjacency for RoR Free Weekend awareness layer. 12M impression cap, 14-day flight pre-Free Weekend.",
+    "thread_summary": "CPMStar quote: $4.20 estimated CPM on browser FPS/co-op adjacency for RoR Free Weekend awareness layer. 12M impression cap, 14-day flight pre-Free Weekend.",
     "claude_recommended_reply": null
   },
   {
@@ -146,7 +146,7 @@
     "flagged_for_action": true,
     "op_category": "budget",
     "thread_summary": "Davide asking for a pre-brief Friday morning ahead of the June 1 GO/NO-GO so he can see the refresh concepts before formal call.",
-    "claude_recommended_reply": "Booking 30 min Friday AM. Will package: 3 refresh concepts from Heaven + Brand QA notes from Thursday + ROAS/CPI trend chart + recommended GO/NO-GO posture. Pre-read in your inbox Thursday EOD."
+    "claude_recommended_reply": "Booking 30 min Friday AM. Will package: 3 refresh concepts from Heaven + Brand QA notes from Thursday + ROAS/CPA trend chart + recommended GO/NO-GO posture. Pre-read in your inbox Thursday EOD."
   },
   {
     "thread_id": "thread_open_world_fanfest_sync",

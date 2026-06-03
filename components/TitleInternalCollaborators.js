@@ -43,7 +43,7 @@ function aggregate(beats) {
 // featured beat's collaborator graph yet.
 const STANDARD_FUNCTIONS = [
   "Brand Creative",
-  "Product / Live Service",
+  "Product / Post-Launch Content",
   "Community Lead",
   "Performance Marketing",
   "Legal",
