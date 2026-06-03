@@ -997,12 +997,14 @@ function DeltaStrip() {
                 {item.priority}
               </span>
               {t && (
-                <span
-                  className="text-[10px] uppercase tracking-wider font-bold shrink-0"
+                <Link
+                  href={`/titles/${t.franchise_slug}`}
+                  title={`Open ${t.title_name} workspace`}
+                  className="text-[10px] uppercase tracking-wider font-bold shrink-0 hover:underline"
                   style={{ color: t.brand_color }}
                 >
                   {t.title_name}
-                </span>
+                </Link>
               )}
               {item.ticketId && (
                 <JiraLink
