@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   CheckCircle2,
   Clock,
@@ -214,41 +215,56 @@ export default function ProductionHealthTiles({ prod, brief }) {
                       {!t.priority && t.status === "completed" && (
                         <CheckCircle2 className="h-3.5 w-3.5 text-accent-success shrink-0 mt-0.5" />
                       )}
-                      <div className="min-w-0 flex-1">
-                        <div className="flex items-baseline gap-2 flex-wrap">
-                          <span className="text-[12.5px] font-medium text-ink-900">
-                            {t.summary}
-                          </span>
-                          {ti && (
-                            <span
-                              className="text-[10px] uppercase tracking-wider font-semibold"
-                              style={{ color: ti.brand_color }}
-                            >
-                              {ti.title_name}
-                            </span>
-                          )}
-                        </div>
-                        <div className="text-[11px] text-ink-500 mt-0.5 flex items-center gap-2 flex-wrap">
-                          {t.owner && <span>{t.owner}</span>}
-                          {t.due_date && (
-                            <span
-                              className={
-                                isLate ? "text-accent-red font-medium" : ""
-                              }
-                            >
-                              {isLate && (
-                                <AlertTriangle className="inline h-3 w-3 mr-0.5 -mt-0.5" />
+                      {(() => {
+                        const inner = (
+                          <>
+                            <div className="flex items-baseline gap-2 flex-wrap">
+                              <span className="text-[12.5px] font-medium text-ink-900 group-hover:underline">
+                                {t.summary}
+                              </span>
+                              {ti && (
+                                <span
+                                  className="text-[10px] uppercase tracking-wider font-semibold"
+                                  style={{ color: ti.brand_color }}
+                                >
+                                  {ti.title_name}
+                                </span>
                               )}
-                              Due {fmtDate(t.due_date)}
-                            </span>
-                          )}
-                          {t.status && (
-                            <span className="text-ink-400">
-                              · {t.status.replace(/_/g, " ")}
-                            </span>
-                          )}
-                        </div>
-                      </div>
+                            </div>
+                            <div className="text-[11px] text-ink-500 mt-0.5 flex items-center gap-2 flex-wrap">
+                              {t.owner && <span>{t.owner}</span>}
+                              {t.due_date && (
+                                <span
+                                  className={
+                                    isLate ? "text-accent-red font-medium" : ""
+                                  }
+                                >
+                                  {isLate && (
+                                    <AlertTriangle className="inline h-3 w-3 mr-0.5 -mt-0.5" />
+                                  )}
+                                  Due {fmtDate(t.due_date)}
+                                </span>
+                              )}
+                              {t.status && (
+                                <span className="text-ink-400">
+                                  · {t.status.replace(/_/g, " ")}
+                                </span>
+                              )}
+                            </div>
+                          </>
+                        );
+                        return t.ticket_id ? (
+                          <Link
+                            href={`/tickets?ticket=${t.ticket_id}`}
+                            title="Open ticket detail"
+                            className="min-w-0 flex-1 group"
+                          >
+                            {inner}
+                          </Link>
+                        ) : (
+                          <div className="min-w-0 flex-1">{inner}</div>
+                        );
+                      })()}
                       {t.ticket_id && (
                         <JiraLink
                           ticketId={t.ticket_id}

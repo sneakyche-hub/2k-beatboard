@@ -1,12 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { LayoutGrid, AlertTriangle, Ban, CalendarClock, Target } from "lucide-react";
 import {
   tickets as allTickets,
   titles,
   invoices,
   getTitleById,
+  getTicket,
   SAVED_FILTERS,
   SAVED_FILTER_MAP,
   TICKET_COMPONENTS,
@@ -93,6 +94,15 @@ export default function TicketsPortfolio() {
   const [savedFilter, setSavedFilter] = useState("open");
   const [activeComponents, setActiveComponents] = useState(() => new Set());
   const [groupBy, setGroupBy] = useState("title");
+
+  // Deep-link support: /tickets?ticket=<id> opens that ticket's drawer on
+  // load, so rows elsewhere (e.g. the standup production-health tiles) can
+  // link straight to the canonical ticket detail.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const id = new URLSearchParams(window.location.search).get("ticket");
+    if (id && getTicket(id)) setSelectedId(id);
+  }, []);
 
   // Portfolio-wide stat tiles — always over the full ticket set so the
   // headline numbers don't shift as filters change.
